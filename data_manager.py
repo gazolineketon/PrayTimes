@@ -32,17 +32,31 @@ def get_countries() -> list[tuple[str, str]]:
         response = requests.get("https://restcountries.com/v3.1/all?fields=name,translations", timeout=10)
         response.raise_for_status()
         countries_data = response.json()
-        
+
         countries = []
         for country in countries_data:
             english_name = country.get('name', {}).get('common')
             arabic_name = country.get('translations', {}).get('ara', {}).get('common')
-            
+
+            # إذا لم تتوفر ترجمة عربية من الـ API، ابحث في ملف المدن
+            if not arabic_name and english_name:
+                country_file = WORLD_CITIES_DIR / f"{english_name}.json"
+                if country_file.exists():
+                    try:
+                        with open(country_file, 'r', encoding='utf-8') as f:
+                            cities_data = json.load(f)
+                        # استخدم أول اسم عربي لأي مدينة كاسم عربي للدولة
+                        if cities_data and isinstance(cities_data, list):
+                            first_city = cities_data[0]
+                            arabic_name = first_city.get('arabic_name', english_name)
+                    except Exception:
+                        arabic_name = english_name
+
             if english_name:
                 countries.append((english_name, arabic_name if arabic_name else english_name))
 
         countries = sorted(countries, key=lambda x: x[1])
-        
+
         try:
             with open(COUNTRIES_CACHE_FILE, 'w', encoding='utf-8') as f:
                 json.dump(countries, f, ensure_ascii=False, indent=2)
@@ -55,7 +69,23 @@ def get_countries() -> list[tuple[str, str]]:
 
     except requests.exceptions.RequestException as e:
         logger.error(f"خطأ في جلب الدول: {e}")
-        return []
+        # إذا فشل جلب الدول من الإنترنت، جرب جلبها من الملفات المحلية
+        countries = []
+        for file in WORLD_CITIES_DIR.glob('*.json'):
+            english_name = file.stem
+            try:
+                with open(file, 'r', encoding='utf-8') as f:
+                    cities_data = json.load(f)
+                if cities_data and isinstance(cities_data, list):
+                    first_city = cities_data[0]
+                    arabic_name = first_city.get('arabic_name', english_name)
+                else:
+                    arabic_name = english_name
+            except Exception:
+                arabic_name = english_name
+            countries.append((english_name, arabic_name))
+        countries = sorted(countries, key=lambda x: x[1])
+        return countries
 
 def get_cities(country_name: str) -> list[tuple[str, str]]:
     """جلب قائمة المدن من API وترجمتها من الملفات المحلية"""

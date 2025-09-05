@@ -1,0 +1,258 @@
+[
+    {
+        "english_name": "Helsinki",
+        "arabic_name": "هلسنكي"
+    },
+    {
+        "english_name": "Tampere",
+        "arabic_name": "تامبيري"
+    },
+    {
+        "english_name": "Espoo",
+        "arabic_name": "إسبو"
+    },
+    {
+        "english_name": "Vantaa",
+        "arabic_name": "فانتا"
+    },
+    {
+        "english_name": "Oulu",
+        "arabic_name": "أولو"
+    },
+    {
+        "english_name": "Turku",
+        "arabic_name": "توركو"
+    },
+    {
+        "english_name": "Jyvaskyla",
+        "arabic_name": "يوفاسكولا"
+    },
+    {
+        "english_name": "Kuopio",
+        "arabic_name": "كووبيو"
+    },
+    {
+        "english_name": "Lahti",
+        "arabic_name": "لاهتي"
+    },
+    {
+        "english_name": "Pori",
+        "arabic_name": "بوري"
+    },
+    {
+        "english_name": "Kouvola",
+        "arabic_name": "كوفولا"
+    },
+    {
+        "english_name": "Joensuu",
+        "arabic_name": "يوينسو"
+    },
+    {
+        "english_name": "Lappeenranta",
+        "arabic_name": "لابينرنتا"
+    },
+    {
+        "english_name": "Vaasa",
+        "arabic_name": "فآسا"
+    },
+    {
+        "english_name": "Hameenlinna",
+        "arabic_name": "هامينلينا"
+    },
+    {
+        "english_name": "Seinajoki",
+        "arabic_name": "سينايوكي"
+    },
+    {
+        "english_name": "Rovaniemi",
+        "arabic_name": "روفانييمي"
+    },
+    {
+        "english_name": "Mikkeli",
+        "arabic_name": "ميكيلي"
+    },
+    {
+        "english_name": "Porvoo",
+        "arabic_name": "بورفو"
+    },
+    {
+        "english_name": "Salo",
+        "arabic_name": "سالو"
+    },
+    {
+        "english_name": "Kotka",
+        "arabic_name": "كوتكا"
+    },
+    {
+        "english_name": "Kokkola",
+        "arabic_name": "كوكولا"
+    },
+    {
+        "english_name": "Hyvinkaa",
+        "arabic_name": "هوفينكا"
+    },
+    {
+        "english_name": "Jarvenpaa",
+        "arabic_name": "يارفنبا"
+    },
+    {
+        "english_name": "Lohja",
+        "arabic_name": "لوهيا"
+    },
+    {
+        "english_name": "Nurmijarvi",
+        "arabic_name": "نورميارفي"
+    },
+    {
+        "english_name": "Tuusula",
+        "arabic_name": "توسولا"
+    },
+    {
+        "english_name": "Kirkkonummi",
+        "arabic_name": "كيركونومي"
+    },
+    {
+        "english_name": "Rauma",
+        "arabic_name": "راوما"
+    },
+    {
+        "english_name": "Kerava",
+        "arabic_name": "كيرافا"
+    },
+    {
+        "english_name": "Kajaani",
+        "arabic_name": "كايآني"
+    },
+    {
+        "english_name": "Kaarina",
+        "arabic_name": "كآرينا"
+    },
+    {
+        "english_name": "Nokia",
+        "arabic_name": "نوكيا"
+    },
+    {
+        "english_name": "Ylojarvi",
+        "arabic_name": "أولويارفي"
+    },
+    {
+        "english_name": "Kangasala",
+        "arabic_name": "كناسألا"
+    },
+    {
+        "english_name": "Savonlinna",
+        "arabic_name": "سافونلينا"
+    },
+    {
+        "english_name": "Vihti",
+        "arabic_name": "فيهتي"
+    },
+    {
+        "english_name": "Riihimaki",
+        "arabic_name": "ريهيماكي"
+    },
+    {
+        "english_name": "Raseborg",
+        "arabic_name": "رآسيبوري"
+    },
+    {
+        "english_name": "Raisio",
+        "arabic_name": "رايسيو"
+    },
+    {
+        "english_name": "Imatra",
+        "arabic_name": "إيماترا"
+    },
+    {
+        "english_name": "Lempaala",
+        "arabic_name": "لمبالا"
+    },
+    {
+        "english_name": "Raahe",
+        "arabic_name": "رآهي"
+    },
+    {
+        "english_name": "Sastamala",
+        "arabic_name": "ساستاملا"
+    },
+    {
+        "english_name": "Hollola",
+        "arabic_name": "هولولا"
+    },
+    {
+        "english_name": "Siilinjarvi",
+        "arabic_name": "سيلنيارفي"
+    },
+    {
+        "english_name": "Klaukkala",
+        "arabic_name": "كلوكالا"
+    },
+    {
+        "english_name": "Tornio",
+        "arabic_name": "تورنيو"
+    },
+    {
+        "english_name": "Mantsala",
+        "arabic_name": "مانتسلا"
+    },
+    {
+        "english_name": "Valkeakoski",
+        "arabic_name": "فالكياكوسكي"
+    },
+    {
+        "english_name": "Iisalmi",
+        "arabic_name": "إيسلمي"
+    },
+    {
+        "english_name": "Varkaus",
+        "arabic_name": "فاركاوس"
+    },
+    {
+        "english_name": "Hamina",
+        "arabic_name": "هامنة"
+    },
+    {
+        "english_name": "Jakobstad",
+        "arabic_name": "جاكوبستاد"
+    },
+    {
+        "english_name": "Kemi",
+        "arabic_name": "كيمي"
+    },
+    {
+        "english_name": "Jamsa",
+        "arabic_name": "يامسا"
+    },
+    {
+        "english_name": "Aanekoski",
+        "arabic_name": "آنيكوسكي"
+    },
+    {
+        "english_name": "Heinola",
+        "arabic_name": "هينولا"
+    },
+    {
+        "english_name": "Vammala",
+        "arabic_name": "فاملا"
+    },
+    {
+        "english_name": "Kuusamo",
+        "arabic_name": "كوسامو"
+    },
+    {
+        "english_name": "Uusikaupunki",
+        "arabic_name": "أوسيكاوبونكي"
+    },
+    {
+        "english_name": "Loviisa",
+        "arabic_name": "لوفيسا"
+    },
+    {
+        "english_name": "Kalajoki",
+        "arabic_name": "كلاجوكي"
+    },
+    {
+        "english_name": "Mariehamn",
+        "arabic_name": "ماريهامن"
+    }
+]

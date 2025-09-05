@@ -1,0 +1,306 @@
+[
+    {
+        "english_name": "Casablanca",
+        "arabic_name": "الدار البيضاء"
+    },
+    {
+        "english_name": "Tangier",
+        "arabic_name": "طنجة"
+    },
+    {
+        "english_name": "Fes",
+        "arabic_name": "فاس"
+    },
+    {
+        "english_name": "Marrakech",
+        "arabic_name": "مراكش"
+    },
+    {
+        "english_name": "Oujda-Angad",
+        "arabic_name": "وجدة-أنجاد"
+    },
+    {
+        "english_name": "Rabat",
+        "arabic_name": "الرباط"
+    },
+    {
+        "english_name": "Agadir",
+        "arabic_name": "أكادير"
+    },
+    {
+        "english_name": "Meknes",
+        "arabic_name": "مكناس"
+    },
+    {
+        "english_name": "Kenitra",
+        "arabic_name": "القنيطرة"
+    },
+    {
+        "english_name": "Tetouan",
+        "arabic_name": "تطوان"
+    },
+    {
+        "english_name": "Safi",
+        "arabic_name": "صافي"
+    },
+    {
+        "english_name": "Taourirt",
+        "arabic_name": "تاوريرت"
+    },
+    {
+        "english_name": "Temara",
+        "arabic_name": "تمارة"
+    },
+    {
+        "english_name": "Khenifra",
+        "arabic_name": "إقليم خنيفرة"
+    },
+    {
+        "english_name": "El Jadid",
+        "arabic_name": "الجديدة"
+    },
+    {
+        "english_name": "Laayoune",
+        "arabic_name": "العيون"
+    },
+    {
+        "english_name": "Ait Melloul",
+        "arabic_name": "أيت ملول"
+    },
+    {
+        "english_name": "Beni Mellal",
+        "arabic_name": "بني ملال"
+    },
+    {
+        "english_name": "Bouskoura",
+        "arabic_name": "بوسكورة"
+    },
+    {
+        "english_name": "Mohammedia",
+        "arabic_name": "المحمدية"
+    },
+    {
+        "english_name": "Settat",
+        "arabic_name": "سطات"
+    },
+    {
+        "english_name": "Taza",
+        "arabic_name": "تازة"
+    },
+    {
+        "english_name": "Inezgane",
+        "arabic_name": "إنزكان"
+    },
+    {
+        "english_name": "Larache",
+        "arabic_name": "العرائش"
+    },
+    {
+        "english_name": "Guelmim",
+        "arabic_name": "كلميم"
+    },
+    {
+        "english_name": "Ksar El Kebir",
+        "arabic_name": "القصر الكبير"
+    },
+    {
+        "english_name": "Skhirate",
+        "arabic_name": "الصخيرات"
+    },
+    {
+        "english_name": "Beni Yakhlef",
+        "arabic_name": "بني يخلف"
+    },
+    {
+        "english_name": "Sidi Yahya Zaer",
+        "arabic_name": "سيدي يحيى زعير"
+    },
+    {
+        "english_name": "Ben Guerir",
+        "arabic_name": "بن جرير"
+    },
+    {
+        "english_name": "Moulay Abdallah",
+        "arabic_name": "مولاي عبد الله"
+    },
+    {
+        "english_name": "Oulad Teima",
+        "arabic_name": "أولاد تايمة"
+    },
+    {
+        "english_name": "Berkane",
+        "arabic_name": "بركان"
+    },
+    {
+        "english_name": "Ain El Aouda",
+        "arabic_name": "عين العودة"
+    },
+    {
+        "english_name": "Errachidia",
+        "arabic_name": "الرشيدية"
+    },
+    {
+        "english_name": "Sidi Slimane",
+        "arabic_name": "سيدي سليمان"
+    },
+    {
+        "english_name": "Oued Zem",
+        "arabic_name": "وادي زم"
+    },
+    {
+        "english_name": "Gueznaia",
+        "arabic_name": "كزناية"
+    },
+    {
+        "english_name": "Wislane",
+        "arabic_name": "ويسلان"
+    },
+    {
+        "english_name": "Guercif",
+        "arabic_name": "جرسيف"
+    },
+    {
+        "english_name": "Sidi Qacem",
+        "arabic_name": "سيدي قاسم"
+    },
+    {
+        "english_name": "Sidi Bibi",
+        "arabic_name": "سيدي بيبي"
+    },
+    {
+        "english_name": "M'diq",
+        "arabic_name": "المضيق"
+    },
+    {
+        "english_name": "Youssoufia",
+        "arabic_name": "اليوسفية"
+    },
+    {
+        "english_name": "Midalt",
+        "arabic_name": "ميدلت"
+    },
+    {
+        "english_name": "Ain Harrouda",
+        "arabic_name": "عين حرودة"
+    },
+    {
+        "english_name": "Mehdya",
+        "arabic_name": "المهدية"
+    },
+    {
+        "english_name": "Ouezzane",
+        "arabic_name": "إقليم وزان"
+    },
+    {
+        "english_name": "Taroudannt",
+        "arabic_name": "إقليم تارودانت"
+    },
+    {
+        "english_name": "Semara",
+        "arabic_name": "السمارة"
+    },
+    {
+        "english_name": "Essaouira",
+        "arabic_name": "الصويرة"
+    },
+    {
+        "english_name": "Tit Mellil",
+        "arabic_name": "تيط مليل"
+    },
+    {
+        "english_name": "Sidi Bennour",
+        "arabic_name": "إقليم سيدي بنور"
+    },
+    {
+        "english_name": "Sefrou",
+        "arabic_name": "صفرو"
+    },
+    {
+        "english_name": "Sidi Mohamed Lahmar",
+        "arabic_name": "سيدي محمد الأحمر"
+    },
+    {
+        "english_name": "Temsia",
+        "arabic_name": "التمسية"
+    },
+    {
+        "english_name": "Beni Enzar",
+        "arabic_name": "بني انصار"
+    },
+    {
+        "english_name": "Al Hoceima",
+        "arabic_name": "الحسيمة"
+    },
+    {
+        "english_name": "Tiflet",
+        "arabic_name": "تيفلت"
+    },
+    {
+        "english_name": "Al Aaroui",
+        "arabic_name": "العروي"
+    },
+    {
+        "english_name": "Mrirt",
+        "arabic_name": "مريرت"
+    },
+    {
+        "english_name": "Chefchaouene",
+        "arabic_name": "شفشاون"
+    },
+    {
+        "english_name": "Aourir",
+        "arabic_name": "أورير"
+    },
+    {
+        "english_name": "Tan-Tan",
+        "arabic_name": "طانطان"
+    },
+    {
+        "english_name": "Tineghir",
+        "arabic_name": "تنغير"
+    },
+    {
+        "english_name": "Bouknadel",
+        "arabic_name": "سيدي بوقنادل"
+    },
+    {
+        "english_name": "Tiznit",
+        "arabic_name": "تزنيت"
+    },
+    {
+        "english_name": "Azemmour",
+        "arabic_name": "أزمور"
+    },
+    {
+        "english_name": "Jerada",
+        "arabic_name": "جرادة"
+    },
+    {
+        "english_name": "Azrou",
+        "arabic_name": "أزرو"
+    },
+    {
+        "english_name": "El Aioun",
+        "arabic_name": "العيون"
+    },
+    {
+        "english_name": "Tameslouht",
+        "arabic_name": "تمصلوحت"
+    },
+    {
+        "english_name": "Sidi Yahia El Gharb",
+        "arabic_name": "سيدي يحيى الغرب"
+    },
+    {
+        "english_name": "Taounate",
+        "arabic_name": "تاونات"
+    },
+    {
+        "english_name": "Chichaoua",
+        "arabic_name": "إقليم شيشاوة"
+    },
+    {
+        "english_name": "Tabount",
+        "arabic_name": "قصر تابونت"
+    }
+]

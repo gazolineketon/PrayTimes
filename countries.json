@@ -1,0 +1,1002 @@
+[
+  [
+    "Iceland",
+    "آيسلندا"
+  ],
+  [
+    "Azerbaijan",
+    "أذربيجان"
+  ],
+  [
+    "French Southern and Antarctic Lands",
+    "أراض فرنسية جنوبية وأنتارتيكية"
+  ],
+  [
+    "Armenia",
+    "أرمينيا"
+  ],
+  [
+    "Aruba",
+    "أروبا"
+  ],
+  [
+    "Australia",
+    "أستراليا"
+  ],
+  [
+    "Afghanistan",
+    "أفغانستان"
+  ],
+  [
+    "Albania",
+    "ألبانيا"
+  ],
+  [
+    "Germany",
+    "ألمانيا"
+  ],
+  [
+    "Antarctica",
+    "أنتارتيكا"
+  ],
+  [
+    "Antigua and Barbuda",
+    "أنتيغوا وباربودا"
+  ],
+  [
+    "Andorra",
+    "أندورا"
+  ],
+  [
+    "Anguilla",
+    "أنغويلا"
+  ],
+  [
+    "Uzbekistan",
+    "أوزباكستان"
+  ],
+  [
+    "Uganda",
+    "أوغندا"
+  ],
+  [
+    "Ukraine",
+    "أوكرانيا"
+  ],
+  [
+    "Ireland",
+    "أيرلندا"
+  ],
+  [
+    "Ethiopia",
+    "إثيوبيا"
+  ],
+  [
+    "Eritrea",
+    "إريتريا"
+  ],
+  [
+    "Spain",
+    "إسبانيا"
+  ],
+  [
+    "Estonia",
+    "إستونيا"
+  ],
+  [
+    "Israel",
+    "إسرائيل"
+  ],
+  [
+    "Eswatini",
+    "إسواتيني"
+  ],
+  [
+    "British Indian Ocean Territory",
+    "إقليم المحيط الهندي البريطاني"
+  ],
+  [
+    "Indonesia",
+    "إندونيسيا"
+  ],
+  [
+    "Iran",
+    "إيران"
+  ],
+  [
+    "Italy",
+    "إيطاليا"
+  ],
+  [
+    "Argentina",
+    "الأرجنتين"
+  ],
+  [
+    "Jordan",
+    "الأردن"
+  ],
+  [
+    "Uruguay",
+    "الأوروغواي"
+  ],
+  [
+    "Ecuador",
+    "الإكوادور"
+  ],
+  [
+    "Brazil",
+    "البرازيل"
+  ],
+  [
+    "Portugal",
+    "البرتغال"
+  ],
+  [
+    "Bosnia and Herzegovina",
+    "البوسنة والهرسك"
+  ],
+  [
+    "Czechia",
+    "التشيك"
+  ],
+  [
+    "Montenegro",
+    "الجبل الاسود"
+  ],
+  [
+    "Algeria",
+    "الجزائر"
+  ],
+  [
+    "Caribbean Netherlands",
+    "الجزر الكاريبية الهولندية"
+  ],
+  [
+    "Denmark",
+    "الدنمارك"
+  ],
+  [
+    "Saudi Arabia",
+    "السعودية"
+  ],
+  [
+    "El Salvador",
+    "السلفادور"
+  ],
+  [
+    "Senegal",
+    "السنغال"
+  ],
+  [
+    "Sudan",
+    "السودان"
+  ],
+  [
+    "Sweden",
+    "السويد"
+  ],
+  [
+    "Western Sahara",
+    "الصحراء الغربية"
+  ],
+  [
+    "Somalia",
+    "الصومال"
+  ],
+  [
+    "China",
+    "الصين"
+  ],
+  [
+    "Iraq",
+    "العراق"
+  ],
+  [
+    "Gabon",
+    "الغابون"
+  ],
+  [
+    "Philippines",
+    "الفلبين"
+  ],
+  [
+    "Cameroon",
+    "الكاميرون"
+  ],
+  [
+    "DR Congo",
+    "الكونغو"
+  ],
+  [
+    "Kuwait",
+    "الكويت"
+  ],
+  [
+    "Maldives",
+    "المالديف"
+  ],
+  [
+    "Hungary",
+    "المجر"
+  ],
+  [
+    "Mexico",
+    "المسكيك"
+  ],
+  [
+    "Morocco",
+    "المغرب"
+  ],
+  [
+    "United Kingdom",
+    "المملكة المتحدة"
+  ],
+  [
+    "Norway",
+    "النرويج"
+  ],
+  [
+    "Austria",
+    "النمسا"
+  ],
+  [
+    "Niger",
+    "النيجر"
+  ],
+  [
+    "India",
+    "الهند"
+  ],
+  [
+    "United States",
+    "الولايات المتحدة"
+  ],
+  [
+    "Japan",
+    "اليابان"
+  ],
+  [
+    "Yemen",
+    "اليمن"
+  ],
+  [
+    "Greece",
+    "اليونان"
+  ],
+  [
+    "Papua New Guinea",
+    "بابوا غينيا الجديدة"
+  ],
+  [
+    "Paraguay",
+    "باراغواي"
+  ],
+  [
+    "Barbados",
+    "باربادوس"
+  ],
+  [
+    "Pakistan",
+    "باكستان"
+  ],
+  [
+    "Palau",
+    "بالاو"
+  ],
+  [
+    "Bahamas",
+    "باهاماس"
+  ],
+  [
+    "Bermuda",
+    "برمودا"
+  ],
+  [
+    "Brunei",
+    "بروناي"
+  ],
+  [
+    "Belgium",
+    "بلجيكا"
+  ],
+  [
+    "Bulgaria",
+    "بلغاريا"
+  ],
+  [
+    "Belize",
+    "بليز"
+  ],
+  [
+    "Bangladesh",
+    "بنغلاديش"
+  ],
+  [
+    "Panama",
+    "بنما"
+  ],
+  [
+    "Benin",
+    "بنين"
+  ],
+  [
+    "Bhutan",
+    "بوتان"
+  ],
+  [
+    "Botswana",
+    "بوتسوانا"
+  ],
+  [
+    "Burkina Faso",
+    "بوركينا فاسو"
+  ],
+  [
+    "Burundi",
+    "بوروندي"
+  ],
+  [
+    "Poland",
+    "بولندا"
+  ],
+  [
+    "Bolivia",
+    "بوليفيا"
+  ],
+  [
+    "French Polynesia",
+    "بولينزيا الفرنسية"
+  ],
+  [
+    "Puerto Rico",
+    "بويرتوريكو"
+  ],
+  [
+    "Peru",
+    "بيرو"
+  ],
+  [
+    "Belarus",
+    "بيلاروسيا"
+  ],
+  [
+    "Thailand",
+    "تايلند"
+  ],
+  [
+    "Taiwan",
+    "تايوان"
+  ],
+  [
+    "Turkmenistan",
+    "تركمانستان"
+  ],
+  [
+    "Turkey",
+    "تركيا"
+  ],
+  [
+    "Trinidad and Tobago",
+    "ترينيداد وتوباغو"
+  ],
+  [
+    "Chad",
+    "تشاد"
+  ],
+  [
+    "Chile",
+    "تشيلي"
+  ],
+  [
+    "Tanzania",
+    "تنزانيا"
+  ],
+  [
+    "Togo",
+    "توغو"
+  ],
+  [
+    "Tuvalu",
+    "توفالو"
+  ],
+  [
+    "Tokelau",
+    "توكيلاو"
+  ],
+  [
+    "Tunisia",
+    "تونس"
+  ],
+  [
+    "Tonga",
+    "تونغا"
+  ],
+  [
+    "Timor-Leste",
+    "تيمور الشرقية"
+  ],
+  [
+    "Jamaica",
+    "جامايكا"
+  ],
+  [
+    "Gibraltar",
+    "جبل طارق"
+  ],
+  [
+    "Greenland",
+    "جرينلاند"
+  ],
+  [
+    "Åland Islands",
+    "جزر أولاند"
+  ],
+  [
+    "British Virgin Islands",
+    "جزر العذراء"
+  ],
+  [
+    "United States Virgin Islands",
+    "جزر العذراء الامريكية"
+  ],
+  [
+    "Comoros",
+    "جزر القمر"
+  ],
+  [
+    "United States Minor Outlying Islands",
+    "جزر الولايات المتحدة الصغيرة النائية"
+  ],
+  [
+    "Bouvet Island",
+    "جزر بوفيه"
+  ],
+  [
+    "Pitcairn Islands",
+    "جزر بيتكيرن"
+  ],
+  [
+    "Turks and Caicos Islands",
+    "جزر توركس وكايكوس"
+  ],
+  [
+    "Solomon Islands",
+    "جزر سليمان"
+  ],
+  [
+    "Faroe Islands",
+    "جزر فارو"
+  ],
+  [
+    "Falkland Islands",
+    "جزر فوكلاند"
+  ],
+  [
+    "Cayman Islands",
+    "جزر كايمان"
+  ],
+  [
+    "Cook Islands",
+    "جزر كوك"
+  ],
+  [
+    "Cocos (Keeling) Islands",
+    "جزر كوكوس"
+  ],
+  [
+    "Marshall Islands",
+    "جزر مارشال"
+  ],
+  [
+    "Northern Mariana Islands",
+    "جزر ماريانا الشمالية"
+  ],
+  [
+    "Christmas Island",
+    "جزيرة كريسماس"
+  ],
+  [
+    "Isle of Man",
+    "جزيرة مان"
+  ],
+  [
+    "Norfolk Island",
+    "جزيرة نورفولك"
+  ],
+  [
+    "Heard Island and McDonald Islands",
+    "جزيرة هيرد وجزر ماكدونالد"
+  ],
+  [
+    "Central African Republic",
+    "جمهورية أفريقيا الوسطى"
+  ],
+  [
+    "Angola",
+    "جمهورية أنغولا"
+  ],
+  [
+    "Dominican Republic",
+    "جمهورية الدومينيكان"
+  ],
+  [
+    "Republic of the Congo",
+    "جمهورية الكونفو"
+  ],
+  [
+    "South Africa",
+    "جنوب أفريقيا"
+  ],
+  [
+    "South Sudan",
+    "جنوب السودان"
+  ],
+  [
+    "Georgia",
+    "جورجيا"
+  ],
+  [
+    "South Georgia",
+    "جورجيا الجنوبية"
+  ],
+  [
+    "Djibouti",
+    "جيبوتي"
+  ],
+  [
+    "Jersey",
+    "جيرزي"
+  ],
+  [
+    "United Arab Emirates",
+    "دولة الإمارات العربية المتحدة"
+  ],
+  [
+    "Dominica",
+    "دومينيكا"
+  ],
+  [
+    "Rwanda",
+    "رواندا"
+  ],
+  [
+    "Russia",
+    "روسيا"
+  ],
+  [
+    "Romania",
+    "رومانيا"
+  ],
+  [
+    "Zambia",
+    "زامبيا"
+  ],
+  [
+    "Zimbabwe",
+    "زيمبابوي"
+  ],
+  [
+    "Ivory Coast",
+    "ساحل العاج"
+  ],
+  [
+    "Samoa",
+    "ساموا"
+  ],
+  [
+    "American Samoa",
+    "ساموا الأمريكية"
+  ],
+  [
+    "Saint Barthélemy",
+    "سان بارتليمي"
+  ],
+  [
+    "Saint Pierre and Miquelon",
+    "سان بيير وميكلون"
+  ],
+  [
+    "San Marino",
+    "سان مارينو"
+  ],
+  [
+    "Saint Vincent and the Grenadines",
+    "سانت فينسنت والغرينادين"
+  ],
+  [
+    "Saint Kitts and Nevis",
+    "سانت كيتس ونيفيس"
+  ],
+  [
+    "Saint Lucia",
+    "سانت لوسيا"
+  ],
+  [
+    "Saint Martin",
+    "سانت مارتن"
+  ],
+  [
+    "Saint Helena, Ascension and Tristan da Cunha",
+    "سانت هيلينا وأسينشين وتريستان دا كونا"
+  ],
+  [
+    "São Tomé and Príncipe",
+    "ساو تومي وبرينسيب"
+  ],
+  [
+    "Sri Lanka",
+    "سريلانكا"
+  ],
+  [
+    "Svalbard and Jan Mayen",
+    "سفالبارد ويان ماين"
+  ],
+  [
+    "Slovakia",
+    "سلوفاكيا"
+  ],
+  [
+    "Slovenia",
+    "سلوفينيا"
+  ],
+  [
+    "Singapore",
+    "سنغافورة"
+  ],
+  [
+    "Syria",
+    "سوريا"
+  ],
+  [
+    "Suriname",
+    "سورينام"
+  ],
+  [
+    "Switzerland",
+    "سويسرا"
+  ],
+  [
+    "Sierra Leone",
+    "سيراليون"
+  ],
+  [
+    "Seychelles",
+    "سيشل"
+  ],
+  [
+    "Sint Maarten",
+    "سينت مارتن"
+  ],
+  [
+    "North Macedonia",
+    "شمال مقدونيا"
+  ],
+  [
+    "Serbia",
+    "صيربيا"
+  ],
+  [
+    "Tajikistan",
+    "طاجيكستان"
+  ],
+  [
+    "Oman",
+    "عمان"
+  ],
+  [
+    "Gambia",
+    "غامبيا"
+  ],
+  [
+    "Ghana",
+    "غانا"
+  ],
+  [
+    "Grenada",
+    "غرينادا"
+  ],
+  [
+    "Guatemala",
+    "غواتيمالا"
+  ],
+  [
+    "Guadeloupe",
+    "غوادلوب"
+  ],
+  [
+    "Guam",
+    "غوام"
+  ],
+  [
+    "French Guiana",
+    "غويانا"
+  ],
+  [
+    "Guyana",
+    "غيانا"
+  ],
+  [
+    "Guernsey",
+    "غيرنزي"
+  ],
+  [
+    "Guinea",
+    "غينيا"
+  ],
+  [
+    "Equatorial Guinea",
+    "غينيا الاستوائية"
+  ],
+  [
+    "Guinea-Bissau",
+    "غينيا بيساو"
+  ],
+  [
+    "Vanuatu",
+    "فانواتو"
+  ],
+  [
+    "France",
+    "فرنسا"
+  ],
+  [
+    "Palestine",
+    "فلسطين"
+  ],
+  [
+    "Venezuela",
+    "فنزويلا"
+  ],
+  [
+    "Finland",
+    "فنلندا"
+  ],
+  [
+    "Vietnam",
+    "فيتنام"
+  ],
+  [
+    "Fiji",
+    "فيجي"
+  ],
+  [
+    "Cyprus",
+    "قبرص"
+  ],
+  [
+    "Qatar",
+    "قطر"
+  ],
+  [
+    "Kyrgyzstan",
+    "قيرغيزستان"
+  ],
+  [
+    "Cape Verde",
+    "كابو فيردي"
+  ],
+  [
+    "Kazakhstan",
+    "كازاخستان"
+  ],
+  [
+    "New Caledonia",
+    "كاليدونيا الجديدة"
+  ],
+  [
+    "Croatia",
+    "كرواتيا"
+  ],
+  [
+    "Cambodia",
+    "كمبوديا"
+  ],
+  [
+    "Canada",
+    "كندا"
+  ],
+  [
+    "Cuba",
+    "كوبا"
+  ],
+  [
+    "Curaçao",
+    "كوراساو"
+  ],
+  [
+    "South Korea",
+    "كوريا الجنوبية"
+  ],
+  [
+    "North Korea",
+    "كوريا الشمالية"
+  ],
+  [
+    "Costa Rica",
+    "كوستاريكا"
+  ],
+  [
+    "Kosovo",
+    "كوسوفو"
+  ],
+  [
+    "Colombia",
+    "كولومبيا"
+  ],
+  [
+    "Kiribati",
+    "كيريباتي"
+  ],
+  [
+    "Kenya",
+    "كينيا"
+  ],
+  [
+    "Réunion",
+    "لا ريونيون"
+  ],
+  [
+    "Latvia",
+    "لاتفيا"
+  ],
+  [
+    "Laos",
+    "لاوس"
+  ],
+  [
+    "Lebanon",
+    "لبنان"
+  ],
+  [
+    "Luxembourg",
+    "لوكسمبورغ"
+  ],
+  [
+    "Liberia",
+    "ليبيريا"
+  ],
+  [
+    "Lithuania",
+    "ليتوانيا"
+  ],
+  [
+    "Liechtenstein",
+    "ليختنشتاين"
+  ],
+  [
+    "Lesotho",
+    "ليسوتو"
+  ],
+  [
+    "Martinique",
+    "مارتينيك"
+  ],
+  [
+    "Macau",
+    "ماكاو"
+  ],
+  [
+    "Malawi",
+    "مالاوي"
+  ],
+  [
+    "Malta",
+    "مالطا"
+  ],
+  [
+    "Mali",
+    "مالي"
+  ],
+  [
+    "Malaysia",
+    "ماليزيا"
+  ],
+  [
+    "Mayotte",
+    "مايوت"
+  ],
+  [
+    "Madagascar",
+    "مدغشقر"
+  ],
+  [
+    "Vatican City",
+    "مدينة الفاتيكان"
+  ],
+  [
+    "Egypt",
+    "مصر"
+  ],
+  [
+    "Mongolia",
+    "منغوليا"
+  ],
+  [
+    "Mauritania",
+    "موريتانيا"
+  ],
+  [
+    "Mauritius",
+    "موريشيوس"
+  ],
+  [
+    "Mozambique",
+    "موزمبيق"
+  ],
+  [
+    "Moldova",
+    "مولدوڤا"
+  ],
+  [
+    "Monaco",
+    "موناكو"
+  ],
+  [
+    "Montserrat",
+    "مونتسرات"
+  ],
+  [
+    "Myanmar",
+    "ميانمار"
+  ],
+  [
+    "Micronesia",
+    "ميكرونيسيا"
+  ],
+  [
+    "Namibia",
+    "ناميبيا"
+  ],
+  [
+    "Nauru",
+    "ناورو"
+  ],
+  [
+    "Nepal",
+    "نيبال"
+  ],
+  [
+    "Nigeria",
+    "نيجيريا"
+  ],
+  [
+    "Nicaragua",
+    "نيكاراغوا"
+  ],
+  [
+    "New Zealand",
+    "نيوزيلندا"
+  ],
+  [
+    "Niue",
+    "نييوي"
+  ],
+  [
+    "Haiti",
+    "هايتي"
+  ],
+  [
+    "Honduras",
+    "هندوراس"
+  ],
+  [
+    "Netherlands",
+    "هولندا"
+  ],
+  [
+    "Hong Kong",
+    "هونغ كونغ"
+  ],
+  [
+    "Wallis and Futuna",
+    "واليس وفوتونا"
+  ],
+  [
+    "Bahrain",
+    "البحرين"
+  ],
+  [
+    "Libya",
+    "ليبيا"
+  ]
+]

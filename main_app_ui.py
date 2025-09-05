@@ -239,7 +239,7 @@ class EnhancedPrayerTimesApp:
     
     
     def setup_prayers_table(self):
-        """إعداد جدول الصلوات المحسّن"""
+        """إعداد جدول الصلوات"""
         prayers_container = tk.Frame(self.prayers_card, bg=self.colors['bg_card'], pady=15)
         prayers_container.pack(fill='both', expand=True)
         

@@ -1,0 +1,226 @@
+[
+    {
+        "english_name": "Johannesburg",
+        "arabic_name": "جوهانسبرغ"
+    },
+    {
+        "english_name": "Cape Town",
+        "arabic_name": "كيب تاون"
+    },
+    {
+        "english_name": "Pretoria",
+        "arabic_name": "بريتوريا"
+    },
+    {
+        "english_name": "Soweto",
+        "arabic_name": "سويتو"
+    },
+    {
+        "english_name": "Gqeberha",
+        "arabic_name": "بورت إليزابيث"
+    },
+    {
+        "english_name": "Pietermaritzburg",
+        "arabic_name": "بيترماريتزبرغ"
+    },
+    {
+        "english_name": "Rustenburg",
+        "arabic_name": "روستنبرغ"
+    },
+    {
+        "english_name": "Newcastle",
+        "arabic_name": "نيوكاسل أبون تاين"
+    },
+    {
+        "english_name": "Khayelitsha",
+        "arabic_name": "كايليتشا"
+    },
+    {
+        "english_name": "Randburg",
+        "arabic_name": "راندبورغ"
+    },
+    {
+        "english_name": "Roodepoort",
+        "arabic_name": "روديبورت"
+    },
+    {
+        "english_name": "Paarl",
+        "arabic_name": "بارل"
+    },
+    {
+        "english_name": "Mahikeng",
+        "arabic_name": "مافكينج"
+    },
+    {
+        "english_name": "East London",
+        "arabic_name": "إيست لندن"
+    },
+    {
+        "english_name": "Boksburg",
+        "arabic_name": "بوكسبورغ"
+    },
+    {
+        "english_name": "Bloemfontein",
+        "arabic_name": "بلومفونتين"
+    },
+    {
+        "english_name": "Germiston",
+        "arabic_name": "جرميستون"
+    },
+    {
+        "english_name": "Sandton",
+        "arabic_name": "ساندتون"
+    },
+    {
+        "english_name": "Klerksdorp",
+        "arabic_name": "كليركسدورب"
+    },
+    {
+        "english_name": "Kroonstad",
+        "arabic_name": "كرونستاد"
+    },
+    {
+        "english_name": "George",
+        "arabic_name": "جورج"
+    },
+    {
+        "english_name": "Krugersdorp",
+        "arabic_name": "كروجرزدروب"
+    },
+    {
+        "english_name": "Polokwane",
+        "arabic_name": "بولوكوان"
+    },
+    {
+        "english_name": "Springs",
+        "arabic_name": "سبرينغز"
+    },
+    {
+        "english_name": "Witbank",
+        "arabic_name": "وايت بانك"
+    },
+    {
+        "english_name": "Uitenhage",
+        "arabic_name": "يوتينهاغ"
+    },
+    {
+        "english_name": "Mossel Bay",
+        "arabic_name": "خليج موسيل"
+    },
+    {
+        "english_name": "Vereeniging",
+        "arabic_name": "فيرينخن"
+    },
+    {
+        "english_name": "Kimberley",
+        "arabic_name": "كيمبرلي"
+    },
+    {
+        "english_name": "Mthatha",
+        "arabic_name": "متاتا"
+    },
+    {
+        "english_name": "Vanderbijlpark",
+        "arabic_name": "فاندربيجلبارك"
+    },
+    {
+        "english_name": "Grahamstown",
+        "arabic_name": "غراهامستاون"
+    },
+    {
+        "english_name": "Midrand",
+        "arabic_name": "ميدراند"
+    },
+    {
+        "english_name": "Standerton",
+        "arabic_name": "ستانديرتون"
+    },
+    {
+        "english_name": "Ermelo",
+        "arabic_name": "إيرميلو"
+    },
+    {
+        "english_name": "Stellenbosch",
+        "arabic_name": "جامعة ستيلينبوش"
+    },
+    {
+        "english_name": "Knysna",
+        "arabic_name": "كنيسنا"
+    },
+    {
+        "english_name": "Upington",
+        "arabic_name": "آبنغتون"
+    },
+    {
+        "english_name": "Thaba Nchu",
+        "arabic_name": "ثابا نشو"
+    },
+    {
+        "english_name": "Queenstown",
+        "arabic_name": "كوينزتاون"
+    },
+    {
+        "english_name": "Virginia",
+        "arabic_name": "فرجينيا"
+    },
+    {
+        "english_name": "Ladysmith",
+        "arabic_name": "ليديسميث"
+    },
+    {
+        "english_name": "Welkom",
+        "arabic_name": "ولكوم"
+    },
+    {
+        "english_name": "Plettenberg Bay",
+        "arabic_name": "بليتينبيرغ باي"
+    },
+    {
+        "english_name": "Bethal",
+        "arabic_name": "بيثال"
+    },
+    {
+        "english_name": "Richards Bay",
+        "arabic_name": "ريتشاردز باي"
+    },
+    {
+        "english_name": "Wellington",
+        "arabic_name": "ويلينغتون"
+    },
+    {
+        "english_name": "Brits",
+        "arabic_name": "بريطانيون"
+    },
+    {
+        "english_name": "Kokstad",
+        "arabic_name": "كوكستاد"
+    },
+    {
+        "english_name": "Vryheid",
+        "arabic_name": "فرايهيد"
+    },
+    {
+        "english_name": "Potchefstroom",
+        "arabic_name": "بوتشيفستروم"
+    },
+    {
+        "english_name": "Musina",
+        "arabic_name": "موسينا"
+    },
+    {
+        "english_name": "Secunda",
+        "arabic_name": "ثانية"
+    },
+    {
+        "english_name": "Nigel",
+        "arabic_name": "نايجل"
+    },
+    {
+        "english_name": "Graaff-Reinet",
+        "arabic_name": "جراف رينيت"
+    },
+    {
+        "english_name": "Port Shepstone",
+        "arabic_name": "ميناء شيبستون"
+    }
+]

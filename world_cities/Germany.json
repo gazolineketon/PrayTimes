@@ -1,0 +1,386 @@
+[
+    {
+        "english_name": "Berlin",
+        "arabic_name": "برلين"
+    },
+    {
+        "english_name": "Stuttgart",
+        "arabic_name": "شتوتغارت"
+    },
+    {
+        "english_name": "Munich",
+        "arabic_name": "ميونخ"
+    },
+    {
+        "english_name": "Hamburg",
+        "arabic_name": "هامبورغ"
+    },
+    {
+        "english_name": "Cologne",
+        "arabic_name": "كولونيا"
+    },
+    {
+        "english_name": "Frankfurt",
+        "arabic_name": "فرانكفورت"
+    },
+    {
+        "english_name": "Dusseldorf",
+        "arabic_name": "دوسلدورف"
+    },
+    {
+        "english_name": "Leipzig",
+        "arabic_name": "لايبزيغ"
+    },
+    {
+        "english_name": "Dortmund",
+        "arabic_name": "دورتموند"
+    },
+    {
+        "english_name": "Essen",
+        "arabic_name": "إسن"
+    },
+    {
+        "english_name": "Bremen",
+        "arabic_name": "بريمن"
+    },
+    {
+        "english_name": "Dresden",
+        "arabic_name": "درسدن"
+    },
+    {
+        "english_name": "Braunschweig",
+        "arabic_name": "براونشفايغ"
+    },
+    {
+        "english_name": "Hannover",
+        "arabic_name": "هانوفر"
+    },
+    {
+        "english_name": "Nuremberg",
+        "arabic_name": "نورنبرغ"
+    },
+    {
+        "english_name": "Duisburg",
+        "arabic_name": "دويسبورغ"
+    },
+    {
+        "english_name": "Bochum",
+        "arabic_name": "بوخوم"
+    },
+    {
+        "english_name": "Wuppertal",
+        "arabic_name": "فوبرتال"
+    },
+    {
+        "english_name": "Bielefeld",
+        "arabic_name": "بيلفلد"
+    },
+    {
+        "english_name": "Bonn",
+        "arabic_name": "بون"
+    },
+    {
+        "english_name": "Munster",
+        "arabic_name": "مونستر"
+    },
+    {
+        "english_name": "Mannheim",
+        "arabic_name": "مانهايم"
+    },
+    {
+        "english_name": "Karlsruhe",
+        "arabic_name": "كارلسروه"
+    },
+    {
+        "english_name": "Augsburg",
+        "arabic_name": "آوغسبورغ"
+    },
+    {
+        "english_name": "Wiesbaden",
+        "arabic_name": "فيسبادن"
+    },
+    {
+        "english_name": "Monchengladbach",
+        "arabic_name": "مونشنغلادباخ"
+    },
+    {
+        "english_name": "Gelsenkirchen",
+        "arabic_name": "غلزنكيرشن"
+    },
+    {
+        "english_name": "Aachen",
+        "arabic_name": "آخن"
+    },
+    {
+        "english_name": "Chemnitz",
+        "arabic_name": "كيمنتس"
+    },
+    {
+        "english_name": "Kiel",
+        "arabic_name": "كيل"
+    },
+    {
+        "english_name": "Halle",
+        "arabic_name": "هاله"
+    },
+    {
+        "english_name": "Magdeburg",
+        "arabic_name": "مغدبورغ"
+    },
+    {
+        "english_name": "Freiburg im Breisgau",
+        "arabic_name": "فرايبورغ"
+    },
+    {
+        "english_name": "Krefeld",
+        "arabic_name": "كريفلد"
+    },
+    {
+        "english_name": "Mainz",
+        "arabic_name": "ماينتس"
+    },
+    {
+        "english_name": "Lubeck",
+        "arabic_name": "لوبيك"
+    },
+    {
+        "english_name": "Oberhausen",
+        "arabic_name": "أوبرهاوزن"
+    },
+    {
+        "english_name": "Rostock",
+        "arabic_name": "روستوك"
+    },
+    {
+        "english_name": "Kassel",
+        "arabic_name": "كاسل"
+    },
+    {
+        "english_name": "Hagen",
+        "arabic_name": "هاغن"
+    },
+    {
+        "english_name": "Potsdam",
+        "arabic_name": "بوتسدام"
+    },
+    {
+        "english_name": "Saarbrucken",
+        "arabic_name": "ساربروكن"
+    },
+    {
+        "english_name": "Ludwigshafen",
+        "arabic_name": "لودفيغسهافن"
+    },
+    {
+        "english_name": "Oldenburg",
+        "arabic_name": "أولدنبورغ"
+    },
+    {
+        "english_name": "Mulheim",
+        "arabic_name": "مولهايم أن در رور"
+    },
+    {
+        "english_name": "Osnabruck",
+        "arabic_name": "أوسنابروك"
+    },
+    {
+        "english_name": "Leverkusen",
+        "arabic_name": "باير 04 ليفركوزن"
+    },
+    {
+        "english_name": "Darmstadt",
+        "arabic_name": "دارمشتات"
+    },
+    {
+        "english_name": "Heidelberg",
+        "arabic_name": "هيدلبرغ"
+    },
+    {
+        "english_name": "Solingen",
+        "arabic_name": "زولينغن"
+    },
+    {
+        "english_name": "Regensburg",
+        "arabic_name": "ريغنسبورغ"
+    },
+    {
+        "english_name": "Paderborn",
+        "arabic_name": "بادربورن"
+    },
+    {
+        "english_name": "Neuss",
+        "arabic_name": "نويس"
+    },
+    {
+        "english_name": "Ingolstadt",
+        "arabic_name": "إنغولشتات"
+    },
+    {
+        "english_name": "Furth",
+        "arabic_name": "فورت"
+    },
+    {
+        "english_name": "Heilbronn",
+        "arabic_name": "هايلبرون"
+    },
+    {
+        "english_name": "Ulm",
+        "arabic_name": "أولم"
+    },
+    {
+        "english_name": "Pforzheim",
+        "arabic_name": "بفورتسهايم"
+    },
+    {
+        "english_name": "Wurzburg",
+        "arabic_name": "فورتسبورغ"
+    },
+    {
+        "english_name": "Wolfsburg",
+        "arabic_name": "فولفسبورغ"
+    },
+    {
+        "english_name": "Gottingen",
+        "arabic_name": "غوتينغن"
+    },
+    {
+        "english_name": "Bottrop",
+        "arabic_name": "بوتروب"
+    },
+    {
+        "english_name": "Reutlingen",
+        "arabic_name": "رويتلينغن"
+    },
+    {
+        "english_name": "Erlangen",
+        "arabic_name": "إرلنغن"
+    },
+    {
+        "english_name": "Koblenz",
+        "arabic_name": "كوبلنز"
+    },
+    {
+        "english_name": "Bremerhaven",
+        "arabic_name": "بريمرهافن"
+    },
+    {
+        "english_name": "Remscheid",
+        "arabic_name": "رمشايد"
+    },
+    {
+        "english_name": "Trier",
+        "arabic_name": "ترير"
+    },
+    {
+        "english_name": "Bergisch Gladbach",
+        "arabic_name": "بيرغيش غلادباخ"
+    },
+    {
+        "english_name": "Recklinghausen",
+        "arabic_name": "ركلنهاوزن"
+    },
+    {
+        "english_name": "Jena",
+        "arabic_name": "ينا"
+    },
+    {
+        "english_name": "Moers",
+        "arabic_name": "مويرس"
+    },
+    {
+        "english_name": "Salzgitter",
+        "arabic_name": "زالتسغيتر"
+    },
+    {
+        "english_name": "Hanau",
+        "arabic_name": "هاناو"
+    },
+    {
+        "english_name": "Gutersloh",
+        "arabic_name": "غوترسلوه"
+    },
+    {
+        "english_name": "Hildesheim",
+        "arabic_name": "هيلدسهايم"
+    },
+    {
+        "english_name": "Siegen",
+        "arabic_name": "زيغن"
+    },
+    {
+        "english_name": "Kaiserslautern",
+        "arabic_name": "نادي كايزرسلاوترن"
+    },
+    {
+        "english_name": "Cottbus",
+        "arabic_name": "كوتبوس"
+    },
+    {
+        "english_name": "Esslingen",
+        "arabic_name": "إسلينغن آم نيكار"
+    },
+    {
+        "english_name": "Witten",
+        "arabic_name": "فيتن"
+    },
+    {
+        "english_name": "Giessen",
+        "arabic_name": "غيسن"
+    },
+    {
+        "english_name": "Ludwigsburg",
+        "arabic_name": "لودفيغسبورغ"
+    },
+    {
+        "english_name": "Gera",
+        "arabic_name": "غيرا"
+    },
+    {
+        "english_name": "Tubingen",
+        "arabic_name": "توبينغن"
+    },
+    {
+        "english_name": "Duren",
+        "arabic_name": "دورن"
+    },
+    {
+        "english_name": "Flensburg",
+        "arabic_name": "فلنسبورغ"
+    },
+    {
+        "english_name": "Iserlohn",
+        "arabic_name": "إزرلون"
+    },
+    {
+        "english_name": "Villingen-Schwenningen",
+        "arabic_name": "فيلينغن-شفنينغن"
+    },
+    {
+        "english_name": "Zwickau",
+        "arabic_name": "تسفيكاو"
+    },
+    {
+        "english_name": "Ratingen",
+        "arabic_name": "راتينغن"
+    },
+    {
+        "english_name": "Lunen",
+        "arabic_name": "لونن"
+    },
+    {
+        "english_name": "Konstanz",
+        "arabic_name": "كونستانس"
+    },
+    {
+        "english_name": "Worms",
+        "arabic_name": "السجل الدولي للأنواع البحرية"
+    },
+    {
+        "english_name": "Marl",
+        "arabic_name": "طين جيري"
+    },
+    {
+        "english_name": "Norderstedt",
+        "arabic_name": "نوردرشتيت"
+    }
+]

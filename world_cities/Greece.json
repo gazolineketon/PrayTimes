@@ -1,0 +1,354 @@
+[
+    {
+        "english_name": "Athens",
+        "arabic_name": "أثينا"
+    },
+    {
+        "english_name": "Thessaloniki",
+        "arabic_name": "سالونيك"
+    },
+    {
+        "english_name": "Piraeus",
+        "arabic_name": "بيرايوس"
+    },
+    {
+        "english_name": "Tyrnavos",
+        "arabic_name": "تيرنافوس"
+    },
+    {
+        "english_name": "Irakleio",
+        "arabic_name": "كاندية"
+    },
+    {
+        "english_name": "Patra",
+        "arabic_name": "بتراس"
+    },
+    {
+        "english_name": "Peristeri",
+        "arabic_name": "بيريستيري"
+    },
+    {
+        "english_name": "Acharnes",
+        "arabic_name": "أخارنيس"
+    },
+    {
+        "english_name": "Kallithea",
+        "arabic_name": "كاليثيا"
+    },
+    {
+        "english_name": "Kalamaria",
+        "arabic_name": "كالاماريا"
+    },
+    {
+        "english_name": "Glyfada",
+        "arabic_name": "غليفاذا"
+    },
+    {
+        "english_name": "Nikaia",
+        "arabic_name": "نيقية"
+    },
+    {
+        "english_name": "Volos",
+        "arabic_name": "فولوس"
+    },
+    {
+        "english_name": "Ilion",
+        "arabic_name": "طروادة"
+    },
+    {
+        "english_name": "Evosmos",
+        "arabic_name": "إفوسموس"
+    },
+    {
+        "english_name": "Chalandri",
+        "arabic_name": "خالاندري"
+    },
+    {
+        "english_name": "Ilioupoli",
+        "arabic_name": "إيليوبولي"
+    },
+    {
+        "english_name": "Keratsini",
+        "arabic_name": "كيراتسيني"
+    },
+    {
+        "english_name": "Nea Smyrni",
+        "arabic_name": "نيا سميرني"
+    },
+    {
+        "english_name": "Marousi",
+        "arabic_name": "ماروسي"
+    },
+    {
+        "english_name": "Zografos",
+        "arabic_name": "زوغرافو"
+    },
+    {
+        "english_name": "Aigaleo",
+        "arabic_name": "أيغاليو"
+    },
+    {
+        "english_name": "Ioannina",
+        "arabic_name": "يوانينا"
+    },
+    {
+        "english_name": "Palaio Faliro",
+        "arabic_name": "باليو فاليرو"
+    },
+    {
+        "english_name": "Nea Ionia",
+        "arabic_name": "نيا إيونيا"
+    },
+    {
+        "english_name": "Trikala",
+        "arabic_name": "تريكالا"
+    },
+    {
+        "english_name": "Korydallos",
+        "arabic_name": "كوريذالوس"
+    },
+    {
+        "english_name": "Petroupoli",
+        "arabic_name": "بتروبولي"
+    },
+    {
+        "english_name": "Katerini",
+        "arabic_name": "كاتريني"
+    },
+    {
+        "english_name": "Vyronas",
+        "arabic_name": "فيروناس"
+    },
+    {
+        "english_name": "Chalkida",
+        "arabic_name": "خالكيذا"
+    },
+    {
+        "english_name": "Xanthi",
+        "arabic_name": "حشيشة الخزيرة"
+    },
+    {
+        "english_name": "Galatsi",
+        "arabic_name": "غالاتسي"
+    },
+    {
+        "english_name": "Rodos",
+        "arabic_name": "رودس"
+    },
+    {
+        "english_name": "Karditsa",
+        "arabic_name": "كارذيتسا"
+    },
+    {
+        "english_name": "Thermi",
+        "arabic_name": "ثيرمي"
+    },
+    {
+        "english_name": "Chania",
+        "arabic_name": "خانية"
+    },
+    {
+        "english_name": "Agrinio",
+        "arabic_name": "أغرينيو"
+    },
+    {
+        "english_name": "Irakleio",
+        "arabic_name": "كاندية"
+    },
+    {
+        "english_name": "Kifisia",
+        "arabic_name": "كيفيسيا"
+    },
+    {
+        "english_name": "Chaidari",
+        "arabic_name": "خايذاري"
+    },
+    {
+        "english_name": "Stavroupoli",
+        "arabic_name": "ستافروبولي"
+    },
+    {
+        "english_name": "Pyrgos",
+        "arabic_name": "بيرغوس"
+    },
+    {
+        "english_name": "Drama",
+        "arabic_name": "دراما"
+    },
+    {
+        "english_name": "Vergina",
+        "arabic_name": "فيرغينا"
+    },
+    {
+        "english_name": "Veroia",
+        "arabic_name": "فيريا"
+    },
+    {
+        "english_name": "Zakynthos",
+        "arabic_name": "زاكينثوس"
+    },
+    {
+        "english_name": "Oraiokastro",
+        "arabic_name": "أورايوكاسترو"
+    },
+    {
+        "english_name": "Alexandroupoli",
+        "arabic_name": "أليكساندروبولي"
+    },
+    {
+        "english_name": "Komotini",
+        "arabic_name": "كوموتيني"
+    },
+    {
+        "english_name": "Kalamata",
+        "arabic_name": "كالاماتا"
+    },
+    {
+        "english_name": "Lagkadas",
+        "arabic_name": "لانكاداس"
+    },
+    {
+        "english_name": "Pylaia",
+        "arabic_name": "بيلايا"
+    },
+    {
+        "english_name": "Sykies",
+        "arabic_name": "سيكييس"
+    },
+    {
+        "english_name": "Ano Liosia",
+        "arabic_name": "أنو ليوسيا"
+    },
+    {
+        "english_name": "Kozani",
+        "arabic_name": "كوزاني"
+    },
+    {
+        "english_name": "Argyroupoli",
+        "arabic_name": "كمشخانة"
+    },
+    {
+        "english_name": "Vrilissia",
+        "arabic_name": "فريليسيا"
+    },
+    {
+        "english_name": "Agioi Anargyroi",
+        "arabic_name": "آغيي أنارغيري"
+    },
+    {
+        "english_name": "Ptolemaida",
+        "arabic_name": "بتولمايذا"
+    },
+    {
+        "english_name": "Orestiada",
+        "arabic_name": "أورستياذا"
+    },
+    {
+        "english_name": "Voula",
+        "arabic_name": "فولا"
+    },
+    {
+        "english_name": "Aspropyrgos",
+        "arabic_name": "أسبروبيرغوس"
+    },
+    {
+        "english_name": "Cholargos",
+        "arabic_name": "خولارغوس"
+    },
+    {
+        "english_name": "Korinthos",
+        "arabic_name": "قورنثوس"
+    },
+    {
+        "english_name": "Giannitsa",
+        "arabic_name": "يانيتسا"
+    },
+    {
+        "english_name": "Tripoli",
+        "arabic_name": "طرابلس"
+    },
+    {
+        "english_name": "Salamina",
+        "arabic_name": "سالامينا"
+    },
+    {
+        "english_name": "Metamorfosi",
+        "arabic_name": "ميتامورفوسي"
+    },
+    {
+        "english_name": "Gerakas",
+        "arabic_name": "غيراكاس"
+    },
+    {
+        "english_name": "Livadeia",
+        "arabic_name": "ليفاذيا"
+    },
+    {
+        "english_name": "Kamatero",
+        "arabic_name": "كاماتيرو"
+    },
+    {
+        "english_name": "Paiania",
+        "arabic_name": "بايانيا"
+    },
+    {
+        "english_name": "Chios",
+        "arabic_name": "خيوس"
+    },
+    {
+        "english_name": "Amaliada",
+        "arabic_name": "أمالياذا"
+    },
+    {
+        "english_name": "Kaisariani",
+        "arabic_name": "قيصرياني"
+    },
+    {
+        "english_name": "Mytilini",
+        "arabic_name": "لسبوس"
+    },
+    {
+        "english_name": "Perama",
+        "arabic_name": "بيراما، أتيكي"
+    },
+    {
+        "english_name": "Elassona",
+        "arabic_name": "ألاصونية"
+    },
+    {
+        "english_name": "Moschato",
+        "arabic_name": "موسخاتو"
+    },
+    {
+        "english_name": "Nea Filadelfeia",
+        "arabic_name": "نيا فيلادلفيا"
+    },
+    {
+        "english_name": "Elefsina",
+        "arabic_name": "إلفسينا"
+    },
+    {
+        "english_name": "Rethymno",
+        "arabic_name": "ريثيمنو"
+    },
+    {
+        "english_name": "Melissia",
+        "arabic_name": "ميليسيا"
+    },
+    {
+        "english_name": "Argostoli",
+        "arabic_name": "أرغوستولي"
+    },
+    {
+        "english_name": "Kerkyra",
+        "arabic_name": "كورفو"
+    },
+    {
+        "english_name": "Dafni",
+        "arabic_name": "دافني"
+    },
+    {
+        "english_name": "Lefkada",
+        "arabic_name": "ليفكادا"
+    }
+]

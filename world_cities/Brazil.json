@@ -1,0 +1,370 @@
+[
+    {
+        "english_name": "Sao Paulo",
+        "arabic_name": "ساو باولو"
+    },
+    {
+        "english_name": "Rio de Janeiro",
+        "arabic_name": "ريو دي جانيرو"
+    },
+    {
+        "english_name": "Belo Horizonte",
+        "arabic_name": "بيلو هوريزونتي"
+    },
+    {
+        "english_name": "Fortaleza",
+        "arabic_name": "فورتاليزا"
+    },
+    {
+        "english_name": "Salvador",
+        "arabic_name": "سالبادور"
+    },
+    {
+        "english_name": "Curitiba",
+        "arabic_name": "كوريتيبا"
+    },
+    {
+        "english_name": "Recife",
+        "arabic_name": "ريسيفي"
+    },
+    {
+        "english_name": "Porto Alegre",
+        "arabic_name": "بورتو أليغري"
+    },
+    {
+        "english_name": "Guarulhos",
+        "arabic_name": "غوارولوس"
+    },
+    {
+        "english_name": "Belem",
+        "arabic_name": "بليم"
+    },
+    {
+        "english_name": "Campinas",
+        "arabic_name": "كامبيناس"
+    },
+    {
+        "english_name": "Goiania",
+        "arabic_name": "غويانيا"
+    },
+    {
+        "english_name": "Sao Luis",
+        "arabic_name": "ساو لويز"
+    },
+    {
+        "english_name": "Maceio",
+        "arabic_name": "ماسايو"
+    },
+    {
+        "english_name": "Sao Goncalo",
+        "arabic_name": "ساو غونتشالو"
+    },
+    {
+        "english_name": "Joao Pessoa",
+        "arabic_name": "جواو بيسوا"
+    },
+    {
+        "english_name": "Sao Bernardo do Campo",
+        "arabic_name": "ساو برناردو دو كامبو"
+    },
+    {
+        "english_name": "Natal",
+        "arabic_name": "ناتاليا"
+    },
+    {
+        "english_name": "Santo Andre",
+        "arabic_name": "سانت أندري"
+    },
+    {
+        "english_name": "Sorocaba",
+        "arabic_name": "سوروكابا"
+    },
+    {
+        "english_name": "Aracaju",
+        "arabic_name": "أراكاجو"
+    },
+    {
+        "english_name": "Campo Grande",
+        "arabic_name": "كامبو غراندي"
+    },
+    {
+        "english_name": "Osasco",
+        "arabic_name": "أوساسكو"
+    },
+    {
+        "english_name": "Jaboatao dos Guararapes",
+        "arabic_name": "جابواتاو دوس غوارارابيس"
+    },
+    {
+        "english_name": "Juiz de Fora",
+        "arabic_name": "جويز دي فورا"
+    },
+    {
+        "english_name": "Sao Jose dos Campos",
+        "arabic_name": "ساو جوزيه دوس كامبوس"
+    },
+    {
+        "english_name": "Contagem",
+        "arabic_name": "كونتاجيم"
+    },
+    {
+        "english_name": "Macapa",
+        "arabic_name": "ماكابا"
+    },
+    {
+        "english_name": "Campos",
+        "arabic_name": "كامبوس"
+    },
+    {
+        "english_name": "Ribeirao Preto",
+        "arabic_name": "ريبيراو بريتو"
+    },
+    {
+        "english_name": "Uberlandia",
+        "arabic_name": "أوبيرلانديا"
+    },
+    {
+        "english_name": "Niteroi",
+        "arabic_name": "نيتيروي"
+    },
+    {
+        "english_name": "Cuiaba",
+        "arabic_name": "كويابا"
+    },
+    {
+        "english_name": "Feira de Santana",
+        "arabic_name": "فييرا دي سانتانا"
+    },
+    {
+        "english_name": "Ananindeua",
+        "arabic_name": "أنانينديوا"
+    },
+    {
+        "english_name": "Vila Velha",
+        "arabic_name": "فيلا فاليا"
+    },
+    {
+        "english_name": "Mogi das Cruzes",
+        "arabic_name": "موجي داس كروزيز"
+    },
+    {
+        "english_name": "Londrina",
+        "arabic_name": "لوندرينا"
+    },
+    {
+        "english_name": "Piracicaba",
+        "arabic_name": "بيراسيكابا"
+    },
+    {
+        "english_name": "Campina Grande",
+        "arabic_name": "كامبينا غراندي"
+    },
+    {
+        "english_name": "Santos",
+        "arabic_name": "سانتوس"
+    },
+    {
+        "english_name": "Boa Vista",
+        "arabic_name": "بوا فيستا"
+    },
+    {
+        "english_name": "Maringa",
+        "arabic_name": "مارينغا"
+    },
+    {
+        "english_name": "Jundiai",
+        "arabic_name": "جوندياي"
+    },
+    {
+        "english_name": "Itaquaquecetuba",
+        "arabic_name": "إيتاكاكيسيتوبا"
+    },
+    {
+        "english_name": "Bauru",
+        "arabic_name": "باورو"
+    },
+    {
+        "english_name": "Rio Branco",
+        "arabic_name": "ريو برانكو"
+    },
+    {
+        "english_name": "Blumenau",
+        "arabic_name": "بلوميناو"
+    },
+    {
+        "english_name": "Caxias do Sul",
+        "arabic_name": "كاكسياس دو سول"
+    },
+    {
+        "english_name": "Sao Jose do Rio Preto",
+        "arabic_name": "ساو جوزية دو ريو بريتو"
+    },
+    {
+        "english_name": "Caucaia",
+        "arabic_name": "كاوكايا"
+    },
+    {
+        "english_name": "Olinda",
+        "arabic_name": "أوليندا"
+    },
+    {
+        "english_name": "Praia Grande",
+        "arabic_name": "برايا غراندي"
+    },
+    {
+        "english_name": "Cascavel",
+        "arabic_name": "كاسكافل"
+    },
+    {
+        "english_name": "Canoas",
+        "arabic_name": "كانواس"
+    },
+    {
+        "english_name": "Carapicuiba",
+        "arabic_name": "كارابيكويبا"
+    },
+    {
+        "english_name": "Florianopolis",
+        "arabic_name": "فلوريانوبوليس"
+    },
+    {
+        "english_name": "Vitoria da Conquista",
+        "arabic_name": "فيتوريا دا كونكيستا"
+    },
+    {
+        "english_name": "Porto Velho",
+        "arabic_name": "بورتو فاليو"
+    },
+    {
+        "english_name": "Santarem",
+        "arabic_name": "شنترين"
+    },
+    {
+        "english_name": "Ribeirao das Neves",
+        "arabic_name": "ريبيرو داس نيفيس"
+    },
+    {
+        "english_name": "Cariacica",
+        "arabic_name": "كارياسيكا"
+    },
+    {
+        "english_name": "Pelotas",
+        "arabic_name": "بيلوتاس"
+    },
+    {
+        "english_name": "Vitoria",
+        "arabic_name": "فيتوريا-غاستيز"
+    },
+    {
+        "english_name": "Serra",
+        "arabic_name": "سيرا"
+    },
+    {
+        "english_name": "Taubate",
+        "arabic_name": "تاوباتي"
+    },
+    {
+        "english_name": "Barueri",
+        "arabic_name": "بارويري"
+    },
+    {
+        "english_name": "Guaruja",
+        "arabic_name": "غواروجا"
+    },
+    {
+        "english_name": "Montes Claros",
+        "arabic_name": "مونتيس كلاروس"
+    },
+    {
+        "english_name": "Varzea Grande",
+        "arabic_name": "فارزيا غراندي"
+    },
+    {
+        "english_name": "Anapolis",
+        "arabic_name": "أنابوليس"
+    },
+    {
+        "english_name": "Franca",
+        "arabic_name": "فرانكا"
+    },
+    {
+        "english_name": "Juazeiro do Norte",
+        "arabic_name": "جوازيرو دو نورتي"
+    },
+    {
+        "english_name": "Foz do Iguacu",
+        "arabic_name": "فوز دو إيغواسو"
+    },
+    {
+        "english_name": "Petropolis",
+        "arabic_name": "بتروبوليس"
+    },
+    {
+        "english_name": "Ponta Grossa",
+        "arabic_name": "بونتا غروسا"
+    },
+    {
+        "english_name": "Taboao da Serra",
+        "arabic_name": "تابواو دا سيرا"
+    },
+    {
+        "english_name": "Imperatriz",
+        "arabic_name": "امبراتريز"
+    },
+    {
+        "english_name": "Sumare",
+        "arabic_name": "سوماري"
+    },
+    {
+        "english_name": "Mossoro",
+        "arabic_name": "موسورو"
+    },
+    {
+        "english_name": "Itajai",
+        "arabic_name": "إتاخايي"
+    },
+    {
+        "english_name": "Indaiatuba",
+        "arabic_name": "إنداياتوبا"
+    },
+    {
+        "english_name": "Sao Carlos",
+        "arabic_name": "ساو كارلوس"
+    },
+    {
+        "english_name": "Caruaru",
+        "arabic_name": "كاروارو"
+    },
+    {
+        "english_name": "Parnamirim",
+        "arabic_name": "بارناميريم"
+    },
+    {
+        "english_name": "Uberaba",
+        "arabic_name": "أوبيرابا"
+    },
+    {
+        "english_name": "Limeira",
+        "arabic_name": "ليميرا"
+    },
+    {
+        "english_name": "Governador Valadares",
+        "arabic_name": "غوفيرنادور فالاداريس"
+    },
+    {
+        "english_name": "Macae",
+        "arabic_name": "ماكاي"
+    },
+    {
+        "english_name": "Sao Jose de Ribamar",
+        "arabic_name": "ساو خوسيه دي ريبامار"
+    },
+    {
+        "english_name": "Santa Maria",
+        "arabic_name": "سانتا ماريا"
+    },
+    {
+        "english_name": "Araraquara",
+        "arabic_name": "أراراكوارا"
+    }
+]

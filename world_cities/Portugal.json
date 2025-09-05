@@ -1,0 +1,334 @@
+[
+    {
+        "english_name": "Lisbon",
+        "arabic_name": "لشبونة"
+    },
+    {
+        "english_name": "Aves",
+        "arabic_name": "طيور"
+    },
+    {
+        "english_name": "Sintra",
+        "arabic_name": "شنترة"
+    },
+    {
+        "english_name": "Vila Nova de Gaia",
+        "arabic_name": "فيلا نوا دغايا"
+    },
+    {
+        "english_name": "Porto",
+        "arabic_name": "بورتو"
+    },
+    {
+        "english_name": "Cascais",
+        "arabic_name": "كاشكايش"
+    },
+    {
+        "english_name": "Loures",
+        "arabic_name": "لوريس"
+    },
+    {
+        "english_name": "Seixal",
+        "arabic_name": "سيشال"
+    },
+    {
+        "english_name": "Braga",
+        "arabic_name": "براقرة"
+    },
+    {
+        "english_name": "Almada",
+        "arabic_name": "ألمادا"
+    },
+    {
+        "english_name": "Matosinhos",
+        "arabic_name": "مَتُزِنيُش"
+    },
+    {
+        "english_name": "Oeiras",
+        "arabic_name": "أويرس"
+    },
+    {
+        "english_name": "Amadora",
+        "arabic_name": "أمادورا"
+    },
+    {
+        "english_name": "Gondomar",
+        "arabic_name": "جُندُمار"
+    },
+    {
+        "english_name": "Odivelas",
+        "arabic_name": "أوديفلاس"
+    },
+    {
+        "english_name": "Coimbra",
+        "arabic_name": "قلمرية"
+    },
+    {
+        "english_name": "Vila Franca de Xira",
+        "arabic_name": "فيلا فرانكا دي إكسيرا"
+    },
+    {
+        "english_name": "Maia",
+        "arabic_name": "مايا"
+    },
+    {
+        "english_name": "Famalicao",
+        "arabic_name": "فيلا نوا د فاماليساو"
+    },
+    {
+        "english_name": "Leiria",
+        "arabic_name": "لَيرِية"
+    },
+    {
+        "english_name": "Barcelos",
+        "arabic_name": "بَرسِلُش"
+    },
+    {
+        "english_name": "Funchal",
+        "arabic_name": "فُنْشال"
+    },
+    {
+        "english_name": "Viseu",
+        "arabic_name": "بازو"
+    },
+    {
+        "english_name": "Valongo",
+        "arabic_name": "فالونغو"
+    },
+    {
+        "english_name": "Viana do Castelo",
+        "arabic_name": "فيانا دو كاستيلو"
+    },
+    {
+        "english_name": "Paredes",
+        "arabic_name": "باريديس"
+    },
+    {
+        "english_name": "Vila do Conde",
+        "arabic_name": "فيلا دو كوندي"
+    },
+    {
+        "english_name": "Torres Vedras",
+        "arabic_name": "توريس فيدراس"
+    },
+    {
+        "english_name": "Aveiro",
+        "arabic_name": "أفيرو"
+    },
+    {
+        "english_name": "Barreiro",
+        "arabic_name": "برَّيْرة"
+    },
+    {
+        "english_name": "Queluz",
+        "arabic_name": "كويلوز"
+    },
+    {
+        "english_name": "Santo Tirso",
+        "arabic_name": "سانتو تريسو"
+    },
+    {
+        "english_name": "Loule",
+        "arabic_name": "لولي"
+    },
+    {
+        "english_name": "Ponta Delgada",
+        "arabic_name": "بُنتة دِلغَادة"
+    },
+    {
+        "english_name": "Povoa de Varzim",
+        "arabic_name": "بوفوا دي فارزيم"
+    },
+    {
+        "english_name": "Palmela",
+        "arabic_name": "بالملا"
+    },
+    {
+        "english_name": "Santarem",
+        "arabic_name": "شنترين"
+    },
+    {
+        "english_name": "Figueira da Foz",
+        "arabic_name": "فيغيرا دا فوز"
+    },
+    {
+        "english_name": "Portimao",
+        "arabic_name": "بُرتِماو"
+    },
+    {
+        "english_name": "Felgueiras",
+        "arabic_name": "فِلجَيرس"
+    },
+    {
+        "english_name": "Pacos de Ferreira",
+        "arabic_name": "نادي باسوش دي فيريرا"
+    },
+    {
+        "english_name": "Amarante",
+        "arabic_name": "أمارنتة"
+    },
+    {
+        "english_name": "Castelo Branco",
+        "arabic_name": "كاستيلو برانكو"
+    },
+    {
+        "english_name": "Ovar",
+        "arabic_name": "أوفار"
+    },
+    {
+        "english_name": "Pombal",
+        "arabic_name": "بُمبال"
+    },
+    {
+        "english_name": "Alcobaca",
+        "arabic_name": "القُباسة"
+    },
+    {
+        "english_name": "Evora",
+        "arabic_name": "يابرة"
+    },
+    {
+        "english_name": "Vila Real",
+        "arabic_name": "فياريال"
+    },
+    {
+        "english_name": "Covilha",
+        "arabic_name": "كوفيليا"
+    },
+    {
+        "english_name": "Caldas da Rainha",
+        "arabic_name": "كالداس دا رينها"
+    },
+    {
+        "english_name": "Montijo",
+        "arabic_name": "مونتيجو"
+    },
+    {
+        "english_name": "Rio Tinto",
+        "arabic_name": "مجموعة ريو تينتو"
+    },
+    {
+        "english_name": "Fafe",
+        "arabic_name": "فافي"
+    },
+    {
+        "english_name": "Amora",
+        "arabic_name": "أمورا"
+    },
+    {
+        "english_name": "Agueda",
+        "arabic_name": "أجويدا"
+    },
+    {
+        "english_name": "Ourem",
+        "arabic_name": "أوريم"
+    },
+    {
+        "english_name": "Olhao",
+        "arabic_name": "أولاو"
+    },
+    {
+        "english_name": "Albufeira",
+        "arabic_name": "ألبوفيرا"
+    },
+    {
+        "english_name": "Ponte de Lima",
+        "arabic_name": "بونتي دي ليما"
+    },
+    {
+        "english_name": "Santa Cruz",
+        "arabic_name": "سانتا كروز"
+    },
+    {
+        "english_name": "Guarda",
+        "arabic_name": "غوآردا"
+    },
+    {
+        "english_name": "Chaves",
+        "arabic_name": "تشافيس"
+    },
+    {
+        "english_name": "Tomar",
+        "arabic_name": "طومار"
+    },
+    {
+        "english_name": "Abrantes",
+        "arabic_name": "أبرانتيس"
+    },
+    {
+        "english_name": "Marinha Grande",
+        "arabic_name": "مارينها جراندي"
+    },
+    {
+        "english_name": "Trofa",
+        "arabic_name": "طُروفة"
+    },
+    {
+        "english_name": "Ermezinde",
+        "arabic_name": "إرمِسِنْدة"
+    },
+    {
+        "english_name": "Torres Novas",
+        "arabic_name": "تورس نواس"
+    },
+    {
+        "english_name": "Cantanhede",
+        "arabic_name": "كَنْتَنهِيدَة"
+    },
+    {
+        "english_name": "Beja",
+        "arabic_name": "باجة"
+    },
+    {
+        "english_name": "Agualva",
+        "arabic_name": "أجوَلفة قاسم"
+    },
+    {
+        "english_name": "Camara de Lobos",
+        "arabic_name": "كامارا دي لوبوس"
+    },
+    {
+        "english_name": "Angra do Heroismo",
+        "arabic_name": "آنغرا دو هروئيسمو"
+    },
+    {
+        "english_name": "Braganca",
+        "arabic_name": "بَرغَنسة"
+    },
+    {
+        "english_name": "Esposende",
+        "arabic_name": "إسبوسيندي"
+    },
+    {
+        "english_name": "Ribeira Grande",
+        "arabic_name": "ريبيرا غراندي"
+    },
+    {
+        "english_name": "Ilhavo",
+        "arabic_name": "إلهافو"
+    },
+    {
+        "english_name": "Lagos",
+        "arabic_name": "لاغوس"
+    },
+    {
+        "english_name": "Espinho",
+        "arabic_name": "إسبينيو"
+    },
+    {
+        "english_name": "Santiago do Cacem",
+        "arabic_name": "سانتياغو دو كاسيم"
+    },
+    {
+        "english_name": "Perafita",
+        "arabic_name": "بيرافايتا، برشلونة"
+    },
+    {
+        "english_name": "Povoa de Santa Iria",
+        "arabic_name": "بوفوا دي سانتا إريا"
+    },
+    {
+        "english_name": "Fundao",
+        "arabic_name": "فُنداو"
+    }
+]
