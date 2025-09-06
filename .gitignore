@@ -1,6 +1,5 @@
 /settings.json
 /__pycache__
-cache/prayer_Damietta_Egypt_2025-09-06.pkl
+*.pkl
 logs/prayer_app.log
-cache/countries.json
-cache/cities_cache/Egypt.json
+/cache

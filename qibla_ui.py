@@ -52,8 +52,10 @@ class QiblaWidget(tk.Frame):
         self.canvas.pack()
         direction_frame = tk.Frame(container, bg=self.colors['bg_card'])
         direction_frame.pack(pady=10)
-        self.direction_label = tk.Label(direction_frame, text="--°", font=("Arial", 18, "bold"), fg="#ffc107", bg=self.colors['bg_card'])
+        self.direction_label = tk.Label(direction_frame, text="°--", font=("Arial", 18, "bold"), fg="#ffc107", bg=self.colors['bg_card'])
         self.direction_label.pack()
+        self.direction_note = tk.Label(direction_frame, text="اضبط اتجاه السهم الأحمر نحو الشمال الجغرافي", font=("Arial", 10, "bold"), fg="#000000", bg=self.colors['bg_card'])
+        self.direction_note.pack()
         control_frame = tk.Frame(container, bg=self.colors['bg_card'])
         control_frame.pack(pady=10)
         auto_frame = tk.Frame(control_frame, bg=self.colors['bg_card'])
@@ -202,7 +204,8 @@ class QiblaWidget(tk.Frame):
         bearing_rad = math.atan2(y, x)
         bearing_deg = math.degrees(bearing_rad)
         self.qibla_direction = (bearing_deg + 360) % 360
-        self.direction_label.config(text=f"{self.qibla_direction:.1f}°")
+        self.direction_label.config(text=f"°{self.qibla_direction:.1f} زاوية القبلة من الشمال")
+        self.direction_note.config(text="اضبط اتجاه السهم الأحمر نحو الشمال الجغرافي")
 
     # رسم البوصلة
     def draw_compass(self):
