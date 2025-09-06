@@ -1,5 +1,5 @@
 /settings.json
 /__pycache__
-*.pkl
-logs/prayer_app.log
+/logs
 /cache
+*.pkl
