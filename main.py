@@ -68,7 +68,7 @@ def main():
             
         translator = Translator(lang)
         _ = translator.get
-        logger.critical(f"خطأ فادح في التطبيق: {e}", exc_info=True)
+        logger.critical(f"خطأ فادح في التطبيق {e}", exc_info=True)
         messagebox.showerror(_("fatal_error"), f'{_("fatal_app_error")} \n{e}')
 
 if __name__ == "__main__":

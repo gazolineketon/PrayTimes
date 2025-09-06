@@ -230,7 +230,7 @@ CALCULATION_METHODS_REV = {v: k for k, v in CALCULATION_METHODS.items()}
 
 # تحديد المسار الجذري للمشروع لضمان استقلالية المسارات
 APP_DIR = Path(__file__).parent.resolve()
-ROOT_DIR = APP_DIR.parent
+ROOT_DIR = APP_DIR
 
 # المسارات للملفات والمجلدات الرئيسية
 SETTINGS_FILE = APP_DIR / 'settings.json'
