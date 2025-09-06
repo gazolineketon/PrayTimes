@@ -61,23 +61,120 @@ class QiblaWidget(tk.Frame):
         tk.Checkbutton(auto_frame, text=self._("auto_update_compass"), variable=self.auto_update, command=self.toggle_auto_update, fg=self.colors['text_primary'], bg=self.colors['bg_card'], selectcolor="#0f0f23", font=("Arial", 11)).pack()
         self.draw_compass()
 
-    # تحديث الموقع الحالي باستخدام IP
+    # تحديث الموقع الحالي من API
     def get_location(self):
-        try:
-            response = requests.get("http://ip-api.com/json/", timeout=5)
-            data = response.json()
-            if data['status'] == 'success':
-                self.user_lat = float(data['lat'])
-                self.user_lon = float(data['lon'])
-                self.city = data.get('city', 'Unknown')
-                self.country = data.get('country', 'Unknown')
-                self.location_label.config(text=f"{self.city}, {self.country}")
-                self.calculate_qibla_direction()
-                self.draw_compass()
+        def _get_location_task():
+            location_found = False
+            user_lat = None
+            user_lon = None
+            try:
+                # Using geolocation-db.com for coordinates
+                response = requests.get("https://geolocation-db.com/json/", timeout=5)
+                response.raise_for_status()
+                data = response.json()
+                if data and data.get('latitude') and data.get('longitude'):
+                    user_lat = float(data['latitude'])
+                    user_lon = float(data['longitude'])
+                    logger.info(f"Coordinates from geolocation-db.com: ({user_lat}, {user_lon})")
+
+                    # Now get city/country from coordinates using Nominatim
+                    city, country = self._get_city_country_from_coords(user_lat, user_lon)
+                    if city and country:
+                        self.user_lat = user_lat
+                        self.user_lon = user_lon
+                        self.city = city
+                        self.country = country
+                        location_found = True
+                        logger.info(f"Location from Nominatim: {self.city}, {self.country}")
+                    else:
+                        logger.warning("Could not determine city/country from coordinates using Nominatim.")
+                else:
+                    logger.warning(f"geolocation-db.com response missing location data: {data}")
+            except requests.exceptions.RequestException as e:
+                logger.warning(f"geolocation-db.com request failed: {e}")
+            except Exception as e:
+                logger.error(f"An unexpected error occurred with geolocation-db.com: {e}")
+
+            if not location_found:
+                logger.info("Attempting to get location from saved settings using Nominatim.")
+                # Fallback to existing city/country from settings
+                lat, lon = self._get_coords_from_city_country(self.city, self.country)
+                if lat is not None and lon is not None:
+                    self.user_lat = lat
+                    self.user_lon = lon
+                    location_found = True
+                    logger.info(f"Location from Nominatim (settings): {self.city}, {self.country} ({self.user_lat}, {self.user_lon})")
+                else:
+                    logger.error(f"Failed to get coordinates for {self.city}, {self.country} from Nominatim.")
+
+            if location_found:
+                self.parent.after(0, lambda: self.location_label.config(text=f"{self.city}, {self.country}"))
+                self.parent.after(0, self.calculate_qibla_direction)
+                self.parent.after(0, self.draw_compass)
             else:
-                self.location_label.config(text=self._("فشل تحديد الموقع"))
-        except Exception:
-            self.location_label.config(text=self._("فشل تحديد الموقع"))
+                self.parent.after(0, lambda: self.location_label.config(text=self._("فشل تحديد الموقع")))
+                # Optionally, set default lat/lon if all attempts fail
+                self.user_lat = 0.0
+                self.user_lon = 0.0
+                self.parent.after(0, self.calculate_qibla_direction)
+                self.parent.after(0, self.draw_compass)
+
+        threading.Thread(target=_get_location_task, daemon=True).start()
+
+    def _get_city_country_from_coords(self, lat, lon):
+        """
+        Get city and country for given coordinates using Nominatim API.
+        """
+        try:
+            url = f"https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}&zoom=10&accept-language=ar"
+            headers = {'User-Agent': 'PrayTimesApp/1.0 (gazoline1022@gmail.com)'}
+            response = requests.get(url, headers=headers, timeout=10)
+            data = response.json()
+
+            if data and 'address' in data:
+                address = data['address']
+                city = address.get('city', address.get('town', address.get('village')))
+                country = address.get('country')
+                if city and country:
+                    return city, country
+                else:
+                    logger.warning(f"Nominatim reverse geocoding did not return city or country for {lat}, {lon}. Address: {address}")
+                    return None, None
+            else:
+                logger.warning(f"Nominatim reverse geocoding found no results for {lat}, {lon}")
+                return None, None
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Nominatim API reverse geocoding request failed for {lat}, {lon}: {e}")
+            return None, None
+        except Exception as e:
+            logger.error(f"An unexpected error occurred with Nominatim API reverse for {lat}, {lon}: {e}")
+            return None, None
+
+    def _get_coords_from_city_country(self, city, country):
+        """
+        جلب الإحداثيات (خط العرض والطول) لمدينة ودولة معينة باستخدام Nominatim API.
+        """
+        try:
+            # Using Nominatim OpenStreetMap API
+            # It's important to provide a user-agent
+            url = f"https://nominatim.openstreetmap.org/search?city={city}&country={country}&format=json&limit=1"
+            headers = {'User-Agent': 'PrayTimesApp/1.0 (gazoline1022@gmail.com)'}
+            response = requests.get(url, headers=headers, timeout=10)
+            data = response.json()
+
+            if data and len(data) > 0:
+                lat = float(data[0]['lat'])
+                lon = float(data[0]['lon'])
+                return lat, lon
+            else:
+                logger.warning(f"Nominatim found no results for {city}, {country}")
+                return None, None
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Nominatim API request failed for {city}, {country}: {e}")
+            return None, None
+        except Exception as e:
+            logger.error(f"An unexpected error occurred with Nominatim API for {city}, {country}: {e}")
+            return None, None
 
     # تحديث الموقع يدويًا
     def update_qibla(self, lat, lon, city, country):
