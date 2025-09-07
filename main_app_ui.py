@@ -134,6 +134,12 @@ class EnhancedPrayerTimesApp:
         self.prayers_card = self.create_card_frame(main_container)
         self.prayers_card.pack(fill='x', pady=(0, 10))
         self.setup_prayers_table()
+
+        if self.settings.qibla_enabled:
+            self.qibla_card = self.create_card_frame(main_container)
+            self.qibla_card.pack(fill='x', pady=(0, 10))
+            self.qibla_widget = QiblaWidget(self.qibla_card, self.settings, self.translator, self.colors, self.settings.selected_city, self.settings.selected_country)
+            self.qibla_widget.pack(fill='x')
         
         self.setup_enhanced_status_bar(main_container)
     
@@ -178,7 +184,7 @@ class EnhancedPrayerTimesApp:
         self.time_sync_label.pack()
     
     def setup_calendar_ui(self):
-        """إعداد واجهة التقويم المحسّنة"""
+        """إعداد واجهة التقويم"""
         calendar_container = tk.Frame(self.calendar_card, bg=self.colors['bg_card'], pady=5)
         calendar_container.pack(fill='x')
                 
@@ -409,6 +415,7 @@ class EnhancedPrayerTimesApp:
     def display_prayer_times(self, city_data):
         """عرض مواقيت الصلاة للمدينة المحددة"""
         self.current_city = self.settings.selected_city
+        self.current_country = self.settings.selected_country
         
         self.update_calendar_display(city_data)
         
@@ -774,9 +781,17 @@ class EnhancedPrayerTimesApp:
         old_method = self.settings.calculation_method
 
         def on_settings_saved():
-            if (self.settings.selected_country != old_country or
-                    self.settings.selected_city != old_city or
-                    self.settings.calculation_method != old_method):
+            location_changed = (self.settings.selected_country != old_country or
+                                self.settings.selected_city != old_city)
+            method_changed = self.settings.calculation_method != old_method
+
+            if location_changed:
+                if self.settings.qibla_enabled and hasattr(self, 'qibla_widget'):
+                    self.qibla_widget.city = self.settings.selected_city
+                    self.qibla_widget.country = self.settings.selected_country
+                    self.qibla_widget.fetch_and_update_coordinates()
+
+            if location_changed or method_changed:
                 self.manual_refresh(show_success_message=False)
 
         try:

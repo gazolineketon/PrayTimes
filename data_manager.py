@@ -11,7 +11,7 @@ import pickle
 import requests
 from datetime import datetime, date
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 
 from config import COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, WORLD_CITIES_DIR
 
@@ -131,6 +131,32 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
 
     logger.info(f"تم جلب وترجمة قائمة المدن لـ {country_name} بنجاح")
     return cities
+
+def get_coordinates_for_city(city: str, country: str) -> Optional[Tuple[float, float]]:
+    """
+    Get coordinates (latitude, longitude) for a city using Nominatim API.
+    """
+    try:
+        url = f"https://nominatim.openstreetmap.org/search"
+        params = {'q': f'{city}, {country}', 'format': 'json', 'limit': 1}
+        headers = {'User-Agent': 'PrayerTimesApp/2.0'} # Nominatim requires a User-Agent
+        response = requests.get(url, params=params, timeout=10, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        if data:
+            lat = float(data[0]['lat'])
+            lon = float(data[0]['lon'])
+            logger.info(f"Coordinates for {city}, {country}: ({lat}, {lon})")
+            return lat, lon
+        else:
+            logger.warning(f"Could not find coordinates for {city}, {country}")
+            return None
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Error fetching coordinates for {city}, {country}: {e}")
+        return None
+    except (KeyError, IndexError, ValueError) as e:
+        logger.error(f"Error parsing coordinates for {city}, {country}: {e}")
+        return None
 
 class CacheManager:
     """مدير البيانات المؤقتة"""    

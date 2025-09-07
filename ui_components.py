@@ -180,13 +180,31 @@ class SettingsDialog:
         qibla_widget_container = tk.Frame(parent, bg=self.colors['bg_primary'])
         qibla_widget_container.pack(fill='both', expand=True, padx=10, pady=10)
 
-        self.qibla_widget = QiblaWidget(qibla_widget_container, self.settings, self.parent.translator, self.colors, self.parent.current_city, self.parent.current_country)
+        city_name = self.parent.current_city
+        country_name = self.parent.current_country
+
+        if self.settings.language == 'ar':
+            # Find the Arabic name for the country
+            for eng, ara in self.parent.countries:
+                if eng == country_name:
+                    country_name = ara
+                    break
+            # Find the Arabic name for the city
+            if hasattr(self.parent, 'cities') and self.parent.cities:
+                for eng, ara in self.parent.cities:
+                    if eng == city_name:
+                        city_name = ara
+                        break
+
+        self.qibla_widget = QiblaWidget(qibla_widget_container, self.settings, self.parent.translator, self.colors, city_name, country_name)
         self.qibla_widget.pack(fill='both', expand=True)
 
-        if self.parent.current_city and self.parent.prayer_data:
+        if self.parent.current_city and self.parent.prayer_data and self.parent.current_city in self.parent.prayer_data:
             lat = self.parent.prayer_data[self.parent.current_city]['latitude']
             lon = self.parent.prayer_data[self.parent.current_city]['longitude']
-            self.qibla_widget.update_qibla(lat, lon, self.parent.current_city, self.parent.current_country)
+            self.qibla_widget.update_qibla(lat, lon, city_name, country_name)
+
+        
     
     def setup_location_settings(self, parent):
         """إعداد إعدادات الموقع"""
