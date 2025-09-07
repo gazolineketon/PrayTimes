@@ -44,7 +44,7 @@ class QiblaWidget(tk.Frame):
         self.title_label.pack(pady=10)
         location_frame = tk.Frame(container, bg=self.colors['bg_card'])
         location_frame.pack(pady=10)
-        self.location_label = tk.Label(location_frame, text=self._("getting_location"), font=("Arial", 12), fg="#16c79a", bg=self.colors['bg_card'])
+        self.location_label = tk.Label(location_frame, text=self._("getting_location"), font=("Arial", 14), fg="#16c79a", bg=self.colors['bg_card'])
         self.location_label.pack()
         compass_frame = tk.Frame(container, bg=self.colors['bg_card'])
         compass_frame.pack(pady=10)
@@ -70,7 +70,7 @@ class QiblaWidget(tk.Frame):
             user_lat = None
             user_lon = None
             try:
-                # Using geolocation-db.com for coordinates
+                # استخدام geolocation-db.com للحصول على الإحداثيات
                 response = requests.get("https://geolocation-db.com/json/", timeout=5)
                 response.raise_for_status()
                 data = response.json()
@@ -79,7 +79,7 @@ class QiblaWidget(tk.Frame):
                     user_lon = float(data['longitude'])
                     logger.info(f"Coordinates from geolocation-db.com: ({user_lat}, {user_lon})")
 
-                    # Now get city/country from coordinates using Nominatim
+                    # Nominatim الآن احصل على المدينة/الدولة من الإحداثيات باستخدام
                     city, country = self._get_city_country_from_coords(user_lat, user_lon)
                     if city and country:
                         self.user_lat = user_lat
@@ -87,19 +87,19 @@ class QiblaWidget(tk.Frame):
                         self.city = city
                         self.country = country
                         location_found = True
-                        logger.info(f"Location from Nominatim: {self.city}, {self.country}")
+                        logger.info(f"Nominatim الموقع من {self.city}, {self.country}")
                     else:
-                        logger.warning("Could not determine city/country from coordinates using Nominatim.")
+                        logger.warning("Nominatim لم يتمكن من تحديد المدينة والدولة من خط العرض والطول")
                 else:
-                    logger.warning(f"geolocation-db.com response missing location data: {data}")
+                    logger.warning(f"استجابة geolocation-db.com لبيانات الموقع المفقودة {data}")
             except requests.exceptions.RequestException as e:
-                logger.warning(f"geolocation-db.com request failed: {e}")
+                logger.warning(f"فشل طلب geolocation-db.com {e}")
             except Exception as e:
-                logger.error(f"An unexpected error occurred with geolocation-db.com: {e}")
+                logger.error(f"حدث خطأ غير متوقع مع geolocation-db.com {e}")
 
             if not location_found:
-                logger.info("Attempting to get location from saved settings using Nominatim.")
-                # Fallback to existing city/country from settings
+                logger.info("Nominatim محاولة الحصول على الموقع من الإعدادات المحفوظة باستخدام")
+                # الرجوع إلى المدينة/البلد الحالي من الإعدادات
                 lat, lon = self._get_coords_from_city_country(self.city, self.country)
                 if lat is not None and lon is not None:
                     self.user_lat = lat
@@ -115,7 +115,7 @@ class QiblaWidget(tk.Frame):
                 self.parent.after(0, self.draw_compass)
             else:
                 self.parent.after(0, lambda: self.location_label.config(text=self._("فشل تحديد الموقع")))
-                # Optionally, set default lat/lon if all attempts fail
+                # اختياريًا، قم بتعيين خط العرض/الطول الافتراضي إذا فشلت جميع المحاولات
                 self.user_lat = 0.0
                 self.user_lon = 0.0
                 self.parent.after(0, self.calculate_qibla_direction)
@@ -125,7 +125,7 @@ class QiblaWidget(tk.Frame):
 
     def _get_city_country_from_coords(self, lat, lon):
         """
-        Get city and country for given coordinates using Nominatim API.
+        جلب المدينة والدولة من خط العرض والطول باستخدام Nominatim API.
         """
         try:
             url = f"https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}&zoom=10&accept-language=ar"
@@ -140,7 +140,7 @@ class QiblaWidget(tk.Frame):
                 if city and country:
                     return city, country
                 else:
-                    logger.warning(f"Nominatim reverse geocoding did not return city or country for {lat}, {lon}. Address: {address}")
+                    logger.warning(f"Nominatim reverse geocoding did not return city or country for {lat}, {lon}. Address {address}")
                     return None, None
             else:
                 logger.warning(f"Nominatim reverse geocoding found no results for {lat}, {lon}")
@@ -157,8 +157,7 @@ class QiblaWidget(tk.Frame):
         جلب الإحداثيات (خط العرض والطول) لمدينة ودولة معينة باستخدام Nominatim API.
         """
         try:
-            # Using Nominatim OpenStreetMap API
-            # It's important to provide a user-agent
+            # استخدام API Nominatim OpenStreetMap لتوفير وكيل المستخدم
             url = f"https://nominatim.openstreetmap.org/search?city={city}&country={country}&format=json&limit=1"
             headers = {'User-Agent': 'PrayTimesApp/1.0 (gazoline1022@gmail.com)'}
             response = requests.get(url, headers=headers, timeout=10)
