@@ -38,7 +38,8 @@ class QiblaWidget(tk.Frame):
 
     # جلب وتحديث الإحداثيات
     def fetch_and_update_coordinates(self):
-        self.location_label.config(text=self._("loading_coordinates"))
+        self.city_country_label.config(text=self._("loading_coordinates"))
+        self.coordinates_label.config(text="")
         threading.Thread(target=self._get_and_set_coordinates, daemon=True).start()
 
     # الحصول على الإحداثيات وتحديثها
@@ -54,7 +55,8 @@ class QiblaWidget(tk.Frame):
 
     # عرض خطأ في حالة فشل تحميل الإحداثيات
     def show_coordinates_error(self):
-        self.location_label.config(text=self._("failed_to_load_coordinates"))
+        self.city_country_label.config(text=self._("failed_to_load_coordinates"))
+        self.coordinates_label.config(text="")
 
     # إعداد واجهة المستخدم
     def setup_ui(self):
@@ -62,11 +64,13 @@ class QiblaWidget(tk.Frame):
         container.pack(fill='x', expand=True)
         title_text = self._("qibla_direction")
         self.title_label = tk.Label(container, text=title_text, font=("Arial", 20, "bold"), fg="#16c79a", bg=self.colors['bg_card'])
-        self.title_label.pack(pady=5)
+        self.title_label.pack(pady=3)
         location_frame = tk.Frame(container, bg=self.colors['bg_card'])
-        location_frame.pack(pady=5)
-        self.location_label = tk.Label(location_frame, text="الرجاء تحديد الموقع من الإعدادات", font=("Arial", 12, "bold"), fg="#16c79a", bg=self.colors['bg_card'])
-        self.location_label.pack()
+        location_frame.pack(pady=3)
+        self.city_country_label = tk.Label(location_frame, text="الرجاء تحديد الموقع من الإعدادات", font=("Arial", 16, "bold"), fg="#16c79a", bg=self.colors['bg_card'])
+        self.city_country_label.pack()
+        self.coordinates_label = tk.Label(location_frame, text="", font=("Arial", 8), fg="#000000", bg=self.colors['bg_card'])
+        self.coordinates_label.pack()
         compass_frame = tk.Frame(container, bg=self.colors['bg_card'])
         compass_frame.pack(pady=5)
         self.canvas = tk.Canvas(compass_frame, width=300, height=300, bg="#0f0f23", highlightthickness=2, highlightcolor="#16c79a")
@@ -85,8 +89,10 @@ class QiblaWidget(tk.Frame):
         self.user_lon = lon
         self.city = city
         self.country = country
-        if hasattr(self, 'location_label'):
-            self.location_label.config(text=f"{self.city}, {self.country}\n({self.user_lat:.4f}, {self.user_lon:.4f})")
+        if hasattr(self, 'city_country_label'):
+            self.city_country_label.config(text=f"{self.city} , {self.country}")
+        if hasattr(self, 'coordinates_label'):
+            self.coordinates_label.config(text=f"({self.user_lat:.4f}, {self.user_lon:.4f})")
         if hasattr(self, 'title_label'):
             title_text = self._("qibla_direction")
             self.title_label.config(text=title_text)
