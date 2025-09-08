@@ -2,7 +2,7 @@
 
 """
 main_app_ui.py
-يحتوي هذا الملف على الكلاس الرئيسي للواجهة الرسومية.
+يحتوي هذا الملف على الكلاس الرئيسي للواجهة الرسومية
 """
 
 import tkinter as tk
@@ -26,7 +26,6 @@ logger = logging.getLogger(__name__)
 
 class EnhancedPrayerTimesApp:
     """تطبيق مواقيت الصلاة"""
-    
     def __init__(self):
         self.root = tk.Tk()
         self.version = "2.0.0"
@@ -850,25 +849,25 @@ class EnhancedPrayerTimesApp:
             self.root.destroy()
     
     def on_frame_configure(self, event=None):
-        """Reset the scroll region to encompass the inner frame"""
+        """إعادة تعيين منطقة التمرير لتشمل الإطار الداخلي"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
     def on_canvas_configure(self, event=None):
-        """Set the width of the inner frame to the canvas width"""
+        """تعديل عرض الإطار الداخلي ليتناسب مع عرض اللوحة"""
         self.canvas.itemconfig(self.canvas_frame, width=event.width)
 
     def _on_mousewheel(self, event):
-        """Handle mouse wheel scrolling for Windows and MacOS"""
+        """معالجة التمرير بعجلة الماوس لنظام Windows وMac"""
         if self.canvas.yview() != (0.0, 1.0):
             self.canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
     def _on_button_4(self, event):
-        """Handle mouse wheel scrolling for Linux (scroll up)"""
+        """معالجة التمرير بعجلة الماوس لنظام Linux (التمرير لأعلى)"""
         if self.canvas.yview() != (0.0, 1.0):
             self.canvas.yview_scroll(-1, "units")
 
     def _on_button_5(self, event):
-        """Handle mouse wheel scrolling for Linux (scroll down)"""
+        """معالجة التمرير بعجلة الماوس لنظام Linux (التمرير لأسفل)"""
         if self.canvas.yview() != (0.0, 1.0):
             self.canvas.yview_scroll(1, "units")
 

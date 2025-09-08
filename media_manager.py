@@ -20,7 +20,7 @@ try:
 except ImportError:
     logger.warning("playsound غير متوفر - تشغيل الصوت معطل")
     def playsound(sound, block=True):
-        pass # Dummy function
+        pass
 
 try:
     from plyer import notification
@@ -58,7 +58,7 @@ class AdhanPlayer:
     
     def stop_adhan(self):
         """إيقاف تشغيل الأذان"""
-        logger.info("playsound لا يدعم إيقاف الصوت مباشرة.")
+        logger.info("playsound لا يدعم إيقاف الصوت مباشرة")
 
 class NotificationManager:
     """مدير الإشعارات"""    

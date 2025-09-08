@@ -4,7 +4,7 @@ import time
 import subprocess
 
 def restart_app():
-    """Restarts the current program."""
+    """إعادة تشغيل التطبيق"""
     if len(sys.argv) > 1:
         main_script = sys.argv[1]
         time.sleep(1)

@@ -2,8 +2,7 @@
 
 """
 ui_components.py
-
-يحتوي هذا الملف على أجزاء الواجهة الرسومية القابلة لإعادة الاستخدام مثل `SettingsDialog`.
+يحتوي هذا الملف على أجزاء الواجهة الرسومية القابلة لإعادة الاستخدام مثل `SettingsDialog`
 """
 
 import tkinter as tk
@@ -68,7 +67,7 @@ class SettingsDialog:
         
         buttons_frame = tk.Frame(self.dialog)
         buttons_frame.pack(fill='x', padx=10, pady=10)
-        
+        # زر حفظ الإعدادات
         ttk.Button(buttons_frame, text=self._("save"), command=self.save_settings).pack(side='right', padx=(5, 0))
         ttk.Button(buttons_frame, text=self._("cancel"), command=self.dialog.destroy).pack(side='right')
         ttk.Button(buttons_frame, text=self._("restore_defaults"), command=self.reset_settings).pack(side='left')
@@ -81,17 +80,17 @@ class SettingsDialog:
         
         self.lang_var = tk.StringVar(value=self.settings.language)
         
-        # Create a dictionary to map language codes to display names
+        # إنشاء قاموس لربط رموز اللغة بأسماء العرض
         language_display_names = {"ar": self._("arabic"), "en": self._("english")}
         
-        # Function to get language code from display name
+        # وظيفة مساعدة للحصول على رمز اللغة من اسم العرض
         def get_lang_code(display_name):
             for code, name in language_display_names.items():
                 if name == display_name:
                     return code
             return None
 
-        # Set the initial value of the combobox using the display name
+        # تعيين القيمة الأولية للصندوق باستخدام اسم العرض
         self.lang_display_var = tk.StringVar(value=language_display_names.get(self.settings.language))
 
         lang_combo = ttk.Combobox(lang_frame, textvariable=self.lang_display_var, 
@@ -99,7 +98,7 @@ class SettingsDialog:
                                  state='readonly')
         lang_combo.pack(fill='x', padx=10, pady=10)
         
-        # When a new language is selected, update the internal language code variable
+        # تحديث متغير رمز اللغة الداخلي عند تحديد لغة جديدة
         def on_lang_selected(event):
             selected_display_name = self.lang_display_var.get()
             lang_code = get_lang_code(selected_display_name)
@@ -130,7 +129,7 @@ class SettingsDialog:
         # المظهر
         theme_frame = ttk.LabelFrame(parent, text=self._("theme"))
         theme_frame.pack(fill='x', padx=10, pady=10)
-        
+        # اختيار المظهر
         self.theme_var = tk.StringVar(value=self.settings.theme)
         ttk.Radiobutton(theme_frame, text=self._("light"), variable=self.theme_var, 
                        value="light").pack(anchor='w', padx=10, pady=5)
@@ -184,12 +183,12 @@ class SettingsDialog:
         country_name = self.parent.current_country
 
         if self.settings.language == 'ar':
-            # Find the Arabic name for the country
+            # بحث عن الاسم العربي للبلد
             for eng, ara in self.parent.countries:
                 if eng == country_name:
                     country_name = ara
                     break
-            # Find the Arabic name for the city
+            # بحث عن الاسم العربي للمدينة
             if hasattr(self.parent, 'cities') and self.parent.cities:
                 for eng, ara in self.parent.cities:
                     if eng == city_name:

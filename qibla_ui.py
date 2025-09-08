@@ -16,6 +16,7 @@ from data_manager import get_coordinates_for_city
 logger = logging.getLogger(__name__)
 
 class QiblaWidget(tk.Frame):
+    # تهيئة واجهة عرض القبلة
     def __init__(self, parent, settings, translator, colors, city, country):
         super().__init__(parent, bg=colors['bg_card'], relief='flat', bd=1, highlightbackground=colors['border'], highlightthickness=1)
         self.parent = parent
@@ -35,10 +36,12 @@ class QiblaWidget(tk.Frame):
             self.setup_ui()
             self.fetch_and_update_coordinates()
 
+    # جلب وتحديث الإحداثيات
     def fetch_and_update_coordinates(self):
         self.location_label.config(text=self._("loading_coordinates"))
         threading.Thread(target=self._get_and_set_coordinates, daemon=True).start()
 
+    # الحصول على الإحداثيات وتحديثها
     def _get_and_set_coordinates(self):
         coordinates = get_coordinates_for_city(self.city, self.country)
         if coordinates:
@@ -49,6 +52,7 @@ class QiblaWidget(tk.Frame):
             if self.parent.winfo_exists():
                 self.parent.after(0, self.show_coordinates_error)
 
+    # عرض خطأ في حالة فشل تحميل الإحداثيات
     def show_coordinates_error(self):
         self.location_label.config(text=self._("failed_to_load_coordinates"))
 

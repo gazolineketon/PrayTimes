@@ -2,8 +2,7 @@
 
 """
 settings_manager.py
-
-يحتوي هذا الملف على كلاس لإدارة إعدادات التطبيق.
+يحتوي هذا الملف على كلاس لإدارة إعدادات التطبيق
 """
 
 import json
@@ -27,8 +26,8 @@ class Settings:
         self.sound_file = ""
         self.qibla_enabled = True
         self.weather_enabled = False
-        self.selected_country = "Egypt"  # Default country
-        self.selected_city = "Cairo"      # Default city
+        self.selected_country = "Egypt"  # البلد الإفتراضى
+        self.selected_city = "Cairo"      # المدينة الإفتراضية
         self.load_settings()
     
     def load_settings(self):
