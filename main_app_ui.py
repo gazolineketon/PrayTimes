@@ -2,7 +2,7 @@
 
 """
 main_app_ui.py
-يحتوي هذا الملف على الكلاس الرئيسي للواجهة الرسومية
+يحتوي هذا الملف على الواجهة الرسومية الرئيسية
 """
 
 import tkinter as tk
@@ -133,12 +133,6 @@ class EnhancedPrayerTimesApp:
         self.prayers_card = self.create_card_frame(main_container)
         self.prayers_card.pack(fill='x', pady=(0, 10))
         self.setup_prayers_table()
-
-        # if self.settings.qibla_enabled:
-        #     self.qibla_card = self.create_card_frame(main_container)
-        #     self.qibla_card.pack(fill='x', pady=(0, 10))
-        #     self.qibla_widget = QiblaWidget(self.qibla_card, self.settings, self.translator, self.colors, self.settings.selected_city, self.settings.selected_country)
-        #     self.qibla_widget.pack(fill='x')
         
         self.setup_enhanced_status_bar(main_container)
     
@@ -196,20 +190,20 @@ class EnhancedPrayerTimesApp:
         greg_boxes_frame = tk.Frame(gregorian_frame, bg=self.colors['bg_card'])
         greg_boxes_frame.pack(side='right')
         
-        self.greg_year_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 70, 35)
-        self.greg_year_frame.pack(side='right', padx=2)
-        self.greg_year_label = tk.Label(self.greg_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
-        self.greg_year_label.pack(expand=True)
+        self.greg_day_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 50, 35)
+        self.greg_day_frame.pack(side='right', padx=2)
+        self.greg_day_label = tk.Label(self.greg_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
+        self.greg_day_label.pack(expand=True)        
         
         self.greg_month_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 90, 35)
         self.greg_month_frame.pack(side='right', padx=2)
         self.greg_month_label = tk.Label(self.greg_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_month_label.pack(expand=True)
         
-        self.greg_day_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 50, 35)
-        self.greg_day_frame.pack(side='right', padx=2)
-        self.greg_day_label = tk.Label(self.greg_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
-        self.greg_day_label.pack(expand=True)
+        self.greg_year_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 70, 35)
+        self.greg_year_frame.pack(side='right', padx=2)
+        self.greg_year_label = tk.Label(self.greg_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
+        self.greg_year_label.pack(expand=True)
         
         hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
         hijri_frame.pack()
@@ -217,21 +211,21 @@ class EnhancedPrayerTimesApp:
         hijri_boxes_frame = tk.Frame(hijri_frame, bg=self.colors['bg_card'])
         hijri_boxes_frame.pack(side='right')
         
-        self.hijri_year_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 70, 35)
-        self.hijri_year_frame.pack(side='right', padx=2)
-        self.hijri_year_label = tk.Label(self.hijri_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
-        self.hijri_year_label.pack(expand=True)
+        self.hijri_day_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 50, 35)
+        self.hijri_day_frame.pack(side='right', padx=2)
+        self.hijri_day_label = tk.Label(self.hijri_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
+        self.hijri_day_label.pack(expand=True)
 
         self.hijri_month_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 90, 35)
         self.hijri_month_frame.pack(side='right', padx=2)
         self.hijri_month_label = tk.Label(self.hijri_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_month_label.pack(expand=True)
-
-        self.hijri_day_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 50, 35)
-        self.hijri_day_frame.pack(side='right', padx=2)
-        self.hijri_day_label = tk.Label(self.hijri_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
-        self.hijri_day_label.pack(expand=True)
     
+        self.hijri_year_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 70, 35)
+        self.hijri_year_frame.pack(side='right', padx=2)
+        self.hijri_year_label = tk.Label(self.hijri_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
+        self.hijri_year_label.pack(expand=True)
+        
     def create_date_box(self, parent, bg_color, width, height):
         """إنشاء صندوق تاريخ"""
         frame = tk.Frame(parent, bg=bg_color, width=width, height=height, relief='flat', bd=0)
@@ -312,7 +306,7 @@ class EnhancedPrayerTimesApp:
         self.executor.submit(task)
     
     def fetch_and_display_times(self, city: str, country: str):
-        """جلب وعرض مواقيت الصلاة مع تحسينات الأداء"""
+        """جلب وعرض مواقيت الصلاة"""
         self.show_loading()
         
         def api_task():
