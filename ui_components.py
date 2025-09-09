@@ -11,6 +11,7 @@ from config import CALCULATION_METHODS, CALCULATION_METHODS_REV
 from data_manager import get_cities
 from settings_manager import Settings
 from qibla_ui import QiblaWidget
+from media_manager import AdhanPlayer
 
 class SettingsDialog:
     """نافذة الإعدادات"""
@@ -22,6 +23,8 @@ class SettingsDialog:
         self.on_save_callback = on_save_callback
         self.dialog = None
         self.cities = []
+        self.sound_player = AdhanPlayer()
+        self.playing_sound = None
         self.create_dialog()
     
     def create_dialog(self):
@@ -164,15 +167,35 @@ class SettingsDialog:
                                variable=self.volume_var, orient='horizontal')
         volume_scale.pack(fill='x', padx=10, pady=10)
         
-        sound_file_frame = ttk.LabelFrame(parent, text=self._("custom_sound_file"))
-        sound_file_frame.pack(fill='x', padx=10, pady=10)
+        # ملف صوت الأذان
+        adhan_sound_file_frame = ttk.LabelFrame(parent, text=self._("adhan_sound_file"))
+        adhan_sound_file_frame.pack(fill='x', padx=10, pady=10)
         
-        self.sound_file_var = tk.StringVar(value=self.settings.sound_file)
-        sound_file_entry = ttk.Entry(sound_file_frame, textvariable=self.sound_file_var)
-        sound_file_entry.pack(side='left', fill='x', expand=True, padx=(10, 5), pady=10)
+        self.adhan_sound_file_var = tk.StringVar(value=self.settings.adhan_sound_file)
+        adhan_sound_file_entry = ttk.Entry(adhan_sound_file_frame, textvariable=self.adhan_sound_file_var)
+        adhan_sound_file_entry.pack(side='left', fill='x', expand=True, padx=(10, 5), pady=10)
         
-        ttk.Button(sound_file_frame, text=self._("browse"), 
-                  command=self.browse_sound_file).pack(side='right', padx=(5, 10), pady=10)
+        self.play_adhan_button = ttk.Button(adhan_sound_file_frame, text=self._("play"), 
+                                           command=lambda: self.toggle_sound("adhan"))
+        self.play_adhan_button.pack(side='right', padx=(5, 5), pady=10)
+
+        ttk.Button(adhan_sound_file_frame, text=self._("browse"), 
+                  command=self.browse_adhan_sound_file).pack(side='right', padx=(0, 10), pady=10)
+
+        # ملف صوت التنبيه
+        notification_sound_file_frame = ttk.LabelFrame(parent, text=self._("notification_sound_file"))
+        notification_sound_file_frame.pack(fill='x', padx=10, pady=10)
+        
+        self.notification_sound_file_var = tk.StringVar(value=self.settings.notification_sound_file)
+        notification_sound_file_entry = ttk.Entry(notification_sound_file_frame, textvariable=self.notification_sound_file_var)
+        notification_sound_file_entry.pack(side='left', fill='x', expand=True, padx=(10, 5), pady=10)
+        
+        self.play_notification_button = ttk.Button(notification_sound_file_frame, text=self._("play"), 
+                                                      command=lambda: self.toggle_sound("notification"))
+        self.play_notification_button.pack(side='right', padx=(5, 5), pady=10)
+
+        ttk.Button(notification_sound_file_frame, text=self._("browse"), 
+                  command=self.browse_notification_sound_file).pack(side='right', padx=(0, 10), pady=10)
     
     def setup_qibla_settings(self, parent):
         """إعداد إعدادات القبلة"""
@@ -306,8 +329,8 @@ class SettingsDialog:
         if english_country:
             self.update_cities_for_country(english_country)
 
-    def browse_sound_file(self):
-        """تصفح واختيار ملف صوتي"""
+    def browse_adhan_sound_file(self):
+        """تصفح واختيار ملف صوتي للأذان"""
         file_types = [
             (self._("audio_files"), "*.mp3 *.wav *.ogg"),
             ("MP3", "*.mp3"),
@@ -322,10 +345,52 @@ class SettingsDialog:
         )
         
         if filename:
-            self.sound_file_var.set(filename)
-    
+            self.adhan_sound_file_var.set(filename)
+
+    def browse_notification_sound_file(self):
+        """تصفح واختيار ملف صوتي للتنبيه"""
+        file_types = [
+            (self._("audio_files"), "*.wav"),
+            ("WAV", "*.wav"),
+            (self._("all_files"), "*.*")
+        ]
+        
+        filename = filedialog.askopenfilename(
+            title=self._("select_notification_file"),
+            initialdir="C:/Windows/Media",
+            filetypes=file_types
+        )
+        
+        if filename:
+            self.notification_sound_file_var.set(filename)
+
+    def toggle_sound(self, sound_type):
+        if self.playing_sound:
+            self.sound_player.stop_sound()
+            if self.playing_sound == 'adhan':
+                self.play_adhan_button.config(text=self._("play"))
+            else:
+                self.play_notification_button.config(text=self._("play"))
+            self.playing_sound = None
+            return
+
+        if sound_type == 'adhan':
+            sound_file = self.adhan_sound_file_var.get()
+            button = self.play_adhan_button
+        else:
+            sound_file = self.notification_sound_file_var.get()
+            button = self.play_notification_button
+
+        if sound_file:
+            self.sound_player.play_sound(sound_file, self.volume_var.get())
+            button.config(text=self._("stop"))
+            self.playing_sound = sound_type
+        else:
+            messagebox.showwarning(self._("error"), self._("no_sound_file_selected"))
+
     def save_settings(self):
         """حفظ الإعدادات"""
+        self.sound_player.stop_sound()
         self.settings.language = self.lang_var.get()
         self.settings.notifications_enabled = self.notifications_var.get()
         self.settings.sound_enabled = self.sound_var.get()
@@ -334,7 +399,8 @@ class SettingsDialog:
         self.settings.notification_before_minutes = self.notify_before_var.get()
         self.settings.auto_update_interval = self.update_interval_var.get()
         self.settings.sound_volume = self.volume_var.get()
-        self.settings.sound_file = self.sound_file_var.get()
+        self.settings.adhan_sound_file = self.adhan_sound_file_var.get()
+        self.settings.notification_sound_file = self.notification_sound_file_var.get()
         
         selected_display_country = self.country_var.get()
         english_country = ""

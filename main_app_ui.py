@@ -596,6 +596,12 @@ class EnhancedPrayerTimesApp:
                         self._("minutes_remaining_for_prayer", minutes=self.settings.notification_before_minutes, prayer_name=prayer_name),
                         timeout=15
                     )
+                    if self.settings.sound_enabled:
+                        sound_file = self.settings.notification_sound_file
+                        if sound_file:
+                            self.adhan_player.play_sound(sound_file, self.settings.sound_volume)
+                        else:
+                            self.adhan_player.play_sound('sounds/notification.wav', self.settings.sound_volume)
                     self.last_notification_time[prayer_name] = current_time
             
             prayer_time_24 = prayer_datetime.strftime("%H:%M")
@@ -608,8 +614,11 @@ class EnhancedPrayerTimesApp:
                     )
                     
                     if self.settings.sound_enabled:
-                        sound_file = self.settings.sound_file if self.settings.sound_file else None
-                        self.adhan_player.play_adhan(prayer_name, sound_file, self.settings.sound_volume)
+                        sound_file = self.settings.adhan_sound_file
+                        if sound_file:
+                            self.adhan_player.play_sound(sound_file, self.settings.sound_volume)
+                        else:
+                            self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
                     
                     self.last_notification_time[f"{prayer_name}_adhan"] = current_time
     
@@ -833,7 +842,7 @@ class EnhancedPrayerTimesApp:
                 self._countdown_running = False
             
             if hasattr(self, 'adhan_player'):
-                self.adhan_player.stop_adhan()
+                self.adhan_player.stop_sound()
             
             if hasattr(self, 'executor'):
                 self.executor.shutdown(wait=True, cancel_futures=True)

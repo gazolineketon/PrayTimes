@@ -7,7 +7,7 @@ media_manager.py
 
 import os
 import logging
-import threading
+import multiprocessing
 from config import Translator
 from settings_manager import Settings
 
@@ -31,33 +31,38 @@ except ImportError:
 class AdhanPlayer:
     """مشغل أصوات الأذان"""
     def __init__(self):
-        self.default_sounds = {'fajr': 'sounds/adhan_mekka.wma', 'normal': 'sounds/adhan_mekka.wma', 'notification': 'sounds/notification.wav'}
+        self.process = None
     
-    def play_adhan(self, prayer_name: str, custom_file: str = None, volume: float = 0.7):
-        """تشغيل صوت الأذان"""
+    def play_sound(self, sound_file: str, volume: float = 0.7):
+        """تشغيل ملف صوتي"""
         try:
-            sound_file = custom_file
-            if not sound_file:
-                if prayer_name == 'الفجر':
-                    sound_file = self.default_sounds['fajr']
-                else:
-                    sound_file = self.default_sounds['normal']
-            
+            if self.process and self.process.is_alive():
+                self.stop_sound()
+
             if not os.path.exists(sound_file):
                 logger.warning(f"ملف الصوت غير موجود {sound_file}")
-                return False
-            
-            threading.Thread(target=playsound, args=(sound_file,), kwargs={'block': True}).start()
-            logger.info(f"تم تشغيل أذان {prayer_name}")
+                # استخدام ملف صوت افتراضي إذا لم يتم العثور على الملف المحدد
+                default_notification = 'sounds/notification.wav'
+                if os.path.exists(default_notification):
+                    sound_file = default_notification
+                else:
+                    return False
+
+            self.process = multiprocessing.Process(target=playsound, args=(sound_file,), kwargs={'block': True})
+            self.process.start()
+            logger.info(f"تم تشغيل الصوت {sound_file}")
             return True
             
         except Exception as e:
             logger.error(f"خطأ في تشغيل الصوت {e}")
             return False
     
-    def stop_adhan(self):
-        """إيقاف تشغيل الأذان"""
-        logger.info("playsound لا يدعم إيقاف الصوت مباشرة")
+    def stop_sound(self):
+        """إيقاف تشغيل الصوت"""
+        if self.process and self.process.is_alive():
+            self.process.terminate()
+            self.process = None
+            logger.info("تم إيقاف الصوت")
 
 class NotificationManager:
     """مدير الإشعارات"""    
