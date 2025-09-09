@@ -332,10 +332,11 @@ class SettingsDialog:
     def browse_adhan_sound_file(self):
         """تصفح واختيار ملف صوتي للأذان"""
         file_types = [
-            (self._("audio_files"), "*.mp3 *.wav *.ogg"),
+            (self._("audio_files"), "*.mp3 *.wav *.ogg *.wma"),
             ("MP3", "*.mp3"),
             ("WAV", "*.wav"),
             ("OGG", "*.ogg"),
+            ("WMA", "*.wma"),
             (self._("all_files"), "*.*")
         ]
         

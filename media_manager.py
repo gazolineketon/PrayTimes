@@ -31,37 +31,38 @@ except ImportError:
 class AdhanPlayer:
     """مشغل أصوات الأذان"""
     def __init__(self):
-        self.process = None
+        self.player = None
     
+
     def play_sound(self, sound_file: str, volume: float = 0.7):
-        """تشغيل ملف صوتي"""
+        """تشغيل ملف صوتي باستخدام مكتبة vlc مع التحكم الكامل"""
         try:
-            if self.process and self.process.is_alive():
+            import vlc
+            if self.player:
                 self.stop_sound()
 
             if not os.path.exists(sound_file):
                 logger.warning(f"ملف الصوت غير موجود {sound_file}")
-                # استخدام ملف صوت افتراضي إذا لم يتم العثور على الملف المحدد
                 default_notification = 'sounds/notification.wav'
                 if os.path.exists(default_notification):
                     sound_file = default_notification
                 else:
                     return False
 
-            self.process = multiprocessing.Process(target=playsound, args=(sound_file,), kwargs={'block': True})
-            self.process.start()
+            self.player = vlc.MediaPlayer(sound_file)
+            self.player.audio_set_volume(int(volume * 100))
+            self.player.play()
             logger.info(f"تم تشغيل الصوت {sound_file}")
             return True
-            
         except Exception as e:
-            logger.error(f"خطأ في تشغيل الصوت {e}")
+            logger.error(f"خطأ في تشغيل الصوت عبر vlc: {e}")
             return False
     
     def stop_sound(self):
-        """إيقاف تشغيل الصوت"""
-        if self.process and self.process.is_alive():
-            self.process.terminate()
-            self.process = None
+        """إيقاف تشغيل الصوت عبر vlc"""
+        if self.player:
+            self.player.stop()
+            self.player = None
             logger.info("تم إيقاف الصوت")
 
 class NotificationManager:
