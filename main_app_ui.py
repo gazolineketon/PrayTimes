@@ -418,10 +418,10 @@ class EnhancedPrayerTimesApp:
         table_frame = tk.Frame(self.table_container, bg=self.colors['bg_card'])
         table_frame.pack(fill='both', expand=True)
         
-        columns = [("status", 80, "center"), ("period", 60, "center"), ("time", 100, "center"), ("prayer", 120, "center"), ("icon", 50, "center")]
+        columns = [("status", 80, "center"), ("period", 60, "center"), ("time", 80, "center"), ("prayer", 80, "center"), ("icon", 50, "center")]
         
         for i, (col_name, width, anchor) in enumerate(columns):
-            table_frame.grid_columnconfigure(i, weight=0, minsize=width)
+            table_frame.grid_columnconfigure(i, weight=1, minsize=width)
         
         prayers_data = [
             (city_data['fajr_orig'], city_data['fajr_period'], city_data['fajr_time'], self._('fajr'), '🌅'),
@@ -432,17 +432,21 @@ class EnhancedPrayerTimesApp:
             (city_data['isha_orig'], city_data['isha_period'], city_data['isha_time'], self._('isha'), '🌙')
         ]
         
-        headers = [self._("table_header_status"), " ", self._("table_header_time"), self._("table_header_prayer"), " "]
         header_style = {'font': ('Segoe UI', 12, 'bold'), 'bg': self.colors['bg_accent'], 'fg': self.colors['text_accent'], 'pady': 10, 'relief': 'flat'}
-        
-        for col, header_text in enumerate(headers):
-            if header_text:
-                header_label = tk.Label(table_frame, text=header_text, **header_style)
-                header_label.grid(row=0, column=col, sticky='nsew', pady=1)
+
+        # عنوان الحالة
+        tk.Label(table_frame, text=self._("table_header_status"), **header_style).grid(row=0, column=0, sticky='nsew')
+
+        # عنوان الوقت
+        tk.Label(table_frame, text=self._("table_header_time"), **header_style).grid(row=0, column=1, columnspan=2, sticky='nsew')
+
+        # عنوان الصلاة
+        tk.Label(table_frame, text=self._("table_header_prayer"), **header_style).grid(row=0, column=3, columnspan=4, sticky='nsew')
         
         self.prayer_rows = []
         now = datetime.now()
         current_minutes = now.hour * 60 + now.minute
+        
         # تحديث حالة الصلاة
         for i, (prayer_orig, prayer_period, prayer_time, prayer_name, icon) in enumerate(prayers_data):
             row_num = i + 1
@@ -471,20 +475,20 @@ class EnhancedPrayerTimesApp:
             
             cell_style = {'bg': self.colors['bg_card'], 'fg': self.colors['text_primary'], 'pady': 8, 'font': ('Segoe UI', 12)}
             
-            status_label = tk.Label(table_frame, text=status, fg=status_color, font=('Segoe UI', 10, 'bold'), **{k: v for k, v in cell_style.items() if k not in ['fg', 'font']})
+            status_label = tk.Label(table_frame, text=status, fg=status_color, font=('Segoe UI', 10, 'bold'), anchor="center", **{k: v for k, v in cell_style.items() if k not in ['fg', 'font']})
             status_label.grid(row=row_num, column=0, sticky='nsew', pady=1)
             
-            period_label = tk.Label(table_frame, text=prayer_period, **cell_style)
-            period_label.grid(row=row_num, column=1, sticky='e', pady=1)
+            period_label = tk.Label(table_frame, text=prayer_period, anchor="e", **cell_style)
+            period_label.grid(row=row_num, column=1, sticky='nsew', pady=1)
             
-            time_label = tk.Label(table_frame, text=prayer_time, font=('Segoe UI', 14, 'bold'), **{k: v for k, v in cell_style.items() if k != 'font'})
-            time_label.grid(row=row_num, column=2, sticky='w', pady=1)
+            time_label = tk.Label(table_frame, text=prayer_time, font=('Segoe UI', 14, 'bold'), anchor="w", **{k: v for k, v in cell_style.items() if k != 'font'})
+            time_label.grid(row=row_num, column=2, sticky='nsew', pady=1)
             
-            prayer_label = tk.Label(table_frame, text=prayer_name, **cell_style)
-            prayer_label.grid(row=row_num, column=3, sticky='e', pady=1)
+            prayer_label = tk.Label(table_frame, text=prayer_name, anchor="e", **cell_style)
+            prayer_label.grid(row=row_num, column=3, sticky='nsew', pady=1)
             
-            icon_label = tk.Label(table_frame, text=icon, **cell_style)
-            icon_label.grid(row=row_num, column=4, sticky='w', pady=1)
+            icon_label = tk.Label(table_frame, text=icon, anchor="w", **cell_style)
+            icon_label.grid(row=row_num, column=4, sticky='nsew', pady=1)
             
             self.prayer_rows.append({'icon': icon_label, 'prayer': prayer_label, 'time': time_label, 'period': period_label, 'status': status_label, 'prayer_name': prayer_name, 'prayer_orig': prayer_orig})
         
