@@ -332,11 +332,28 @@ class SettingsDialog:
     def browse_adhan_sound_file(self):
         """تصفح واختيار ملف صوتي للأذان"""
         file_types = [
-            (self._("audio_files"), "*.mp3 *.wav *.ogg *.wma"),
+            (self._("audio_files"), "*.mp3 *.wav *.ogg *.wma *.aac *.flac *.m4a *.mp4 *.opus *.aiff *.amr *.au *.caf *.dts *.mka *.mp2 *.mpga *.oga *.spx *.tta *.wv"),
             ("MP3", "*.mp3"),
             ("WAV", "*.wav"),
             ("OGG", "*.ogg"),
             ("WMA", "*.wma"),
+            ("AAC", "*.aac"),
+            ("FLAC", "*.flac"),
+            ("M4A", "*.m4a"),
+            ("MP4", "*.mp4"),
+            ("OPUS", "*.opus"),
+            ("AIFF", "*.aiff"),
+            ("AMR", "*.amr"),
+            ("AU", "*.au"),
+            ("CAF", "*.caf"),
+            ("DTS", "*.dts"),
+            ("MKA", "*.mka"),
+            ("MP2", "*.mp2"),
+            ("MPGA", "*.mpga"),
+            ("OGA", "*.oga"),
+            ("SPX", "*.spx"),
+            ("TTA", "*.tta"),
+            ("WV", "*.wv"),
             (self._("all_files"), "*.*")
         ]
         
@@ -351,8 +368,28 @@ class SettingsDialog:
     def browse_notification_sound_file(self):
         """تصفح واختيار ملف صوتي للتنبيه"""
         file_types = [
-            (self._("audio_files"), "*.wav"),
+            (self._("audio_files"), "*.mp3 *.wav *.ogg *.wma *.aac *.flac *.m4a *.mp4 *.opus *.aiff *.amr *.au *.caf *.dts *.mka *.mp2 *.mpga *.oga *.spx *.tta *.wv"),
+            ("MP3", "*.mp3"),
             ("WAV", "*.wav"),
+            ("OGG", "*.ogg"),
+            ("WMA", "*.wma"),
+            ("AAC", "*.aac"),
+            ("FLAC", "*.flac"),
+            ("M4A", "*.m4a"),
+            ("MP4", "*.mp4"),
+            ("OPUS", "*.opus"),
+            ("AIFF", "*.aiff"),
+            ("AMR", "*.amr"),
+            ("AU", "*.au"),
+            ("CAF", "*.caf"),
+            ("DTS", "*.dts"),
+            ("MKA", "*.mka"),
+            ("MP2", "*.mp2"),
+            ("MPGA", "*.mpga"),
+            ("OGA", "*.oga"),
+            ("SPX", "*.spx"),
+            ("TTA", "*.tta"),
+            ("WV", "*.wv"),
             (self._("all_files"), "*.*")
         ]
         
