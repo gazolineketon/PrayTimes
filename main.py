@@ -5,6 +5,8 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
+__version__ = "0.17.0"
+
 import logging
 import sys
 from tkinter import messagebox
