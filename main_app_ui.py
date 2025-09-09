@@ -13,6 +13,17 @@ import time
 import re
 import logging
 from concurrent.futures import ThreadPoolExecutor
+import threading
+
+# التسجيل
+logger = logging.getLogger(__name__)
+try:
+    from pystray import Icon as TrayIcon, Menu as TrayMenu, MenuItem as TrayMenuItem
+    from PIL import Image, ImageDraw
+    PYSTRAY_AVAILABLE = True
+except ImportError:
+    PYSTRAY_AVAILABLE = False
+    logger.warning("pystray or Pillow is not available - tray icon functionality is disabled")
 
 from config import Translator
 from settings_manager import Settings
@@ -36,6 +47,7 @@ class EnhancedPrayerTimesApp:
         self._ = self.translator.get
         
         self.root.title(self._("prayer_times"))
+        self.root.iconbitmap("pray_times.ico")
         self.root.geometry("850x1000")
 
         self.cache_manager = CacheManager()
@@ -60,6 +72,9 @@ class EnhancedPrayerTimesApp:
         self.load_initial_data()
         self.start_auto_update()
         self.sync_time_on_startup()
+        self.tray_icon = None
+        if PYSTRAY_AVAILABLE:
+            self.setup_tray_icon()
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         
     def on_closing(self):
@@ -835,8 +850,45 @@ class EnhancedPrayerTimesApp:
         self.root.after(5000, lambda: error_label.destroy() if error_label.winfo_exists() else None)
     
     def on_closing(self):
+        """عند إغلاق التطبيق"""
+        if self.tray_icon:
+            self.root.withdraw()
+            self.notification_manager.send_notification(
+                self._("app_running_in_background"),
+                self._("app_running_in_background_message"),
+                timeout=5
+            )
+        else:
+            self.quit_application()
+
+    def setup_tray_icon(self):
+        """إعداد أيقونة شريط المهام"""
+        if not PYSTRAY_AVAILABLE:
+            return
+
+        menu = TrayMenu(
+            TrayMenuItem(self._("show_window"), self.show_window, default=True),
+            TrayMenuItem(self._("quit"), self.quit_application)
+        )
+
+        image = Image.open("pray_times.ico")
+        self.tray_icon = TrayIcon("PrayerTimes", image, self._("prayer_times"), menu)
+
+        def run_tray_icon():
+            self.tray_icon.run()
+
+        tray_thread = threading.Thread(target=run_tray_icon, daemon=True)
+        tray_thread.start()
+
+    def show_window(self):
+        """إظهار نافذة التطبيق"""
+        self.root.deiconify()
+
+    def quit_application(self):
         """معالج إغلاق التطبيق"""
         self.running = False
+        if self.tray_icon:
+            self.tray_icon.stop()
         try:
             if hasattr(self, '_countdown_running'):
                 self._countdown_running = False
