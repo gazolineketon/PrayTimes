@@ -477,15 +477,17 @@ class SettingsDialog:
     def save_settings(self):
         """حفظ الإعدادات"""
         self.sound_player.stop_sound()
+        # Get calculation method using the current (old) language
+        method_key = self.calc_method_var.get()
+        if self.settings.language == 'ar':
+            self.settings.calculation_method = CALCULATION_METHODS.get(method_key, self.settings.calculation_method)
+        else:
+            self.settings.calculation_method = CALCULATION_METHODS_EN.get(method_key, self.settings.calculation_method)
+
         self.settings.language = self.lang_var.get()
         self.settings.notifications_enabled = self.notifications_var.get()
         self.settings.sound_enabled = self.sound_var.get()
         
-        if self.settings.language == 'ar':
-            self.settings.calculation_method = CALCULATION_METHODS[self.calc_method_var.get()]
-        else:
-            self.settings.calculation_method = CALCULATION_METHODS_EN[self.calc_method_var.get()]
-
         self.settings.theme = self.theme_var.get()
         self.settings.notification_before_minutes = self.notify_before_var.get()
         self.settings.auto_update_interval = self.update_interval_var.get()
@@ -534,7 +536,7 @@ class SettingsDialog:
         dialog.grab_set()
 
         label = ttk.Label(dialog, text=self._("settings_saved_successfully_restart"), wraplength=380, justify='center')
-        label.pack(pady=20, fill='x', expand=True)
+        label.pack(pady=20, expand=True)
 
         buttons_frame = tk.Frame(dialog)
         buttons_frame.pack(pady=10)

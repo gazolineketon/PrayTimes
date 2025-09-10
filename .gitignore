@@ -3,3 +3,6 @@
 /logs
 /cache
 *.pkl
+/build
+/dist
+main.spec
