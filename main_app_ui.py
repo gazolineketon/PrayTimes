@@ -37,9 +37,9 @@ logger = logging.getLogger(__name__)
 
 class EnhancedPrayerTimesApp:
     """تطبيق مواقيت الصلاة"""
-    def __init__(self):
+    def __init__(self, version):
         self.root = tk.Tk()
-        self.version = "2.0.0"
+        self.version = version
         
         # تهيئة المكونات
         self.settings = Settings()

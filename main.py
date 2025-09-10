@@ -56,7 +56,7 @@ def main():
     logger = logging.getLogger(__name__)
     try:
         check_dependencies()       
-        app = EnhancedPrayerTimesApp()
+        app = EnhancedPrayerTimesApp(version=__version__)
         app.run()
         
     except Exception as e:
