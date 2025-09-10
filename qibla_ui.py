@@ -102,8 +102,8 @@ class QiblaWidget(tk.Frame):
     # حساب اتجاه القبلة
     def calculate_qibla_direction(self):
         self.qibla_direction = QiblaCalculator.calculate_qibla(self.user_lat, self.user_lon)
-        self.direction_label.config(text=f"°{self.qibla_direction:.1f} زاوية القبلة من الشمال")
-        self.direction_note.config(text="اضبط اتجاه السهم الأحمر نحو الشمال الجغرافي")
+        self.direction_label.config(text=f"°{self.qibla_direction:.1f} {self._('qibla_angle_from_north')}")
+        self.direction_note.config(text=self._('set_arrow_towards_north'))
 
 
     # رسم البوصلة

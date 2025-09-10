@@ -110,10 +110,10 @@ class SettingsDialog:
         info_frame = tk.Frame(main_frame, bg=self.colors.get('bg_secondary', '#FFFFFF'))
         info_frame.grid(row=1, column=0, sticky='n')
 
-        tk.Label(info_frame, text="برنامج مواقيت الصلاة", font=("Segoe UI", 16, "bold"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack()
-        tk.Label(info_frame, text="برمجة : محمود نصار", font=("Segoe UI", 12), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack(pady=(10, 0))
-        tk.Label(info_frame, text="مجانى لوجه الله تعالى", font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
-        tk.Label(info_frame, text=f'الإصدار : {self.parent.version}', font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
+        tk.Label(info_frame, text=self._("prayer_times_program"), font=("Segoe UI", 16, "bold"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack()
+        tk.Label(info_frame, text=self._("programmed_by"), font=("Segoe UI", 12), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack(pady=(10, 0))
+        tk.Label(info_frame, text=self._("free_for_the_sake_of_allah"), font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
+        tk.Label(info_frame, text=self._("version_label", version=self.parent.version), font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
 
     
     def setup_general_settings(self, parent):

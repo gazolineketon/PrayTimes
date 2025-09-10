@@ -93,6 +93,8 @@ TRANSLATIONS = {
         "qibla": "القبلة",
         "qibla_direction": "🧭 اتجاه القبلة",
         "qibla_direction_label": "الاتجاه {direction:.1f}°",
+        "qibla_angle_from_north": "زاوية القبلة من الشمال",
+        "set_arrow_towards_north": "اضبط اتجاه السهم الأحمر نحو الشمال الجغرافي",
         "qibla_info": "معلومات",
         "qibla_info_text": "        • يتم حساب اتجاه القبلة بناءً على موقع المدينة المختارة •\n        • الاتجاه محسوب بالنسبة للشمال الجغرافي•\n        • للحصول على دقة أكبر، تأكد من اتصالك بالإنترنت •\n        ",
         "remaining_time_on": "الوقت المتبقي على",
@@ -208,6 +210,8 @@ TRANSLATIONS = {
         "qibla": "Qibla",
         "qibla_direction": "🧭 Qibla Direction",
         "qibla_direction_label": "Direction {direction:.1f}°",
+        "qibla_angle_from_north": "Qibla angle from North",
+        "set_arrow_towards_north": "Set the red arrow towards the geographic North",
         "qibla_info": "Information",
         "qibla_info_text": "        • Qibla direction is calculated based on the selected city's location.\n        • The direction is calculated relative to True North.\n        • For better accuracy, ensure you are connected to the internet.\n        ",
         "remaining_time_on": "Time remaining for",
