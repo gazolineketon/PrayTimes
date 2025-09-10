@@ -257,8 +257,8 @@ class EnhancedPrayerTimesApp:
         prayers_container = tk.Frame(self.prayers_card, bg=self.colors['bg_card'], pady=15)
         prayers_container.pack(fill='both', expand=True)
         
-        prayers_title = tk.Label(prayers_container, text=self._("prayer_times_table_title"), font=('Segoe UI', 16, 'bold'), bg=self.colors['bg_card'], fg=self.colors['text_primary'])
-        prayers_title.pack(pady=(0, 15))
+        self.prayers_title = tk.Label(prayers_container, text=self._("prayer_times_table_title"), font=('Segoe UI', 16, 'bold'), bg=self.colors['bg_card'], fg=self.colors['text_primary'])
+        self.prayers_title.pack(pady=(0, 15))
         
         self.table_container = tk.Frame(prayers_container, bg=self.colors['bg_card'])
         self.table_container.pack(expand=True, padx=10)
@@ -425,6 +425,28 @@ class EnhancedPrayerTimesApp:
         self.current_city = self.settings.selected_city
         self.current_country = self.settings.selected_country
         
+        city_name = self.current_city
+        country_name = self.current_country
+
+        if self.settings.language == 'ar':
+            # بحث عن الاسم العربي للبلد
+            if self.countries:
+                for eng, ara in self.countries:
+                    if eng == country_name:
+                        country_name = ara
+                        break
+            # بحث عن الاسم العربي للمدينة
+            if hasattr(self, 'cities') and self.cities:
+                for eng, ara in self.cities:
+                    if eng == city_name:
+                        city_name = ara
+                        break
+        
+        # عنوان الجدول مواقيت الصلاة لمدينة
+        title = f"{self._('prayer_times_for_city')} {city_name}"
+        if hasattr(self, 'prayers_title'):
+            self.prayers_title.config(text=title)
+
         self.update_calendar_display(city_data)
         
         for widget in self.table_container.winfo_children():
