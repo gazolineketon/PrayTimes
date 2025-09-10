@@ -10,6 +10,7 @@ from pathlib import Path
 # ترجمات النصوص المستخدمة في التطبيق
 TRANSLATIONS = {
     "ar": dict(sorted({
+        "about": "حول",
         "adhan_sound_file": "ملف صوت الأذان",
         "all_files": "جميع الملفات",
         "app_error": "خطأ في التطبيق",
@@ -52,6 +53,7 @@ TRANSLATIONS = {
         "fatal_app_error": "حدث خطأ فادح",
         "fatal_error": "خطأ فادح",
         "finished": "انتهت ✓",
+        "free_for_the_sake_of_allah": "مجانى لوجه الله تعالى",
         "general": "عام",
         "hour": "ساعة",
         "isha": "العشاء",
@@ -62,6 +64,7 @@ TRANSLATIONS = {
         "loading_prayer_times": "🔄 جاري تحميل مواقيت الصلاة...",
         "location": "🌍 الموقع",
         "location_settings_title": "تحديد الموقع (سيتم تطبيقه عند إعادة التشغيل)",
+        "logo_not_found": "لم يتم العثور على الشعار",
         "maghrib": "المغرب",
         "minute": "دقيقة",
         "minutes_remaining_for_prayer": "يتبقى {minutes} دقائق على أذان {prayer_name}",
@@ -83,8 +86,10 @@ TRANSLATIONS = {
         "prayer_time": "وقت الصلاة",
         "prayer_times": "مواقيت الصلاة",
         "prayer_times_for_city": "مواقيت الصلاة لمدينة",
+        "prayer_times_program": "برنامج مواقيت الصلاة",
         "prayer_times_table_title": "🕐 مواقيت الصلاة",
         "prayer_times_updated_successfully": "تم تحديث مواقيت الصلاة بنجاح",
+        "programmed_by": "برمجة : محمود نصار",
         "qibla": "القبلة",
         "qibla_direction": "🧭 اتجاه القبلة",
         "qibla_direction_label": "الاتجاه {direction:.1f}°",
@@ -115,10 +120,12 @@ TRANSLATIONS = {
         "update": "تحديث",
         "updated_successfully": "تم التحديث",
         "version": "الإصدار",
+        "version_label": "الإصدار : {version}",
         "volume": "مستوى الصوت",
         "quit": "خروج"
     }.items())),
     "en": dict(sorted({
+        "about": "About",
         "adhan_sound_file": "Adhan Sound File",
         "all_files": "All Files",
         "app_error": "Application Error",
@@ -161,6 +168,7 @@ TRANSLATIONS = {
         "fatal_app_error": "A fatal error occurred",
         "fatal_error": "Fatal Error",
         "finished": "Finished ✓",
+        "free_for_the_sake_of_allah": "Free for the sake of Allah",
         "general": "General",
         "hour": "hour",
         "isha": "Isha",
@@ -171,6 +179,7 @@ TRANSLATIONS = {
         "loading_prayer_times": "🔄 Loading prayer times...",
         "location": "🌍 Location",
         "location_settings_title": "Set Location (applies on restart)",
+        "logo_not_found": "Logo not found",
         "maghrib": "Maghrib",
         "minute": "minute",
         "minutes_remaining_for_prayer": "{minutes} minutes remaining for {prayer_name} prayer",
@@ -192,8 +201,10 @@ TRANSLATIONS = {
         "prayer_time": "Prayer Time",
         "prayer_times": "Prayer Times",
         "prayer_times_for_city": "Prayer times for",
+        "prayer_times_program": "Prayer Times Program",
         "prayer_times_table_title": "🕐 Prayer Times",
         "prayer_times_updated_successfully": "Prayer times updated successfully",
+        "programmed_by": "Programmed by: Mahmoud Nassar",
         "qibla": "Qibla",
         "qibla_direction": "🧭 Qibla Direction",
         "qibla_direction_label": "Direction {direction:.1f}°",
@@ -224,9 +235,10 @@ TRANSLATIONS = {
         "update": "Update",
         "updated_successfully": "Updated",
         "version": "Version",
+        "version_label": "Version: {version}",
         "volume": "Volume",
         "quit": "Quit"
-    }.items())),
+    }.items()))
 }
 
 # طرق حساب مواقيت الصلاة

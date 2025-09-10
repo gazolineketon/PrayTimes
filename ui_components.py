@@ -7,6 +7,7 @@ SettingsDialog يحتوي هذا الملف على أجزاء الواجهة ا�
 
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
+from PIL import ImageTk, Image
 from config import CALCULATION_METHODS, CALCULATION_METHODS_REV
 from data_manager import get_cities
 from settings_manager import Settings
@@ -68,12 +69,52 @@ class SettingsDialog:
         notebook.add(location_frame, text=self._("location"))
         self.setup_location_settings(location_frame)
         
+        about_frame = ttk.Frame(notebook)
+        notebook.add(about_frame, text=self._("about"))
+        self.setup_about_tab(about_frame)
+        
         buttons_frame = tk.Frame(self.dialog)
         buttons_frame.pack(fill='x', padx=10, pady=10)
         # زر حفظ الإعدادات
         ttk.Button(buttons_frame, text=self._("save"), command=self.save_settings).pack(side='right', padx=(5, 0))
         ttk.Button(buttons_frame, text=self._("cancel"), command=self.dialog.destroy).pack(side='right')
         ttk.Button(buttons_frame, text=self._("restore_defaults"), command=self.reset_settings).pack(side='left')
+
+    def setup_about_tab(self, parent):
+        """إعداد تبويب حول"""
+        # الإطار الرئيسي
+        main_frame = tk.Frame(parent, bg=self.colors.get('bg_secondary', '#FFFFFF'))
+        main_frame.pack(fill='both', expand=True)
+
+        # وضع المحتوى بالمنتصف
+        main_frame.grid_rowconfigure(0, weight=1)
+        main_frame.grid_rowconfigure(2, weight=1)
+        main_frame.grid_columnconfigure(0, weight=1)
+
+        # إطار الشعار
+        logo_frame = tk.Frame(main_frame, bg=self.colors.get('bg_secondary', '#FFFFFF'))
+        logo_frame.grid(row=0, column=0, sticky='s')
+
+        # تحميل وعرض الشعار
+        try:
+            img = Image.open("pray_logo.png")
+            img = img.resize((128, 128), Image.LANCZOS)
+            self.logo_img = ImageTk.PhotoImage(img)
+            
+            logo_label = tk.Label(logo_frame, image=self.logo_img, bg=self.colors.get('bg_secondary', '#FFFFFF'))
+            logo_label.pack(pady=(20, 10))
+        except FileNotFoundError:
+            tk.Label(logo_frame, text=self._("logo_not_found"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack(pady=(20, 10))
+
+        # عرض معلومات البرنامج
+        info_frame = tk.Frame(main_frame, bg=self.colors.get('bg_secondary', '#FFFFFF'))
+        info_frame.grid(row=1, column=0, sticky='n')
+
+        tk.Label(info_frame, text="برنامج مواقيت الصلاة", font=("Segoe UI", 16, "bold"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack()
+        tk.Label(info_frame, text="مجانى لوجة الله تعالى", font=("Segoe UI", 12), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
+        tk.Label(info_frame, text=f'الإصدار : {self.parent.version}', font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
+        tk.Label(info_frame, text="برمجة : محمود نصار", font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack(pady=(10, 0))
+
     
     def setup_general_settings(self, parent):
         """إعداد الإعدادات العامة"""
