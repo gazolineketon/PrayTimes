@@ -260,6 +260,24 @@ CALCULATION_METHODS = {
 }
 CALCULATION_METHODS_REV = {v: k for k, v in CALCULATION_METHODS.items()}
 
+CALCULATION_METHODS_EN = {
+    "University of Islamic Sciences, Karachi": 1,
+    "Islamic Society of North America": 2,
+    "Muslim World League": 3,
+    "Umm Al-Qura University, Makkah": 4,
+    "Egyptian General Authority of Survey": 5,
+    "University of Tehran": 7,
+    "Institute of Geophysics, University of Tehran": 8,
+    "Gulf Region": 9,
+    "Kuwait": 10,
+    "Qatar": 11,
+    "Algerian Ministry of Religious Affairs and Wakfs": 12,
+    "Union of Islamic Organisations of France": 13,
+    "Presidency of Religious Affairs, Turkey": 14,
+    "Spiritual Administration of Muslims of Russia": 15
+}
+CALCULATION_METHODS_EN_REV = {v: k for k, v in CALCULATION_METHODS_EN.items()}
+
 # تحديد المسار الجذري للمشروع لضمان استقلالية المسارات
 APP_DIR = Path(__file__).parent.resolve()
 ROOT_DIR = APP_DIR

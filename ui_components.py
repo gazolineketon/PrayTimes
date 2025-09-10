@@ -8,7 +8,7 @@ SettingsDialog يحتوي هذا الملف على أجزاء الواجهة ا�
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from PIL import ImageTk, Image
-from config import CALCULATION_METHODS, CALCULATION_METHODS_REV
+from config import CALCULATION_METHODS, CALCULATION_METHODS_REV, CALCULATION_METHODS_EN, CALCULATION_METHODS_EN_REV
 from data_manager import get_cities
 from settings_manager import Settings
 from qibla_ui import QiblaWidget
@@ -111,9 +111,9 @@ class SettingsDialog:
         info_frame.grid(row=1, column=0, sticky='n')
 
         tk.Label(info_frame, text="برنامج مواقيت الصلاة", font=("Segoe UI", 16, "bold"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack()
-        tk.Label(info_frame, text="مجانى لوجة الله تعالى", font=("Segoe UI", 12), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
+        tk.Label(info_frame, text="برمجة : محمود نصار", font=("Segoe UI", 12), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack(pady=(10, 0))
+        tk.Label(info_frame, text="مجانى لوجه الله تعالى", font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
         tk.Label(info_frame, text=f'الإصدار : {self.parent.version}', font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack()
-        tk.Label(info_frame, text="برمجة : محمود نصار", font=("Segoe UI", 10), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_secondary', '#000000')).pack(pady=(10, 0))
 
     
     def setup_general_settings(self, parent):
@@ -155,9 +155,16 @@ class SettingsDialog:
         calc_frame = ttk.LabelFrame(parent, text=self._("prayer_calculation_method"))
         calc_frame.pack(fill='x', padx=10, pady=10)
         
-        self.calc_method_var = tk.StringVar(value=CALCULATION_METHODS_REV.get(self.settings.calculation_method, "الهيئة المصرية العامة للمساحة"))
+        if self.settings.language == 'ar':
+            current_method = CALCULATION_METHODS_REV.get(self.settings.calculation_method, "الهيئة المصرية العامة للمساحة")
+            methods = list(CALCULATION_METHODS.keys())
+        else:
+            current_method = CALCULATION_METHODS_EN_REV.get(self.settings.calculation_method, "Egyptian General Authority of Survey")
+            methods = list(CALCULATION_METHODS_EN.keys())
+
+        self.calc_method_var = tk.StringVar(value=current_method)
         calc_combo = ttk.Combobox(calc_frame, textvariable=self.calc_method_var, 
-                                 values=list(CALCULATION_METHODS.keys()),
+                                 values=methods,
                                  state='readonly')
         calc_combo.pack(fill='x', padx=10, pady=10)
         
@@ -473,7 +480,12 @@ class SettingsDialog:
         self.settings.language = self.lang_var.get()
         self.settings.notifications_enabled = self.notifications_var.get()
         self.settings.sound_enabled = self.sound_var.get()
-        self.settings.calculation_method = CALCULATION_METHODS[self.calc_method_var.get()]
+        
+        if self.settings.language == 'ar':
+            self.settings.calculation_method = CALCULATION_METHODS[self.calc_method_var.get()]
+        else:
+            self.settings.calculation_method = CALCULATION_METHODS_EN[self.calc_method_var.get()]
+
         self.settings.theme = self.theme_var.get()
         self.settings.notification_before_minutes = self.notify_before_var.get()
         self.settings.auto_update_interval = self.update_interval_var.get()
