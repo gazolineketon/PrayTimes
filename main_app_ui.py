@@ -39,7 +39,7 @@ class EnhancedPrayerTimesApp:
     """تطبيق مواقيت الصلاة"""
     def __init__(self, version):
         self.root = tk.Tk()
-        self.version = version
+        self.version = version        
         
         # تهيئة المكونات
         self.settings = Settings()
@@ -47,7 +47,10 @@ class EnhancedPrayerTimesApp:
         self._ = self.translator.get
         
         self.root.title(self._("prayer_times"))
-        self.root.iconbitmap("pray_times.ico")
+        try:
+            self.root.iconbitmap("pray_times.ico")
+        except tk.TclError:
+            logger.warning("pray_times.ico not found, continuing without icon.")
         self.root.geometry("850x1000")
 
         self.cache_manager = CacheManager()
@@ -77,12 +80,6 @@ class EnhancedPrayerTimesApp:
             self.setup_tray_icon()
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         
-    def on_closing(self):
-        """عند إغلاق التطبيق"""
-        self.running = False
-        self.executor.shutdown(wait=False)
-        self.root.destroy()
-
     def sync_time_on_startup(self):
         """مزامنة الوقت عند بدء التطبيق"""
         def sync_task():
@@ -116,16 +113,17 @@ class EnhancedPrayerTimesApp:
     
     def setup_ui(self):
         """إعداد واجهة المستخدم مع دعم التمرير"""
-        container = tk.Frame(self.root)
-        container.pack(fill='both', expand=True)
+        self.destroy_scroll_area()
+        self.container = tk.Frame(self.root)
+        self.container.pack(fill='both', expand=True)
 
-        scrollbar = ttk.Scrollbar(container, orient='vertical')
-        scrollbar.pack(side='right', fill='y')
+        self.scrollbar = ttk.Scrollbar(self.container, orient='vertical')
+        self.scrollbar.pack(side='right', fill='y')
 
-        self.canvas = tk.Canvas(container, bg=self.colors['bg_primary'], highlightthickness=0, yscrollcommand=scrollbar.set)
+        self.canvas = tk.Canvas(self.container, bg=self.colors['bg_primary'], highlightthickness=0, yscrollcommand=self.scrollbar.set)
         self.canvas.pack(side='left', fill='both', expand=True)
 
-        scrollbar.config(command=self.canvas.yview)
+        self.scrollbar.config(command=self.canvas.yview)
 
         self.scrollable_frame = tk.Frame(self.canvas, bg=self.colors['bg_primary'])
         self.canvas_frame = self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor='nw')
@@ -452,13 +450,13 @@ class EnhancedPrayerTimesApp:
         for widget in self.table_container.winfo_children():
             widget.destroy()
         
-        table_frame = tk.Frame(self.table_container, bg=self.colors['bg_card'])
-        table_frame.pack(fill='both', expand=True)
+        self.table_frame = tk.Frame(self.table_container, bg=self.colors['bg_card'])
+        self.table_frame.pack(fill='both', expand=True)
         
         columns = [("status", 80, "center"), ("period", 60, "center"), ("time", 80, "center"), ("prayer", 80, "center"), ("icon", 50, "center")]
         
         for i, (col_name, width, anchor) in enumerate(columns):
-            table_frame.grid_columnconfigure(i, weight=1, minsize=width)
+            self.table_frame.grid_columnconfigure(i, weight=1, minsize=width)
         
         prayers_data = [
             (city_data['fajr_orig'], city_data['fajr_period'], city_data['fajr_time'], self._('fajr'), '🌅'),
@@ -472,13 +470,13 @@ class EnhancedPrayerTimesApp:
         header_style = {'font': ('Segoe UI', 12, 'bold'), 'bg': self.colors['bg_accent'], 'fg': self.colors['text_accent'], 'pady': 10, 'relief': 'flat'}
 
         # عنوان الحالة
-        tk.Label(table_frame, text=self._("table_header_status"), **header_style).grid(row=0, column=0, sticky='nsew')
+        tk.Label(self.table_frame, text=self._("table_header_status"), **header_style).grid(row=0, column=0, sticky='nsew')
 
         # عنوان الوقت
-        tk.Label(table_frame, text=self._("table_header_time"), **header_style).grid(row=0, column=1, columnspan=2, sticky='nsew')
+        tk.Label(self.table_frame, text=self._("table_header_time"), **header_style).grid(row=0, column=1, columnspan=2, sticky='nsew')
 
         # عنوان الصلاة
-        tk.Label(table_frame, text=self._("table_header_prayer"), **header_style).grid(row=0, column=3, columnspan=4, sticky='nsew')
+        tk.Label(self.table_frame, text=self._("table_header_prayer"), **header_style).grid(row=0, column=3, columnspan=4, sticky='nsew')
         
         self.prayer_rows = []
         now = datetime.now()
@@ -512,19 +510,19 @@ class EnhancedPrayerTimesApp:
             
             cell_style = {'bg': self.colors['bg_card'], 'fg': self.colors['text_primary'], 'pady': 8, 'font': ('Segoe UI', 12)}
             
-            status_label = tk.Label(table_frame, text=status, fg=status_color, font=('Segoe UI', 10, 'bold'), anchor="center", **{k: v for k, v in cell_style.items() if k not in ['fg', 'font']})
+            status_label = tk.Label(self.table_frame, text=status, fg=status_color, font=('Segoe UI', 10, 'bold'), anchor="center", **{k: v for k, v in cell_style.items() if k not in ['fg', 'font']})
             status_label.grid(row=row_num, column=0, sticky='nsew', pady=1)
             
-            period_label = tk.Label(table_frame, text=prayer_period, anchor="e", **cell_style)
+            period_label = tk.Label(self.table_frame, text=prayer_period, anchor="e", **cell_style)
             period_label.grid(row=row_num, column=1, sticky='nsew', pady=1)
             
-            time_label = tk.Label(table_frame, text=prayer_time, font=('Segoe UI', 14, 'bold'), anchor="w", **{k: v for k, v in cell_style.items() if k != 'font'})
+            time_label = tk.Label(self.table_frame, text=prayer_time, font=('Segoe UI', 14, 'bold'), anchor="w", **{k: v for k, v in cell_style.items() if k != 'font'})
             time_label.grid(row=row_num, column=2, sticky='nsew', pady=1)
             
-            prayer_label = tk.Label(table_frame, text=prayer_name, anchor="e", **cell_style)
+            prayer_label = tk.Label(self.table_frame, text=prayer_name, anchor="e", **cell_style)
             prayer_label.grid(row=row_num, column=3, sticky='nsew', pady=1)
             
-            icon_label = tk.Label(table_frame, text=icon, anchor="w", **cell_style)
+            icon_label = tk.Label(self.table_frame, text=icon, anchor="w", **cell_style)
             icon_label.grid(row=row_num, column=4, sticky='nsew', pady=1)
             
             self.prayer_rows.append({'icon': icon_label, 'prayer': prayer_label, 'time': time_label, 'period': period_label, 'status': status_label, 'prayer_name': prayer_name, 'prayer_orig': prayer_orig})
@@ -893,7 +891,15 @@ class EnhancedPrayerTimesApp:
             TrayMenuItem(self._("quit"), self.quit_application)
         )
 
-        image = Image.open("pray_times.ico")
+        try:
+            image = Image.open("pray_times.ico")
+        except FileNotFoundError:
+            logger.warning("pray_times.ico not found, creating a default tray icon.")
+            image = Image.new('RGB', (64, 64), 'black')
+            draw = ImageDraw.Draw(image)
+            draw.rectangle((0, 0, 63, 63), fill='black', outline='white')
+            draw.text((25, 20), 'P', fill='white')
+
         self.tray_icon = TrayIcon("PrayerTimes", image, self._("prayer_times"), menu)
 
         def run_tray_icon():
@@ -912,6 +918,7 @@ class EnhancedPrayerTimesApp:
         if self.tray_icon:
             self.tray_icon.stop()
         try:
+            self.destroy_scroll_area()
             if hasattr(self, '_countdown_running'):
                 self._countdown_running = False
             
@@ -930,8 +937,31 @@ class EnhancedPrayerTimesApp:
         except Exception as e:
             logger.error(f"خطأ أثناء إغلاق التطبيق {e}")
         finally:
-            self.root.destroy()
+            if hasattr(self, 'root') and self.root.winfo_exists():
+                self.root.destroy()
     
+    def destroy_scroll_area(self):
+        """تنظيف وتدمير عناصر التمرير بشكل آمن"""
+        try:
+            # فصل الأحداث المرتبطة بالـ root و canvas
+            if hasattr(self, 'root') and self.root.winfo_exists():
+                self.root.unbind('<MouseWheel>')
+                self.root.unbind('<Button-4>')
+                self.root.unbind('<Button-5>')
+            if hasattr(self, 'canvas') and self.canvas.winfo_exists():
+                self.canvas.unbind('<Configure>')
+                self.canvas.config(yscrollcommand=lambda *args: None)
+            if hasattr(self, 'scrollable_frame') and self.scrollable_frame.winfo_exists():
+                self.scrollable_frame.unbind('<Configure>')
+            if hasattr(self, 'scrollbar') and self.scrollbar.winfo_exists():
+                self.scrollbar.destroy()
+            if hasattr(self, 'canvas') and self.canvas.winfo_exists():
+                self.canvas.destroy()
+            if hasattr(self, 'container') and self.container.winfo_exists():
+                self.container.destroy()
+        except Exception as e:
+            print(f"خطأ أثناء تدمير عناصر التمرير {e}")
+
     def on_frame_configure(self, event=None):
         """إعادة تعيين منطقة التمرير لتشمل الإطار الداخلي"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
@@ -960,4 +990,5 @@ class EnhancedPrayerTimesApp:
         self.check_connection()
         
         logger.info("تم بدء تشغيل التطبيق بنجاح")
+        self.root.update_idletasks()
         self.root.mainloop()

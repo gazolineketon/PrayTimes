@@ -6,3 +6,8 @@
 /build
 /dist
 main.spec
+requirements.txt
+PrayTimesApp.spec
+.gitignore
+main_updated.spec
+PrayerTimes.spec
