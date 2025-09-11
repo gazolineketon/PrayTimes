@@ -76,9 +76,11 @@ class EnhancedPrayerTimesApp:
         self.start_auto_update()
         self.sync_time_on_startup()
         self.tray_icon = None
+        self.tray_thread = None
         if PYSTRAY_AVAILABLE:
             self.setup_tray_icon()
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.root.bind('<<QuitApp>>', lambda e: self.quit_application())
         
     def sync_time_on_startup(self):
         """مزامنة الوقت عند بدء التطبيق"""
@@ -888,7 +890,7 @@ class EnhancedPrayerTimesApp:
 
         menu = TrayMenu(
             TrayMenuItem(self._("show_window"), self.show_window, default=True),
-            TrayMenuItem(self._("quit"), self.quit_application)
+            TrayMenuItem(self._("quit"), self.request_quit_from_tray)
         )
 
         try:
@@ -902,21 +904,25 @@ class EnhancedPrayerTimesApp:
 
         self.tray_icon = TrayIcon("PrayerTimes", image, self._("prayer_times"), menu)
 
-        def run_tray_icon():
-            self.tray_icon.run()
-
-        tray_thread = threading.Thread(target=run_tray_icon, daemon=True)
-        tray_thread.start()
+        self.tray_thread = threading.Thread(target=self.tray_icon.run, daemon=True)
+        self.tray_thread.start()
 
     def show_window(self):
         """إظهار نافذة التطبيق"""
         self.root.deiconify()
+
+    def request_quit_from_tray(self):
+        """Requests the application to quit from the tray menu."""
+        if hasattr(self, 'root') and self.root.winfo_exists():
+            self.root.event_generate('<<QuitApp>>')
 
     def quit_application(self):
         """معالج إغلاق التطبيق"""
         self.running = False
         if self.tray_icon:
             self.tray_icon.stop()
+            if hasattr(self, 'tray_thread') and self.tray_thread.is_alive() and threading.current_thread() is not self.tray_thread:
+                self.tray_thread.join(timeout=1.0)
         try:
             self.destroy_scroll_area()
             if hasattr(self, '_countdown_running'):
@@ -926,7 +932,7 @@ class EnhancedPrayerTimesApp:
                 self.adhan_player.stop_sound()
             
             if hasattr(self, 'executor'):
-                self.executor.shutdown(wait=True, cancel_futures=True)
+                self.executor.shutdown(wait=False, cancel_futures=True)
             
             self.cache_manager.cleanup_old_cache()
             

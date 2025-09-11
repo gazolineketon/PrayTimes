@@ -5,7 +5,7 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.27.0"
+__version__ = "0.28.0"
 
 import logging
 import sys
