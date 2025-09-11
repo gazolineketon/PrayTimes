@@ -13,7 +13,7 @@ from data_manager import get_cities
 from settings_manager import Settings
 from qibla_ui import QiblaWidget
 from media_manager import AdhanPlayer
-from resource_helper import get_working_path
+from resource_helper import get_working_path, get_sounds_dir
 
 class SettingsDialog:
     """نافذة الإعدادات"""
@@ -408,6 +408,7 @@ class SettingsDialog:
         
         filename = filedialog.askopenfilename(
             title=self._("select_adhan_file"),
+            initialdir=get_sounds_dir(),
             filetypes=file_types
         )
         
@@ -444,7 +445,7 @@ class SettingsDialog:
         
         filename = filedialog.askopenfilename(
             title=self._("select_notification_file"),
-            initialdir="C:/Windows/Media",
+            initialdir=get_sounds_dir(),
             filetypes=file_types
         )
         

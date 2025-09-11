@@ -2,6 +2,21 @@ import os
 import sys
 import shutil
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
+
+def get_app_data_dir():
+    """إنشاء مجلد دائم للبيانات في APPDATA أو home"""
+    app_name = "PrayTimes"
+    if sys.platform.startswith('win'):
+        app_data_dir = os.environ.get('APPDATA', os.path.expanduser('~'))
+    else:
+        app_data_dir = os.path.expanduser('~')
+    
+    app_dir = os.path.join(app_data_dir, app_name)
+    Path(app_dir).mkdir(parents=True, exist_ok=True)
+    return app_dir
 
 def get_resource_path(relative_path):
     """الحصول على مسار الملفات المدمجة في PyInstaller"""
@@ -13,23 +28,13 @@ def get_resource_path(relative_path):
     
     return os.path.join(base_path, relative_path)
 
-def get_app_data_dir():
-    """إنشاء مجلد دائم للبيانات في APPDATA"""
-    if sys.platform.startswith('win'):
-        app_data = os.environ.get('APPDATA', '')
-        app_dir = os.path.join(app_data, 'Praytimes')
-    else:
-        home = os.path.expanduser('~')
-        app_dir = os.path.join(home, '.praytimes')
-    
-    Path(app_dir).mkdir(parents=True, exist_ok=True)
-    return app_dir
-
 def extract_resources():
-    """نسخ الملفات من الـ executable إلى مجلد دائم"""
+    """
+    نسخ الملفات من الـ executable (أو مجلد التطوير) إلى مجلد دائم.
+    هذا يضمن أن الملفات قابلة للكتابة والوصول إليها دائمًا.
+    """
     app_dir = get_app_data_dir()
     
-    # قائمة الملفات والمجلدات للنسخ
     resources_to_extract = [
         ('sounds', 'sounds'),
         ('world_cities', 'world_cities'),
@@ -38,105 +43,74 @@ def extract_resources():
         ('pray_times.ico', 'pray_times.ico')
     ]
     
-    extracted_paths = {}
-    
     for resource_path, dest_name in resources_to_extract:
+        source_path = get_resource_path(resource_path)
+        dest_path = os.path.join(app_dir, dest_name)
+        
         try:
-            source_path = get_resource_path(resource_path)
-            dest_path = os.path.join(app_dir, dest_name)
-            
-            if os.path.exists(source_path):
-                if os.path.isdir(source_path):
-                    # نسخ مجلد كامل
-                    if not os.path.exists(dest_path):
-                        shutil.copytree(source_path, dest_path)
-                    extracted_paths[resource_path] = dest_path
-                else:
-                    # نسخ ملف واحد
-                    if not os.path.exists(dest_path):
-                        shutil.copy2(source_path, dest_path)
-                    extracted_paths[resource_path] = dest_path
-                
-                print(f"تم نسخ {resource_path} إلى {dest_path}")
+            if not os.path.exists(source_path):
+                logger.warning(f"Resource not found at source: {source_path}")
+                continue
+
+            # للمجلدات، انسخ إذا لم يكن موجودًا أو قم بتحديثه إذا لزم الأمر
+            if os.path.isdir(source_path):
+                if not os.path.exists(dest_path):
+                    shutil.copytree(source_path, dest_path)
+                    logger.info(f"Copied directory {resource_path} to {dest_path}")
+            # للملفات، انسخ إذا لم يكن موجودًا أو إذا كان المصدر أحدث
             else:
-                print(f"لم يتم العثور على {resource_path}")
-                
+                if not os.path.exists(dest_path) or os.path.getmtime(source_path) > os.path.getmtime(dest_path):
+                    shutil.copy2(source_path, dest_path)
+                    logger.info(f"Copied file {resource_path} to {dest_path}")
+
         except Exception as e:
-            print(f"خطأ في نسخ {resource_path}: {e}")
-    
-    return extracted_paths
+            logger.error(f"Failed to copy resource {resource_path}: {e}", exc_info=True)
 
 def get_working_path(relative_path):
-    """الحصول على المسار الصحيح للملف سواء في التطوير أو بعد التجميع"""
-    # أولاً جرب المسار العادي (في وضع التطوير)
-    if os.path.exists(relative_path):
-        return relative_path
-    
-    # ثم جرب في مجلد البيانات
+    """
+    الحصول على المسار الصحيح للملف من مجلد بيانات التطبيق.
+    هذا هو المصدر الموثوق للملفات بعد استخراجها.
+    """
     app_dir = get_app_data_dir()
-    app_path = os.path.join(app_dir, relative_path)
-    if os.path.exists(app_path):
-        return app_path
-    
-    # أخيراً جرب في الـ resource المدمج
-    resource_path = get_resource_path(relative_path)
-    if os.path.exists(resource_path):
-        return resource_path
-    
-    # إذا لم نجد شيء، أعد المسار من مجلد البيانات
-    return app_path
+    return os.path.join(app_dir, relative_path)
 
-# استخدم هذه الدالة في بداية البرنامج
+def get_sounds_dir():
+    """الحصول على المسار إلى مجلد الأصوات في مجلد بيانات التطبيق"""
+    return get_working_path('sounds')
+
 def initialize_resources():
-    """تحضير الموارد عند بدء البرنامج"""
-    print("تحضير الموارد...")
-    extracted = extract_resources()
-    print(f"تم تحضير {len(extracted)} مورد")
-    return extracted
+    """
+    تحضير الموارد عند بدء البرنامج. يجب استدعاؤها مرة واحدة عند بدء التشغيل.
+    """
+    logger.info("Initializing and verifying resources...")
+    extract_resources()
+    logger.info("Resource initialization complete.")
 
+# --- Debugging Functions ---
 def debug_resource_paths():
     """طباعة مسارات التصحيح"""
     print("--- Debug Resource Paths ---")
     print(f"sys._MEIPASS: {getattr(sys, '_MEIPASS', 'Not set')}")
     print(f"os.path.abspath('.'): {os.path.abspath('.')}")
     print(f"get_app_data_dir(): {get_app_data_dir()}")
+    print(f"Sounds folder path: {get_sounds_dir()}")
     print("--------------------------")
 
 def list_available_files(subdirectory):
     """عرض الملفات المتاحة في مجلد فرعي للتصحيح"""
-    print(f"--- Available files in '{subdirectory}' ---")
+    path_to_check = get_working_path(subdirectory)
+    print(f"--- Listing files in '{path_to_check}' ---")
     
-    # المسار في وضع التطوير
-    dev_path = os.path.join(os.path.abspath("."), subdirectory)
-    if os.path.exists(dev_path):
-        print(f"Dev path: {dev_path}")
+    if os.path.exists(path_to_check) and os.path.isdir(path_to_check):
         try:
-            for f in os.listdir(dev_path):
-                print(f"  - {f}")
-        except Exception as e:
-            print(f"  Error listing files: {e}")
-
-    # المسار في مجلد البيانات
-    app_data_path = os.path.join(get_app_data_dir(), subdirectory)
-    if os.path.exists(app_data_path):
-        print(f"App data path: {app_data_path}")
-        try:
-            for f in os.listdir(app_data_path):
-                print(f"  - {f}")
-        except Exception as e:
-            print(f"  Error listing files: {e}")
-
-    # المسار المدمج
-    try:
-        base_path = sys._MEIPASS
-        resource_path = os.path.join(base_path, subdirectory)
-        if os.path.exists(resource_path):
-            print(f"Resource path (_MEIPASS): {resource_path}")
-            try:
-                for f in os.listdir(resource_path):
+            files = os.listdir(path_to_check)
+            if files:
+                for f in files:
                     print(f"  - {f}")
-            except Exception as e:
-                print(f"  Error listing files: {e}")
-    except Exception:
-        pass
+            else:
+                print("  (No files found)")
+        except Exception as e:
+            print(f"  Error listing files: {e}")
+    else:
+        print("  (Directory does not exist)")
     print("------------------------------------")
