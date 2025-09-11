@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Optional, Tuple
 
 from config import COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, WORLD_CITIES_DIR
+from resource_helper import get_working_path
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ def get_countries() -> list[tuple[str, str]]:
             logger.error(f"خطأ في تحميل قائمة الدول من الملف المؤقت: {e}")
 
     # إذا فشل تحميل من الإنترنت، محاولة تحميل من ملف JSON المحلي
-    countries_json_path = Path(__file__).parent / 'countries.json'
+    countries_json_path = Path(get_working_path('countries.json'))
     local_countries_map = {}
     if countries_json_path.exists():
         try:

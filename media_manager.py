@@ -10,6 +10,7 @@ import logging
 import multiprocessing
 from config import Translator
 from settings_manager import Settings
+from resource_helper import get_working_path
 
 logger = logging.getLogger(__name__)
 
@@ -41,18 +42,31 @@ class AdhanPlayer:
             if self.player:
                 self.stop_sound()
 
-            if not os.path.exists(sound_file):
-                logger.warning(f"ملف الصوت غير موجود {sound_file}")
-                default_notification = 'sounds/notification.wav'
+            # إذا لم يكن المسار مطلقاً، افترض أنه نسبي لمجلد المشروع
+            if not os.path.isabs(sound_file):
+                sound_path = get_working_path(sound_file)
+            else:
+                sound_path = sound_file
+
+            if not os.path.exists(sound_path):
+                logger.warning(f"ملف الصوت غير موجود {sound_path}")
+                # محاولة تشغيل الصوت الافتراضي كحل بديل
+                default_notification = get_working_path('sounds/notification.wav')
                 if os.path.exists(default_notification):
-                    sound_file = default_notification
+                    sound_path = default_notification
                 else:
+                    # عرض الملفات المتاحة للتصحيح
+                    try:
+                        from resource_helper import list_available_files
+                        list_available_files("sounds")
+                    except ImportError:
+                        pass # تجاهل إذا لم تكن متوفرة
                     return False
 
-            self.player = vlc.MediaPlayer(sound_file)
+            self.player = vlc.MediaPlayer(sound_path)
             self.player.audio_set_volume(int(volume * 100))
             self.player.play()
-            logger.info(f"تم تشغيل الصوت {sound_file}")
+            logger.info(f"تم تشغيل الصوت {sound_path}")
             return True
         except Exception as e:
             logger.error(f"خطأ في تشغيل الصوت عبر vlc: {e}")

@@ -32,6 +32,7 @@ from prayer_logic import TimeSync
 from media_manager import AdhanPlayer, NotificationManager, NOTIFICATIONS_AVAILABLE
 from ui_components import SettingsDialog
 from qibla_ui import QiblaWidget
+from resource_helper import get_working_path
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,7 @@ class EnhancedPrayerTimesApp:
         
         self.root.title(self._("prayer_times"))
         try:
-            self.root.iconbitmap("pray_times.ico")
+            self.root.iconbitmap(get_working_path("pray_times.ico"))
         except tk.TclError:
             logger.warning("pray_times.ico not found, continuing without icon.")
         self.root.geometry("850x1000")
@@ -894,7 +895,7 @@ class EnhancedPrayerTimesApp:
         )
 
         try:
-            image = Image.open("pray_times.ico")
+            image = Image.open(get_working_path("pray_times.ico"))
         except FileNotFoundError:
             logger.warning("pray_times.ico not found, creating a default tray icon.")
             image = Image.new('RGB', (64, 64), 'black')

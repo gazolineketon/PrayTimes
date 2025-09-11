@@ -12,6 +12,7 @@ import sys
 from tkinter import messagebox
 import json
 
+from resource_helper import initialize_resources, debug_resource_paths, list_available_files
 from config import LOG_FILE, SETTINGS_FILE, Translator
 from main_app_ui import EnhancedPrayerTimesApp
 from media_manager import NOTIFICATIONS_AVAILABLE
@@ -74,4 +75,9 @@ def main():
         messagebox.showerror(_("fatal_error"), f'{_("fatal_app_error")} \n{e}')
 
 if __name__ == "__main__":
+    # تصحيح ومعاينة الموارد
+    debug_resource_paths()
+    initialize_resources()
+    # عرض ملفات الصوت المتاحة
+    list_available_files("sounds")
     main()

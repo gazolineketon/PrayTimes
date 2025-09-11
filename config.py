@@ -6,6 +6,7 @@ config.py
 """
 
 from pathlib import Path
+from resource_helper import get_working_path
 
 # ترجمات النصوص المستخدمة في التطبيق
 TRANSLATIONS = {
@@ -283,11 +284,10 @@ CALCULATION_METHODS_EN = {
 CALCULATION_METHODS_EN_REV = {v: k for k, v in CALCULATION_METHODS_EN.items()}
 
 # تحديد المسار الجذري للمشروع لضمان استقلالية المسارات
-APP_DIR = Path(__file__).parent.resolve()
-ROOT_DIR = APP_DIR
+ROOT_DIR = Path(get_working_path('.'))
 
 # المسارات للملفات والمجلدات الرئيسية
-SETTINGS_FILE = APP_DIR / 'settings.json'
+SETTINGS_FILE = ROOT_DIR / 'settings.json'
 CACHE_DIR = ROOT_DIR / 'cache'
 LOG_DIR = ROOT_DIR / 'logs'
 LOG_FILE = LOG_DIR / 'prayer_app.log'

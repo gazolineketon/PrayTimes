@@ -13,6 +13,7 @@ from data_manager import get_cities
 from settings_manager import Settings
 from qibla_ui import QiblaWidget
 from media_manager import AdhanPlayer
+from resource_helper import get_working_path
 
 class SettingsDialog:
     """نافذة الإعدادات"""
@@ -97,7 +98,7 @@ class SettingsDialog:
 
         # تحميل وعرض الشعار
         try:
-            img = Image.open("pray_logo.png")
+            img = Image.open(get_working_path("pray_logo.png"))
             img = img.resize((128, 128), Image.LANCZOS)
             self.logo_img = ImageTk.PhotoImage(img)
             
