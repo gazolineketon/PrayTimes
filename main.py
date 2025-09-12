@@ -5,13 +5,12 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.34.0"
+__version__ = "0.35.0"
 
 import logging
 import sys
 from tkinter import messagebox
 import json
-
 from resource_helper import initialize_resources, debug_resource_paths, list_available_files
 from config import LOG_FILE, SETTINGS_FILE, Translator
 from main_app_ui import EnhancedPrayerTimesApp
