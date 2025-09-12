@@ -212,7 +212,7 @@ class EnhancedPrayerTimesApp:
         self.greg_day_label = tk.Label(self.greg_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_day_label.pack(expand=True)        
         
-        self.greg_month_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 90, 35)
+        self.greg_month_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 120, 35)
         self.greg_month_frame.pack(side='right', padx=2)
         self.greg_month_label = tk.Label(self.greg_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_month_label.pack(expand=True)
@@ -233,7 +233,7 @@ class EnhancedPrayerTimesApp:
         self.hijri_day_label = tk.Label(self.hijri_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_day_label.pack(expand=True)
 
-        self.hijri_month_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 90, 35)
+        self.hijri_month_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 120, 35)
         self.hijri_month_frame.pack(side='right', padx=2)
         self.hijri_month_label = tk.Label(self.hijri_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_month_label.pack(expand=True)
@@ -377,7 +377,7 @@ class EnhancedPrayerTimesApp:
     
     
     def parse_api_data(self, city: str, data: dict):
-        """تحليل البيانات من API مع تحسينات"""
+        """تحليل البيانات من API"""
         timings = data['timings']
         
         def format_time(time_24: str) -> tuple:
@@ -883,11 +883,6 @@ class EnhancedPrayerTimesApp:
                 self.quit_application()
             else:
                 self.root.withdraw()
-                # self.notification_manager.send_notification(
-                #     self._("app_running_in_background"),
-                #     self._("app_running_in_background_message"),
-                #     timeout=5
-                # )
         else:
             self.quit_application()
 
