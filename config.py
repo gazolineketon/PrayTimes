@@ -125,8 +125,10 @@ TRANSLATIONS = {
         "version": "الإصدار",
         "version_label": "الإصدار : {version}",
         "volume": "مستوى الصوت",
-        "quit": "خروج"
-    }.items())),
+        "quit": "خروج",
+        "exit_confirmation": "تأكيد الخروج",
+        "exit_confirmation_message": "هل أنت متأكد أنك تريد الخروج من التطبيق؟"
+    }.items())), 
     "en": dict(sorted({
         "about": "About",
         "adhan_sound_file": "Adhan Sound File",
@@ -242,7 +244,9 @@ TRANSLATIONS = {
         "version": "Version",
         "version_label": "Version: {version}",
         "volume": "Volume",
-        "quit": "Quit"
+        "quit": "Quit",
+        "exit_confirmation": "Exit Confirmation",
+        "exit_confirmation_message": "Are you sure you want to exit the application?"
     }.items()))
 }
 

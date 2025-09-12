@@ -864,7 +864,7 @@ class EnhancedPrayerTimesApp:
             messagebox.showwarning(self._("error"), self._("please_select_city_country") )
         
     def show_error(self, message: str):
-        """عرض رسالة خطأ محسّنة"""
+        """عرض رسالة خطأ"""
         logger.error(f"خطأ في التطبيق {message}")
         
         error_label = tk.Label(self.table_container, text=f'❌ {self._("error")} {message}', font=('Segoe UI', 12), bg=self.colors['bg_card'], fg=self.colors['error'], wraplength=400)
@@ -875,12 +875,18 @@ class EnhancedPrayerTimesApp:
     def on_closing(self):
         """عند إغلاق التطبيق"""
         if self.tray_icon:
-            self.root.withdraw()
-            self.notification_manager.send_notification(
-                self._("app_running_in_background"),
-                self._("app_running_in_background_message"),
-                timeout=5
-            )
+            if messagebox.askyesno(
+                self._("exit_confirmation"),
+                self._("exit_confirmation_message")
+            ):
+                self.quit_application()
+            else:
+                self.root.withdraw()
+                self.notification_manager.send_notification(
+                    self._("app_running_in_background"),
+                    self._("app_running_in_background_message"),
+                    timeout=5
+                )
         else:
             self.quit_application()
 

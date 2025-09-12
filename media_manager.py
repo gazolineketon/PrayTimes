@@ -7,7 +7,9 @@ media_manager.py
 
 import os
 import logging
-import multiprocessing
+import sys
+import threading
+import time
 from config import Translator
 from settings_manager import Settings
 from resource_helper import get_working_path
@@ -22,19 +24,39 @@ except ImportError:
     def playsound(sound, block=True):
         pass
 
+# أنظمة الإشعار المتعددة
+Plyer_AVAILABLE = False
+Win10Toast_AVAILABLE = False
+Tkinter_AVAILABLE = True  # دائماً متاح مع tkinter
+
+# محاولة استيراد plyer
 try:
     from plyer import notification
-    NOTIFICATIONS_AVAILABLE = True
+    Plyer_AVAILABLE = True
+    logger.info("plyer متوفر للإشعارات")
 except ImportError:
-    NOTIFICATIONS_AVAILABLE = False
     logger.warning("plyer غير متوفر - الإشعارات معطلة")
+    # بعد تعريف Plyer_AVAILABLE
+    Plyer_AVAILABLE = False
+
+# إضافة متغير التوافق مع الإصدارات السابقة
+NOTIFICATIONS_AVAILABLE = Plyer_AVAILABLE
+
+# محاولة استيراد win10toast-persist للإشعارات المتقدمة على ويندوز
+if sys.platform == "win32":
+    try:
+        from win10toast_persist import ToastNotifier
+        Win10Toast_AVAILABLE = True
+        logger.info("win10toast-persist متوفر للإشعارات على ويندوز")
+    except ImportError:
+        logger.warning("win10toast-persist غير متوفر - سيتم استخدام tkinter fallback")
+        Win10Toast_AVAILABLE = False
 
 class AdhanPlayer:
     """مشغل أصوات الأذان"""
     def __init__(self):
         self.player = None
     
-
     def play_sound(self, sound_file: str, volume: float = 0.7):
         """تشغيل ملف صوتي باستخدام مكتبة vlc مع التحكم الكامل"""
         try:
@@ -55,12 +77,6 @@ class AdhanPlayer:
                 if os.path.exists(default_notification):
                     sound_path = default_notification
                 else:
-                    # عرض الملفات المتاحة للتصحيح
-                    try:
-                        from resource_helper import list_available_files
-                        list_available_files("sounds")
-                    except ImportError:
-                        pass # تجاهل إذا لم تكن متوفرة
                     return False
 
             self.player = vlc.MediaPlayer(sound_path)
@@ -69,7 +85,7 @@ class AdhanPlayer:
             logger.info(f"تم تشغيل الصوت {sound_path}")
             return True
         except Exception as e:
-            logger.error(f"خطأ في تشغيل الصوت عبر vlc: {e}")
+            logger.error(f"خطأ في تشغيل الصوت عبر vlc {e}")
             return False
     
     def stop_sound(self):
@@ -80,24 +96,81 @@ class AdhanPlayer:
             logger.info("تم إيقاف الصوت")
 
 class NotificationManager:
-    """مدير الإشعارات"""    
+    """مدير الإشعارات مع دعم متعدد المنصات"""
+    
     def __init__(self, settings: Settings, translator: Translator):
         self.settings = settings
-        self.is_available = NOTIFICATIONS_AVAILABLE
         self._ = translator.get
+        self.toaster = None
+        
+        # تهيئة win10toast-persist إذا كان متاحاً
+        if Win10Toast_AVAILABLE:
+            try:
+                self.toaster = ToastNotifier()
+                logger.info("تم تهيئة ToastNotifier لنظام ويندوز")
+            except Exception as e:
+                logger.error(f"خطأ في تهيئة ToastNotifier {e}")
+                self.toaster = None
     
     def send_notification(self, title: str, message: str, timeout: int = 10):
-        """إرسال إشعار"""
-        if not self.is_available or not self.settings.notifications_enabled:
+        """إرسال إشعار باستخدام أفضل نظام متاح"""
+        if not self.settings.notifications_enabled:
             return
         
-        try:
-            notification.notify(
-                title=title,
-                message=message,
-                timeout=timeout,
-                app_name=self._("prayer_times")
-            )
-            logger.info(f"تم إرسال إشعار {title}")
-        except Exception as e:
-            logger.error(f"خطأ في إرسال الإشعار {e}")
+        # محاولة استخدام plyer أولاً
+        if Plyer_AVAILABLE:
+            try:
+                notification.notify(
+                    title=title,
+                    message=message,
+                    timeout=timeout,
+                    app_name=self._("prayer_times")
+                )
+                logger.info(f"تم إرسال إشعار عبر plyer {title}")
+                return
+            except Exception as e:
+                logger.warning(f"فشل إرسال إشعار عبر plyer {e}")
+        
+        # محاولة استخدام win10toast-persist على ويندوز
+        if Win10Toast_AVAILABLE and self.toaster:
+            try:
+                self.toaster.show_toast(
+                    title,
+                    message,
+                    duration=timeout,
+                    threaded=True
+                )
+                logger.info(f"تم إرسال إشعار عبر win10toast: {title}")
+                return
+            except Exception as e:
+                logger.warning(f"فشل إرسال إشعار عبر win10toast: {e}")
+        
+        # استخدام tkinter كحل بديل
+        if Tkinter_AVAILABLE:
+            try:
+                self._show_tkinter_notification(title, message, timeout)
+                logger.info(f"تم إرسال إشعار عبر tkinter: {title}")
+                return
+            except Exception as e:
+                logger.error(f"فشل إرسال إشعار عبر tkinter: {e}")
+    
+    def _show_tkinter_notification(self, title: str, message: str, timeout: int = 10):
+        """إظهار إشعار بسيط باستخدام tkinter"""
+        import tkinter as tk
+        from tkinter import messagebox
+        
+        # إنشاء نافذة منبثقة بسيطة
+        def show_popup():
+            root = tk.Tk()
+            root.withdraw()  # إخفاء النافذة الرئيسية
+            messagebox.showinfo(title, message)
+            root.destroy()
+        
+        # تشغيل النافذة في خيط منفصل لتجنب تجميد الواجهة
+        thread = threading.Thread(target=show_popup)
+        thread.daemon = True
+        thread.start()
+    
+    def is_any_notification_available(self):
+        """التحقق من توافر أي نظام إشعار"""
+        return Plyer_AVAILABLE or Win10Toast_AVAILABLE or Tkinter_AVAILABLE

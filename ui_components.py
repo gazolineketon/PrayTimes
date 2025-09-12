@@ -556,7 +556,7 @@ class SettingsDialog:
 
             subprocess.Popen([sys.executable, restart_py_path, main_py_path])
 
-            self.parent.on_closing()
+            self.parent.quit_application()
 
         def continue_later():
             dialog.destroy()
