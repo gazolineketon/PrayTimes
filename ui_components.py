@@ -569,14 +569,54 @@ class SettingsDialog:
 
         if self.on_save_callback:
             self.on_save_callback()
+
+    def show_force_restart_dialog(self):
+        dialog = tk.Toplevel(self.parent.root)
+        dialog.title(self._("restart_required"))
+        
+        dialog.update_idletasks()
+        width = 400
+        height = 150
+        x = (dialog.winfo_screenwidth() // 2) - (width // 2)
+        y = (dialog.winfo_screenheight() // 2) - (height // 2)
+        dialog.geometry(f'{width}x{height}+{x}+{y}')
+
+        dialog.resizable(False, False)
+        dialog.transient(self.parent.root)
+        dialog.grab_set()
+
+        label = ttk.Label(dialog, text=self._("settings_saved_successfully_restart"), wraplength=380, justify='center')
+        label.pack(pady=20, expand=True)
+
+        buttons_frame = tk.Frame(dialog)
+        buttons_frame.pack(pady=10)
+
+        def restart():
+            import sys
+            import os
+            import subprocess
+
+            dialog.destroy()
+            
+            main_py_path = os.path.abspath(sys.argv[0])
+            restart_py_path = os.path.join(os.path.dirname(main_py_path), "restart.py")
+
+            subprocess.Popen([sys.executable, restart_py_path, main_py_path])
+
+            self.parent.quit_application()
+
+        restart_button = ttk.Button(buttons_frame, text=self._("restart_now"), command=restart)
+        restart_button.pack(padx=10)
+
+        if self.on_save_callback:
+            self.on_save_callback()
     
     def reset_settings(self):
         """استعادة الإعدادات الافتراضية"""
-        if messagebox.askyesno(self._("confirm"), self._("confirm_restore_defaults")):
-            # حفظ اللغة الحالية
-            lang = self.settings.language
-            self.settings = Settings()
-            self.settings.language = lang
-            self.settings.save_settings()
-            self.dialog.destroy()
-            messagebox.showinfo(self._("saved_successfully"), self._("settings_saved_successfully"))
+        # حفظ اللغة الحالية
+        lang = self.settings.language
+        self.settings = Settings()
+        self.settings.language = lang
+        self.settings.save_settings()
+        self.dialog.destroy()
+        self.show_force_restart_dialog()

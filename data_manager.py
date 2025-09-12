@@ -13,8 +13,10 @@ from datetime import datetime, date
 from pathlib import Path
 from typing import Optional, Tuple
 
-from config import COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, WORLD_CITIES_DIR
-from resource_helper import get_working_path
+from config import (
+    COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, 
+    WORLD_CITIES_DIR, COUNTRIES_FILE
+)
 
 logger = logging.getLogger(__name__)
 
@@ -27,18 +29,16 @@ def get_countries() -> list[tuple[str, str]]:
             logger.info("تم تحميل قائمة الدول من الملف المؤقت")
             return countries
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل قائمة الدول من الملف المؤقت: {e}")
+            logger.error(f"خطأ في تحميل قائمة الدول من الملف المؤقت {e}")
 
-    # إذا فشل تحميل من الإنترنت، محاولة تحميل من ملف JSON المحلي
-    countries_json_path = Path(get_working_path('countries.json'))
     local_countries_map = {}
-    if countries_json_path.exists():
+    if COUNTRIES_FILE.exists():
         try:
-            with open(countries_json_path, 'r', encoding='utf-8') as f:
+            with open(COUNTRIES_FILE, 'r', encoding='utf-8') as f:
                 local_countries_data = json.load(f)
                 local_countries_map = {item[0]: item[1] for item in local_countries_data}
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل ملف countries.json: {e}")
+            logger.error(f"خطأ في تحميل ملف countries.json {e}")
 
     try:
         response = requests.get("https://restcountries.com/v3.1/all?fields=name,translations", timeout=10)
@@ -50,7 +50,6 @@ def get_countries() -> list[tuple[str, str]]:
             english_name = country.get('name', {}).get('common')
             arabic_name = country.get('translations', {}).get('ara', {}).get('common')
 
-            # إذا لم تتوفر ترجمة عربية من الـ API، ابحث في ملف countries.json
             if not arabic_name and english_name in local_countries_map:
                 arabic_name = local_countries_map[english_name]
 
@@ -64,14 +63,13 @@ def get_countries() -> list[tuple[str, str]]:
                 json.dump(countries, f, ensure_ascii=False, indent=2)
             logger.info("تم حفظ قائمة الدول في الملف المؤقت")
         except IOError as e:
-            logger.error(f"خطأ في حفظ قائمة الدول في الملف المؤقت: {e}")
+            logger.error(f"خطأ في حفظ قائمة الدول في الملف المؤقت {e}")
 
         logger.info("تم جلب قائمة الدول بنجاح من المصدر")
         return countries
 
     except requests.exceptions.RequestException as e:
-        logger.error(f"خطأ في جلب الدول: {e}")
-        # إذا فشل جلب الدول من الإنترنت، جرب جلبها من الملف المحلي
+        logger.error(f"خطأ في جلب الدول {e}")
         countries = []
         if local_countries_map:
             for eng, ara in local_countries_map.items():
@@ -89,7 +87,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
             logger.info(f"تم تحميل قائمة المدن لـ {country_name} من الملف المؤقت")
             return cities
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل قائمة المدن لـ {country_name} من الملف المؤقت: {e}")
+            logger.error(f"خطأ في تحميل قائمة المدن لـ {country_name} من الملف المؤقت {e}")
 
     # API جلب المدن من
     try:
@@ -100,7 +98,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
         if not english_names:
             return []
     except requests.exceptions.RequestException as e:
-        logger.error(f"خطأ في جلب المدن لـ {country_name} من API: {e}")
+        logger.error(f"خطأ في جلب المدن لـ {country_name} من API {e}")
         return []
 
     # جلب الترجمة المحلية
@@ -112,7 +110,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
                 translation_data = json.load(f)
             translation_map = {city.get('english_name', '').lower(): city.get('arabic_name', '') for city in translation_data}
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل ملف الترجمة المحلي لـ {country_name}: {e}")
+            logger.error(f"خطأ في تحميل ملف الترجمة المحلي لـ {country_name} {e}")
 
     # ترجمة وعمل قائمة المدن
     cities = []
@@ -128,7 +126,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
             json.dump(cities, f, ensure_ascii=False, indent=2)
         logger.info(f"تم حفظ قائمة المدن المترجمة لـ {country_name} في الملف المؤقت")
     except IOError as e:
-        logger.error(f"خطأ في حفظ قائمة المدن لـ {country_name} في الملف المؤقت: {e}")
+        logger.error(f"خطأ في حفظ قائمة المدن لـ {country_name} في الملف المؤقت {e}")
 
     logger.info(f"تم جلب وترجمة قائمة المدن لـ {country_name} بنجاح")
     return cities
@@ -153,10 +151,10 @@ def get_coordinates_for_city(city: str, country: str) -> Optional[Tuple[float, f
             logger.warning(f"Could not find coordinates for {city}, {country}")
             return None
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error fetching coordinates for {city}, {country}: {e}")
+        logger.error(f"Error fetching coordinates for {city}, {country} {e}")
         return None
     except (KeyError, IndexError, ValueError) as e:
-        logger.error(f"Error parsing coordinates for {city}, {country}: {e}")
+        logger.error(f"Error parsing coordinates for {city}, {country} {e}")
         return None
 
 class CacheManager:

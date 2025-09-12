@@ -30,6 +30,7 @@ TRANSLATIONS = {
         "connected": "متصل",
         "confirm": "تأكيد",
         "confirm_restore_defaults": "هل تريد استعادة جميع الإعدادات الافتراضية؟",
+        "confirm_restore_and_restart": "سيتم استعادة الإعدادات الافتراضية وإعادة تشغيل التطبيق",
         "connection_error": "خطأ في الاتصال",
         "continue_later": "المتابعة لاحقاً",
         "country": "الدولة ",
@@ -62,7 +63,7 @@ TRANSLATIONS = {
         "language": "اللغة",
         "last_update": "آخر تحديث",
         "light": "فاتح",
-        "loading_prayer_times": "🔄 جاري تحميل مواقيت الصلاة...",
+        "loading_prayer_times": "...جاري تحميل مواقيت الصلاة 🔄",
         "location": "🌍 الموقع",
         "location_settings_title": "تحديد الموقع (سيتم تطبيقه عند إعادة التشغيل)",
         "logo_not_found": "لم يتم العثور على الشعار",
@@ -77,7 +78,7 @@ TRANSLATIONS = {
         "notification_sound_file": "ملف صوت التنبيه",
         "now": "الآن ⏰",
         "play": "تشغيل",
-        "please_select_city_country": "الرجاء تحديد المدينة والدولة أولاً في الإعدادات.",
+        "please_select_city_country": "الرجاء تحديد المدينة والدولة أولاً في الإعدادات",
         "prayer_calculation_method": "طريقة حساب مواقيت الصلاة",
         "prayer_notification_alert": "تنبيه موقيت الصلاة",
         "prayer_status_finished": "انتهت ✓",
@@ -108,7 +109,7 @@ TRANSLATIONS = {
         "select_adhan_file": "اختر ملف الأذان",
         "settings": "⚙️ إعدادات",
         "settings_saved_successfully": "تم تغيير الإعدادات. إضغط لإعادة التشغيل أو الاستمرار حاليا وسيتم تطبيق الإعدادات عند إعادة التشغيل",
-        "settings_saved_successfully_restart": "تم حفظ الإعدادات. بعض التغييرات تتطلب إعادة تشغيل التطبيق لتفعيلها.\nهل تريد إعادة التشغيل الآن؟",
+        "settings_saved_successfully_restart": "تم حفظ الإعدادات، بعض التغييرات تتطلب إعادة تشغيل التطبيق لتفعيلها.\nهل تريد إعادة التشغيل الآن؟",
         "show_qibla_direction": "إظهار اتجاه القبلة",
         "show_window": "إظهار",
         "sounds": "الأصوات",
@@ -128,7 +129,7 @@ TRANSLATIONS = {
         "quit": "خروج",
         "exit_confirmation": "تأكيد الخروج",
         "exit_confirmation_message": "هل أنت متأكد أنك تريد الخروج من التطبيق؟"
-    }.items())), 
+    }.items())),
     "en": dict(sorted({
         "about": "About",
         "adhan_sound_file": "Adhan Sound File",
@@ -149,6 +150,7 @@ TRANSLATIONS = {
         "connected": "Connected",
         "confirm": "Confirm",
         "confirm_restore_defaults": "Are you sure you want to restore all default settings?",
+        "confirm_restore_and_restart": "Default settings will be restored and the application will be restarted",
         "connection_error": "Connection error",
         "continue_later": "Continue Later",
         "country": "Country ",
@@ -250,6 +252,7 @@ TRANSLATIONS = {
     }.items()))
 }
 
+
 # طرق حساب مواقيت الصلاة
 CALCULATION_METHODS = {
     "جامعة العلوم الإسلامية - كراتشي": 1,
@@ -288,17 +291,18 @@ CALCULATION_METHODS_EN = {
 CALCULATION_METHODS_EN_REV = {v: k for k, v in CALCULATION_METHODS_EN.items()}
 
 # تحديد المسار الجذري للمشروع لضمان استقلالية المسارات
-ROOT_DIR = Path(get_working_path('.'))
+APP_DATA_DIR = Path(get_working_path('.'))
 
 # المسارات للملفات والمجلدات الرئيسية
-SETTINGS_FILE = ROOT_DIR / 'settings.json'
-CACHE_DIR = ROOT_DIR / 'cache'
-LOG_DIR = ROOT_DIR / 'logs'
+SETTINGS_FILE = APP_DATA_DIR / 'settings.json'
+CACHE_DIR = APP_DATA_DIR / 'cache'
+LOG_DIR = APP_DATA_DIR / 'logs'
 LOG_FILE = LOG_DIR / 'prayer_app.log'
+COUNTRIES_FILE = APP_DATA_DIR / 'countries.json'
 COUNTRIES_CACHE_FILE = CACHE_DIR / 'countries.json'
 CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
-WORLD_CITIES_DIR = ROOT_DIR / 'world_cities'
-SOUNDS_DIR = ROOT_DIR / 'sounds'
+WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
+SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
 # تأكد من وجود مجلدات التخزين المؤقت والسجلات
 CACHE_DIR.mkdir(exist_ok=True)
