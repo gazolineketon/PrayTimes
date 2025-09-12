@@ -81,6 +81,7 @@ class EnhancedPrayerTimesApp:
         if PYSTRAY_AVAILABLE:
             self.setup_tray_icon()
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.root.bind('<Unmap>', self.minimize_to_tray)
         self.root.bind('<<QuitApp>>', lambda e: self.quit_application())
         
     def sync_time_on_startup(self):
@@ -882,13 +883,24 @@ class EnhancedPrayerTimesApp:
                 self.quit_application()
             else:
                 self.root.withdraw()
+                # self.notification_manager.send_notification(
+                #     self._("app_running_in_background"),
+                #     self._("app_running_in_background_message"),
+                #     timeout=5
+                # )
+        else:
+            self.quit_application()
+
+    def minimize_to_tray(self, event=None):
+        """تصغير التطبيق إلى شريط المهام عند الضغط على زر التصغير"""
+        if self.root.state() == 'iconic':
+            self.root.withdraw()
+            if self.tray_icon:
                 self.notification_manager.send_notification(
                     self._("app_running_in_background"),
                     self._("app_running_in_background_message"),
                     timeout=5
                 )
-        else:
-            self.quit_application()
 
     def setup_tray_icon(self):
         """إعداد أيقونة شريط المهام"""
