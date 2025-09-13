@@ -63,7 +63,7 @@ TRANSLATIONS = {
         "language": "اللغة",
         "last_update": "آخر تحديث",
         "light": "فاتح",
-        "loading_prayer_times": "...جاري تحميل مواقيت الصلاة 🔄",
+        "loading_prayer_times": "...جاري تحميل مواقيت الصلاة ⏳",
         "location": "🌍 الموقع",
         "location_settings_title": "تحديد الموقع (سيتم تطبيقه عند إعادة التشغيل)",
         "logo_not_found": "لم يتم العثور على الشعار",
@@ -128,7 +128,9 @@ TRANSLATIONS = {
         "volume": "مستوى الصوت",
         "quit": "خروج",
         "exit_confirmation": "تأكيد الخروج",
-        "exit_confirmation_message": "هل أنت متأكد أنك تريد الخروج من التطبيق؟"
+        "exit_confirmation_message": "هل أنت متأكد أنك تريد الخروج من التطبيق؟",
+        "no": "لا",
+        "yes": "نعم"
     }.items())),
     "en": dict(sorted({
         "about": "About",
@@ -183,7 +185,7 @@ TRANSLATIONS = {
         "language": "Language",
         "last_update": "Last update",
         "light": "Light",
-        "loading_prayer_times": "🔄 Loading prayer times...",
+        "loading_prayer_times": "⏳ Loading prayer times...",
         "location": "🌍 Location",
         "location_settings_title": "Set Location (applies on restart)",
         "logo_not_found": "Logo not found",
@@ -248,7 +250,9 @@ TRANSLATIONS = {
         "volume": "Volume",
         "quit": "Quit",
         "exit_confirmation": "Exit Confirmation",
-        "exit_confirmation_message": "Are you sure you want to exit the application?"
+        "exit_confirmation_message": "Are you sure you want to exit the application?",
+        "no": "No",
+        "yes": "Yes"
     }.items()))
 }
 

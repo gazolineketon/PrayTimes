@@ -873,10 +873,50 @@ class EnhancedPrayerTimesApp:
         
         self.root.after(5000, lambda: error_label.destroy() if error_label.winfo_exists() else None)
     
+    def custom_askyesno(self, title, message):
+        """إنشاء صندوق رسالة مخصص يحتوي على أزرار مترجمة"""
+        dialog = tk.Toplevel(self.root)
+        dialog.title(title)
+        dialog.configure(bg=self.colors['bg_primary'])
+        dialog.transient(self.root)
+        dialog.grab_set()
+        
+        # مركز الحوار فوق النافذة الرئيسية
+        self.root.update_idletasks()
+        dialog.update_idletasks()
+        x = self.root.winfo_x() + (self.root.winfo_width() // 2) - (dialog.winfo_width() // 2)
+        y = self.root.winfo_y() + (self.root.winfo_height() // 2) - (dialog.winfo_height() // 2)
+        dialog.geometry(f"+{x}+{y}")
+
+        result = [None]
+
+        def yes_action():
+            result[0] = True
+            dialog.destroy()
+
+        def no_action():
+            result[0] = False
+            dialog.destroy()
+
+        msg_label = tk.Label(dialog, text=message, font=('Segoe UI', 12), bg=self.colors['bg_primary'], fg=self.colors['text_primary'], pady=20, padx=20)
+        msg_label.pack()
+
+        button_frame = tk.Frame(dialog, bg=self.colors['bg_primary'], pady=10)
+        button_frame.pack()
+
+        yes_button = tk.Button(button_frame, text=self._("yes"), font=('Segoe UI', 11), bg=self.colors['success'], fg=self.colors['text_accent'], relief='flat', padx=10, pady=5, cursor='hand2', command=yes_action)
+        yes_button.pack(side='left', padx=10)
+
+        no_button = tk.Button(button_frame, text=self._("no"), font=('Segoe UI', 11), bg=self.colors['error'], fg=self.colors['text_accent'], relief='flat', padx=10, pady=5, cursor='hand2', command=no_action)
+        no_button.pack(side='left', padx=10)
+        
+        dialog.wait_window()
+        return result[0]
+
     def on_closing(self):
         """عند إغلاق التطبيق"""
         if self.tray_icon:
-            if messagebox.askyesno(
+            if self.custom_askyesno(
                 self._("exit_confirmation"),
                 self._("exit_confirmation_message")
             ):

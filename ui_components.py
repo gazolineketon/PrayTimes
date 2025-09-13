@@ -479,7 +479,7 @@ class SettingsDialog:
     def save_settings(self):
         """حفظ الإعدادات"""
         self.sound_player.stop_sound()
-        # Get calculation method using the current (old) language
+        # طريقة الحساب باستخدام اللغة الحالية
         method_key = self.calc_method_var.get()
         if self.settings.language == 'ar':
             self.settings.calculation_method = CALCULATION_METHODS.get(method_key, self.settings.calculation_method)

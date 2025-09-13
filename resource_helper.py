@@ -78,39 +78,35 @@ def get_sounds_dir():
     """الحصول على المسار إلى مجلد الأصوات في مجلد بيانات التطبيق"""
     return get_working_path('sounds')
 
+def set_tcl_tk_env_vars():
+    """
+    تعيين متغيرات البيئة لـ TCL و TK إذا كان التطبيق مجمداً.
+    هذا يضمن أن Tkinter يمكنه العثور على مكتباته.
+    """
+    if getattr(sys, 'frozen', False):
+        # المسار إلى مجلد _MEIPASS الذي أنشأه PyInstaller
+        base_path = sys._MEIPASS
+        
+        # تحديد مسارات مكتبات Tcl و Tk
+        tcl_library_path = os.path.join(base_path, '_tcl_data', 'tcl8.6')
+        tk_library_path = os.path.join(base_path, '_tcl_data', 'tk8.6')
+        
+        # تعيين متغيرات البيئة
+        if os.path.isdir(tcl_library_path):
+            os.environ['TCL_LIBRARY'] = tcl_library_path
+            logger.info(f"TCL_LIBRARY set to: {tcl_library_path}")
+
+        if os.path.isdir(tk_library_path):
+            os.environ['TK_LIBRARY'] = tk_library_path
+            logger.info(f"TK_LIBRARY set to: {tk_library_path}")
+
 def initialize_resources():
     """
     تحضير الموارد عند بدء البرنامج. يجب استدعاؤها مرة واحدة عند بدء التشغيل.
     """
+    set_tcl_tk_env_vars()
     logger.info("Initializing and verifying resources...")
     extract_resources()
     logger.info("Resource initialization complete.")
 
-# --- Debugging Functions ---
-def debug_resource_paths():
-    """طباعة مسارات التصحيح"""
-    print("--- Debug Resource Paths ---")
-    print(f"sys._MEIPASS: {getattr(sys, '_MEIPASS', 'Not set')}")
-    print(f"os.path.abspath('.'): {os.path.abspath('.')}")
-    print(f"get_app_data_dir(): {get_app_data_dir()}")
-    print(f"Sounds folder path: {get_sounds_dir()}")
-    print("--------------------------")
 
-def list_available_files(subdirectory):
-    """عرض الملفات المتاحة في مجلد فرعي للتصحيح"""
-    path_to_check = get_working_path(subdirectory)
-    print(f"--- Listing files in '{path_to_check}' ---")
-    
-    if os.path.exists(path_to_check) and os.path.isdir(path_to_check):
-        try:
-            files = os.listdir(path_to_check)
-            if files:
-                for f in files:
-                    print(f"  - {f}")
-            else:
-                print("  (No files found)")
-        except Exception as e:
-            print(f"  Error listing files: {e}")
-    else:
-        print("  (Directory does not exist)")
-    print("------------------------------------")
