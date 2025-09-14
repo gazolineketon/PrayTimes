@@ -11,3 +11,5 @@ PrayTimesApp.spec
 .gitignore
 main_updated.spec
 PrayerTimes.spec
+.vscode/settings.json
+settings.json
