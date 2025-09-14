@@ -2,6 +2,7 @@
 
 <div align="center">
 <img src="pray_logo.png" alt="PrayTimes Logo" width="20%"/>
+   
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-0.39.0-orange.svg)](CHANGELOG.md)
