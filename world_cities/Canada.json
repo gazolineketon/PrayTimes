@@ -1,0 +1,326 @@
+[
+    {
+        "english_name": "Toronto",
+        "arabic_name": "تورونتو"
+    },
+    {
+        "english_name": "Montreal",
+        "arabic_name": "مونتريال"
+    },
+    {
+        "english_name": "Vancouver",
+        "arabic_name": "فانكوفر"
+    },
+    {
+        "english_name": "Calgary",
+        "arabic_name": "كالغاري"
+    },
+    {
+        "english_name": "Edmonton",
+        "arabic_name": "إدمونتون"
+    },
+    {
+        "english_name": "Ottawa",
+        "arabic_name": "أوتاوا"
+    },
+    {
+        "english_name": "Winnipeg",
+        "arabic_name": "وينيبيغ"
+    },
+    {
+        "english_name": "Quebec City",
+        "arabic_name": "مدينة كيبك"
+    },
+    {
+        "english_name": "Hamilton",
+        "arabic_name": "هاميلتون"
+    },
+    {
+        "english_name": "Mississauga",
+        "arabic_name": "ميسيساغا"
+    },
+    {
+        "english_name": "Kitchener",
+        "arabic_name": "كيتشنر"
+    },
+    {
+        "english_name": "Halifax",
+        "arabic_name": "هاليفاكس"
+    },
+    {
+        "english_name": "Laval",
+        "arabic_name": "لافال"
+    },
+    {
+        "english_name": "London",
+        "arabic_name": "لندن"
+    },
+    {
+        "english_name": "Victoria",
+        "arabic_name": "فيكتوريا"
+    },
+    {
+        "english_name": "Markham",
+        "arabic_name": "ماركام"
+    },
+    {
+        "english_name": "Oshawa",
+        "arabic_name": "أوشاوا"
+    },
+    {
+        "english_name": "Vaughan",
+        "arabic_name": "فوغان"
+    },
+    {
+        "english_name": "Windsor",
+        "arabic_name": "وندسور"
+    },
+    {
+        "english_name": "Gatineau",
+        "arabic_name": "غاتينو"
+    },
+    {
+        "english_name": "Saskatoon",
+        "arabic_name": "ساسكاتون"
+    },
+    {
+        "english_name": "Longueuil",
+        "arabic_name": "لونغوي"
+    },
+    {
+        "english_name": "St. Catharines",
+        "arabic_name": "سانت كاثرينز"
+    },
+    {
+        "english_name": "Regina",
+        "arabic_name": "ريغينا"
+    },
+    {
+        "english_name": "Oakville",
+        "arabic_name": "أوكفيل"
+    },
+    {
+        "english_name": "Richmond",
+        "arabic_name": "ريتشموند"
+    },
+    {
+        "english_name": "Richmond Hill",
+        "arabic_name": "ريتشموند هيل"
+    },
+    {
+        "english_name": "Burlington",
+        "arabic_name": "برلنغتون"
+    },
+    {
+        "english_name": "St. John's",
+        "arabic_name": "سانت جونز"
+    },
+    {
+        "english_name": "Kelowna",
+        "arabic_name": "كيلونا"
+    },
+    {
+        "english_name": "Sudbury",
+        "arabic_name": "غريتر سودبوري"
+    },
+    {
+        "english_name": "Barrie",
+        "arabic_name": "باري"
+    },
+    {
+        "english_name": "Coquitlam",
+        "arabic_name": "كوكويتلام، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Saguenay",
+        "arabic_name": "ساغينيه"
+    },
+    {
+        "english_name": "Guelph",
+        "arabic_name": "غويلف"
+    },
+    {
+        "english_name": "Trois-Rivieres",
+        "arabic_name": "تروا ريفيير"
+    },
+    {
+        "english_name": "Whitby",
+        "arabic_name": "ويتبي"
+    },
+    {
+        "english_name": "Cambridge",
+        "arabic_name": "كامبريدج"
+    },
+    {
+        "english_name": "Kanata",
+        "arabic_name": "كندا"
+    },
+    {
+        "english_name": "Milton",
+        "arabic_name": "ميلتون"
+    },
+    {
+        "english_name": "Kingston",
+        "arabic_name": "كينغستون"
+    },
+    {
+        "english_name": "Ajax",
+        "arabic_name": "أياكس أمستردام"
+    },
+    {
+        "english_name": "Waterloo",
+        "arabic_name": "واترلو"
+    },
+    {
+        "english_name": "Moncton",
+        "arabic_name": "مونكتون"
+    },
+    {
+        "english_name": "Saanich",
+        "arabic_name": "سانيتش، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "White Rock",
+        "arabic_name": "وايت روك، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Thunder Bay",
+        "arabic_name": "ثاندر باي"
+    },
+    {
+        "english_name": "Nanaimo",
+        "arabic_name": "نانيامو إي، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Brantford",
+        "arabic_name": "برانتفورد"
+    },
+    {
+        "english_name": "Chicoutimi",
+        "arabic_name": "شيكوتيمي"
+    },
+    {
+        "english_name": "Saint-Jerome",
+        "arabic_name": "جيروم"
+    },
+    {
+        "english_name": "Red Deer",
+        "arabic_name": "أيل أحمر"
+    },
+    {
+        "english_name": "Pickering",
+        "arabic_name": "بيكرينغ"
+    },
+    {
+        "english_name": "Kamloops",
+        "arabic_name": "كاملوبس، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Saint-Jean-sur-Richelieu",
+        "arabic_name": "سان جان سور ريشليو"
+    },
+    {
+        "english_name": "Niagara Falls",
+        "arabic_name": "نيغارا فولز"
+    },
+    {
+        "english_name": "Cape Breton",
+        "arabic_name": "جزيرة كيب بريتون"
+    },
+    {
+        "english_name": "Chilliwack",
+        "arabic_name": "تشيليواك، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Maple Ridge",
+        "arabic_name": "مابل ريدج، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Newmarket",
+        "arabic_name": "نيوماركت"
+    },
+    {
+        "english_name": "Peterborough",
+        "arabic_name": "بيتيربوروغ"
+    },
+    {
+        "english_name": "Drummondville",
+        "arabic_name": "درومونفيل"
+    },
+    {
+        "english_name": "Kawartha Lakes",
+        "arabic_name": "كورثا ليكس"
+    },
+    {
+        "english_name": "New Westminster",
+        "arabic_name": "نيو ويستمينيستر، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Prince George",
+        "arabic_name": "برينس جورج، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Chateauguay",
+        "arabic_name": "شاتوغيه"
+    },
+    {
+        "english_name": "Airdrie",
+        "arabic_name": "أردري"
+    },
+    {
+        "english_name": "Sarnia",
+        "arabic_name": "سارنيا"
+    },
+    {
+        "english_name": "Wood Buffalo",
+        "arabic_name": "منطقة وودبفالو"
+    },
+    {
+        "english_name": "Sault Ste. Marie",
+        "arabic_name": "سولت سانت ماري"
+    },
+    {
+        "english_name": "Saint John",
+        "arabic_name": "سانت جون"
+    },
+    {
+        "english_name": "St. Albert",
+        "arabic_name": "سانت ألبرت"
+    },
+    {
+        "english_name": "Fort McMurray",
+        "arabic_name": "فورت ماكموراي"
+    },
+    {
+        "english_name": "Fredericton",
+        "arabic_name": "فريدريكتون"
+    },
+    {
+        "english_name": "Grande Prairie",
+        "arabic_name": "غراند براري"
+    },
+    {
+        "english_name": "Medicine Hat",
+        "arabic_name": "مدسين هات"
+    },
+    {
+        "english_name": "Halton Hills",
+        "arabic_name": "هالتون هيلس"
+    },
+    {
+        "english_name": "Aurora",
+        "arabic_name": "أورورا"
+    },
+    {
+        "english_name": "Port Coquitlam",
+        "arabic_name": "بورت كوكويتلام، كولومبيا البريطانية"
+    },
+    {
+        "english_name": "Lac-Brome",
+        "arabic_name": "لاك برومي"
+    },
+    {
+        "english_name": "North Vancouver",
+        "arabic_name": "شمال فانكوفر"
+    }
+]

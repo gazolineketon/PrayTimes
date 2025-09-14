@@ -1,0 +1,250 @@
+[
+    {
+        "english_name": "Melbourne",
+        "arabic_name": "ملبورن"
+    },
+    {
+        "english_name": "Sydney",
+        "arabic_name": "سيدني"
+    },
+    {
+        "english_name": "Brisbane",
+        "arabic_name": "بريزبان"
+    },
+    {
+        "english_name": "Perth",
+        "arabic_name": "برث"
+    },
+    {
+        "english_name": "Adelaide",
+        "arabic_name": "آديلايد"
+    },
+    {
+        "english_name": "Gold Coast",
+        "arabic_name": "غولد كوست"
+    },
+    {
+        "english_name": "Canberra",
+        "arabic_name": "كانبرا"
+    },
+    {
+        "english_name": "Wollongong",
+        "arabic_name": "ولونغونغ"
+    },
+    {
+        "english_name": "Ipswich",
+        "arabic_name": "إبسوتش"
+    },
+    {
+        "english_name": "Geelong",
+        "arabic_name": "غيلونغ"
+    },
+    {
+        "english_name": "Townsville",
+        "arabic_name": "تاونسفيل"
+    },
+    {
+        "english_name": "Newcastle",
+        "arabic_name": "نيوكاسل أبون تاين"
+    },
+    {
+        "english_name": "Darwin",
+        "arabic_name": "داروين"
+    },
+    {
+        "english_name": "Ballarat",
+        "arabic_name": "بالارات"
+    },
+    {
+        "english_name": "Toowoomba",
+        "arabic_name": "توومبا"
+    },
+    {
+        "english_name": "Bendigo",
+        "arabic_name": "بنديجو"
+    },
+    {
+        "english_name": "Mandurah",
+        "arabic_name": "ماندوراه"
+    },
+    {
+        "english_name": "Mackay",
+        "arabic_name": "ماكاي"
+    },
+    {
+        "english_name": "Bundaberg",
+        "arabic_name": "بوندابيرج"
+    },
+    {
+        "english_name": "Maroochydore",
+        "arabic_name": "ماروشيدور"
+    },
+    {
+        "english_name": "Rockhampton",
+        "arabic_name": "روكهامبتون"
+    },
+    {
+        "english_name": "Hervey Bay",
+        "arabic_name": "خليج هيرفي"
+    },
+    {
+        "english_name": "Wagga Wagga",
+        "arabic_name": "واجا واجا"
+    },
+    {
+        "english_name": "Port Macquarie",
+        "arabic_name": "بورت ماكواري"
+    },
+    {
+        "english_name": "Caloundra",
+        "arabic_name": "كالوندرا"
+    },
+    {
+        "english_name": "Dubbo",
+        "arabic_name": "دوبو"
+    },
+    {
+        "english_name": "Orange",
+        "arabic_name": "أورانج"
+    },
+    {
+        "english_name": "Sunbury",
+        "arabic_name": "صنبوري"
+    },
+    {
+        "english_name": "Mildura",
+        "arabic_name": "ميلدورا"
+    },
+    {
+        "english_name": "Geraldton",
+        "arabic_name": "جيرالدتون"
+    },
+    {
+        "english_name": "Shepparton",
+        "arabic_name": "شيبارتون"
+    },
+    {
+        "english_name": "Southport",
+        "arabic_name": "نادي ساوثبورت"
+    },
+    {
+        "english_name": "Kalgoorlie",
+        "arabic_name": "كالغورلي"
+    },
+    {
+        "english_name": "Warrnambool",
+        "arabic_name": "وارنامبول"
+    },
+    {
+        "english_name": "Caboolture",
+        "arabic_name": "كابولتشر"
+    },
+    {
+        "english_name": "Coffs Harbour",
+        "arabic_name": "كوفس هاربور"
+    },
+    {
+        "english_name": "Mount Gambier",
+        "arabic_name": "مونت غامبير"
+    },
+    {
+        "english_name": "Busselton",
+        "arabic_name": "بوسلتون"
+    },
+    {
+        "english_name": "Albany",
+        "arabic_name": "ألباني"
+    },
+    {
+        "english_name": "Traralgon",
+        "arabic_name": "ترارالغون"
+    },
+    {
+        "english_name": "Goulburn",
+        "arabic_name": "غولبرن"
+    },
+    {
+        "english_name": "Alice Springs",
+        "arabic_name": "أليس سبرينغز"
+    },
+    {
+        "english_name": "Whyalla",
+        "arabic_name": "وايللا"
+    },
+    {
+        "english_name": "Armidale",
+        "arabic_name": "آرمدال"
+    },
+    {
+        "english_name": "Wodonga",
+        "arabic_name": "وودونغا"
+    },
+    {
+        "english_name": "Burnie",
+        "arabic_name": "بورني"
+    },
+    {
+        "english_name": "Griffith",
+        "arabic_name": "غريفيث"
+    },
+    {
+        "english_name": "Broken Hill",
+        "arabic_name": "بروكن هيل"
+    },
+    {
+        "english_name": "Wangaratta",
+        "arabic_name": "وانجارتا"
+    },
+    {
+        "english_name": "Karratha",
+        "arabic_name": "كاراثا"
+    },
+    {
+        "english_name": "Taree",
+        "arabic_name": "تاري"
+    },
+    {
+        "english_name": "Lara",
+        "arabic_name": "لارا"
+    },
+    {
+        "english_name": "Maryborough",
+        "arabic_name": "ماريبورو"
+    },
+    {
+        "english_name": "Ulladulla",
+        "arabic_name": "اولادولا"
+    },
+    {
+        "english_name": "Echuca",
+        "arabic_name": "إتشوكا"
+    },
+    {
+        "english_name": "Murray Bridge",
+        "arabic_name": "جسر موراي"
+    },
+    {
+        "english_name": "Port Lincoln",
+        "arabic_name": "بورت لينكولن"
+    },
+    {
+        "english_name": "Forster",
+        "arabic_name": "فوريستر"
+    },
+    {
+        "english_name": "Torquay",
+        "arabic_name": "نادي توركي يونايتد"
+    },
+    {
+        "english_name": "Leopold",
+        "arabic_name": "ليوبولد"
+    },
+    {
+        "english_name": "Campbelltown",
+        "arabic_name": "كاملبتاون"
+    },
+    {
+        "english_name": "Drouin",
+        "arabic_name": "دروين"
+    }
+]

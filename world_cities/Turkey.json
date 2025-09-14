@@ -1,0 +1,346 @@
+[
+    {
+        "english_name": "Istanbul",
+        "arabic_name": "إسطنبول"
+    },
+    {
+        "english_name": "Ankara",
+        "arabic_name": "أنقرة"
+    },
+    {
+        "english_name": "Bursa",
+        "arabic_name": "ولاية بورصة"
+    },
+    {
+        "english_name": "Izmir",
+        "arabic_name": "ولاية إزمير"
+    },
+    {
+        "english_name": "Konya",
+        "arabic_name": "قونية"
+    },
+    {
+        "english_name": "Gaziantep",
+        "arabic_name": "ولاية عنتاب"
+    },
+    {
+        "english_name": "Diyarbakir",
+        "arabic_name": "ولاية ديار بكر"
+    },
+    {
+        "english_name": "Adana",
+        "arabic_name": "أضنة"
+    },
+    {
+        "english_name": "Kayseri",
+        "arabic_name": "ولاية قيصرية"
+    },
+    {
+        "english_name": "Samsun",
+        "arabic_name": "سَمسون"
+    },
+    {
+        "english_name": "Antalya",
+        "arabic_name": "ولاية أنطالية"
+    },
+    {
+        "english_name": "Mersin",
+        "arabic_name": "ولاية مرسين"
+    },
+    {
+        "english_name": "Esenyurt",
+        "arabic_name": "اسن يورت"
+    },
+    {
+        "english_name": "Cankaya",
+        "arabic_name": "جنقياء"
+    },
+    {
+        "english_name": "Kecioren",
+        "arabic_name": "كجي أورن"
+    },
+    {
+        "english_name": "Osmangazi",
+        "arabic_name": "عثمان غازي"
+    },
+    {
+        "english_name": "Eskisehir",
+        "arabic_name": "إسكي شهر"
+    },
+    {
+        "english_name": "Seyhan",
+        "arabic_name": "سيحان"
+    },
+    {
+        "english_name": "Erzurum",
+        "arabic_name": "ولاية أرضروم"
+    },
+    {
+        "english_name": "Pendik",
+        "arabic_name": "بنديك"
+    },
+    {
+        "english_name": "Bagcilar",
+        "arabic_name": "بغجيلر"
+    },
+    {
+        "english_name": "Umraniye",
+        "arabic_name": "العمرانية"
+    },
+    {
+        "english_name": "Yenimahalle",
+        "arabic_name": "يني محلة"
+    },
+    {
+        "english_name": "Selcuklu",
+        "arabic_name": "سلجوقلي"
+    },
+    {
+        "english_name": "Mamak",
+        "arabic_name": "ماماق"
+    },
+    {
+        "english_name": "Yildirim",
+        "arabic_name": "يلدرم"
+    },
+    {
+        "english_name": "Denizli",
+        "arabic_name": "ولاية دنزلة"
+    },
+    {
+        "english_name": "Etimesgut",
+        "arabic_name": "أتيمسغوت"
+    },
+    {
+        "english_name": "Sanliurfa",
+        "arabic_name": "أورفة"
+    },
+    {
+        "english_name": "Melikgazi",
+        "arabic_name": "ملك غازي"
+    },
+    {
+        "english_name": "Sincan",
+        "arabic_name": "سنجان (أنقرة)"
+    },
+    {
+        "english_name": "Kahramanmaras",
+        "arabic_name": "ولاية قهرمان مرعش"
+    },
+    {
+        "english_name": "Nilufer",
+        "arabic_name": "نيلوفر"
+    },
+    {
+        "english_name": "Van",
+        "arabic_name": "فانواتو"
+    },
+    {
+        "english_name": "Buca",
+        "arabic_name": "بوجة"
+    },
+    {
+        "english_name": "Malatya",
+        "arabic_name": "ولاية ملطية"
+    },
+    {
+        "english_name": "Kartal",
+        "arabic_name": "قرتال"
+    },
+    {
+        "english_name": "Kagithane",
+        "arabic_name": "كاغد خانة"
+    },
+    {
+        "english_name": "Bornova",
+        "arabic_name": "برناوة"
+    },
+    {
+        "english_name": "Batman",
+        "arabic_name": "ولاية بطمان"
+    },
+    {
+        "english_name": "Avcilar",
+        "arabic_name": "أوجيلر"
+    },
+    {
+        "english_name": "Esenler",
+        "arabic_name": "إسنلر"
+    },
+    {
+        "english_name": "Beylikduzu",
+        "arabic_name": "بيلك دوزي"
+    },
+    {
+        "english_name": "Altindag",
+        "arabic_name": "ألتنطاغ"
+    },
+    {
+        "english_name": "Gebze",
+        "arabic_name": "كبزة"
+    },
+    {
+        "english_name": "Yuregir",
+        "arabic_name": "يورغير"
+    },
+    {
+        "english_name": "Hatay",
+        "arabic_name": "ولاية حطاي"
+    },
+    {
+        "english_name": "Elazig",
+        "arabic_name": "ولاية العزيز"
+    },
+    {
+        "english_name": "Manisa",
+        "arabic_name": "ولاية مانيسا"
+    },
+    {
+        "english_name": "Sivas",
+        "arabic_name": "سيواس"
+    },
+    {
+        "english_name": "Alanya",
+        "arabic_name": "علانية"
+    },
+    {
+        "english_name": "Kocaeli",
+        "arabic_name": "ولاية قوجه إيلي"
+    },
+    {
+        "english_name": "Sultanbeyli",
+        "arabic_name": "سلطان بيلي"
+    },
+    {
+        "english_name": "Tarsus",
+        "arabic_name": "مديرية طرطوس"
+    },
+    {
+        "english_name": "Sariyer",
+        "arabic_name": "ساريير"
+    },
+    {
+        "english_name": "Karsiyaka",
+        "arabic_name": "قارشياقة"
+    },
+    {
+        "english_name": "Konak",
+        "arabic_name": "قوناق"
+    },
+    {
+        "english_name": "Arnavutkoy",
+        "arabic_name": "أرناؤوط كوي"
+    },
+    {
+        "english_name": "Kucukcekmece",
+        "arabic_name": "كجك جكمجة"
+    },
+    {
+        "english_name": "Balikesir",
+        "arabic_name": "ولاية بالي قصر"
+    },
+    {
+        "english_name": "Battalgazi",
+        "arabic_name": "بطال غازي"
+    },
+    {
+        "english_name": "Corlu",
+        "arabic_name": "تشورلو"
+    },
+    {
+        "english_name": "Cekme",
+        "arabic_name": "قرية جكمة"
+    },
+    {
+        "english_name": "Inegol",
+        "arabic_name": "إنغول"
+    },
+    {
+        "english_name": "Trabzon",
+        "arabic_name": "طربزون"
+    },
+    {
+        "english_name": "Tuzla",
+        "arabic_name": "طوزله"
+    },
+    {
+        "english_name": "Gungoren",
+        "arabic_name": "كنكورة"
+    },
+    {
+        "english_name": "Sakarya",
+        "arabic_name": "آدابازاري"
+    },
+    {
+        "english_name": "Buyukcekmece",
+        "arabic_name": "بيوك جكمجة"
+    },
+    {
+        "english_name": "Corum",
+        "arabic_name": "ولاية جوروم"
+    },
+    {
+        "english_name": "Adiyaman",
+        "arabic_name": "حصن منصور"
+    },
+    {
+        "english_name": "Kutahya",
+        "arabic_name": "ولاية كوتاهية"
+    },
+    {
+        "english_name": "Aydin",
+        "arabic_name": "ولاية أيدن"
+    },
+    {
+        "english_name": "Manavgat",
+        "arabic_name": "مانافجات"
+    },
+    {
+        "english_name": "Osmaniye",
+        "arabic_name": "عثمانية"
+    },
+    {
+        "english_name": "Afyonkarahisar",
+        "arabic_name": "أفيون قره حصار"
+    },
+    {
+        "english_name": "Beykoz",
+        "arabic_name": "بيكوز"
+    },
+    {
+        "english_name": "Isparta",
+        "arabic_name": "ولاية إسبرطة"
+    },
+    {
+        "english_name": "Aksaray",
+        "arabic_name": "ولاية آق سراي"
+    },
+    {
+        "english_name": "Usak",
+        "arabic_name": "عشاق"
+    },
+    {
+        "english_name": "Ordu",
+        "arabic_name": "أردو"
+    },
+    {
+        "english_name": "Mezitli",
+        "arabic_name": "المزيدية"
+    },
+    {
+        "english_name": "Saricam",
+        "arabic_name": "ساريشام"
+    },
+    {
+        "english_name": "Yenisehir",
+        "arabic_name": "يني شهر"
+    },
+    {
+        "english_name": "Silivri",
+        "arabic_name": "سلورية"
+    },
+    {
+        "english_name": "Cigli",
+        "arabic_name": "جيلة"
+    }
+]

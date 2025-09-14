@@ -1,0 +1,358 @@
+[
+    {
+        "english_name": "Tokyo",
+        "arabic_name": "طوكيو"
+    },
+    {
+        "english_name": "Osaka",
+        "arabic_name": "محافظة أوساكا"
+    },
+    {
+        "english_name": "Nagoya",
+        "arabic_name": "ناغويا"
+    },
+    {
+        "english_name": "Yokohama",
+        "arabic_name": "يوكوهاما"
+    },
+    {
+        "english_name": "Sapporo",
+        "arabic_name": "سابورو"
+    },
+    {
+        "english_name": "Kawasaki",
+        "arabic_name": "كاواساكي، كاناغاوا"
+    },
+    {
+        "english_name": "Kobe",
+        "arabic_name": "كوبنهاغن"
+    },
+    {
+        "english_name": "Kyoto",
+        "arabic_name": "كيوتو"
+    },
+    {
+        "english_name": "Saitama",
+        "arabic_name": "محافظة سايتاما"
+    },
+    {
+        "english_name": "Hiroshima",
+        "arabic_name": "هيروشيما"
+    },
+    {
+        "english_name": "Chiba",
+        "arabic_name": "محافظة تشيبا"
+    },
+    {
+        "english_name": "Setagaya",
+        "arabic_name": "سيتاغايا"
+    },
+    {
+        "english_name": "Kitakyushu",
+        "arabic_name": "كيتاكيوشو"
+    },
+    {
+        "english_name": "Sakai",
+        "arabic_name": "ساكاي"
+    },
+    {
+        "english_name": "Niigata",
+        "arabic_name": "نيغاتا"
+    },
+    {
+        "english_name": "Hamamatsu",
+        "arabic_name": "هاماماتسو"
+    },
+    {
+        "english_name": "Nerima",
+        "arabic_name": "نيريما"
+    },
+    {
+        "english_name": "Ota-ku",
+        "arabic_name": "أوتا"
+    },
+    {
+        "english_name": "Kumamoto",
+        "arabic_name": "كوماموتو"
+    },
+    {
+        "english_name": "Sagamihara",
+        "arabic_name": "ساغاميهارا، كاناغاوا"
+    },
+    {
+        "english_name": "Okayama",
+        "arabic_name": "أوكاياما، أوكاياما"
+    },
+    {
+        "english_name": "Edogawa",
+        "arabic_name": "إيدوغاوا"
+    },
+    {
+        "english_name": "Shizuoka",
+        "arabic_name": "شيزوكا"
+    },
+    {
+        "english_name": "Adachi",
+        "arabic_name": "أداتشي"
+    },
+    {
+        "english_name": "Kawaguchi",
+        "arabic_name": "كاواجوتشي"
+    },
+    {
+        "english_name": "Kagoshima",
+        "arabic_name": "كاغوشيما، كاغوشيما"
+    },
+    {
+        "english_name": "Itabashi",
+        "arabic_name": "إيتاباشي"
+    },
+    {
+        "english_name": "Suginami-ku",
+        "arabic_name": "سوغينامي"
+    },
+    {
+        "english_name": "Hachioji",
+        "arabic_name": "هاتشيؤوجي"
+    },
+    {
+        "english_name": "Himeji",
+        "arabic_name": "هيميجي، هيوغو"
+    },
+    {
+        "english_name": "Koto-ku",
+        "arabic_name": "كوتو"
+    },
+    {
+        "english_name": "Utsunomiya",
+        "arabic_name": "أوتسونوميا، توتشيغي"
+    },
+    {
+        "english_name": "Matsuyama",
+        "arabic_name": "ماتسوياما"
+    },
+    {
+        "english_name": "Matsudo",
+        "arabic_name": "ماتسودو"
+    },
+    {
+        "english_name": "Ichikawa",
+        "arabic_name": "ايشيكاوا تشيبا"
+    },
+    {
+        "english_name": "Higashi-osaka",
+        "arabic_name": "هيغاشي-أوساكا"
+    },
+    {
+        "english_name": "Kurashiki",
+        "arabic_name": "كوراشيكي"
+    },
+    {
+        "english_name": "Oita",
+        "arabic_name": "أويتا، أويتا"
+    },
+    {
+        "english_name": "Kanazawa",
+        "arabic_name": "كانازاوا، إيشيكاوا"
+    },
+    {
+        "english_name": "Fukuyama",
+        "arabic_name": "فوکویاما"
+    },
+    {
+        "english_name": "Amagasaki",
+        "arabic_name": "أماغاساكي، هيوغو"
+    },
+    {
+        "english_name": "Katsushika-ku",
+        "arabic_name": "كاتسوشيكا"
+    },
+    {
+        "english_name": "Fujisawa",
+        "arabic_name": "فوجيساوا، كاناغاوا"
+    },
+    {
+        "english_name": "Machida",
+        "arabic_name": "ماتشيدا"
+    },
+    {
+        "english_name": "Kashiwa",
+        "arabic_name": "كاشيوا"
+    },
+    {
+        "english_name": "Aomori",
+        "arabic_name": "آوموري، آوموري"
+    },
+    {
+        "english_name": "Toyota",
+        "arabic_name": "تويوتا"
+    },
+    {
+        "english_name": "Takamatsu",
+        "arabic_name": "تاكاماتسو، كاغاوا"
+    },
+    {
+        "english_name": "Shinagawa-ku",
+        "arabic_name": "شيناغاوا"
+    },
+    {
+        "english_name": "Toyama",
+        "arabic_name": "توياما، توياما"
+    },
+    {
+        "english_name": "Nagasaki",
+        "arabic_name": "ناغاساكي، ناغاساكي"
+    },
+    {
+        "english_name": "Gifu",
+        "arabic_name": "غيفو"
+    },
+    {
+        "english_name": "Toyonaka",
+        "arabic_name": "تويوناكا"
+    },
+    {
+        "english_name": "Miyazaki",
+        "arabic_name": "ميازاكي"
+    },
+    {
+        "english_name": "Hirakata",
+        "arabic_name": "هيراكاتا"
+    },
+    {
+        "english_name": "Yokosuka",
+        "arabic_name": "يوكوسوكا، كاناغاوا"
+    },
+    {
+        "english_name": "Okazaki",
+        "arabic_name": "أوكازاكي، آيتشي"
+    },
+    {
+        "english_name": "Ichinomiya",
+        "arabic_name": "إيتشينوميا، آيتشي"
+    },
+    {
+        "english_name": "Takasaki",
+        "arabic_name": "تاكاساكي"
+    },
+    {
+        "english_name": "Toyohashi",
+        "arabic_name": "تويوهاشي، آيتشي"
+    },
+    {
+        "english_name": "Nagano",
+        "arabic_name": "ناغانو"
+    },
+    {
+        "english_name": "Wakayama",
+        "arabic_name": "محافظة واكاياما"
+    },
+    {
+        "english_name": "Kita-ku",
+        "arabic_name": "كيتا"
+    },
+    {
+        "english_name": "Nara",
+        "arabic_name": "إدارة الأرشيف والوثائق الوطنية"
+    },
+    {
+        "english_name": "Shinjuku",
+        "arabic_name": "شينجوكو"
+    },
+    {
+        "english_name": "Takatsuki",
+        "arabic_name": "تاكاتسوكي"
+    },
+    {
+        "english_name": "Otsu",
+        "arabic_name": "أوتسو"
+    },
+    {
+        "english_name": "Koshigaya",
+        "arabic_name": "كوشيغايا"
+    },
+    {
+        "english_name": "Tokorozawa",
+        "arabic_name": "توكوروزاوا"
+    },
+    {
+        "english_name": "Iwaki",
+        "arabic_name": "لواكي"
+    },
+    {
+        "english_name": "Maebashi",
+        "arabic_name": "مايه-باشي"
+    },
+    {
+        "english_name": "Asahikawa",
+        "arabic_name": "أساهيكاوا"
+    },
+    {
+        "english_name": "Koriyama",
+        "arabic_name": "كورياما"
+    },
+    {
+        "english_name": "Kochi",
+        "arabic_name": "كوتشي"
+    },
+    {
+        "english_name": "Naha",
+        "arabic_name": "ناها، أوكيناوا"
+    },
+    {
+        "english_name": "Yokkaichi",
+        "arabic_name": "يوكايتشي"
+    },
+    {
+        "english_name": "Kasugai",
+        "arabic_name": "كاسوغاي، آيتشي"
+    },
+    {
+        "english_name": "Akita",
+        "arabic_name": "أكيتا، أكيتا"
+    },
+    {
+        "english_name": "Kurume",
+        "arabic_name": "كورومي، فوكوكا"
+    },
+    {
+        "english_name": "Toshima",
+        "arabic_name": "توشيما"
+    },
+    {
+        "english_name": "Morioka",
+        "arabic_name": "موريوكا، إيواته"
+    },
+    {
+        "english_name": "Meguro",
+        "arabic_name": "ميغورو"
+    },
+    {
+        "english_name": "Fukushima",
+        "arabic_name": "فوكوشيما"
+    },
+    {
+        "english_name": "Ibaraki",
+        "arabic_name": "إيباراكي"
+    },
+    {
+        "english_name": "Tsu",
+        "arabic_name": "جامعة تبليسي الحكومية"
+    },
+    {
+        "english_name": "Sumida",
+        "arabic_name": "سوميدا"
+    },
+    {
+        "english_name": "Ichihara",
+        "arabic_name": "إيتشيهارا"
+    },
+    {
+        "english_name": "Nagaoka",
+        "arabic_name": "ناغاوكا"
+    },
+    {
+        "english_name": "Fukui",
+        "arabic_name": "فوكوي، فوكوي"
+    }
+]

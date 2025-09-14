@@ -1,0 +1,250 @@
+[
+    {
+        "english_name": "Haifa",
+        "arabic_name": "حيفا"
+    },
+    {
+        "english_name": "Tel Aviv-Yafo",
+        "arabic_name": "تل أبيب"
+    },
+    {
+        "english_name": "Rishon LeZiyyon",
+        "arabic_name": "ريشون لتسيون"
+    },
+    {
+        "english_name": "Petah Tiqwa",
+        "arabic_name": "بتاح تكفا"
+    },
+    {
+        "english_name": "Ashdod",
+        "arabic_name": "أشدود"
+    },
+    {
+        "english_name": "Netanya",
+        "arabic_name": "نتانيا"
+    },
+    {
+        "english_name": "Beersheba",
+        "arabic_name": "بئر السبع"
+    },
+    {
+        "english_name": "Holon",
+        "arabic_name": "حولون"
+    },
+    {
+        "english_name": "Bene Beraq",
+        "arabic_name": "بني براك"
+    },
+    {
+        "english_name": "Ramat Gan",
+        "arabic_name": "رمات غان"
+    },
+    {
+        "english_name": "Ashqelon",
+        "arabic_name": "عسقلان"
+    },
+    {
+        "english_name": "Rehovot",
+        "arabic_name": "رحوفوت"
+    },
+    {
+        "english_name": "Bat Yam",
+        "arabic_name": "بات يام"
+    },
+    {
+        "english_name": "Bet Shemesh",
+        "arabic_name": "بيت شيمش"
+    },
+    {
+        "english_name": "Kefar Sava",
+        "arabic_name": "كفار سابا"
+    },
+    {
+        "english_name": "Hadera",
+        "arabic_name": "الخضيرة"
+    },
+    {
+        "english_name": "Herzliyya",
+        "arabic_name": "هرتسليا"
+    },
+    {
+        "english_name": "Nazareth",
+        "arabic_name": "نازارث"
+    },
+    {
+        "english_name": "Lod",
+        "arabic_name": "وودج"
+    },
+    {
+        "english_name": "Qiryat Gat",
+        "arabic_name": "كريات جات"
+    },
+    {
+        "english_name": "Afula",
+        "arabic_name": "العفولة"
+    },
+    {
+        "english_name": "Nahariyya",
+        "arabic_name": "نهاريا"
+    },
+    {
+        "english_name": "Givatayim",
+        "arabic_name": "جفعاتايم"
+    },
+    {
+        "english_name": "Hod HaSharon",
+        "arabic_name": "هود هشارون"
+    },
+    {
+        "english_name": "Rosh Ha`Ayin",
+        "arabic_name": "روش هاعين"
+    },
+    {
+        "english_name": "Qiryat Ata",
+        "arabic_name": "كريات آتا"
+    },
+    {
+        "english_name": "Umm el Fahm",
+        "arabic_name": "أم الفحم"
+    },
+    {
+        "english_name": "Eilat",
+        "arabic_name": "إيلات"
+    },
+    {
+        "english_name": "Ramat HaSharon",
+        "arabic_name": "رامات هاشارون"
+    },
+    {
+        "english_name": "Karmiel",
+        "arabic_name": "كرمئيل"
+    },
+    {
+        "english_name": "Tiberias",
+        "arabic_name": "طبريا"
+    },
+    {
+        "english_name": "Et Taiyiba",
+        "arabic_name": "الطيبة، المثلث"
+    },
+    {
+        "english_name": "Pardes Hanna Karkur",
+        "arabic_name": "برديس حنا-كركور"
+    },
+    {
+        "english_name": "Qiryat Mozqin",
+        "arabic_name": "كريات موصقين"
+    },
+    {
+        "english_name": "Qiryat Ono",
+        "arabic_name": "كريات أونو"
+    },
+    {
+        "english_name": "Shefar`am",
+        "arabic_name": "عين شفا عمرو"
+    },
+    {
+        "english_name": "Qiryat Bialik",
+        "arabic_name": "كريات بياليك"
+    },
+    {
+        "english_name": "Qiryat Yam",
+        "arabic_name": "كريات يام"
+    },
+    {
+        "english_name": "Or Yehuda",
+        "arabic_name": "أور يهودا"
+    },
+    {
+        "english_name": "Zefat",
+        "arabic_name": "صفد"
+    },
+    {
+        "english_name": "Dimona",
+        "arabic_name": "ديمونا"
+    },
+    {
+        "english_name": "Netivot",
+        "arabic_name": "نتيفوت"
+    },
+    {
+        "english_name": "Sakhnin",
+        "arabic_name": "سخنين"
+    },
+    {
+        "english_name": "Yehud",
+        "arabic_name": "يهودا"
+    },
+    {
+        "english_name": "Ofaqim",
+        "arabic_name": "أوفاكيم"
+    },
+    {
+        "english_name": "Kefar Yona",
+        "arabic_name": "كفار يونا"
+    },
+    {
+        "english_name": "Rama",
+        "arabic_name": "كريشنا"
+    },
+    {
+        "english_name": "Gedera",
+        "arabic_name": "غديرا"
+    },
+    {
+        "english_name": "Migdal Ha`Emeq",
+        "arabic_name": "مجدال هعيمق"
+    },
+    {
+        "english_name": "Arad",
+        "arabic_name": "أراد"
+    },
+    {
+        "english_name": "Nesher",
+        "arabic_name": "نيشير"
+    },
+    {
+        "english_name": "Ma`alot Tarshiha",
+        "arabic_name": "معالوت ترشيحا"
+    },
+    {
+        "english_name": "Qiryat Mal'akhi",
+        "arabic_name": "كريات ملاخي"
+    },
+    {
+        "english_name": "Sederot",
+        "arabic_name": "سديروت"
+    },
+    {
+        "english_name": "Qiryat Shemona",
+        "arabic_name": "كريات شمونة"
+    },
+    {
+        "english_name": "Gan Yavne",
+        "arabic_name": "جان يفني"
+    },
+    {
+        "english_name": "Tirat Karmel",
+        "arabic_name": "طيرة الكرمل"
+    },
+    {
+        "english_name": "Kafr Qasim",
+        "arabic_name": "كفر قاسم"
+    },
+    {
+        "english_name": "Qalansuwa",
+        "arabic_name": "قلنسوة"
+    },
+    {
+        "english_name": "Or `Aqiva",
+        "arabic_name": "أور عقيفا"
+    },
+    {
+        "english_name": "Majdal Shams",
+        "arabic_name": "مجدل شمس"
+    },
+    {
+        "english_name": "Atlit",
+        "arabic_name": "عتليت، حيفا"
+    }
+]

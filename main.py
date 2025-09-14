@@ -2,15 +2,16 @@
 
 """
 main.py
-
-نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة.
+نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
+
+__version__ = "0.38.0"
 
 import logging
 import sys
 from tkinter import messagebox
 import json
-
+from resource_helper import initialize_resources
 from config import LOG_FILE, SETTINGS_FILE, Translator
 from main_app_ui import EnhancedPrayerTimesApp
 from media_manager import NOTIFICATIONS_AVAILABLE
@@ -55,7 +56,7 @@ def main():
     logger = logging.getLogger(__name__)
     try:
         check_dependencies()       
-        app = EnhancedPrayerTimesApp()
+        app = EnhancedPrayerTimesApp(version=__version__)
         app.run()
         
     except Exception as e:
@@ -69,8 +70,9 @@ def main():
             
         translator = Translator(lang)
         _ = translator.get
-        logger.critical(f"خطأ فادح في التطبيق: {e}", exc_info=True)
+        logger.critical(f"خطأ فادح في التطبيق {e}", exc_info=True)
         messagebox.showerror(_("fatal_error"), f'{_("fatal_app_error")} \n{e}')
 
 if __name__ == "__main__":
+    initialize_resources()
     main()

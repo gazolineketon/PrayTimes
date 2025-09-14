@@ -1,0 +1,334 @@
+[
+    {
+        "english_name": "Warsaw",
+        "arabic_name": "وارسو"
+    },
+    {
+        "english_name": "Krakow",
+        "arabic_name": "كراكوف"
+    },
+    {
+        "english_name": "Gdansk",
+        "arabic_name": "غدانسك"
+    },
+    {
+        "english_name": "Wroclaw",
+        "arabic_name": "فروتسواف"
+    },
+    {
+        "english_name": "Lodz",
+        "arabic_name": "وودج"
+    },
+    {
+        "english_name": "Poznan",
+        "arabic_name": "بوزنان"
+    },
+    {
+        "english_name": "Szczecin",
+        "arabic_name": "شتتين"
+    },
+    {
+        "english_name": "Bydgoszcz",
+        "arabic_name": "بيدغوشتش"
+    },
+    {
+        "english_name": "Lublin",
+        "arabic_name": "لوبلين"
+    },
+    {
+        "english_name": "Bialystok",
+        "arabic_name": "بياويستوك"
+    },
+    {
+        "english_name": "Katowice",
+        "arabic_name": "كاتوفيتسه"
+    },
+    {
+        "english_name": "Gdynia",
+        "arabic_name": "غدينيا"
+    },
+    {
+        "english_name": "Zielona Gora",
+        "arabic_name": "جلونا غورا"
+    },
+    {
+        "english_name": "Czestochowa",
+        "arabic_name": "تشيستوخوفا"
+    },
+    {
+        "english_name": "Radom",
+        "arabic_name": "رادوم"
+    },
+    {
+        "english_name": "Torun",
+        "arabic_name": "تورون"
+    },
+    {
+        "english_name": "Rzeszow",
+        "arabic_name": "جيشوف"
+    },
+    {
+        "english_name": "Sosnowiec",
+        "arabic_name": "سوسنوفييتس"
+    },
+    {
+        "english_name": "Kielce",
+        "arabic_name": "كيلسي"
+    },
+    {
+        "english_name": "Gliwice",
+        "arabic_name": "غليفيتسه"
+    },
+    {
+        "english_name": "Olsztyn",
+        "arabic_name": "أولشتين"
+    },
+    {
+        "english_name": "Bielsko-Biala",
+        "arabic_name": "بييلسكو-بياوا"
+    },
+    {
+        "english_name": "Zabrze",
+        "arabic_name": "زابجه"
+    },
+    {
+        "english_name": "Bytom",
+        "arabic_name": "بيطوم"
+    },
+    {
+        "english_name": "Ruda Slaska",
+        "arabic_name": "رودا شلاسكا"
+    },
+    {
+        "english_name": "Rybnik",
+        "arabic_name": "ريبنيك"
+    },
+    {
+        "english_name": "Opole",
+        "arabic_name": "أوبولي"
+    },
+    {
+        "english_name": "Tychy",
+        "arabic_name": "تيتشي"
+    },
+    {
+        "english_name": "Gorzow Wielkopolski",
+        "arabic_name": "غورجوف ويلكوبولسكي"
+    },
+    {
+        "english_name": "Dabrowa Gornicza",
+        "arabic_name": "دابروفا غورنيزا"
+    },
+    {
+        "english_name": "Elblag",
+        "arabic_name": "البلنغ"
+    },
+    {
+        "english_name": "Plock",
+        "arabic_name": "بوتسك"
+    },
+    {
+        "english_name": "Tarnow",
+        "arabic_name": "تارنوف"
+    },
+    {
+        "english_name": "Koszalin",
+        "arabic_name": "كشالين"
+    },
+    {
+        "english_name": "Wloclawek",
+        "arabic_name": "فوتسوافك"
+    },
+    {
+        "english_name": "Walbrzych",
+        "arabic_name": "واوب جيخ"
+    },
+    {
+        "english_name": "Chorzow",
+        "arabic_name": "خوجوف"
+    },
+    {
+        "english_name": "Kalisz",
+        "arabic_name": "كاليش"
+    },
+    {
+        "english_name": "Legnica",
+        "arabic_name": "لغنيتسا"
+    },
+    {
+        "english_name": "Grudziadz",
+        "arabic_name": "غروجونتس"
+    },
+    {
+        "english_name": "Jaworzno",
+        "arabic_name": "يافورجنو"
+    },
+    {
+        "english_name": "Slupsk",
+        "arabic_name": "سووبسك"
+    },
+    {
+        "english_name": "Jastrzebie-Zdroj",
+        "arabic_name": "يزتشمبية ازدرويي"
+    },
+    {
+        "english_name": "Nowy Sacz",
+        "arabic_name": "نوفي ساكز"
+    },
+    {
+        "english_name": "Jelenia Gora",
+        "arabic_name": "جيلينيا جورا"
+    },
+    {
+        "english_name": "Siedlce",
+        "arabic_name": "سيدلس"
+    },
+    {
+        "english_name": "Myslowice",
+        "arabic_name": "ميسوفيتسه"
+    },
+    {
+        "english_name": "Pila",
+        "arabic_name": "المراجع المتداخلة"
+    },
+    {
+        "english_name": "Ostrow Wielkopolski",
+        "arabic_name": "اوسترو ولكوبوليسكي"
+    },
+    {
+        "english_name": "Lubin",
+        "arabic_name": "بلدة لوبن"
+    },
+    {
+        "english_name": "Konin",
+        "arabic_name": "كونين"
+    },
+    {
+        "english_name": "Piotrkow Trybunalski",
+        "arabic_name": "بيوتركوف تريبونالسكي"
+    },
+    {
+        "english_name": "Suwalki",
+        "arabic_name": "سووالكي"
+    },
+    {
+        "english_name": "Stargard Szczecinski",
+        "arabic_name": "ستارغارد"
+    },
+    {
+        "english_name": "Gniezno",
+        "arabic_name": "جنازنة"
+    },
+    {
+        "english_name": "Glogow",
+        "arabic_name": "غلوغو"
+    },
+    {
+        "english_name": "Leszno",
+        "arabic_name": "ليشنو"
+    },
+    {
+        "english_name": "Tarnowskie Gory",
+        "arabic_name": "تارنوفسكي غوري"
+    },
+    {
+        "english_name": "Lomza",
+        "arabic_name": "لومزا"
+    },
+    {
+        "english_name": "Elk",
+        "arabic_name": "إيلك"
+    },
+    {
+        "english_name": "Zamosc",
+        "arabic_name": "زاموشتش"
+    },
+    {
+        "english_name": "Chelm",
+        "arabic_name": "تشيلم"
+    },
+    {
+        "english_name": "Przemysl",
+        "arabic_name": "برزيميسل"
+    },
+    {
+        "english_name": "Tczew",
+        "arabic_name": "تكيف (مدينة)"
+    },
+    {
+        "english_name": "Stalowa Wola",
+        "arabic_name": "ستالووا وولا"
+    },
+    {
+        "english_name": "Tomaszow Mazowiecki",
+        "arabic_name": "توماشوف مازوفستسكي"
+    },
+    {
+        "english_name": "Kedzierzyn-Kozle",
+        "arabic_name": "كيدزيرزن كوزله"
+    },
+    {
+        "english_name": "Bedzin",
+        "arabic_name": "بنجن"
+    },
+    {
+        "english_name": "Biala Podlaska",
+        "arabic_name": "بيالا بودلاسكا"
+    },
+    {
+        "english_name": "Zgierz",
+        "arabic_name": "زجيرز"
+    },
+    {
+        "english_name": "Swidnica",
+        "arabic_name": "شويدنكتسا"
+    },
+    {
+        "english_name": "Piaseczno",
+        "arabic_name": "بياسيتشنو"
+    },
+    {
+        "english_name": "Raciborz",
+        "arabic_name": "راسيبورز"
+    },
+    {
+        "english_name": "Ostroleka",
+        "arabic_name": "استروينكا"
+    },
+    {
+        "english_name": "Swietochlowice",
+        "arabic_name": "شفينتوخوفيتسه"
+    },
+    {
+        "english_name": "Skierniewice",
+        "arabic_name": "سكرينفيتسه"
+    },
+    {
+        "english_name": "Starogard Gdanski",
+        "arabic_name": "ستاروغراد غرانسكي"
+    },
+    {
+        "english_name": "Wodzislaw Slaski",
+        "arabic_name": "فوجسواف شلانسكي"
+    },
+    {
+        "english_name": "Pulawy",
+        "arabic_name": "بولافي"
+    },
+    {
+        "english_name": "Tarnobrzeg",
+        "arabic_name": "تارنوبزج"
+    },
+    {
+        "english_name": "Radomsko",
+        "arabic_name": "رآدومسكو"
+    },
+    {
+        "english_name": "Kolobrzeg",
+        "arabic_name": "كووبجك"
+    },
+    {
+        "english_name": "Debica",
+        "arabic_name": "دبيتسا"
+    }
+]

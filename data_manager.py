@@ -2,7 +2,7 @@
 
 """
 data_manager.py
-يحتوي هذا الملف على الكلاسات والوظائف المسؤولة عن جلب وإدارة البيانات.
+يحتوي هذا الملف على الكلاسات والوظائف المسؤولة عن جلب وإدارة البيانات
 """
 
 import json
@@ -11,9 +11,12 @@ import pickle
 import requests
 from datetime import datetime, date
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 
-from config import COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, WORLD_CITIES_DIR
+from config import (
+    COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, 
+    WORLD_CITIES_DIR, COUNTRIES_FILE
+)
 
 logger = logging.getLogger(__name__)
 
@@ -26,36 +29,53 @@ def get_countries() -> list[tuple[str, str]]:
             logger.info("تم تحميل قائمة الدول من الملف المؤقت")
             return countries
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل قائمة الدول من الملف المؤقت: {e}")
+            logger.error(f"خطأ في تحميل قائمة الدول من الملف المؤقت {e}")
+
+    local_countries_map = {}
+    if COUNTRIES_FILE.exists():
+        try:
+            with open(COUNTRIES_FILE, 'r', encoding='utf-8') as f:
+                local_countries_data = json.load(f)
+                local_countries_map = {item[0]: item[1] for item in local_countries_data}
+        except (json.JSONDecodeError, IOError) as e:
+            logger.error(f"خطأ في تحميل ملف countries.json {e}")
 
     try:
         response = requests.get("https://restcountries.com/v3.1/all?fields=name,translations", timeout=10)
         response.raise_for_status()
         countries_data = response.json()
-        
+
         countries = []
         for country in countries_data:
             english_name = country.get('name', {}).get('common')
             arabic_name = country.get('translations', {}).get('ara', {}).get('common')
-            
+
+            if not arabic_name and english_name in local_countries_map:
+                arabic_name = local_countries_map[english_name]
+
             if english_name:
                 countries.append((english_name, arabic_name if arabic_name else english_name))
 
         countries = sorted(countries, key=lambda x: x[1])
-        
+
         try:
             with open(COUNTRIES_CACHE_FILE, 'w', encoding='utf-8') as f:
                 json.dump(countries, f, ensure_ascii=False, indent=2)
             logger.info("تم حفظ قائمة الدول في الملف المؤقت")
         except IOError as e:
-            logger.error(f"خطأ في حفظ قائمة الدول في الملف المؤقت: {e}")
+            logger.error(f"خطأ في حفظ قائمة الدول في الملف المؤقت {e}")
 
         logger.info("تم جلب قائمة الدول بنجاح من المصدر")
         return countries
 
     except requests.exceptions.RequestException as e:
-        logger.error(f"خطأ في جلب الدول: {e}")
-        return []
+        logger.error(f"خطأ في جلب الدول {e}")
+        countries = []
+        if local_countries_map:
+            for eng, ara in local_countries_map.items():
+                countries.append((eng, ara))
+            countries = sorted(countries, key=lambda x: x[1])
+        return countries
 
 def get_cities(country_name: str) -> list[tuple[str, str]]:
     """جلب قائمة المدن من API وترجمتها من الملفات المحلية"""
@@ -67,7 +87,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
             logger.info(f"تم تحميل قائمة المدن لـ {country_name} من الملف المؤقت")
             return cities
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل قائمة المدن لـ {country_name} من الملف المؤقت: {e}")
+            logger.error(f"خطأ في تحميل قائمة المدن لـ {country_name} من الملف المؤقت {e}")
 
     # API جلب المدن من
     try:
@@ -78,7 +98,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
         if not english_names:
             return []
     except requests.exceptions.RequestException as e:
-        logger.error(f"خطأ في جلب المدن لـ {country_name} من API: {e}")
+        logger.error(f"خطأ في جلب المدن لـ {country_name} من API {e}")
         return []
 
     # جلب الترجمة المحلية
@@ -90,7 +110,7 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
                 translation_data = json.load(f)
             translation_map = {city.get('english_name', '').lower(): city.get('arabic_name', '') for city in translation_data}
         except (json.JSONDecodeError, IOError) as e:
-            logger.error(f"خطأ في تحميل ملف الترجمة المحلي لـ {country_name}: {e}")
+            logger.error(f"خطأ في تحميل ملف الترجمة المحلي لـ {country_name} {e}")
 
     # ترجمة وعمل قائمة المدن
     cities = []
@@ -106,10 +126,36 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
             json.dump(cities, f, ensure_ascii=False, indent=2)
         logger.info(f"تم حفظ قائمة المدن المترجمة لـ {country_name} في الملف المؤقت")
     except IOError as e:
-        logger.error(f"خطأ في حفظ قائمة المدن لـ {country_name} في الملف المؤقت: {e}")
+        logger.error(f"خطأ في حفظ قائمة المدن لـ {country_name} في الملف المؤقت {e}")
 
     logger.info(f"تم جلب وترجمة قائمة المدن لـ {country_name} بنجاح")
     return cities
+
+def get_coordinates_for_city(city: str, country: str) -> Optional[Tuple[float, float]]:
+    """
+    Get coordinates (latitude, longitude) for a city using Nominatim API.
+    """
+    try:
+        url = f"https://nominatim.openstreetmap.org/search"
+        params = {'q': f'{city}, {country}', 'format': 'json', 'limit': 1}
+        headers = {'User-Agent': 'PrayerTimesApp/2.0'} # Nominatim requires a User-Agent
+        response = requests.get(url, params=params, timeout=10, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        if data:
+            lat = float(data[0]['lat'])
+            lon = float(data[0]['lon'])
+            logger.info(f"Coordinates for {city}, {country}: ({lat}, {lon})")
+            return lat, lon
+        else:
+            logger.warning(f"Could not find coordinates for {city}, {country}")
+            return None
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Error fetching coordinates for {city}, {country} {e}")
+        return None
+    except (KeyError, IndexError, ValueError) as e:
+        logger.error(f"Error parsing coordinates for {city}, {country} {e}")
+        return None
 
 class CacheManager:
     """مدير البيانات المؤقتة"""    

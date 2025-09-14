@@ -1,2 +1,15 @@
 /settings.json
 /__pycache__
+/logs
+/cache
+*.pkl
+/build
+/dist
+main.spec
+requirements.txt
+PrayTimesApp.spec
+.gitignore
+main_updated.spec
+PrayerTimes.spec
+.vscode/settings.json
+settings.json

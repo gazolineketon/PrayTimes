@@ -1,0 +1,366 @@
+[
+    {
+        "english_name": "Tehran",
+        "arabic_name": "طهران"
+    },
+    {
+        "english_name": "Mashhad",
+        "arabic_name": "مشهد"
+    },
+    {
+        "english_name": "Esfahan",
+        "arabic_name": "أصفهان"
+    },
+    {
+        "english_name": "Karaj",
+        "arabic_name": "كرج"
+    },
+    {
+        "english_name": "Shiraz",
+        "arabic_name": "شيراز"
+    },
+    {
+        "english_name": "Tabriz",
+        "arabic_name": "تبريز"
+    },
+    {
+        "english_name": "Ahvaz",
+        "arabic_name": "الأهواز"
+    },
+    {
+        "english_name": "Qom",
+        "arabic_name": "قم"
+    },
+    {
+        "english_name": "Kermanshah",
+        "arabic_name": "كرمانشاه"
+    },
+    {
+        "english_name": "Kerman",
+        "arabic_name": "كرمان"
+    },
+    {
+        "english_name": "Orumiyeh",
+        "arabic_name": "مطار أورمية شهيد بكري الدولي"
+    },
+    {
+        "english_name": "Rasht",
+        "arabic_name": "رشت"
+    },
+    {
+        "english_name": "Bahar",
+        "arabic_name": "البحر"
+    },
+    {
+        "english_name": "Zahedan",
+        "arabic_name": "زاهدان"
+    },
+    {
+        "english_name": "Hamadan",
+        "arabic_name": "همدان"
+    },
+    {
+        "english_name": "Yazd",
+        "arabic_name": "يزد"
+    },
+    {
+        "english_name": "Ardabil",
+        "arabic_name": "أردبيل"
+    },
+    {
+        "english_name": "Bandar `Abbas",
+        "arabic_name": "بندر عباس"
+    },
+    {
+        "english_name": "Eslamshahr",
+        "arabic_name": "إسلام شهر"
+    },
+    {
+        "english_name": "Sanandaj",
+        "arabic_name": "سنندج"
+    },
+    {
+        "english_name": "Qazvin",
+        "arabic_name": "قزوين"
+    },
+    {
+        "english_name": "Zanjan",
+        "arabic_name": "زنجان"
+    },
+    {
+        "english_name": "Gorgan",
+        "arabic_name": "جرجان"
+    },
+    {
+        "english_name": "Kashan",
+        "arabic_name": "كاشان"
+    },
+    {
+        "english_name": "Malard",
+        "arabic_name": "ملارد"
+    },
+    {
+        "english_name": "Maragheh",
+        "arabic_name": "مراغة"
+    },
+    {
+        "english_name": "Sarta",
+        "arabic_name": "سرطة"
+    },
+    {
+        "english_name": "Dezful",
+        "arabic_name": "دزفول"
+    },
+    {
+        "english_name": "Babol",
+        "arabic_name": "بابل"
+    },
+    {
+        "english_name": "Qa'em Shahr",
+        "arabic_name": "قائم شهر"
+    },
+    {
+        "english_name": "Khomeyni Shahr",
+        "arabic_name": "خميني شهر"
+    },
+    {
+        "english_name": "Sabzevar",
+        "arabic_name": "سبزوار"
+    },
+    {
+        "english_name": "Andimeshk",
+        "arabic_name": "انديمشك"
+    },
+    {
+        "english_name": "Pakdasht",
+        "arabic_name": "باكدشت"
+    },
+    {
+        "english_name": "Najafabad",
+        "arabic_name": "نجف آباد"
+    },
+    {
+        "english_name": "Borujerd",
+        "arabic_name": "بروجرد"
+    },
+    {
+        "english_name": "Qarchak",
+        "arabic_name": "قرتشك"
+    },
+    {
+        "english_name": "Bojnurd",
+        "arabic_name": "بجنورد"
+    },
+    {
+        "english_name": "Varamin",
+        "arabic_name": "ورامين"
+    },
+    {
+        "english_name": "Bandar-e Bushehr",
+        "arabic_name": "بوشهر"
+    },
+    {
+        "english_name": "Neyshabur",
+        "arabic_name": "نيسابور"
+    },
+    {
+        "english_name": "Saveh",
+        "arabic_name": "ساوة"
+    },
+    {
+        "english_name": "Birjand",
+        "arabic_name": "بیرجند"
+    },
+    {
+        "english_name": "Nasim Shahr",
+        "arabic_name": "نسيم شهر"
+    },
+    {
+        "english_name": "Khorramabad",
+        "arabic_name": "خرم آباد"
+    },
+    {
+        "english_name": "Bukan",
+        "arabic_name": "بوكان"
+    },
+    {
+        "english_name": "Shahr-e Kord",
+        "arabic_name": "شهركرد"
+    },
+    {
+        "english_name": "Semnan",
+        "arabic_name": "سمنان"
+    },
+    {
+        "english_name": "Fardis",
+        "arabic_name": "فرديس"
+    },
+    {
+        "english_name": "Sirjan",
+        "arabic_name": "سيرجان"
+    },
+    {
+        "english_name": "Shahin Shahr",
+        "arabic_name": "شاهين شهر"
+    },
+    {
+        "english_name": "Malayer",
+        "arabic_name": "ملاير"
+    },
+    {
+        "english_name": "Mahabad",
+        "arabic_name": "مهاباد"
+    },
+    {
+        "english_name": "Saqqez",
+        "arabic_name": "سقز"
+    },
+    {
+        "english_name": "Shahrud",
+        "arabic_name": "شاهرود"
+    },
+    {
+        "english_name": "Khodabandeh",
+        "arabic_name": "مقاطعة خدابنده"
+    },
+    {
+        "english_name": "Bandar-e Mahshahr",
+        "arabic_name": "معشور"
+    },
+    {
+        "english_name": "Rafsanjan",
+        "arabic_name": "رفسنجان"
+    },
+    {
+        "english_name": "Borazjan",
+        "arabic_name": "برازجان"
+    },
+    {
+        "english_name": "Gonbad-e Kavus",
+        "arabic_name": "كنبد كاووس"
+    },
+    {
+        "english_name": "Marvdasht",
+        "arabic_name": "مرودشت"
+    },
+    {
+        "english_name": "Quchan",
+        "arabic_name": "قوتشان"
+    },
+    {
+        "english_name": "Jahrom",
+        "arabic_name": "جهرم"
+    },
+    {
+        "english_name": "Kamalshahr",
+        "arabic_name": "كمال شهر"
+    },
+    {
+        "english_name": "Torbat-e Heydariyeh",
+        "arabic_name": "تربت حيدريه"
+    },
+    {
+        "english_name": "Marivan",
+        "arabic_name": "مريوان"
+    },
+    {
+        "english_name": "Shahreza",
+        "arabic_name": "شهرضا"
+    },
+    {
+        "english_name": "Zabol",
+        "arabic_name": "زابل"
+    },
+    {
+        "english_name": "Khorramshahr",
+        "arabic_name": "المحمرة"
+    },
+    {
+        "english_name": "Marand",
+        "arabic_name": "مرند"
+    },
+    {
+        "english_name": "Jiroft",
+        "arabic_name": "جيروفت"
+    },
+    {
+        "english_name": "Salmas",
+        "arabic_name": "سلماس"
+    },
+    {
+        "english_name": "Bam",
+        "arabic_name": "بامبرغ"
+    },
+    {
+        "english_name": "Behbahan",
+        "arabic_name": "بهبهان"
+    },
+    {
+        "english_name": "Dorud",
+        "arabic_name": "دورود"
+    },
+    {
+        "english_name": "Nazarabad",
+        "arabic_name": "نظر أباد"
+    },
+    {
+        "english_name": "Bandar-e Anzali",
+        "arabic_name": "بندر أنزلي"
+    },
+    {
+        "english_name": "Fasa",
+        "arabic_name": "فسا"
+    },
+    {
+        "english_name": "Baneh",
+        "arabic_name": "بطم أطلسي"
+    },
+    {
+        "english_name": "Yasuj",
+        "arabic_name": "ياسوج"
+    },
+    {
+        "english_name": "Chabahar",
+        "arabic_name": "جابهار"
+    },
+    {
+        "english_name": "Robat Karim",
+        "arabic_name": "رباط كريم"
+    },
+    {
+        "english_name": "Kashmar",
+        "arabic_name": "كاشمر"
+    },
+    {
+        "english_name": "Shushtar",
+        "arabic_name": "تستر"
+    },
+    {
+        "english_name": "Ahar",
+        "arabic_name": "أهر"
+    },
+    {
+        "english_name": "Masjed Soleyman",
+        "arabic_name": "مسجد سليمان"
+    },
+    {
+        "english_name": "Torbat-e Jam",
+        "arabic_name": "تربت جام"
+    },
+    {
+        "english_name": "Abhar",
+        "arabic_name": "أبهر"
+    },
+    {
+        "english_name": "Mianeh",
+        "arabic_name": "ميانه"
+    },
+    {
+        "english_name": "Do Gonbadan",
+        "arabic_name": "دوغنبدان"
+    },
+    {
+        "english_name": "Kazerun",
+        "arabic_name": "كازرون"
+    }
+]
