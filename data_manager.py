@@ -9,9 +9,10 @@ import json
 import logging
 import pickle
 import requests
-from datetime import datetime, date
+import time
+from datetime import datetime, date, timedelta
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Dict, Any
 
 from config import (
     COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, CACHE_DIR, 
@@ -131,30 +132,79 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
     logger.info(f"تم جلب وترجمة قائمة المدن لـ {country_name} بنجاح")
     return cities
 
+# مسار ملف تخزين الإحداثيات
+COORDINATES_CACHE_FILE = CACHE_DIR / "coordinates_cache.json"
+
 def get_coordinates_for_city(city: str, country: str) -> Optional[Tuple[float, float]]:
     """
-    Get coordinates (latitude, longitude) for a city using Nominatim API.
+    الحصول على إحداثيات (خط العرض، خط الطول) لمدينة باستخدام Nominatim API
+    مع تخزين النتائج مؤقتًا لتحسين الأداء وتقليل عدد الطلبات
     """
+    # التحقق أولاً من التخزين المؤقت
+    coords_cache = {}
+    cache_key = f"{city.lower()}_{country.lower()}"
+    
+    if COORDINATES_CACHE_FILE.exists():
+        try:
+            with open(COORDINATES_CACHE_FILE, 'r', encoding='utf-8') as f:
+                coords_cache = json.load(f)
+                
+            # إذا كانت الإحداثيات موجودة في التخزين المؤقت، استخدمها
+            if cache_key in coords_cache:
+                cached_coords = coords_cache[cache_key]
+                logger.info(f"إحداثيات {city}, {country} تم جلبها من التخزين المؤقت: ({cached_coords[0]}, {cached_coords[1]})")
+                return cached_coords[0], cached_coords[1]
+        except (json.JSONDecodeError, IOError) as e:
+            logger.error(f"خطأ في قراءة ملف الإحداثيات المخزنة: {e}")
+            # استمر في محاولة الحصول على الإحداثيات من API
+    
+    # إذا لم تكن الإحداثيات في التخزين المؤقت، استعلم من API
     try:
-        url = f"https://nominatim.openstreetmap.org/search"
+        url = "https://nominatim.openstreetmap.org/search"
         params = {'q': f'{city}, {country}', 'format': 'json', 'limit': 1}
-        headers = {'User-Agent': 'PrayerTimesApp/2.0'} # Nominatim requires a User-Agent
-        response = requests.get(url, params=params, timeout=10, headers=headers)
-        response.raise_for_status()
+        headers = {'User-Agent': 'PrayerTimesApp/2.0'}  # Nominatim يتطلب User-Agent
+        
+        # محاولة الاستعلام مع إعادة المحاولة
+        max_retries = 2
+        retry_delay = 2  # ثواني
+        
+        for attempt in range(max_retries + 1):
+            try:
+                response = requests.get(url, params=params, timeout=10, headers=headers)
+                response.raise_for_status()
+                break  # خروج من الحلقة إذا نجح الطلب
+            except requests.exceptions.RequestException as e:
+                if attempt < max_retries:
+                    logger.warning(f"فشل الاتصال (المحاولة {attempt+1}/{max_retries+1}). إعادة المحاولة بعد {retry_delay} ثوانٍ...")
+                    time.sleep(retry_delay)
+                    retry_delay *= 2  # مضاعفة وقت الانتظار مع كل محاولة
+                else:
+                    raise  # إعادة رفع الاستثناء بعد استنفاد جميع المحاولات
+        
         data = response.json()
         if data:
             lat = float(data[0]['lat'])
             lon = float(data[0]['lon'])
-            logger.info(f"Coordinates for {city}, {country}: ({lat}, {lon})")
+            logger.info(f"إحداثيات {city}, {country}: ({lat}, {lon})")
+            
+            # تخزين الإحداثيات في الذاكرة المؤقتة
+            coords_cache[cache_key] = (lat, lon)
+            try:
+                with open(COORDINATES_CACHE_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(coords_cache, f, ensure_ascii=False, indent=2)
+                logger.info(f"تم تخزين إحداثيات {city}, {country} في ملف التخزين المؤقت")
+            except IOError as e:
+                logger.error(f"خطأ في حفظ ملف الإحداثيات المخزنة: {e}")
+            
             return lat, lon
         else:
-            logger.warning(f"Could not find coordinates for {city}, {country}")
+            logger.warning(f"لم يتم العثور على إحداثيات لـ {city}, {country}")
             return None
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error fetching coordinates for {city}, {country} {e}")
+        logger.error(f"خطأ في جلب إحداثيات {city}, {country}: {e}")
         return None
     except (KeyError, IndexError, ValueError) as e:
-        logger.error(f"Error parsing coordinates for {city}, {country} {e}")
+        logger.error(f"خطأ في تحليل إحداثيات {city}, {country}: {e}")
         return None
 
 class CacheManager:
@@ -192,20 +242,51 @@ class CacheManager:
         return None
     
     def cleanup_old_cache(self):
-        """تنظيف البيانات المؤقتة القديمة"""
+        """
+        تنظيف البيانات المؤقتة القديمة
+        يشمل ملفات مواقيت الصلاة وبيانات الإحداثيات القديمة
+        """
         try:
             today = date.today()
+            cache_count = 0
+            
+            # تنظيف ملفات مواقيت الصلاة القديمة
             for cache_file in self.cache_dir.glob("prayer_*.pkl"):
                 try:
                     # استخراج التاريخ من اسم الملف
                     parts = cache_file.stem.split('_')
                     if len(parts) >= 4:
                         file_date_str = parts[-1]
-                        file_date = date.fromisoformat(file_date_str)
-                        if file_date < today:
-                            cache_file.unlink()
-                            logger.info(f"تم حذف الملف المؤقت القديم {cache_file}")
+                        try:
+                            file_date = date.fromisoformat(file_date_str)
+                            if file_date < today:
+                                cache_file.unlink()
+                                cache_count += 1
+                                logger.debug(f"تم حذف الملف المؤقت القديم {cache_file}")
+                        except ValueError:
+                            # إذا كان التاريخ غير صالح، تحقق من وقت التعديل
+                            file_mtime = datetime.fromtimestamp(cache_file.stat().st_mtime).date()
+                            if file_mtime < today - timedelta(days=3):  # أقدم من 3 أيام
+                                cache_file.unlink()
+                                cache_count += 1
+                                logger.debug(f"تم حذف الملف المؤقت القديم (بناءً على وقت التعديل) {cache_file}")
                 except Exception as e:
-                    logger.error(f"خطأ في حذف الملف {cache_file} {e}")
+                    logger.error(f"خطأ في معالجة الملف {cache_file}: {e}")
+            
+            # تنظيف ملف الإحداثيات المخزنة إذا كان قديمًا جدًا
+            if COORDINATES_CACHE_FILE.exists():
+                file_mtime = datetime.fromtimestamp(COORDINATES_CACHE_FILE.stat().st_mtime).date()
+                # تحقق من آخر تحديث - إذا كان أقدم من 30 يومًا، قم بحذفه
+                if file_mtime < today - timedelta(days=30):
+                    try:
+                        COORDINATES_CACHE_FILE.unlink()
+                        cache_count += 1
+                        logger.info(f"تم حذف ملف الإحداثيات المخزنة القديم")
+                    except Exception as e:
+                        logger.error(f"خطأ في حذف ملف الإحداثيات المخزنة: {e}")
+            
+            if cache_count > 0:
+                logger.info(f"تم تنظيف {cache_count} ملفات مؤقتة قديمة")
+            
         except Exception as e:
-            logger.error(f"خطأ في تنظيف البيانات المؤقتة {e}")
+            logger.error(f"خطأ في تنظيف البيانات المؤقتة: {e}")

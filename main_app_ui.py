@@ -17,13 +17,28 @@ import threading
 
 # التسجيل
 logger = logging.getLogger(__name__)
-try:
-    from pystray import Icon as TrayIcon, Menu as TrayMenu, MenuItem as TrayMenuItem
-    from PIL import Image, ImageDraw
-    PYSTRAY_AVAILABLE = True
-except ImportError:
-    PYSTRAY_AVAILABLE = False
-    logger.warning("pystray or Pillow is not available - tray icon functionality is disabled")
+# تأجيل استيراد pystray و PIL حتى يتم استخدامهما فعلياً
+PYSTRAY_AVAILABLE = False
+TrayIcon = None
+TrayMenu = None
+TrayMenuItem = None
+PIL_Image = None
+PIL_ImageDraw = None
+
+def _import_pystray_and_pil():
+    """استيراد pystray و PIL عند الحاجة"""
+    global PYSTRAY_AVAILABLE, TrayIcon, TrayMenu, TrayMenuItem, PIL_Image, PIL_ImageDraw
+    if not PYSTRAY_AVAILABLE:
+        try:
+            from pystray import Icon as TrayIcon, Menu as TrayMenu, MenuItem as TrayMenuItem
+            from PIL import Image, ImageDraw
+            PIL_Image = Image
+            PIL_ImageDraw = ImageDraw
+            PYSTRAY_AVAILABLE = True
+        except ImportError:
+            PYSTRAY_AVAILABLE = False
+            logger.warning("pystray or Pillow is not available - tray icon functionality is disabled")
+    return PYSTRAY_AVAILABLE
 
 from config import Translator
 from settings_manager import Settings
@@ -33,6 +48,7 @@ from media_manager import AdhanPlayer, NotificationManager, NOTIFICATIONS_AVAILA
 from ui_components import SettingsDialog
 from qibla_ui import QiblaWidget
 from resource_helper import get_working_path
+from cleanup_hook import cleanup_pyinstaller
 
 logger = logging.getLogger(__name__)
 
@@ -360,18 +376,110 @@ class EnhancedPrayerTimesApp:
         
         self.executor.submit(api_task)
     
-    def robust_api_call(self, url: str, params: dict, retries: int = 3):
-        """استدعاء API مع إعادة المحاولة"""
+    # تخزين مؤقت للاستجابات السابقة لتحسين الأداء
+    _api_response_cache = {}
+    _MAX_CACHE_SIZE = 20
+    
+    def robust_api_call(self, url: str, params: dict, retries: int = 3, cache_ttl: int = 3600):
+        """
+        استدعاء API مع إعادة المحاولة وتحسين معالجة الأخطاء وتخزين مؤقت ذكي
+        
+        :param url: عنوان URL للـ API
+        :param params: معاملات الطلب
+        :param retries: عدد محاولات إعادة المحاولة
+        :param cache_ttl: مدة صلاحية التخزين المؤقت بالثواني (الافتراضي: ساعة واحدة)
+        :return: استجابة API كـ JSON أو None في حالة الفشل
+        """
+        # إنشاء مفتاح للتخزين المؤقت
+        cache_key = f"{url}:{str(sorted(params.items()))}"
+        current_time = time.time()
+        
+        # التحقق من التخزين المؤقت
+        if cache_key in self._api_response_cache:
+            cached_data, timestamp = self._api_response_cache[cache_key]
+            if current_time - timestamp < cache_ttl:
+                logger.debug(f"استخدام استجابة مخزنة مؤقتًا لـ {url}")
+                return cached_data
+        
+        # استراتيجية التأخير التدريجي
+        backoff_strategy = [1, 2, 5, 10, 20]  # بالثواني
+        last_exception = None
+        error_details = []
+        
+        # محاولات الاتصال مع إعادة المحاولة
         for attempt in range(retries):
             try:
-                response = requests.get(url, params=params, timeout=15)
-                response.raise_for_status()
-                return response.json()
-            except requests.exceptions.RequestException as e:
-                logger.warning(f"محاولة {attempt + 1} فشلت {e}")
-                if attempt == retries - 1:
-                    raise e
-                time.sleep(2 ** attempt)
+                # استخدام مهلة أقصر للمحاولات اللاحقة لتسريع فشل الاتصال
+                timeout = max(3, 10 - attempt * 2)
+                
+                logger.info(f"إرسال طلب {url} (المحاولة {attempt+1}/{retries}، مهلة={timeout}ث)")
+                
+                response = requests.get(url, params=params, timeout=timeout)
+                response.raise_for_status()  # إثارة استثناء للرموز 4xx/5xx
+                
+                json_response = response.json()
+                
+                # التحقق من صحة البيانات (يمكن أن تختلف حسب API المستخدم)
+                if not json_response or not isinstance(json_response, dict):
+                    raise ValueError("استجابة API غير صالحة")
+                
+                # تخزين النتيجة الناجحة في التخزين المؤقت
+                self._api_response_cache[cache_key] = (json_response, current_time)
+                
+                # إزالة العناصر القديمة من التخزين المؤقت إذا تجاوز الحجم المسموح به
+                if len(self._api_response_cache) > self._MAX_CACHE_SIZE:
+                    oldest_key = min(self._api_response_cache.keys(), 
+                                     key=lambda k: self._api_response_cache[k][1])
+                    del self._api_response_cache[oldest_key]
+                
+                return json_response
+                
+            except requests.exceptions.Timeout as e:
+                error_msg = f"انتهت مهلة الاتصال: {str(e)}"
+                last_exception = e
+                error_details.append(error_msg)
+                logger.warning(f"انتهت مهلة اتصال API (المحاولة {attempt+1}/{retries}): {error_msg}")
+                
+            except requests.exceptions.ConnectionError as e:
+                error_msg = f"خطأ في الاتصال: {str(e)}"
+                last_exception = e
+                error_details.append(error_msg)
+                logger.warning(f"خطأ في اتصال API (المحاولة {attempt+1}/{retries}): {error_msg}")
+                
+            except requests.exceptions.HTTPError as e:
+                error_msg = f"خطأ HTTP {e.response.status_code}: {str(e)}"
+                last_exception = e
+                error_details.append(error_msg)
+                logger.warning(f"خطأ HTTP في API (المحاولة {attempt+1}/{retries}): {error_msg}")
+                
+                # لا داعي لإعادة المحاولة مع بعض أخطاء HTTP
+                if hasattr(e, 'response') and e.response.status_code in [400, 401, 403, 404]:
+                    break
+                    
+            except Exception as e:
+                error_msg = f"خطأ غير متوقع: {str(e)}"
+                last_exception = e
+                error_details.append(error_msg)
+                logger.warning(f"خطأ غير متوقع في API (المحاولة {attempt+1}/{retries}): {error_msg}")
+            
+            # الانتظار قبل إعادة المحاولة باستخدام استراتيجية التأخير التدريجي
+            if attempt < retries - 1:
+                backoff_time = backoff_strategy[min(attempt, len(backoff_strategy)-1)]
+                logger.info(f"انتظار {backoff_time} ثوانٍ قبل إعادة المحاولة")
+                time.sleep(backoff_time)
+        
+        # إرجاع بيانات مخزنة مؤقتًا قديمة إذا كانت متوفرة (في حالة عدم الاتصال)
+        if cache_key in self._api_response_cache:
+            logger.warning("استخدام بيانات مخزنة سابقًا منتهية الصلاحية (وضع عدم الاتصال)")
+            return self._api_response_cache[cache_key][0]
+        
+        # تسجيل الخطأ النهائي
+        error_summary = "; ".join(error_details)
+        logger.error(f"فشلت جميع محاولات الاتصال بـ API: {error_summary}")
+        
+        if last_exception:
+            raise last_exception
+            
         return None
     
     
@@ -544,17 +652,18 @@ class EnhancedPrayerTimesApp:
         self.update_countdown()
     
     def update_countdown(self):
-        """تحديث العد التنازلي"""
+        """تحديث العد التنازلي بكفاءة أفضل"""
         if not hasattr(self, '_countdown_running') or not self._countdown_running:
             return
         
         if not self.current_city or self.current_city not in self.prayer_data:
             if self.root.winfo_exists() and self._countdown_running:
-                self.root.after(1000, self.update_countdown)
+                # تأخير أطول إذا لم تكن هناك بيانات متاحة
+                self.root.after(10000, self.update_countdown)
             return
         
         now = datetime.now()
-        current_minutes = now.hour * 60 + now.minute
+        current_seconds = now.hour * 3600 + now.minute * 60 + now.second
         city_data = self.prayer_data[self.current_city]
         
         prayers_orig = [
@@ -567,47 +676,75 @@ class EnhancedPrayerTimesApp:
         ]
         
         next_prayer = None
-        next_prayer_minutes = None
+        next_prayer_seconds = None
         
+        # تحويل أوقات الصلوات إلى ثوانٍ
         for name, time_str in prayers_orig:
             prayer_minutes = self.time_to_minutes(time_str)
-            if prayer_minutes > current_minutes:
+            prayer_seconds = prayer_minutes * 60
+            if prayer_seconds > current_seconds:
                 next_prayer = name
-                next_prayer_minutes = prayer_minutes
+                next_prayer_seconds = prayer_seconds
                 break
+                
         # إذا كانت الصلاة القادمة هي الفجر في اليوم التالي
         if next_prayer is None:
             next_prayer = self._('fajr')
-            next_prayer_minutes = self.time_to_minutes(prayers_orig[0][1]) + 24 * 60
+            next_prayer_seconds = self.time_to_minutes(prayers_orig[0][1]) * 60 + 24 * 3600
         
-        remaining_minutes = next_prayer_minutes - current_minutes
-        hours = remaining_minutes // 60
-        minutes = remaining_minutes % 60
+        remaining_seconds = next_prayer_seconds - current_seconds
+        hours = remaining_seconds // 3600
+        minutes = (remaining_seconds % 3600) // 60
+        seconds = remaining_seconds % 60
         
-        if hours > 0:
-            countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {hours} {self._("hour")} و {minutes} {self._("minute")}'
+        # تحديث النص فقط إذا كان الوقت المتبقي قد تغير بشكل ملحوظ
+        if hasattr(self, '_last_remaining_time') and abs(self._last_remaining_time - remaining_seconds) < 1:
+            # إذا كان التغيير أقل من ثانية، لا تحدث تغييرًا في الواجهة
+            pass
         else:
-            countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {minutes} {self._("minute")}'
+            self._last_remaining_time = remaining_seconds
+            
+            # عرض الساعات والدقائق فقط إذا كان الوقت المتبقي كبيرًا
+            if hours > 0:
+                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {hours} {self._("hour")} و {minutes} {self._("minute")}'
+            elif minutes > 0:
+                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {minutes} {self._("minute")}'
+            else:
+                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {seconds} {self._("second")}'
+            
+            if remaining_seconds <= 300: # 5 دقائق
+                color = self.colors['error']
+            elif remaining_seconds <= 1800: # 30 دقيقة
+                color = self.colors['warning']
+            else:
+                color = self.colors['success']
+            
+            self.countdown_label.config(text=countdown_text, fg=color)
         
-        if remaining_minutes <= 5: color = self.colors['error']
-        elif remaining_minutes <= 30: color = self.colors['warning']
-        else: color = self.colors['success']
-        
-        self.countdown_label.config(text=countdown_text, fg=color)
+        # تحديد فترة التحديث القادم بناءً على الوقت المتبقي
+        if remaining_seconds < 60:  # آخر دقيقة: تحديث كل ثانية
+            update_interval = 1000
+        elif remaining_seconds < 300:  # آخر 5 دقائق: تحديث كل 5 ثوانٍ
+            update_interval = 5000
+        elif remaining_seconds < 1800:  # آخر 30 دقيقة: تحديث كل 15 ثانية
+            update_interval = 15000
+        else:  # أكثر من 30 دقيقة: تحديث كل دقيقة
+            update_interval = 60000
         
         if self.root.winfo_exists() and self._countdown_running:
-            self.root.after(1000, self.update_countdown)
+            self.root.after(update_interval, self.update_countdown)
     
     def check_prayer_notifications(self):
-        """فحص وإرسال إشعارات الصلوات"""
+        """فحص وإرسال إشعارات الصلوات بكفاءة أفضل"""
         if not self.settings.notifications_enabled or not NOTIFICATIONS_AVAILABLE:
             return
         
-        now = datetime.now()
-        current_time = now.strftime("%H:%M")
-        
         if not self.current_city or self.current_city not in self.prayer_data:
             return
+        
+        now = datetime.now()
+        current_time_str = now.strftime("%H:%M")
+        current_seconds = now.hour * 3600 + now.minute * 60 + now.second
         
         city_data = self.prayer_data[self.current_city]
         prayers = [
@@ -618,18 +755,42 @@ class EnhancedPrayerTimesApp:
             (self._('isha'), city_data['isha_orig'])
         ]
         
+        # تتبع الوقت المتبقي حتى الإشعار أو الأذان التالي لتحديد وقت الفحص القادم
+        next_notification_seconds = 24 * 3600  # القيمة الافتراضية هي يوم كامل
+        
         for prayer_name, prayer_time_str in prayers:
+            # تحويل وقت الصلاة إلى كائن datetime
             prayer_datetime = datetime.strptime(prayer_time_str.split()[0], "%I:%M")
             if (prayer_time_str.endswith('م') or prayer_time_str.endswith('PM')) and prayer_datetime.hour != 12:
                 prayer_datetime = prayer_datetime.replace(hour=prayer_datetime.hour + 12)
             elif (prayer_time_str.endswith('ص') or prayer_time_str.endswith('AM')) and prayer_datetime.hour == 12:
                 prayer_datetime = prayer_datetime.replace(hour=0)
             
+            # حساب وقت الإشعار المسبق
             notification_time = prayer_datetime - timedelta(minutes=self.settings.notification_before_minutes)
             notification_time_str = notification_time.strftime("%H:%M")
             
-            if current_time == notification_time_str:
-                if prayer_name not in self.last_notification_time or self.last_notification_time[prayer_name] != current_time:
+            # حساب الثواني المتبقية حتى الإشعار
+            notification_seconds = notification_time.hour * 3600 + notification_time.minute * 60
+            if notification_seconds < current_seconds:
+                notification_seconds += 24 * 3600  # إضافة يوم كامل إذا كان الوقت في اليوم التالي
+            seconds_until_notification = notification_seconds - current_seconds
+            
+            # حساب الثواني المتبقية حتى وقت الصلاة
+            prayer_seconds = prayer_datetime.hour * 3600 + prayer_datetime.minute * 60
+            if prayer_seconds < current_seconds:
+                prayer_seconds += 24 * 3600  # إضافة يوم كامل إذا كان الوقت في اليوم التالي
+            seconds_until_prayer = prayer_seconds - current_seconds
+            
+            # تحديث وقت الإشعار التالي
+            next_notification_seconds = min(next_notification_seconds, seconds_until_notification, seconds_until_prayer)
+            
+            # التحقق من وقت الإشعار المسبق
+            if current_time_str == notification_time_str:
+                # منع تكرار الإشعارات في نفس الدقيقة
+                notification_key = f"pre_{prayer_name}"
+                if notification_key not in self.last_notification_time or self.last_notification_time[notification_key] != current_time_str:
+                    logger.info(f"إرسال إشعار قبل صلاة {prayer_name}")
                     self.notification_manager.send_notification(
                         self._("prayer_notification_alert"),
                         self._("minutes_remaining_for_prayer", minutes=self.settings.notification_before_minutes, prayer_name=prayer_name),
@@ -641,11 +802,15 @@ class EnhancedPrayerTimesApp:
                             self.adhan_player.play_sound(sound_file, self.settings.sound_volume)
                         else:
                             self.adhan_player.play_sound('sounds/notification.wav', self.settings.sound_volume)
-                    self.last_notification_time[prayer_name] = current_time
+                    self.last_notification_time[notification_key] = current_time_str
             
-            prayer_time_24 = prayer_datetime.strftime("%H:%M")
-            if current_time == prayer_time_24:
-                if f"{prayer_name}_adhan" not in self.last_notification_time or self.last_notification_time[f"{prayer_name}_adhan"] != current_time:
+            # التحقق من وقت الصلاة الفعلي
+            prayer_time_str = prayer_datetime.strftime("%H:%M")
+            if current_time_str == prayer_time_str:
+                # منع تكرار الأذان في نفس الدقيقة
+                prayer_key = f"adhan_{prayer_name}"
+                if prayer_key not in self.last_notification_time or self.last_notification_time[prayer_key] != current_time_str:
+                    logger.info(f"إرسال أذان لصلاة {prayer_name}")
                     self.notification_manager.send_notification(
                         self._("prayer_time"),
                         self._("its_time_for_prayer", prayer_name=prayer_name),
@@ -659,7 +824,25 @@ class EnhancedPrayerTimesApp:
                         else:
                             self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
                     
-                    self.last_notification_time[f"{prayer_name}_adhan"] = current_time
+                    self.last_notification_time[prayer_key] = current_time_str
+        
+        # جدولة الفحص التالي بناءً على الوقت المتبقي للإشعار أو الأذان القادم
+        if next_notification_seconds < 60:  # أقل من دقيقة
+            # فحص كل 10 ثوانٍ عندما يكون الوقت قريبًا جدًا
+            next_check = 10000
+        elif next_notification_seconds < 300:  # أقل من 5 دقائق
+            # فحص كل 30 ثانية عندما يكون الوقت قريبًا
+            next_check = 30000
+        elif next_notification_seconds < 1800:  # أقل من 30 دقيقة
+            # فحص كل دقيقة
+            next_check = 60000
+        else:
+            # فحص كل 5 دقائق عندما يكون الوقت بعيدًا
+            next_check = 300000
+        
+        # جدولة الفحص التالي فقط إذا كان التطبيق لا يزال قيد التشغيل
+        if self.root.winfo_exists() and self.running:
+            self.root.after(next_check, self.check_prayer_notifications)
     
     def update_next_prayer(self):
         """تمييز الصلاة القادمة"""
@@ -726,25 +909,60 @@ class EnhancedPrayerTimesApp:
             self.hijri_month_label.config(text=hijri_month)
             self.hijri_year_label.config(text=hijri_year)
     
+    # تخزين مؤقت لتحويلات الوقت لتحسين الأداء
+    _time_conversion_cache = {}
+    _MAX_TIME_CACHE_SIZE = 50
+    
     def time_to_minutes(self, time_str: str) -> int:
-        """تحويل الوقت إلى دقائق"""
+        """
+        تحويل الوقت إلى دقائق مع تحسين معالجة الأخطاء وتخزين النتائج للاستخدام المتكرر
+        
+        :param time_str: سلسلة الوقت بتنسيق "HH:MM AM/PM" أو "HH:MM ص/م"
+        :return: الوقت محولاً إلى دقائق (من 0 إلى 1439)
+        """
+        # التحقق من التخزين المؤقت أولاً للتحسين
+        if time_str in self._time_conversion_cache:
+            return self._time_conversion_cache[time_str]
+            
+        if not time_str:
+            logger.warning("محاولة تحويل سلسلة وقت فارغة إلى دقائق")
+            return 0
+            
         try:
+            # توحيد تنسيق السلسلة للتخزين المؤقت الفعّال
             time_str = time_str.strip().upper()
             match = re.match(r'(\d{1,2}):(\d{2})\s*(AM|PM|ص|م)', time_str)
             
             if not match:
+                logger.warning(f"تنسيق وقت غير صحيح: {time_str}")
                 return 0
                 
             hours, minutes, period = int(match.group(1)), int(match.group(2)), match.group(3)
             
+            # تحقق من صحة الوقت
+            if hours < 0 or hours > 12 or minutes < 0 or minutes > 59:
+                logger.warning(f"قيم وقت غير صالحة: الساعات={hours}, الدقائق={minutes}")
+                return 0
+                
+            # تحويل الوقت من نظام 12 ساعة إلى نظام 24 ساعة
             if (period == 'م' or period == 'PM') and hours != 12:
                 hours += 12
             elif (period == 'ص' or period == 'AM') and hours == 12:
                 hours = 0
+            
+            # حساب الدقائق الكلية
+            total_minutes = hours * 60 + minutes
+            
+            # تخزين النتيجة في التخزين المؤقت
+            if len(self._time_conversion_cache) >= self._MAX_TIME_CACHE_SIZE:
+                # حذف عنصر عشوائي إذا امتلأ التخزين المؤقت
+                self._time_conversion_cache.pop(next(iter(self._time_conversion_cache)))
                 
-            return hours * 60 + minutes
+            self._time_conversion_cache[time_str] = total_minutes
+            return total_minutes
+            
         except Exception as e:
-            logger.error(f"خطأ في تحويل الوقت {time_str} {e}")
+            logger.error(f"خطأ في تحويل الوقت {time_str}: {e}")
             return 0
     
     def show_loading(self):
@@ -761,21 +979,86 @@ class EnhancedPrayerTimesApp:
             self.loading_label.pack_forget()
     
     def start_auto_update(self):
-        """بدء التحديث التلقائي"""
+        """بدء التحديث التلقائي مع فترات تكيفية"""
         def scheduled_update():
             try:
-                if self.root.winfo_exists():
-                    self.update_time_display_realtime()
-                    self.update_next_prayer()
-                    self.check_prayer_notifications()
-                    
-                    # إعادة جدولة التحديث التالي
-                    self.root.after(self.settings.auto_update_interval * 1000, scheduled_update)
+                if not self.root.winfo_exists() or not self.running:
+                    return
+                
+                # حساب الفترة المناسبة للتحديث التالي
+                next_update_interval = self._calculate_optimal_update_interval()
+                
+                # تحديث عناصر الواجهة المطلوبة
+                self.update_time_display_realtime()
+                self.update_next_prayer()
+                
+                # لا داعي لاستدعاء check_prayer_notifications هنا لأنه يدير الجدولة الخاصة به
+                
+                # إعادة جدولة التحديث التالي بناءً على الفترة المحسوبة
+                self.root.after(next_update_interval, scheduled_update)
             except Exception as e:
                 logger.error(f"خطأ في حلقة التحديث {e}", exc_info=True)
 
-        # بدء التحديث الأولي
-        self.root.after(self.settings.auto_update_interval * 1000, scheduled_update)
+        # بدء نظام التحديث وفحص الإشعارات
+        self.root.after(1000, scheduled_update)  # بدء التحديث بعد ثانية واحدة
+        self.check_prayer_notifications()  # بدء نظام الإشعارات منفصلاً
+    
+    def _calculate_optimal_update_interval(self):
+        """حساب الفترة المثلى للتحديث بناءً على حالة التطبيق"""
+        # التحديث الافتراضي كل 60 ثانية
+        default_interval = 60000  # 60 ثانية
+        
+        if not self.current_city or self.current_city not in self.prayer_data:
+            return default_interval
+        
+        now = datetime.now()
+        current_seconds = now.hour * 3600 + now.minute * 60 + now.second
+        
+        # الحصول على وقت الصلاة التالية
+        next_prayer_seconds = None
+        prayers_orig = []
+        
+        try:
+            city_data = self.prayer_data[self.current_city]
+            prayers_orig = [
+                (self._('fajr'), city_data['fajr_orig']),
+                (self._('sunrise'), city_data['sunrise_orig']),
+                (self._('dhuhr'), city_data['dhuhr_orig']),
+                (self._('asr'), city_data['asr_orig']),
+                (self._('maghrib'), city_data['maghrib_orig']),
+                (self._('isha'), city_data['isha_orig'])
+            ]
+            
+            # حساب الوقت المتبقي للصلاة التالية
+            for name, time_str in prayers_orig:
+                prayer_minutes = self.time_to_minutes(time_str)
+                prayer_seconds = prayer_minutes * 60
+                if prayer_seconds > current_seconds:
+                    next_prayer_seconds = prayer_seconds
+                    break
+            
+            # إذا لم نجد صلاة تالية، فالصلاة التالية هي صلاة الفجر في اليوم التالي
+            if next_prayer_seconds is None and prayers_orig:
+                next_prayer_seconds = self.time_to_minutes(prayers_orig[0][1]) * 60 + 24 * 3600
+        except Exception as e:
+            logger.warning(f"خطأ في حساب فترة التحديث المثلى: {e}")
+            return default_interval
+        
+        if next_prayer_seconds is None:
+            return default_interval
+        
+        # حساب الثواني المتبقية للصلاة التالية
+        seconds_until_next_prayer = next_prayer_seconds - current_seconds
+        
+        # تحديد فترة التحديث المثلى بناءً على الوقت المتبقي
+        if seconds_until_next_prayer < 60:  # أقل من دقيقة
+            return 1000  # تحديث كل ثانية
+        elif seconds_until_next_prayer < 300:  # أقل من 5 دقائق
+            return 5000  # تحديث كل 5 ثوانٍ
+        elif seconds_until_next_prayer < 1800:  # أقل من 30 دقيقة
+            return 15000  # تحديث كل 15 ثانية
+        else:
+            return 60000  # تحديث كل دقيقة
     
     def update_time_display_realtime(self):
         """تحديث عرض الوقت الحقيقي"""
@@ -789,10 +1072,12 @@ class EnhancedPrayerTimesApp:
             self.time_sync_label.config(text=self._("date_label", date_str=date_str))
     
     def check_connection(self):
-        """فحص حالة الاتصال بشكل دوري"""
+        """فحص حالة الاتصال بشكل دوري مع تحسين الكفاءة"""
         def connection_test():
+            check_interval = 5 * 60  # فحص كل 5 دقائق بدلاً من كل دقيقة
             while self.running:
                 try:
+                    # استخدام موقع خفيف لفحص الاتصال
                     response = requests.get("https://www.google.com", timeout=5)
                     self.is_online = response.status_code == 200
                 except requests.exceptions.RequestException:
@@ -804,7 +1089,8 @@ class EnhancedPrayerTimesApp:
                 if self.root.winfo_exists():
                     self.root.after(0, self.update_connection_status)
                 
-                for _ in range(60):
+                # استخدام فترات زمنية أقصر للفحص إذا تم إيقاف التطبيق
+                for _ in range(check_interval):
                     if not self.running:
                         break
                     time.sleep(1)
@@ -939,7 +1225,7 @@ class EnhancedPrayerTimesApp:
 
     def setup_tray_icon(self):
         """إعداد أيقونة شريط المهام"""
-        if not PYSTRAY_AVAILABLE:
+        if not _import_pystray_and_pil():
             return
 
         menu = TrayMenu(
@@ -948,11 +1234,11 @@ class EnhancedPrayerTimesApp:
         )
 
         try:
-            image = Image.open(get_working_path("pray_times.ico"))
+            image = PIL_Image.open(get_working_path("pray_times.ico"))
         except FileNotFoundError:
             logger.warning("pray_times.ico not found, creating a default tray icon.")
-            image = Image.new('RGB', (64, 64), 'black')
-            draw = ImageDraw.Draw(image)
+            image = PIL_Image.new('RGB', (64, 64), 'black')
+            draw = PIL_ImageDraw.Draw(image)
             draw.rectangle((0, 0, 63, 63), fill='black', outline='white')
             draw.text((25, 20), 'P', fill='white')
 
@@ -986,12 +1272,13 @@ class EnhancedPrayerTimesApp:
                 self.adhan_player.stop_sound()
             
             if hasattr(self, 'executor'):
-                self.executor.shutdown(wait=False, cancel_futures=True)
+                self.executor.shutdown(wait=True)
             
-            self.cache_manager.cleanup_old_cache()
+            # cleanup_old_cache تم استدعاؤه بالفعل عند بدء التطبيق
             
             self.settings.save_settings()
             
+            # cleanup_pyinstaller يتم استدعاؤه تلقائيًا عبر atexit
             logger.info("تم إغلاق التطبيق بنجاح")
             
         except Exception as e:

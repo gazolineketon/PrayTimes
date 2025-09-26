@@ -56,12 +56,14 @@ class AdhanPlayer:
     """مشغل أصوات الأذان"""
     def __init__(self):
         self.player = None
-    
+        import atexit
+        atexit.register(self.stop_sound)
+
     def play_sound(self, sound_file: str, volume: float = 0.7):
         """تشغيل ملف صوتي باستخدام مكتبة vlc مع التحكم الكامل"""
         try:
             import vlc
-            if self.player:
+            if self.player and self.player.is_playing():
                 self.stop_sound()
 
             # إذا لم يكن المسار مطلقاً، افترض أنه نسبي لمجلد المشروع
@@ -92,6 +94,7 @@ class AdhanPlayer:
         """إيقاف تشغيل الصوت عبر vlc"""
         if self.player:
             self.player.stop()
+            self.player.release()
             self.player = None
             logger.info("تم إيقاف الصوت")
 

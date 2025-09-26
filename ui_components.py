@@ -7,13 +7,31 @@ SettingsDialog يحتوي هذا الملف على أجزاء الواجهة ا�
 
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
-from PIL import ImageTk, Image
+import ctypes
+
+# تأجيل استيراد PIL حتى يتم استخدامه فعلياً
+PIL_AVAILABLE = False
+PIL_ImageTk = None
+PIL_Image = None
+
+def _import_pil():
+    """استيراد PIL عند الحاجة"""
+    global PIL_AVAILABLE, PIL_ImageTk, PIL_Image
+    if not PIL_AVAILABLE:
+        try:
+            from PIL import ImageTk, Image
+            PIL_ImageTk = ImageTk
+            PIL_Image = Image
+            PIL_AVAILABLE = True
+        except ImportError:
+            PIL_AVAILABLE = False
+    return PIL_AVAILABLE
 from config import CALCULATION_METHODS, CALCULATION_METHODS_REV, CALCULATION_METHODS_EN, CALCULATION_METHODS_EN_REV
 from data_manager import get_cities
 from settings_manager import Settings
 from qibla_ui import QiblaWidget
 from media_manager import AdhanPlayer
-from resource_helper import get_working_path, get_sounds_dir
+from resource_helper import get_working_path
 
 class SettingsDialog:
     """نافذة الإعدادات"""
@@ -97,14 +115,17 @@ class SettingsDialog:
         logo_frame.grid(row=0, column=0, sticky='s')
 
         # تحميل وعرض الشعار
-        try:
-            img = Image.open(get_working_path("pray_logo.png"))
-            img = img.resize((128, 128), Image.LANCZOS)
-            self.logo_img = ImageTk.PhotoImage(img)
-            
-            logo_label = tk.Label(logo_frame, image=self.logo_img, bg=self.colors.get('bg_secondary', '#FFFFFF'))
-            logo_label.pack(pady=(20, 10))
-        except FileNotFoundError:
+        if _import_pil():
+            try:
+                img = PIL_Image.open(get_working_path("pray_logo.png"))
+                img = img.resize((128, 128), PIL_Image.LANCZOS)
+                self.logo_img = PIL_ImageTk.PhotoImage(img)
+
+                logo_label = tk.Label(logo_frame, image=self.logo_img, bg=self.colors.get('bg_secondary', '#FFFFFF'))
+                logo_label.pack(pady=(20, 10))
+            except FileNotFoundError:
+                tk.Label(logo_frame, text=self._("logo_not_found"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack(pady=(20, 10))
+        else:
             tk.Label(logo_frame, text=self._("logo_not_found"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack(pady=(20, 10))
 
         # عرض معلومات البرنامج
@@ -408,7 +429,7 @@ class SettingsDialog:
         
         filename = filedialog.askopenfilename(
             title=self._("select_adhan_file"),
-            initialdir=get_sounds_dir(),
+            initialdir=get_working_path('sounds'),
             filetypes=file_types
         )
         
@@ -445,7 +466,7 @@ class SettingsDialog:
         
         filename = filedialog.askopenfilename(
             title=self._("select_notification_file"),
-            initialdir=get_sounds_dir(),
+            initialdir=get_working_path('sounds'),
             filetypes=file_types
         )
         
@@ -521,6 +542,61 @@ class SettingsDialog:
         
         self.show_restart_dialog()
     
+    def _perform_restart(self, dialog):
+        """
+        تنفيذ إعادة تشغيل التطبيق باستخدام restart.py للاستقرار
+        """
+        import sys
+        import os
+        import subprocess
+        import logging
+        import traceback
+
+        logger = logging.getLogger(__name__)
+        logger.info("بدء عملية إعادة تشغيل التطبيق باستخدام restart.py...")
+
+        dialog.destroy()
+
+        try:
+            # احصل على PID الحالي ومسار التنفيذ
+            parent_pid = os.getpid()
+
+            # تحديد المسار الصحيح للتطبيق
+            if getattr(sys, 'frozen', False):
+                # للملفات التنفيذية المجمدة (exe)
+                app_path = sys.executable
+                logger.info(f"مسار الملف التنفيذي المجمد: {app_path}")
+            else:
+                # للبرامج النصية العادية
+                app_path = os.path.abspath(sys.argv[0])
+                logger.info(f"مسار البرنامج النصي: {app_path}")
+
+            # مسار restart.py
+            restart_script = os.path.join(os.path.dirname(app_path), 'restart.py')
+            logger.info(f"مسار برنامج إعادة التشغيل: {restart_script}")
+
+            # تشغيل restart.py في خلفية منفصلة
+            logger.info(f"تشغيل برنامج إعادة التشغيل: {sys.executable} {restart_script} {app_path} {parent_pid}")
+
+            if sys.platform == "win32":
+                # في Windows، استخدام أعلام خاصة
+                CREATE_NO_WINDOW = 0x08000000
+                subprocess.Popen([sys.executable, restart_script, app_path, str(parent_pid)],
+                                creationflags=CREATE_NO_WINDOW)
+            else:
+                subprocess.Popen([sys.executable, restart_script, app_path, str(parent_pid)])
+
+            logger.info("تم تشغيل برنامج إعادة التشغيل بنجاح، إغلاق التطبيق الحالي...")
+
+            # إغلاق التطبيق الحالي
+            self.parent.quit_application()
+
+        except Exception as e:
+            error_msg = f"خطأ في إعادة تشغيل التطبيق: {e}"
+            logger.error(error_msg)
+            logger.error(traceback.format_exc())
+            messagebox.showerror(self._("error"), f"{self._('restart_error')}: {str(e)}")
+
     # عرض مربع حوار لإعادة التشغيل
     def show_restart_dialog(self):
         dialog = tk.Toplevel(self.parent.root)
@@ -543,20 +619,8 @@ class SettingsDialog:
         buttons_frame = tk.Frame(dialog)
         buttons_frame.pack(pady=10)
 
-        # إعادة تشغيل التطبيق
         def restart():
-            import sys
-            import os
-            import subprocess
-
-            dialog.destroy()
-            
-            main_py_path = os.path.abspath(sys.argv[0])
-            restart_py_path = os.path.join(os.path.dirname(main_py_path), "restart.py")
-
-            subprocess.Popen([sys.executable, restart_py_path, main_py_path])
-
-            self.parent.quit_application()
+            self._perform_restart(dialog)
 
         def continue_later():
             dialog.destroy()
@@ -592,18 +656,7 @@ class SettingsDialog:
         buttons_frame.pack(pady=10)
 
         def restart():
-            import sys
-            import os
-            import subprocess
-
-            dialog.destroy()
-            
-            main_py_path = os.path.abspath(sys.argv[0])
-            restart_py_path = os.path.join(os.path.dirname(main_py_path), "restart.py")
-
-            subprocess.Popen([sys.executable, restart_py_path, main_py_path])
-
-            self.parent.quit_application()
+            self._perform_restart(dialog)
 
         restart_button = ttk.Button(buttons_frame, text=self._("restart_now"), command=restart)
         restart_button.pack(padx=10)

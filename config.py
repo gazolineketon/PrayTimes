@@ -295,7 +295,23 @@ CALCULATION_METHODS_EN = {
 CALCULATION_METHODS_EN_REV = {v: k for k, v in CALCULATION_METHODS_EN.items()}
 
 # تحديد المسار الجذري للمشروع لضمان استقلالية المسارات
-APP_DATA_DIR = Path(get_working_path('.'))
+# استخدام المجلد الدائم بدلاً من المجلد المؤقت
+def get_app_data_directory():
+    """الحصول على مجلد البيانات الدائم للتطبيق"""
+    import os
+    import sys
+    
+    if sys.platform.startswith('win'):
+        app_data = os.environ.get('APPDATA', '')
+        app_dir = os.path.join(app_data, 'PrayTimes')
+    else:
+        home = os.path.expanduser('~')
+        app_dir = os.path.join(home, '.praytimes')
+    
+    return Path(app_dir)
+
+# استخدام المجلد الدائم للبيانات
+APP_DATA_DIR = get_app_data_directory()
 
 # المسارات للملفات والمجلدات الرئيسية
 SETTINGS_FILE = APP_DATA_DIR / 'settings.json'
@@ -308,10 +324,21 @@ CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
 WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
 SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
-# تأكد من وجود مجلدات التخزين المؤقت والسجلات
-CACHE_DIR.mkdir(exist_ok=True)
-CITIES_CACHE_DIR.mkdir(exist_ok=True)
-LOG_DIR.mkdir(exist_ok=True)
+def initialize_app_directories():
+    """إنشاء المجلدات اللازمة للتطبيق"""
+    # إنشاء المجلد الرئيسي للتطبيق
+    APP_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    
+    # تأكد من وجود مجلدات التخزين المؤقت والسجلات
+    CACHE_DIR.mkdir(exist_ok=True)
+    CITIES_CACHE_DIR.mkdir(exist_ok=True)
+    LOG_DIR.mkdir(exist_ok=True)
+    
+    # إنشاء مجلد الأصوات إذا لم يكن موجوداً
+    SOUNDS_DIR.mkdir(exist_ok=True)
+    
+    # إنشاء مجلد مدن العالم إذا لم يكن موجوداً
+    WORLD_CITIES_DIR.mkdir(exist_ok=True)
 
 class Translator:
     def __init__(self, language="ar"):
