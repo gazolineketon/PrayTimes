@@ -4,7 +4,7 @@ import sys
 from PyInstaller.building.build_main import Analysis, PYZ, EXE
 from PyInstaller.utils.hooks import collect_dynamic_libs
 
-# Disable pkg_resources runtime hook to prevent setuptools interference
+# تعطيل خطاف تشغيل pkg_resources لمنع تدخل setuptools
 os.environ['PYINSTALLER_NO_PKG_RESOURCES'] = '1'
 
 # التحقق من وجود الملفات قبل إضافتها

@@ -1,19 +1,19 @@
 # hook-pkg_resources.py
-# Disable pkg_resources hook to prevent setuptools interference
+# تعطيل خطاف pkg_resources لمنع تدخل setuptools
 
 from PyInstaller.utils.hooks import collect_submodules, collect_data_files
 
-# Don't collect any pkg_resources submodules
+# لا تقم بجمع أي وحدات فرعية لـ pkg_resources
 hiddenimports = []
 
-# Don't collect any data files
+# لا تقم بجمع أي ملفات بيانات
 datas = []
 
-# Disable the pkg_resources runtime hook
+# تعطيل خطاف تشغيل pkg_resources
 excludedimports = ['pkg_resources']
 
 def pre_safe_import_module(api):
-    # Block pkg_resources imports during analysis
+    # حظر استيراد pkg_resources أثناء التحليل
     if api.__name__ == 'pkg_resources':
         return None
     return api
