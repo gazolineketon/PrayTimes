@@ -6,6 +6,7 @@ config.py
 """
 
 from pathlib import Path
+import tempfile
 from resource_helper import get_working_path
 
 # ترجمات النصوص المستخدمة في التطبيق
@@ -295,7 +296,23 @@ CALCULATION_METHODS_EN = {
 CALCULATION_METHODS_EN_REV = {v: k for k, v in CALCULATION_METHODS_EN.items()}
 
 # تحديد المسار الجذري للمشروع لضمان استقلالية المسارات
-APP_DATA_DIR = Path(get_working_path('.'))
+# استخدام المجلد الدائم بدلاً من المجلد المؤقت
+def get_app_data_directory():
+    """الحصول على مجلد البيانات الدائم للتطبيق"""
+    import os
+    import sys
+    
+    if sys.platform.startswith('win'):
+        app_data = os.environ.get('APPDATA', '')
+        app_dir = os.path.join(app_data, 'PrayTimes')
+    else:
+        home = os.path.expanduser('~')
+        app_dir = os.path.join(home, '.praytimes')
+    
+    return Path(app_dir)
+
+# استخدام المجلد الدائم للبيانات
+APP_DATA_DIR = get_app_data_directory()
 
 # المسارات للملفات والمجلدات الرئيسية
 SETTINGS_FILE = APP_DATA_DIR / 'settings.json'
@@ -308,10 +325,46 @@ CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
 WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
 SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
-# تأكد من وجود مجلدات التخزين المؤقت والسجلات
-CACHE_DIR.mkdir(exist_ok=True)
-CITIES_CACHE_DIR.mkdir(exist_ok=True)
-LOG_DIR.mkdir(exist_ok=True)
+def initialize_app_directories():
+    """إنشاء المجلدات اللازمة للتطبيق"""
+    global APP_DATA_DIR, SETTINGS_FILE, CACHE_DIR, LOG_DIR, LOG_FILE, COUNTRIES_FILE, COUNTRIES_CACHE_FILE, CITIES_CACHE_DIR, WORLD_CITIES_DIR, SOUNDS_DIR
+
+    try:
+        # إنشاء المجلد الرئيسي للتطبيق
+        APP_DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+        # اختبار صلاحية الكتابة
+        test_file = APP_DATA_DIR / 'test_write.tmp'
+        test_file.write_text('test')
+        test_file.unlink()
+
+    except (OSError, PermissionError) as e:
+        # الرجوع إلى مجلد المنزل للأنظمة منخفضة الصلاحية
+        import os
+        APP_DATA_DIR = Path(os.path.expanduser('~')) / 'PrayTimes'
+        APP_DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+        # تحديث المسارات التابعة
+        SETTINGS_FILE = APP_DATA_DIR / 'settings.json'
+        CACHE_DIR = APP_DATA_DIR / 'cache'
+        LOG_DIR = APP_DATA_DIR / 'logs'
+        LOG_FILE = LOG_DIR / 'prayer_app.log'
+        COUNTRIES_FILE = APP_DATA_DIR / 'countries.json'
+        COUNTRIES_CACHE_FILE = CACHE_DIR / 'countries.json'
+        CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
+        WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
+        SOUNDS_DIR = APP_DATA_DIR / 'sounds'
+
+    # تأكد من وجود مجلدات التخزين المؤقت والسجلات
+    CACHE_DIR.mkdir(exist_ok=True)
+    CITIES_CACHE_DIR.mkdir(exist_ok=True)
+    LOG_DIR.mkdir(exist_ok=True)
+
+    # إنشاء مجلد الأصوات إذا لم يكن موجوداً
+    SOUNDS_DIR.mkdir(exist_ok=True)
+
+    # إنشاء مجلد مدن العالم إذا لم يكن موجوداً
+    WORLD_CITIES_DIR.mkdir(exist_ok=True)
 
 class Translator:
     def __init__(self, language="ar"):

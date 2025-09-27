@@ -28,9 +28,29 @@ def update_version():
             # كتابة المحتوى الجديد إلى main.py
             main_py_path.write_text(new_content, encoding='utf-8')
             
-            print(f"Successfully updated version to {new_version}")
+            print(f"Successfully updated version in main.py to {new_version}")
         else:
             print("Error: __version__ variable not found in main.py")
+        
+        # المسار لـ README.md
+        readme_path = Path(__file__).parent / 'README.md'
+        if readme_path.exists():
+            readme_content = readme_path.read_text(encoding='utf-8')
+            
+            # Regex لتحديث شارة الإصدار
+            readme_pattern = re.compile(r'(https://img.shields.io/badge/Version-)[\d.]+(-orange\.svg)')
+            if readme_pattern.search(readme_content):
+                # استبدال الإصدار القديم بالجديد
+                new_readme_content = readme_pattern.sub(rf'\g<1>{new_version}\g<2>', readme_content)
+                
+                # كتابة المحتوى المحدث إلى README.md
+                readme_path.write_text(new_readme_content, encoding='utf-8')
+                
+                print(f"Successfully updated version in README.md to {new_version}")
+            else:
+                print("Warning: Version badge not found in README.md")
+        else:
+            print("Warning: README.md not found.")
 
     except FileNotFoundError:
         print("Error: 'git' command not found. Make sure Git is installed and in your PATH.")
