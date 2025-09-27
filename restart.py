@@ -97,9 +97,9 @@ def restart_app():
         logger.info(f"معرف العملية الأم: {parent_pid}")
 
         # انتظار انتهاء العملية الأم
-        max_wait_seconds = 15  # زيادة وقت الانتظار لـ PyInstaller
+        max_wait_seconds = 30  # زيادة وقت الانتظار لـ PyInstaller على الأجهزة منخفضة الصلاحية
         logger.info("انتظار انتهاء العملية الأم...")
-        
+
         wait_count = 0
         for i in range(max_wait_seconds * 4):  # فحص كل 0.25 ثانية
             if not is_process_running(parent_pid):
@@ -107,7 +107,7 @@ def restart_app():
                 break
             time.sleep(0.25)
             wait_count += 1
-            
+
             # عرض تقدم الانتظار
             if wait_count % 20 == 0:  # كل 5 ثوانٍ
                 logger.info(f"لا تزال تنتظر انتهاء العملية {parent_pid}... ({wait_count/4:.1f}s)")
@@ -116,9 +116,20 @@ def restart_app():
             logger.warning("محاولة المتابعة على أية حال...")
 
         # انتظار إضافي لتحرير موارد النظام (خاصة مع PyInstaller)
-        wait_time = 3 if env_info['is_pyinstaller'] else 1.5
+        wait_time = 5 if env_info['is_pyinstaller'] else 2
         logger.info(f"انتظار تحرير موارد النظام ({wait_time} ثانية)...")
         time.sleep(wait_time)
+
+        # تنظيف آمن للمجلدات المؤقتة الحديثة قبل إعادة التشغيل
+        if env_info['is_pyinstaller']:
+            try:
+                from temp_manager import temp_manager
+                logger.info("تنظيف مجلدات _MEI الحديثة قبل إعادة التشغيل...")
+                temp_manager.safe_cleanup_recent_mei(max_age=600)  # 10 دقائق
+                time.sleep(2)  # انتظار إضافي بعد التنظيف الأول
+                temp_manager.safe_cleanup_recent_mei(max_age=600)  # محاولة تنظيف ثانية
+            except Exception as e:
+                logger.warning(f"فشل في تنظيف المجلدات المؤقتة: {e}")
 
         # إعادة تشغيل التطبيق حسب نوع البيئة
         if env_info['is_pyinstaller'] or os.path.isfile(main_path) and main_path.lower().endswith('.exe'):
@@ -137,6 +148,17 @@ def restart_app():
             except Exception as e:
                 logger.error(f"فشل في إعادة تشغيل الملف التنفيذي: {e}")
                 logger.error(traceback.format_exc())
+                # محاولة بديلة باستخدام python.exe إذا كان متاحاً
+                try:
+                    python_exe = os.path.join(os.path.dirname(sys.executable), 'python.exe')
+                    if os.path.exists(python_exe):
+                        logger.info(f"محاولة إعادة التشغيل باستخدام python.exe: {python_exe} {main_path}")
+                        subprocess.Popen([python_exe, main_path], creationflags=DETACHED_PROCESS)
+                        logger.info("تم إعادة التشغيل باستخدام python.exe بنجاح.")
+                    else:
+                        logger.warning("python.exe غير متاح للمحاولة البديلة.")
+                except Exception as fallback_e:
+                    logger.error(f"فشل في المحاولة البديلة: {fallback_e}")
         else:
             # للبرامج النصية، استخدام مترجم بايثون الحالي
             logger.info(f"إعادة تشغيل البرنامج النصي: {sys.executable} {main_path}")

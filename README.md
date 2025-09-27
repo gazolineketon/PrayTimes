@@ -7,7 +7,7 @@
    
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.41.0-orange.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.43.0-orange.svg)](CHANGELOG.md)
 
 **تطبيق متكامل لحساب مواقيت الصلاة وعرضها مع مميزات متقدمة**
 
@@ -237,6 +237,15 @@ pyinstaller main.spec
 3. مشاكل في ملفات الصوت
    - تأكد من وجود ملفات الصوت في مجلد sounds/
    - تحقق من صيغة الملفات (MP3, WAV)
+
+4. خطأ "failed to start embedded python interpreter" عند إعادة التشغيل الثانية (على أجهزة Windows منخفضة الصلاحيات)
+   - السبب: قفل في مجلدات _MEI المؤقتة في %TEMP%
+   - الحلول:
+     - قم بتنظيف يدوي لمجلدات _MEI في %TEMP% (اضغط Win+R، اكتب %TEMP%، احذف مجلدات _MEI القديمة)
+     - شغل التطبيق كمدير (Run as Administrator) إذا أمكن
+     - تحقق من سجلات التطبيق (logs/praytimes.log) لأي تحذيرات تنظيف مؤقت
+     - تأكد من أن برامج مكافحة الفيروسات لا تقفل المجلدات المؤقتة
+     - إذا استمرت المشكلة، أعد بناء التنفيذي باستخدام pyinstaller main.spec --clean
 ```
 </div>
 

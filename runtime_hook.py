@@ -1,94 +1,83 @@
 # runtime_hook.py
-# إصلاح مسارات PIL للتطبيقات المجمدة
+# Enhanced runtime hook for PyInstaller with better error handling
 
 import sys
 import os
+import logging
 
-# إضافة مجلد التطبيق إلى sys.path لضمان استخدام PIL المضمن
-if hasattr(sys, '_MEIPASS'):
-    app_dir = sys._MEIPASS
+# Set up basic logging for the hook
+logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 
-    # إضافة مجلد PIL المضمن إلى sys.path أولاً
-    pil_path = os.path.join(app_dir, 'PIL')
-    if os.path.exists(pil_path):
-        if pil_path not in sys.path:
-            sys.path.insert(0, pil_path)
-
-        # تعيين متغيرات البيئة لتوجيه PIL
-        os.environ['PILLOW_ROOT'] = pil_path
-
-        # محاولة إعادة توجيه استيراد PIL إذا كان قد تم استيراده
-        if 'PIL' in sys.modules:
-            try:
-                import importlib
-                # إعادة تحميل PIL من المسار الصحيح
-                spec = importlib.util.spec_from_file_location("PIL", os.path.join(pil_path, '__init__.py'))
-                if spec and spec.loader:
-                    new_pil = importlib.util.module_from_spec(spec)
-                    # حفظ الوحدات الفرعية الموجودة
-                    old_submodules = {}
-                    for name, module in sys.modules.items():
-                        if name.startswith('PIL.') and module is not None:
-                            old_submodules[name] = module
-
-                    sys.modules['PIL'] = new_pil
-                    spec.loader.exec_module(new_pil)
-
-                    # إعادة ربط الوحدات الفرعية
-                    for name, module in old_submodules.items():
-                        if hasattr(new_pil, name.split('.')[-1]):
-                            setattr(new_pil, name.split('.')[-1], module)
-            except Exception as e:
-                print(f"فشل في إعادة توجيه PIL: {e}")
-
-    # التأكد من أن PIL يستخدم المسار الصحيح
+def safe_add_path(path, description):
+    """Safely add a path to sys.path with error handling"""
     try:
-        import PIL
-        if hasattr(PIL, '__file__'):
-            bundled_pil_init = os.path.join(pil_path, '__init__.py')
-            if os.path.exists(bundled_pil_init):
-                PIL.__file__ = bundled_pil_init
-    except ImportError:
-        pass
-
-    # إضافة مجلد setuptools المضمن إلى sys.path أولاً
-    setuptools_path = os.path.join(app_dir, 'setuptools')
-    if os.path.exists(setuptools_path):
-        if setuptools_path not in sys.path:
-            sys.path.insert(0, setuptools_path)
-
-        # التأكد من أن setuptools يستخدم المسار الصحيح
-        try:
-            import setuptools
-            if hasattr(setuptools, '__file__'):
-                bundled_setuptools_init = os.path.join(setuptools_path, '__init__.py')
-                if os.path.exists(bundled_setuptools_init):
-                    setuptools.__file__ = bundled_setuptools_init
-        except ImportError:
-            pass
-
-        # التأكد من أن pkg_resources يستخدم المسار الصحيح
-        try:
-            import pkg_resources
-            if hasattr(pkg_resources, '__file__'):
-                bundled_pkg_resources_init = os.path.join(setuptools_path, '_vendor', 'pkg_resources', '__init__.py')
-                if os.path.exists(bundled_pkg_resources_init):
-                    pkg_resources.__file__ = bundled_pkg_resources_init
-        except ImportError:
-            pass
-
-    # إصلاح مشكلة glob module التي يسببها setuptools
-    try:
-        import glob
-        # التأكد من أن glob يستخدم الوحدة القياسية وليس setuptools
-        if hasattr(glob, '__file__') and 'setuptools' in glob.__file__:
-            # إعادة استيراد glob من المكتبة القياسية
-            import importlib
-            import sys
-            # حذف glob من sys.modules لإجبار إعادة الاستيراد
-            if 'glob' in sys.modules:
-                del sys.modules['glob']
-            # إعادة استيراد glob
-            import glob
+        if os.path.exists(path) and path not in sys.path:
+            sys.path.insert(0, path)
+            logging.debug(f"Added {description} to sys.path: {path}")
+        else:
+            logging.debug(f"{description} path not found or already in sys.path: {path}")
     except Exception as e:
-        print(f"فشل في إصلاح glob: {e}")
+        logging.warning(f"Failed to add {description} to sys.path: {e}")
+
+def safe_set_env(key, value, description):
+    """Safely set environment variable with error handling"""
+    try:
+        os.environ[key] = value
+        logging.debug(f"Set {description}: {key}={value}")
+    except Exception as e:
+        logging.warning(f"Failed to set {description}: {e}")
+
+if hasattr(sys, '_MEIPASS'):
+    try:
+        app_dir = sys._MEIPASS
+        logging.info(f"PyInstaller app directory: {app_dir}")
+
+        # Ensure the app directory exists and is accessible
+        if not os.path.exists(app_dir):
+            logging.error(f"PyInstaller app directory does not exist: {app_dir}")
+            sys.exit(1)
+
+        # Add bundled PIL path to sys.path
+        pil_path = os.path.join(app_dir, 'PIL')
+        safe_add_path(pil_path, "PIL")
+
+        # Add bundled setuptools path to sys.path (if it exists)
+        setuptools_path = os.path.join(app_dir, 'setuptools')
+        safe_add_path(setuptools_path, "setuptools")
+
+        # Set environment variables for PIL
+        safe_set_env('PILLOW_ROOT', pil_path, "PILLOW_ROOT")
+
+        # Ensure TCL/TK paths are set correctly for tkinter
+        tcl_path = os.path.join(app_dir, 'tcl8.6')
+        tk_path = os.path.join(app_dir, 'tk8.6')
+
+        if os.path.exists(tcl_path):
+            safe_set_env('TCL_LIBRARY', tcl_path, "TCL_LIBRARY")
+
+        if os.path.exists(tk_path):
+            safe_set_env('TK_LIBRARY', tk_path, "TK_LIBRARY")
+
+        logging.info("Runtime hook initialization completed successfully")
+
+    except Exception as e:
+        logging.error(f"Critical error in runtime hook: {e}")
+        # Don't exit here as it might prevent the app from starting
+        # Just log the error and continue
+
+    # فحص نهائي للوصول إلى _MEIPASS وتحذير من القفل
+    if hasattr(sys, '_MEIPASS'):
+        app_dir = sys._MEIPASS
+        if os.path.exists(app_dir):
+            try:
+                # محاولة الوصول للتحقق من القفل
+                test_file = os.path.join(app_dir, 'test_access.tmp')
+                with open(test_file, 'w') as f:
+                    f.write('test')
+                os.remove(test_file)
+                logging.debug(f"الوصول إلى _MEIPASS ناجح: {app_dir}")
+            except (OSError, PermissionError, IOError) as lock_error:
+                logging.warning(f"قفل محتمل في _MEIPASS: {app_dir}. خطأ: {lock_error}")
+                logging.info("اقتراح: قم بتنظيف يدوي لمجلدات _MEI في %TEMP% لإصلاح مشاكل إعادة التشغيل")
+        else:
+            logging.error(f"_MEIPASS غير موجود: {app_dir}. قد يفشل تشغيل المفسر المضمن")

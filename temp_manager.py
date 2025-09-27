@@ -24,50 +24,73 @@ class TempManager:
     
     def _get_app_data_dir(self):
         """الحصول على مجلد البيانات الدائم"""
-        if sys.platform.startswith('win'):
-            app_data = os.environ.get('APPDATA', '')
-            app_dir = os.path.join(app_data, 'PrayTimes')
-        else:
-            home = os.path.expanduser('~')
-            app_dir = os.path.join(home, '.praytimes')
-        
-        Path(app_dir).mkdir(parents=True, exist_ok=True)
-        return app_dir
-    
-    def cleanup_old_mei_folders(self):
-        """تنظيف مجلدات _MEI القديمة"""
-        # تمكين تنظيف _MEI القديمة حتى للتطبيقات المجمدة لتجنب مشاكل إعادة التشغيل
+        try:
+            if sys.platform.startswith('win'):
+                app_data = os.environ.get('APPDATA', '')
+                app_dir = os.path.join(app_data, 'PrayTimes')
+            else:
+                home = os.path.expanduser('~')
+                app_dir = os.path.join(home, '.praytimes')
 
+            Path(app_dir).mkdir(parents=True, exist_ok=True)
+            return app_dir
+        except (OSError, PermissionError) as e:
+            logger.warning(f"Cannot create app data dir in APPDATA/home, falling back to temp: {e}")
+            # Fallback to temp dir for low-privilege systems
+            return tempfile.gettempdir()
+    
+    def cleanup_old_mei_folders(self, age_threshold=300):  # 5 دقائق افتراضياً للتنظيف السريع أثناء التشغيل
+        """تنظيف مجلدات _MEI القديمة بحذر لتجنب مشاكل إعادة التشغيل"""
         try:
             temp_dir = tempfile.gettempdir()
             current_time = time.time()
-            
-            logger.info(f"بدء تنظيف المجلدات المؤقتة في: {temp_dir}")
-            
+
+            logger.debug(f"بدء تنظيف المجلدات المؤقتة في: {temp_dir} (عتبة العمر: {age_threshold} ثانية)")
+
             cleaned_count = 0
             for item in os.listdir(temp_dir):
                 if item.startswith('_MEI') and os.path.isdir(os.path.join(temp_dir, item)):
                     mei_path = os.path.join(temp_dir, item)
                     try:
-                        # التحقق من عمر المجلد (أكثر من 6 ساعات)
+                        # التحقق من عمر المجلد
                         folder_age = current_time - os.path.getctime(mei_path)
-                        if folder_age > 3600:  # ساعة واحدة
-                            # محاولة حذف المجلد
-                            shutil.rmtree(mei_path, ignore_errors=True)
-                            if not os.path.exists(mei_path):
-                                logger.info(f"تم حذف المجلد المؤقت: {mei_path}")
-                                cleaned_count += 1
-                            else:
-                                logger.warning(f"فشل في حذف المجلد: {mei_path}")
+                        if folder_age > age_threshold:
+                            # محاولة حذف المجلد مع التحقق من الصلاحيات
+                            try:
+                                # First, try to check if we can write to the directory
+                                test_file = os.path.join(mei_path, 'test_write.tmp')
+                                with open(test_file, 'w') as f:
+                                    f.write('test')
+                                os.remove(test_file)
+
+                                # If we can write, then try to delete with onerror handler
+                                def handle_remove_readonly(func, path, exc):
+                                    import stat
+                                    if not os.access(path, os.W_OK):
+                                        # Set write permissions and try again
+                                        os.chmod(path, stat.S_IWUSR)
+                                        func(path)
+                                    else:
+                                        raise exc
+
+                                shutil.rmtree(mei_path, ignore_errors=True, onerror=handle_remove_readonly)
+                                if not os.path.exists(mei_path):
+                                    logger.info(f"تم حذف المجلد المؤقت: {mei_path}")
+                                    cleaned_count += 1
+                                else:
+                                    logger.debug(f"فشل في حذف المجلد: {mei_path}")
+                            except (OSError, PermissionError) as perm_error:
+                                logger.debug(f"لا توجد صلاحيات كافية لحذف {mei_path}: {perm_error}")
+                                continue
                     except Exception as e:
                         logger.debug(f"خطأ في معالجة المجلد {mei_path}: {e}")
                         continue
-            
+
             if cleaned_count > 0:
                 logger.info(f"تم تنظيف {cleaned_count} مجلد مؤقت")
             else:
                 logger.debug("لا توجد مجلدات مؤقتة قديمة للحذف")
-                
+
         except Exception as e:
             logger.error(f"خطأ في تنظيف المجلدات المؤقتة: {e}")
     
@@ -77,10 +100,10 @@ class TempManager:
             if hasattr(sys, '_MEIPASS'):
                 current_mei = sys._MEIPASS
                 logger.info(f"محاولة تنظيف المجلد المؤقت الحالي: {current_mei}")
-                
+
                 # تأخير قصير للسماح للعمليات بالانتهاء
                 time.sleep(0.5)
-                
+
                 # محاولة حذف المجلد
                 try:
                     shutil.rmtree(current_mei, ignore_errors=True)
@@ -90,7 +113,70 @@ class TempManager:
                     logger.debug(f"لم يتم حذف المجلد المؤقت الحالي: {e}")
         except Exception as e:
             logger.debug(f"خطأ في تنظيف المجلد المؤقت الحالي: {e}")
-    
+
+    def safe_cleanup_recent_mei(self, max_age=600):
+        """تنظيف آمن لمجلدات _MEI الحديثة (أقل من max_age ثانية) مع تجنب القفل"""
+        try:
+            temp_dir = tempfile.gettempdir()
+            current_time = time.time()
+
+            logger.info(f"بدء تنظيف آمن لمجلدات _MEI الحديثة (< {max_age} ثانية) في: {temp_dir}")
+
+            cleaned_count = 0
+            for item in os.listdir(temp_dir):
+                if item.startswith('_MEI') and os.path.isdir(os.path.join(temp_dir, item)):
+                    mei_path = os.path.join(temp_dir, item)
+                    try:
+                        # التحقق من عمر المجلد
+                        folder_age = current_time - os.path.getctime(mei_path)
+                        if folder_age < max_age:  # فقط المجلدات الحديثة
+                            logger.debug(f"محاولة تنظيف المجلد الحديث: {mei_path} (عمر: {folder_age:.1f} ثانية)")
+
+                            # التحقق من عدم وجود قفل
+                            try:
+                                # محاولة الوصول للتحقق من القفل
+                                test_file = os.path.join(mei_path, 'cleanup_test.tmp')
+                                with open(test_file, 'w') as f:
+                                    f.write('test')
+                                os.remove(test_file)
+
+                                # إذا تم الوصول بنجاح، يمكن المحاولة الحذف
+                                def handle_remove_readonly(func, path, exc):
+                                    import stat
+                                    if not os.access(path, os.W_OK):
+                                        # تعيين صلاحيات الكتابة وإعادة المحاولة
+                                        os.chmod(path, stat.S_IWUSR)
+                                        func(path)
+                                    else:
+                                        raise exc
+
+                                shutil.rmtree(mei_path, ignore_errors=True, onerror=handle_remove_readonly)
+                                if not os.path.exists(mei_path):
+                                    logger.info(f"تم حذف المجلد المؤقت الحديث: {mei_path}")
+                                    cleaned_count += 1
+                                else:
+                                    logger.debug(f"فشل في حذف المجلد: {mei_path} (ربما لا يزال قيد الاستخدام)")
+
+                            except (OSError, PermissionError, IOError) as lock_error:
+                                logger.debug(f"المجلد مقفل أو لا توجد صلاحيات: {mei_path} - {lock_error}")
+                                continue
+                            except Exception as access_error:
+                                logger.debug(f"خطأ في الوصول للمجلد: {mei_path} - {access_error}")
+                                continue
+                        else:
+                            logger.debug(f"تجاهل المجلد القديم: {mei_path} (عمر: {folder_age:.1f} ثانية)")
+                    except Exception as e:
+                        logger.debug(f"خطأ في معالجة المجلد {mei_path}: {e}")
+                        continue
+
+            if cleaned_count > 0:
+                logger.info(f"تم تنظيف {cleaned_count} مجلد _MEI حديث")
+            else:
+                logger.debug("لا توجد مجلدات _MEI حديثة للحذف")
+
+        except Exception as e:
+            logger.error(f"خطأ في التنظيف الآمن للمجلدات المؤقتة: {e}")
+
     def ensure_app_data_structure(self):
         """التأكد من وجود هيكل المجلدات المطلوب"""
         try:

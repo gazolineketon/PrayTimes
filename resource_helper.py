@@ -24,20 +24,33 @@ def get_app_data_dir():
     return app_dir
 
 def cleanup_temp_directories():
-    """تنظيف المجلدات المؤقتة القديمة لـ PyInstaller"""
+    """تنظيف المجلدات المؤقتة القديمة لـ PyInstaller بحذر"""
     try:
         temp_dir = tempfile.gettempdir()
+        import time
+        current_time = time.time()
 
-        # البحث عن مجلدات _MEI القديمة
+        # البحث عن مجلدات _MEI القديمة جداً فقط (أسبوع)
         for item in os.listdir(temp_dir):
             if item.startswith('_MEI') and os.path.isdir(os.path.join(temp_dir, item)):
                 mei_path = os.path.join(temp_dir, item)
                 try:
-                    # محاولة حذف المجلد إذا كان قديماً (أكثر من يوم)
-                    import time
-                    if time.time() - os.path.getctime(mei_path) > 86400:  # 24 ساعة
-                        shutil.rmtree(mei_path, ignore_errors=True)
-                        print(f"تم حذف المجلد المؤقت القديم: {mei_path}")
+                    # محاولة حذف المجلد إذا كان قديماً جداً (أكثر من أسبوع)
+                    folder_age = current_time - os.path.getctime(mei_path)
+                    if folder_age > 604800:  # أسبوع واحد
+                        # التحقق من الصلاحيات قبل المحاولة
+                        try:
+                            test_file = os.path.join(mei_path, 'test_write.tmp')
+                            with open(test_file, 'w') as f:
+                                f.write('test')
+                            os.remove(test_file)
+                            # إذا تمكنا من الكتابة، نحاول الحذف
+                            shutil.rmtree(mei_path, ignore_errors=True)
+                            if not os.path.exists(mei_path):
+                                print(f"تم حذف المجلد المؤقت القديم جداً: {mei_path}")
+                        except (OSError, PermissionError):
+                            # لا توجد صلاحيات، نتجاهل
+                            pass
                 except Exception as e:
                     # تجاهل الأخطاء في التنظيف
                     pass
@@ -46,11 +59,11 @@ def cleanup_temp_directories():
         praytimes_temp = os.path.join(temp_dir, 'PrayTimes')
         if os.path.exists(praytimes_temp):
             try:
-                # محاولة حذف المجلد بالكامل إذا كان قديماً
-                import time
-                if time.time() - os.path.getctime(praytimes_temp) > 3600:  # ساعة واحدة
+                # محاولة حذف المجلد إذا كان قديماً جداً (أكثر من يومين)
+                folder_age = current_time - os.path.getctime(praytimes_temp)
+                if folder_age > 172800:  # يومان
                     shutil.rmtree(praytimes_temp, ignore_errors=True)
-                    print(f"تم حذف مجلد PrayTimes المؤقت: {praytimes_temp}")
+                    print(f"تم حذف مجلد PrayTimes المؤقت القديم: {praytimes_temp}")
             except Exception as e:
                 print(f"فشل في حذف مجلد PrayTimes المؤقت: {e}")
     except Exception:

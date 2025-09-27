@@ -558,6 +558,9 @@ class SettingsDialog:
         dialog.destroy()
 
         try:
+            # لا نحتاج لتنظيف المجلدات المؤقتة هنا - سيتم ذلك في restart.py بعد خروج التطبيق
+            logger.info("بدء عملية إعادة التشغيل...")
+
             # احصل على PID الحالي ومسار التنفيذ
             parent_pid = os.getpid()
 
