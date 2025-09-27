@@ -5,7 +5,7 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.44.0"
+__version__ = "0.45.0"
 
 # إعداد متغيرات البيئة لـ tkinter قبل الاستيراد
 import os
@@ -51,6 +51,11 @@ from signal_handler import setup_signal_handlers
 from file_manager import file_handler
 import atexit
 
+class FlushingFileHandler(logging.FileHandler):
+    def emit(self, record):
+        super().emit(record)
+        self.flush()
+
 
 def setup_logging():
     """إعداد التسجيل للتطبيق"""
@@ -59,14 +64,21 @@ def setup_logging():
     except (TypeError, AttributeError):
         pass
 
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - - %(name)s - %(message)s',
-        handlers=[
-            logging.FileHandler(LOG_FILE, encoding='utf-8'),
-            logging.StreamHandler(sys.stdout)
-        ]
-    )
+    # إعداد logger الجذر يدوياً
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.INFO)
+
+    # إضافة handler للملف
+    file_handler = FlushingFileHandler(LOG_FILE)
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(formatter)
+    root_logger.addHandler(file_handler)
+
+    # إضافة handler للـ console فقط في الوضع غير المجمد
+    if not getattr(sys, 'frozen', False):
+        stream_handler = logging.StreamHandler(sys.stdout)
+        stream_handler.setFormatter(formatter)
+        root_logger.addHandler(stream_handler)
 
 def check_dependencies():
     """فحص التبعيات الاختيارية وإظهار تحذيرات"""
