@@ -67,7 +67,7 @@ class EnhancedPrayerTimesApp:
         try:
             self.root.iconbitmap(get_working_path("pray_times.ico"))
         except tk.TclError:
-            logger.warning("pray_times.ico not found, continuing without icon.")
+            logger.warning("لم يتم العثور على pray_times.ico، الاستمرار بدون أيقونة")
         self.root.geometry("850x1000")
 
         self.cache_manager = CacheManager()
@@ -385,7 +385,6 @@ class EnhancedPrayerTimesApp:
     def robust_api_call(self, url: str, params: dict, retries: int = 3, cache_ttl: int = 3600):
         """
         استدعاء API مع إعادة المحاولة وتحسين معالجة الأخطاء وتخزين مؤقت ذكي
-        
         :param url: عنوان URL للـ API
         :param params: معاملات الطلب
         :param retries: عدد محاولات إعادة المحاولة
@@ -917,8 +916,7 @@ class EnhancedPrayerTimesApp:
     
     def time_to_minutes(self, time_str: str) -> int:
         """
-        تحويل الوقت إلى دقائق مع تحسين معالجة الأخطاء وتخزين النتائج للاستخدام المتكرر
-        
+        تحويل الوقت إلى دقائق مع تحسين معالجة الأخطاء وتخزين النتائج للاستخدام المتكرر        
         :param time_str: سلسلة الوقت بتنسيق "HH:MM AM/PM" أو "HH:MM ص/م"
         :return: الوقت محولاً إلى دقائق (من 0 إلى 1439)
         """

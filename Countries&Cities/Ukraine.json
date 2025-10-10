@@ -1,0 +1,323 @@
+[
+    {
+        "english_name": "Kharkiv",
+        "arabic_name": "خاركيف"
+    },
+    {
+        "english_name": "Odesa",
+        "arabic_name": "أوديسا"
+    },
+    {
+        "english_name": "Dnipro",
+        "arabic_name": "دنيبرو"
+    },
+    {
+        "english_name": "Donetsk",
+        "arabic_name": "دونيتسك"
+    },
+    {
+        "english_name": "Lviv",
+        "arabic_name": "لفيف"
+    },
+    {
+        "english_name": "Zaporizhzhia",
+        "arabic_name": "زابوروجييه"
+    },
+    {
+        "english_name": "Kryvyi Rih",
+        "arabic_name": "كريفي ريه"
+    },
+    {
+        "english_name": "Mykolaiv",
+        "arabic_name": "ميكولايف"
+    },
+    {
+        "english_name": "Luhansk",
+        "arabic_name": "لوهانسك"
+    },
+    {
+        "english_name": "Vinnytsia",
+        "arabic_name": "فينيتسا"
+    },
+    {
+        "english_name": "Makiivka",
+        "arabic_name": "ماكيفكا"
+    },
+    {
+        "english_name": "Chernihiv",
+        "arabic_name": "تشيرنيهيف"
+    },
+    {
+        "english_name": "Poltava",
+        "arabic_name": "بولتافا"
+    },
+    {
+        "english_name": "Kherson",
+        "arabic_name": "خيرسون"
+    },
+    {
+        "english_name": "Khmelnytskyi",
+        "arabic_name": "خملنيتسكي"
+    },
+    {
+        "english_name": "Cherkasy",
+        "arabic_name": "تشيركاسي"
+    },
+    {
+        "english_name": "Chernivtsi",
+        "arabic_name": "تشيرنوفتسي"
+    },
+    {
+        "english_name": "Zhytomyr",
+        "arabic_name": "جيتومير"
+    },
+    {
+        "english_name": "Sumy",
+        "arabic_name": "سومي"
+    },
+    {
+        "english_name": "Rivne",
+        "arabic_name": "ريفنا"
+    },
+    {
+        "english_name": "Horlivka",
+        "arabic_name": "هورليفكا"
+    },
+    {
+        "english_name": "Ivano-Frankivsk",
+        "arabic_name": "إيفانو-فرانكيفسك"
+    },
+    {
+        "english_name": "Ternopil",
+        "arabic_name": "ترنوبل"
+    },
+    {
+        "english_name": "Lutsk",
+        "arabic_name": "لوتسك"
+    },
+    {
+        "english_name": "Kropyvnytskyi",
+        "arabic_name": "كروبيفنيتسكي"
+    },
+    {
+        "english_name": "Kremenchuk",
+        "arabic_name": "كريمنشوك"
+    },
+    {
+        "english_name": "Bila Tserkva",
+        "arabic_name": "بيلا تسيركفا"
+    },
+    {
+        "english_name": "Melitopol",
+        "arabic_name": "ميليتوبول"
+    },
+    {
+        "english_name": "Kramatorsk",
+        "arabic_name": "كراماتورسك"
+    },
+    {
+        "english_name": "Mariupol",
+        "arabic_name": "ماريوبول"
+    },
+    {
+        "english_name": "Uzhhorod",
+        "arabic_name": "أوجهورود"
+    },
+    {
+        "english_name": "Brovary",
+        "arabic_name": "بروفاري"
+    },
+    {
+        "english_name": "Sloviansk",
+        "arabic_name": "سلوفيانسك"
+    },
+    {
+        "english_name": "Pavlohrad",
+        "arabic_name": "بافلوهراد"
+    },
+    {
+        "english_name": "Sievierodonetsk",
+        "arabic_name": "سيفيرودونتسك"
+    },
+    {
+        "english_name": "Kamianets-Podilskyi",
+        "arabic_name": "كامينيتس-بوديلسكي"
+    },
+    {
+        "english_name": "Lysychansk",
+        "arabic_name": "ليسيتشانسك"
+    },
+    {
+        "english_name": "Mukacheve",
+        "arabic_name": "موكاجيفا"
+    },
+    {
+        "english_name": "Konotop",
+        "arabic_name": "كونوتوب"
+    },
+    {
+        "english_name": "Uman",
+        "arabic_name": "أومان"
+    },
+
+    {
+        "english_name": "Khrustalnyi",
+        "arabic_name": "خروستالني"
+    },
+    {
+        "english_name": "Yenakiieve",
+        "arabic_name": "يناكييف"
+    },
+    {
+        "english_name": "Oleksandriia",
+        "arabic_name": "أوليكساندريا"
+    },
+    {
+        "english_name": "Stakhanov",
+        "arabic_name": "ستاخانوف"
+    },
+    {
+        "english_name": "Drohobych",
+        "arabic_name": "دروغوبيتش"
+    },
+    {
+        "english_name": "Berdychiv",
+        "arabic_name": "بيرديتشيف"
+    },
+    {
+        "english_name": "Shostka",
+        "arabic_name": "شوستكا"
+    },
+    {
+        "english_name": "Bakhmut",
+        "arabic_name": "بخموت"
+    },
+    {
+        "english_name": "Izmail",
+        "arabic_name": "إسماعيل"
+    },
+    {
+        "english_name": "Kovel",
+        "arabic_name": "كوفل"
+    },
+    {
+        "english_name": "Nizhyn",
+        "arabic_name": "نيجين"
+    },
+    {
+        "english_name": "Smila",
+        "arabic_name": "سْميلا"
+    },
+    {
+        "english_name": "Irpin",
+        "arabic_name": "إربين"
+    },
+    {
+        "english_name": "Boryspil",
+        "arabic_name": "بوريسبيل"
+    },
+    {
+        "english_name": "Korosten",
+        "arabic_name": "كورستين"
+    },
+    {
+        "english_name": "Kolomyia",
+        "arabic_name": "كولوميا"
+    },
+    {
+        "english_name": "Stryi",
+        "arabic_name": "ستري"
+    },
+    {
+        "english_name": "Chornomorsk",
+        "arabic_name": "تشورنومورسك"
+    },
+    {
+        "english_name": "Druzhkivka",
+        "arabic_name": "دروزهكيفكا"
+    },
+    {
+        "english_name": "Lozova",
+        "arabic_name": "لوزوفا"
+    },
+    {
+        "english_name": "Enerhodar",
+        "arabic_name": "إنيرهودار"
+    },
+    {
+        "english_name": "Antratsyt",
+        "arabic_name": "أنتراتسيت"
+    },
+    {
+        "english_name": "Pryluky",
+        "arabic_name": "بريلوكي"
+    },
+    {
+        "english_name": "Horishni Plavni",
+        "arabic_name": "هوريشني بلافني"
+    },
+    {
+        "english_name": "Bilhorod-Dnistrovskyi",
+        "arabic_name": "بيلهورود دنيستروفسكيي"
+    },
+    {
+        "english_name": "Okhtyrka",
+        "arabic_name": "أوختيركا"
+    },
+    {
+        "english_name": "Myrnohrad",
+        "arabic_name": "ميرنوهراد"
+    },
+    {
+        "english_name": "Marhanets",
+        "arabic_name": "مارهانيتس"
+    },
+    {
+        "english_name": "Izium",
+        "arabic_name": "إزيوم"
+    },
+    {
+        "english_name": "Brianka",
+        "arabic_name": "بريانكا"
+    },
+    {
+        "english_name": "Nova Kakhovka",
+        "arabic_name": "نوفا كاخوفكا"
+    },
+    {
+        "english_name": "Fastiv",
+        "arabic_name": "فاستيف"
+    },
+    {
+        "english_name": "Svitlovodsk",
+        "arabic_name": "سفيتلوفودسك"
+    },
+    {
+        "english_name": "Vyshneve",
+        "arabic_name": "فيشنيفي"
+    },
+    {
+        "english_name": "Krasnodon",
+        "arabic_name": "كراسنودون"
+    },
+    {
+        "english_name": "Zhovti Vody",
+        "arabic_name": "جوفتي فودي"
+    },
+    {
+        "english_name": "Varash",
+        "arabic_name": "فاراش"
+    },
+    {
+        "english_name": "Shepetivka",
+        "arabic_name": "شيبيتيفكا"
+    },
+    {
+        "english_name": "Podilsk",
+        "arabic_name": "بوديلسك"
+    },
+    {
+        "english_name": "Yuzhnoukrainsk",
+        "arabic_name": "يوزنوكراينسك"
+    }
+]

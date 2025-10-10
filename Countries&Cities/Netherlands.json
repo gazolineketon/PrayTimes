@@ -1,0 +1,354 @@
+[
+    {
+        "english_name": "Tilburg",
+        "arabic_name": "تيلبورخ"
+    },
+    {
+        "english_name": "Amsterdam",
+        "arabic_name": "أمستردام"
+    },
+    {
+        "english_name": "Rotterdam",
+        "arabic_name": "روتردام"
+    },
+    {
+        "english_name": "The Hague",
+        "arabic_name": "لاهاي"
+    },
+    {
+        "english_name": "Utrecht",
+        "arabic_name": "أترخت"
+    },
+    {
+        "english_name": "Eindhoven",
+        "arabic_name": "آيندهوفن"
+    },
+    {
+        "english_name": "Groningen",
+        "arabic_name": "خَرُنِنغِن"
+    },
+    {
+        "english_name": "Almere",
+        "arabic_name": "آلميره"
+    },
+    {
+        "english_name": "Nijmegen",
+        "arabic_name": "نايميخن"
+    },
+    {
+        "english_name": "Arnhem",
+        "arabic_name": "آرنم"
+    },
+    {
+        "english_name": "Haarlem",
+        "arabic_name": "هارلم"
+    },
+    {
+        "english_name": "Enschede",
+        "arabic_name": "أنسخديه"
+    },
+    {
+        "english_name": "'s-Hertogenbosch",
+        "arabic_name": "سيرتوخيمبوس"
+    },
+    {
+        "english_name": "Amersfoort",
+        "arabic_name": "آمرسفورت"
+    },
+    {
+        "english_name": "Zaanstad",
+        "arabic_name": "زانستاد"
+    },
+    {
+        "english_name": "Apeldoorn",
+        "arabic_name": "أبلدورن"
+    },
+    {
+        "english_name": "Zwolle",
+        "arabic_name": "زفوله"
+    },
+    {
+        "english_name": "Zoetermeer",
+        "arabic_name": "زوترمير"
+    },
+    {
+        "english_name": "Leeuwarden",
+        "arabic_name": "ليوواردن"
+    },
+    {
+        "english_name": "Leiden",
+        "arabic_name": "لايدن"
+    },
+    {
+        "english_name": "Dordrecht",
+        "arabic_name": "دوردريخت"
+    },
+    {
+        "english_name": "Maastricht",
+        "arabic_name": "ماستريخت"
+    },
+    {
+        "english_name": "Alphen aan den Rijn",
+        "arabic_name": "ألفن آن دن راين"
+    },
+    {
+        "english_name": "Alkmaar",
+        "arabic_name": "ألكمار"
+    },
+    {
+        "english_name": "Delft",
+        "arabic_name": "دلفت"
+    },
+    {
+        "english_name": "Emmen",
+        "arabic_name": "إيمين"
+    },
+    {
+        "english_name": "Deventer",
+        "arabic_name": "ديفينتر"
+    },
+    {
+        "english_name": "Amstelveen",
+        "arabic_name": "أمستلفين"
+    },
+    {
+        "english_name": "Helmond",
+        "arabic_name": "هيلموند"
+    },
+    {
+        "english_name": "Oss",
+        "arabic_name": "أوس"
+    },
+    {
+        "english_name": "Hilversum",
+        "arabic_name": "هيلفرسوم"
+    },
+    {
+        "english_name": "Heerlen",
+        "arabic_name": "هيرلين"
+    },
+    {
+        "english_name": "Lelystad",
+        "arabic_name": "ليليستاد"
+    },
+    {
+        "english_name": "Hengelo",
+        "arabic_name": "هينجيلو"
+    },
+    {
+        "english_name": "Schiedam",
+        "arabic_name": "سخيدام"
+    },
+    {
+        "english_name": "Zaandam",
+        "arabic_name": "زاندام"
+    },
+    {
+        "english_name": "Hoofddorp",
+        "arabic_name": "هوفدوروب"
+    },
+    {
+        "english_name": "Roosendaal",
+        "arabic_name": "روسيندال"
+    },
+    {
+        "english_name": "Hoorn",
+        "arabic_name": "هورن"
+    },
+    {
+        "english_name": "Vlaardingen",
+        "arabic_name": "فلاردينجن"
+    },
+    {
+        "english_name": "Gouda",
+        "arabic_name": "خاودا"
+    },
+    {
+        "english_name": "Almelo",
+        "arabic_name": "ألميلو"
+    },
+    {
+        "english_name": "Spijkenisse",
+        "arabic_name": "سبايكينيسه"
+    },
+    {
+        "english_name": "Assen",
+        "arabic_name": "أسن"
+    },
+    {
+        "english_name": "Bergen op Zoom",
+        "arabic_name": "بيرخن أوب زووم"
+    },
+    {
+        "english_name": "Capelle aan den IJssel",
+        "arabic_name": "كابيل آن دن آيسل"
+    },
+    {
+        "english_name": "Veenendaal",
+        "arabic_name": "فينندال"
+    },
+    {
+        "english_name": "Katwijk",
+        "arabic_name": "كاتفايك"
+    },
+    {
+        "english_name": "Zeist",
+        "arabic_name": "زايست"
+    },
+    {
+        "english_name": "Nieuwegein",
+        "arabic_name": "نيواخاين"
+    },
+    {
+        "english_name": "Barneveld",
+        "arabic_name": "بارنيفيلد"
+    },
+    {
+        "english_name": "Heerhugowaard",
+        "arabic_name": "هيرهوخوفارد"
+    },
+    {
+        "english_name": "Doetinchem",
+        "arabic_name": "دوتينخيم"
+    },
+    {
+        "english_name": "Den Helder",
+        "arabic_name": "دن هيلدر"
+    },
+    {
+        "english_name": "Oosterhout",
+        "arabic_name": "أوسترهاوت"
+    },
+    {
+        "english_name": "Hoogeveen",
+        "arabic_name": "هوخيفين"
+    },
+    {
+        "english_name": "Rijswijk",
+        "arabic_name": "رايسفايك"
+    },
+    {
+        "english_name": "Terneuzen",
+        "arabic_name": "تيرنوزن"
+    },
+    {
+        "english_name": "Woerden",
+        "arabic_name": "فوردن"
+    },
+    {
+        "english_name": "Houten",
+        "arabic_name": "هاوتن"
+    },
+    {
+        "english_name": "Weert",
+        "arabic_name": "فيرت"
+    },
+    {
+        "english_name": "Harderwijk",
+        "arabic_name": "هاردرفايك"
+    },
+    {
+        "english_name": "Waalwijk",
+        "arabic_name": "فالفايك"
+    },
+    {
+        "english_name": "Barendrecht",
+        "arabic_name": "باريندريخت"
+    },
+    {
+        "english_name": "IJmuiden",
+        "arabic_name": "آيماودن"
+    },
+    {
+        "english_name": "Zutphen",
+        "arabic_name": "زوتفن"
+    },
+    {
+        "english_name": "Ridderkerk",
+        "arabic_name": "ريدركيرك"
+    },
+    {
+        "english_name": "Schagen",
+        "arabic_name": "سخاخن"
+    },
+    {
+        "english_name": "Veldhoven",
+        "arabic_name": "فيلدهوفن"
+    },
+    {
+        "english_name": "Kerkrade",
+        "arabic_name": "كِركَرادة"
+    },
+    {
+        "english_name": "Drachten",
+        "arabic_name": "دراختن"
+    },
+    {
+        "english_name": "Medemblik",
+        "arabic_name": "ميديمبليك"
+    },
+    {
+        "english_name": "Heusden",
+        "arabic_name": "هوسدن"
+    },
+    {
+        "english_name": "Zwijndrecht",
+        "arabic_name": "زفايندريخت"
+    },
+    {
+        "english_name": "Vlissingen",
+        "arabic_name": "فليسنجن"
+    },
+    {
+        "english_name": "Zevenaar",
+        "arabic_name": "زيفينار"
+    },
+    {
+        "english_name": "Noordwijk",
+        "arabic_name": "نوردفايك"
+    },
+    {
+        "english_name": "Etten-Leur",
+        "arabic_name": "إيتن- لور"
+    },
+    {
+        "english_name": "Venray",
+        "arabic_name": "فينراي"
+    },
+    {
+        "english_name": "Nijkerk",
+        "arabic_name": "نايكيرك"
+    },
+    {
+        "english_name": "Rheden",
+        "arabic_name": "ريدن"
+    },
+    {
+        "english_name": "De Bilt",
+        "arabic_name": "دي بيلت"
+    },
+    {
+        "english_name": "Voorburg",
+        "arabic_name": "فوربورخ"
+    },
+    {
+        "english_name": "Dronten",
+        "arabic_name": "درونتن"
+    },
+    {
+        "english_name": "Tiel",
+        "arabic_name": "تيل"
+    },
+    {
+        "english_name": "Beverwijk",
+        "arabic_name": "بيفيرفايك"
+    },
+    {
+        "english_name": "Wijchen",
+        "arabic_name": "فايخن"
+    },
+    {
+        "english_name": "Huizen",
+        "arabic_name": "هاوزن"
+    }
+]

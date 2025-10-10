@@ -1,0 +1,38 @@
+[
+    {
+        "english_name": "Dubai",
+        "arabic_name": "دبي"
+    },
+    {
+        "english_name": "Abu Dhabi",
+        "arabic_name": "أبو ظبي"
+    },
+    {
+        "english_name": "Sharjah",
+        "arabic_name": "الشارقة"
+    },
+    {
+        "english_name": "`Ajman",
+        "arabic_name": "عجمان"
+    },
+    {
+        "english_name": "Ra's al Khaymah",
+        "arabic_name": "رأس الخيمة"
+    },
+    {
+        "english_name": "Al Fujayrah",
+        "arabic_name": "الفجيرة"
+    },
+    {
+        "english_name": "Umm al Qaywayn",
+        "arabic_name": "أم القيوين"
+    },
+    {
+        "english_name": "Khawr Fakkan",
+        "arabic_name": "خور فكان"
+    },
+    {
+        "english_name": "Al Jazirah al Hamra'",
+        "arabic_name": "الجزيرة الحمراء"
+    }
+]

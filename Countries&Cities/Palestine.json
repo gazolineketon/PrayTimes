@@ -1,0 +1,55 @@
+
+[
+    {
+        "english_name": "Bethlehem",
+        "arabic_name": "بيت لحم"
+    },
+    {
+        "english_name": "Gaza City",
+        "arabic_name": "غزة"
+    },
+    {
+        "english_name": "Hebron",
+        "arabic_name": "الخليل"
+    },
+    {
+        "english_name": "Jenin",
+        "arabic_name": "جنين"
+    },
+    {
+        "english_name": "Jericho",
+        "arabic_name": "أريحا"
+    },
+    {
+        "english_name": "Jerusalem",
+        "arabic_name": "القدس"
+    },
+    {
+        "english_name": "Khan Younes",
+        "arabic_name": "خان يونس"
+    },
+    {
+        "english_name": "Nablus",
+        "arabic_name": "نابلس"
+    },
+    {
+        "english_name": "Ramallah",
+        "arabic_name": "رام الله"
+    },
+    {
+        "english_name": "Al-Bireh",
+        "arabic_name": "البيرة"
+    },
+    {
+        "english_name": "Beit Jala",
+        "arabic_name": "بيت جالا"
+    },
+    {
+        "english_name": "Beit Sahour",
+        "arabic_name": "بيت ساحور"
+    },
+    {
+        "english_name": "Tulkarm",
+        "arabic_name": "طولكرم"
+    }
+]

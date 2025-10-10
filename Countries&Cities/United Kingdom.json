@@ -1,0 +1,326 @@
+[
+    {
+        "english_name": "Birmingham",
+        "arabic_name": "برمنغهام"
+    },
+    {
+        "english_name": "Portsmouth",
+        "arabic_name": "بورتسموث"
+    },
+    {
+        "english_name": "Southampton",
+        "arabic_name": "ساوثهامبتون"
+    },
+    {
+        "english_name": "Glasgow",
+        "arabic_name": "غلاسكو"
+    },
+    {
+        "english_name": "Manchester",
+        "arabic_name": "مانشستر"
+    },
+    {
+        "english_name": "Sheffield",
+        "arabic_name": "شيفيلد"
+    },
+    {
+        "english_name": "Liverpool",
+        "arabic_name": "ليفربول"
+    },
+    {
+        "english_name": "Worthing",
+        "arabic_name": "وورثينغ"
+    },
+    {
+        "english_name": "Coventry",
+        "arabic_name": "كوفنتري"
+    },
+    {
+        "english_name": "Caerdydd",
+        "arabic_name": "كارديف"
+    },
+    {
+        "english_name": "Belfast",
+        "arabic_name": "بلفاست"
+    },
+    {
+        "english_name": "Reading",
+        "arabic_name": "ريدنغ"
+    },
+    {
+        "english_name": "Newcastle",
+        "arabic_name": "نيوكاسل"
+    },
+    {
+        "english_name": "Stockport",
+        "arabic_name": "ستوكبورت"
+    },
+    {
+        "english_name": "Bradford",
+        "arabic_name": "برادفورد"
+    },
+    {
+        "english_name": "Nottingham",
+        "arabic_name": "نوتنغهام"
+    },
+    {
+        "english_name": "Plymouth",
+        "arabic_name": "بليموث"
+    },
+    {
+        "english_name": "Milton Keynes",
+        "arabic_name": "ميلتون كينز"
+    },
+    {
+        "english_name": "Westminster",
+        "arabic_name": "وستمنستر"
+    },
+    {
+        "english_name": "Wolverhampton",
+        "arabic_name": "وولفرهامبتون"
+    },
+    {
+        "english_name": "Abertawe",
+        "arabic_name": "سوانزي"
+    },
+    {
+        "english_name": "Barnsley",
+        "arabic_name": "بارنسلي"
+    },
+    {
+        "english_name": "Stoke-on-Trent",
+        "arabic_name": "ستوك أون ترينت"
+    },
+    {
+        "english_name": "Swindon",
+        "arabic_name": "سويندون"
+    },
+    {
+        "english_name": "Norwich",
+        "arabic_name": "نورتش"
+    },
+    {
+        "english_name": "Luton",
+        "arabic_name": "لوتون"
+    },
+    {
+        "english_name": "Solihull",
+        "arabic_name": "سوليهل"
+    },
+    {
+        "english_name": "Islington",
+        "arabic_name": "إزلنغتون"
+    },
+    {
+        "english_name": "Aberdeen",
+        "arabic_name": "أبردين"
+    },
+    {
+        "english_name": "Peterborough",
+        "arabic_name": "بيتيربوروغ"
+    },
+    {
+        "english_name": "Saint Helens",
+        "arabic_name": "سانت هلنز"
+    },
+    {
+        "english_name": "Ilford",
+        "arabic_name": "إيلفورد"
+    },
+    {
+        "english_name": "Huddersfield",
+        "arabic_name": "هدرسفيلد"
+    },
+    {
+        "english_name": "Southend",
+        "arabic_name": "ساوثيند"
+    },
+    {
+        "english_name": "Newport",
+        "arabic_name": "نيوبورت"
+    },
+    {
+        "english_name": "Ipswich",
+        "arabic_name": "إبسوتش"
+    },
+    {
+        "english_name": "Dundee",
+        "arabic_name": "دندي"
+    },
+    {
+        "english_name": "West Bromwich",
+        "arabic_name": "ويست بروميتش"
+    },
+    {
+        "english_name": "Gloucester",
+        "arabic_name": "غلوستر"
+    },
+    {
+        "english_name": "Preston",
+        "arabic_name": "برستون"
+    },
+    {
+        "english_name": "York",
+        "arabic_name": "يورك"
+    },
+    {
+        "english_name": "Middlesbrough",
+        "arabic_name": "ميدلزبره"
+    },
+    {
+        "english_name": "Blackpool",
+        "arabic_name": "بلاكبول"
+    },
+    {
+        "english_name": "Northampton",
+        "arabic_name": "نورثامبتون"
+    },
+    {
+        "english_name": "Brighton",
+        "arabic_name": "برايتون"
+    },
+    {
+        "english_name": "Lincoln",
+        "arabic_name": "لينكولن"
+    },
+    {
+        "english_name": "Tottenham",
+        "arabic_name": "توتنهام"
+    },
+    {
+        "english_name": "Exeter",
+        "arabic_name": "إكستر"
+    },
+    {
+        "english_name": "Cambridge",
+        "arabic_name": "كامبريدج"
+    },
+    {
+        "english_name": "Romford",
+        "arabic_name": "رومفورد"
+    },
+    {
+        "english_name": "Colchester",
+        "arabic_name": "كولشيستر"
+    },
+    {
+        "english_name": "High Wycombe",
+        "arabic_name": "هاي ويكومب"
+    },
+    {
+        "english_name": "Gateshead",
+        "arabic_name": "غيتسهيد"
+    },
+    {
+        "english_name": "Slough",
+        "arabic_name": "سلاو"
+    },
+    {
+        "english_name": "Blackburn",
+        "arabic_name": "بلاكبيرن"
+    },
+    {
+        "english_name": "Cheltenham",
+        "arabic_name": "شلتنهام"
+    },
+    {
+        "english_name": "Chelmsford",
+        "arabic_name": "تشيلمسفورد"
+    },
+    {
+        "english_name": "Rochdale",
+        "arabic_name": "روتشديل"
+    },
+    {
+        "english_name": "Birkenhead",
+        "arabic_name": "بيركنهيد"
+    },
+    {
+        "english_name": "Doncaster",
+        "arabic_name": "دونكاستر"
+    },
+    {
+        "english_name": "Rotherham",
+        "arabic_name": "روذرهام"
+    },
+    {
+        "english_name": "Maidstone",
+        "arabic_name": "ميدستون"
+    },
+    {
+        "english_name": "Oxford",
+        "arabic_name": "أكسفورد"
+    },
+    {
+        "english_name": "Basingstoke",
+        "arabic_name": "باسينجستوك"
+    },
+    {
+        "english_name": "Crawley",
+        "arabic_name": "كرولي"
+    },
+    {
+        "english_name": "Dagenham",
+        "arabic_name": "داغنهام"
+    },
+    {
+        "english_name": "Gillingham",
+        "arabic_name": "غيلينغهام"
+    },
+    {
+        "english_name": "Halifax",
+        "arabic_name": "هاليفاكس"
+    },
+    {
+        "english_name": "Salford",
+        "arabic_name": "سالفورد"
+    },
+    {
+        "english_name": "Wigan",
+        "arabic_name": "ويغان"
+    },
+    {
+        "english_name": "Hounslow",
+        "arabic_name": "هاونزلو"
+    },
+    {
+        "english_name": "Wembley",
+        "arabic_name": "ويمبلي"
+    },
+    {
+        "english_name": "Eastbourne",
+        "arabic_name": "إيستبورن"
+    },
+    {
+        "english_name": "Wakefield",
+        "arabic_name": "ويكفيلد"
+    },
+    {
+        "english_name": "Oldham",
+        "arabic_name": "أولدهام"
+    },
+    {
+        "english_name": "Hammersmith",
+        "arabic_name": "هامرسميث"
+    },
+    {
+        "english_name": "Hemel Hempstead",
+        "arabic_name": "هيميل هيمبستيد"
+    },
+    {
+        "english_name": "Darlington",
+        "arabic_name": "داريلنغتون"
+    },
+    {
+        "english_name": "Bedford",
+        "arabic_name": "بيدفورد"
+    },
+    {
+        "english_name": "Hove",
+        "arabic_name": "هوف"
+    },
+    {
+        "english_name": "Southport",
+        "arabic_name": "ساوثبورت"
+    }
+]

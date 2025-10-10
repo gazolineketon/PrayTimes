@@ -5,11 +5,12 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.46.0"
+__version__ = "0.47.0"
 
 # إعداد متغيرات البيئة لـ tkinter قبل الاستيراد
 import os
 import sys
+import logging
 
 if getattr(sys, 'frozen', False):
     # في حالة التطبيق المجمد، إعداد مسارات TCL/TK المجمعة
@@ -37,7 +38,6 @@ if getattr(sys, 'frozen', False):
         print(f"تحذير: خطأ في إعداد البيئة المجمدة: {e}")
         # لا نخرج من البرنامج، فقط نستمر
 
-import logging
 from tkinter import messagebox
 import json
 from resource_helper import initialize_resources, register_cleanup, cleanup_temp_directories
@@ -172,8 +172,8 @@ def main():
 
 if __name__ == "__main__":
     initialize_app_directories()
-    cleanup_temp_directories()  # تنظيف المجلدات المؤقتة القديمة عند البدء
     setup_logging()
+    cleanup_temp_directories()  # تنظيف المجلدات المؤقتة القديمة عند البدء
     register_cleanup()  # تسجيل دالة تنظيف المجلدات المؤقتة الأساسية
     register_temp_cleanup()  # تسجيل المدير المتقدم للمجلدات المؤقتة
     initialize_resources()

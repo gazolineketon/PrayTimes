@@ -119,7 +119,13 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
         ara_name = translation_map.get(eng_name.lower(), eng_name)
         cities.append((eng_name, ara_name))
 
-    cities = sorted(cities, key=lambda x: x[1])
+    # إزالة التكرارات بناءً على الاسم العربي (الاحتفاظ بالنسخة الأولى)
+    unique_cities = {}
+    for eng, ara in cities:
+        if ara not in unique_cities:
+            unique_cities[ara] = eng
+
+    cities = [(unique_cities[ara], ara) for ara in sorted(unique_cities.keys())]
 
     # حفظ النتائج في ملف مؤقت
     try:

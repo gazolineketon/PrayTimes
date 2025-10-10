@@ -1,0 +1,294 @@
+[
+    {
+        "english_name": "Jakarta",
+        "arabic_name": "جاكرتا"
+    },
+    {
+        "english_name": "Surabaya",
+        "arabic_name": "سورابايا"
+    },
+    {
+        "english_name": "Medan",
+        "arabic_name": "ميدان"
+    },
+    {
+        "english_name": "Malang",
+        "arabic_name": "مالانغ"
+    },
+    {
+        "english_name": "Bekasi",
+        "arabic_name": "بيكاسي"
+    },
+    {
+        "english_name": "Depok",
+        "arabic_name": "ديبوك"
+    },
+    {
+        "english_name": "Tangerang",
+        "arabic_name": "تانقيرانغ"
+    },
+    {
+        "english_name": "Semarang",
+        "arabic_name": "سمارانغ"
+    },
+    {
+        "english_name": "Palembang",
+        "arabic_name": "بالمبانغ"
+    },
+    {
+        "english_name": "Makassar",
+        "arabic_name": "ماكاسار"
+    },
+    {
+        "english_name": "Sumedang",
+        "arabic_name": "سوميدانغ"
+    },
+    {
+        "english_name": "Cilacap",
+        "arabic_name": "سيلاكاب"
+    },
+    {
+        "english_name": "Bandar Lampung",
+        "arabic_name": "باندار لامبونغ"
+    },
+    {
+        "english_name": "Pekanbaru",
+        "arabic_name": "بيكانبارو"
+    },
+    {
+        "english_name": "Bogor",
+        "arabic_name": "بوكور"
+    },
+    {
+        "english_name": "Samarinda",
+        "arabic_name": "ساماريندا"
+    },
+    {
+        "english_name": "Pontianak",
+        "arabic_name": "بونتياناك"
+    },
+    {
+        "english_name": "Tasikmalaya",
+        "arabic_name": "تاسيكمالايا"
+    },
+    {
+        "english_name": "Denpasar",
+        "arabic_name": "دنباسار"
+    },
+    {
+        "english_name": "Banjarmasin",
+        "arabic_name": "بنجرماسين"
+    },
+    {
+        "english_name": "Serang",
+        "arabic_name": "سيرانغ"
+    },
+    {
+        "english_name": "Jambi",
+        "arabic_name": "جمبي"
+    },
+    {
+        "english_name": "Balikpapan",
+        "arabic_name": "باليكبابان"
+    },
+    {
+        "english_name": "Cimahi",
+        "arabic_name": "شيماهي"
+    },
+    {
+        "english_name": "Surakarta",
+        "arabic_name": "سوراكارتا"
+    },
+    {
+        "english_name": "Kupang",
+        "arabic_name": "كوبانغ"
+    },
+    {
+        "english_name": "Manado",
+        "arabic_name": "مانادو"
+    },
+    {
+        "english_name": "Bandung",
+        "arabic_name": "باندونغ"
+    },
+    {
+        "english_name": "Yogyakarta",
+        "arabic_name": "يوغياكارتا"
+    },
+    {
+        "english_name": "Jayapura",
+        "arabic_name": "جايابورا"
+    },
+    {
+        "english_name": "Mataram",
+        "arabic_name": "ماتارام"
+    },
+    {
+        "english_name": "Cilegon",
+        "arabic_name": "سيليغون"
+    },
+    {
+        "english_name": "Bengkulu",
+        "arabic_name": "بنغكولو"
+    },
+    {
+        "english_name": "Kendari",
+        "arabic_name": "كنداري"
+    },
+    {
+        "english_name": "Sukabumi",
+        "arabic_name": "سوكابومي"
+    },
+    {
+        "english_name": "Karawang",
+        "arabic_name": "كراوانغ"
+    },
+    {
+        "english_name": "Jember",
+        "arabic_name": "جيمبر"
+    },
+    {
+        "english_name": "Pekalongan",
+        "arabic_name": "بيكالونغان"
+    },
+    {
+        "english_name": "Cirebon",
+        "arabic_name": "سيربون"
+    },
+    {
+        "english_name": "Sorong",
+        "arabic_name": "سورونغ"
+    },
+    {
+        "english_name": "Pematangsiantar",
+        "arabic_name": "بيماتانغسياتار"
+    },
+    {
+        "english_name": "Tegal",
+        "arabic_name": "تيغال"
+    },
+    {
+        "english_name": "Majene",
+        "arabic_name": "ماجيني"
+    },
+    {
+        "english_name": "Binjai",
+        "arabic_name": "بنجاي"
+    },
+    {
+        "english_name": "Dumai",
+        "arabic_name": "دوماي"
+    },
+    {
+        "english_name": "Kediri",
+        "arabic_name": "كديري"
+    },
+    {
+        "english_name": "Palangkaraya",
+        "arabic_name": "بالانغكارايا"
+    },
+    {
+        "english_name": "Banda Aceh",
+        "arabic_name": "باندا آتشيه"
+    },
+    {
+        "english_name": "Purwokerto",
+        "arabic_name": "بوروكيرتو"
+    },
+    {
+        "english_name": "Singkawang",
+        "arabic_name": "سينغكوانغ"
+    },
+    {
+        "english_name": "Probolinggo",
+        "arabic_name": "بروبولينغو"
+    },
+    {
+        "english_name": "Ciputat",
+        "arabic_name": "سيبوتات"
+    },
+    {
+        "english_name": "Pangkalpinang",
+        "arabic_name": "بانغكال بينانغ"
+    },
+    {
+        "english_name": "Bitung",
+        "arabic_name": "بيتونغ"
+    },
+    {
+        "english_name": "Banjarbaru",
+        "arabic_name": "بنجاربارو"
+    },
+    {
+        "english_name": "Lubuklinggau",
+        "arabic_name": "لوبوكلنغاو"
+    },
+    {
+        "english_name": "Banjar",
+        "arabic_name": "بانجار"
+    },
+    {
+        "english_name": "Tanjungpinang",
+        "arabic_name": "تانجونغ بينانغ"
+    },
+    {
+        "english_name": "Madiun",
+        "arabic_name": "ماديون"
+    },
+    {
+        "english_name": "Tarakan",
+        "arabic_name": "تاراكان"
+    },
+    {
+        "english_name": "Gorontalo",
+        "arabic_name": "غورونتالو"
+    },
+    {
+        "english_name": "Prabumulih",
+        "arabic_name": "برابوموليه"
+    },
+    {
+        "english_name": "Pasuruan",
+        "arabic_name": "باسوروان"
+    },
+    {
+        "english_name": "Lhokseumawe",
+        "arabic_name": "لوكسوماوي"
+    },
+    {
+        "english_name": "Palopo",
+        "arabic_name": "بالوبو"
+    },
+    {
+        "english_name": "Purwakarta",
+        "arabic_name": "بورواكارتا"
+    },
+    {
+        "english_name": "Langsa",
+        "arabic_name": "لانغسا"
+    },
+    {
+        "english_name": "Cianjur",
+        "arabic_name": "سيانجور"
+    },
+    {
+        "english_name": "Salatiga",
+        "arabic_name": "سالاتيغا"
+    },
+    {
+        "english_name": "Beji",
+        "arabic_name": "بيجي"
+    },
+    {
+        "english_name": "Sampit",
+        "arabic_name": "سامبت"
+    },
+    {
+        "english_name": "Tanjungbalai",
+        "arabic_name": "تانجونغ بالاي"
+    },
+    {
+        "english_name": "Ungaran",
+        "arabic_name": "أونغاران"
+    }
+]

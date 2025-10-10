@@ -322,7 +322,7 @@ LOG_FILE = LOG_DIR / 'prayer_app.log'
 COUNTRIES_FILE = APP_DATA_DIR / 'countries.json'
 COUNTRIES_CACHE_FILE = CACHE_DIR / 'countries.json'
 CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
-WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
+WORLD_CITIES_DIR = APP_DATA_DIR / 'Countries&Cities'
 SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
 def initialize_app_directories():
@@ -352,7 +352,7 @@ def initialize_app_directories():
         COUNTRIES_FILE = APP_DATA_DIR / 'countries.json'
         COUNTRIES_CACHE_FILE = CACHE_DIR / 'countries.json'
         CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
-        WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
+        WORLD_CITIES_DIR = APP_DATA_DIR / 'Countries&Cities'
         SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
     # تأكد من وجود مجلدات التخزين المؤقت والسجلات
