@@ -109,14 +109,14 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
         try:
             with open(country_file, 'r', encoding='utf-8') as f:
                 translation_data = json.load(f)
-            translation_map = {city.get('english_name', '').lower(): city.get('arabic_name', '') for city in translation_data}
+            translation_map = {city.get('english_name', '').strip().lower(): city.get('arabic_name', '').strip() for city in translation_data}
         except (json.JSONDecodeError, IOError) as e:
             logger.error(f"خطأ في تحميل ملف الترجمة المحلي لـ {country_name} {e}")
 
     # ترجمة وعمل قائمة المدن
     cities = []
     for eng_name in english_names:
-        ara_name = translation_map.get(eng_name.lower(), eng_name)
+        ara_name = translation_map.get(eng_name.strip().lower(), eng_name)
         cities.append((eng_name, ara_name))
 
     # إزالة التكرارات بناءً على الاسم العربي (الاحتفاظ بالنسخة الأولى)

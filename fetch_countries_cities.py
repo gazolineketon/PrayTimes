@@ -25,7 +25,7 @@ for country in countries:
     filename = english + '.json'
     
     # Path to cities file
-    cities_file = os.path.join('world_cities', filename)
+    cities_file = os.path.join('Countries&Cities', filename)
     
     # Load cities if file exists
     if os.path.exists(cities_file):

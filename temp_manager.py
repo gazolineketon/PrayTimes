@@ -182,9 +182,9 @@ class TempManager:
         try:
             required_dirs = [
                 'cache',
-                'logs', 
+                'logs',
                 'sounds',
-                'world_cities',
+                'Countries&Cities',
                 'cache/cities_cache'
             ]
             

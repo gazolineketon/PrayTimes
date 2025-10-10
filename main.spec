@@ -13,8 +13,8 @@ datas = []
 # إضافة المجلدات إذا كانت موجودة
 if os.path.exists('sounds'):
     datas.append(('sounds', 'sounds'))
-if os.path.exists('world_cities'):
-    datas.append(('world_cities', 'world_cities'))
+if os.path.exists('Countries&Cities'):
+    datas.append(('Countries&Cities', 'Countries&Cities'))
 
 # إضافة الملفات المفردة إذا كانت موجودة
 files_to_add = ['countries.json', 'pray_logo.png', 'pray_times.ico']
