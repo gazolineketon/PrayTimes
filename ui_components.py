@@ -506,8 +506,13 @@ class SettingsDialog:
                 if self.country_dropdown is None:
                     self.country_dropdown = tk.Toplevel(self.dialog)
                     self.country_dropdown.overrideredirect(True)
-                    self.country_listbox = tk.Listbox(self.country_dropdown, font=('Segoe UI', 12), height=10, selectmode='single')
-                    self.country_listbox.pack(fill='both', expand=True)
+                    frame = tk.Frame(self.country_dropdown)
+                    scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
+                    self.country_listbox = tk.Listbox(frame, font=('Segoe UI', 12), selectmode='single', yscrollcommand=scrollbar.set)
+                    scrollbar.config(command=self.country_listbox.yview)
+                    self.country_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+                    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+                    frame.pack(fill=tk.BOTH, expand=True)
                     self.country_listbox.bind('<Double-Button-1>', self.on_country_select)
                     self.country_listbox.bind('<Return>', self.on_country_select)
                 self.country_listbox.delete(0, tk.END)
@@ -521,6 +526,7 @@ class SettingsDialog:
                 frame_width = self.country_frame.winfo_width()
                 if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                     frame_width = 300
+                frame_width += 20  # Add space for scrollbar
                 height = min(200, self.country_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
                 self.country_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
                 self.country_dropdown.lift()
@@ -547,8 +553,13 @@ class SettingsDialog:
             if self.country_dropdown is None:
                 self.country_dropdown = tk.Toplevel(self.dialog)
                 self.country_dropdown.overrideredirect(True)
-                self.country_listbox = tk.Listbox(self.country_dropdown, font=('Segoe UI', 12), height=10, selectmode='single')
-                self.country_listbox.pack(fill='both', expand=True)
+                frame = tk.Frame(self.country_dropdown)
+                scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
+                self.country_listbox = tk.Listbox(frame, font=('Segoe UI', 12), selectmode='single', yscrollcommand=scrollbar.set)
+                scrollbar.config(command=self.country_listbox.yview)
+                self.country_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+                scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+                frame.pack(fill=tk.BOTH, expand=True)
                 self.country_listbox.bind('<Double-Button-1>', self.on_country_select)
                 self.country_listbox.bind('<Return>', self.on_country_select)
             self.country_listbox.delete(0, tk.END)
@@ -562,6 +573,7 @@ class SettingsDialog:
             frame_width = self.country_frame.winfo_width()
             if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                 frame_width = 300
+            frame_width += 20  # Add space for scrollbar
             height = min(200, self.country_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
             self.country_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
             self.country_dropdown.lift()
@@ -640,8 +652,13 @@ class SettingsDialog:
                 if self.city_dropdown is None:
                     self.city_dropdown = tk.Toplevel(self.dialog)
                     self.city_dropdown.overrideredirect(True)
-                    self.city_listbox = tk.Listbox(self.city_dropdown, font=('Segoe UI', 12), height=10, selectmode='single')
-                    self.city_listbox.pack(fill='both', expand=True)
+                    frame = tk.Frame(self.city_dropdown)
+                    scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
+                    self.city_listbox = tk.Listbox(frame, font=('Segoe UI', 12), selectmode='single', yscrollcommand=scrollbar.set)
+                    scrollbar.config(command=self.city_listbox.yview)
+                    self.city_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+                    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+                    frame.pack(fill=tk.BOTH, expand=True)
                     self.city_listbox.bind('<Double-Button-1>', self.on_city_select)
                     self.city_listbox.bind('<Return>', self.on_city_select)
                 self.city_listbox.delete(0, tk.END)
@@ -655,6 +672,7 @@ class SettingsDialog:
                 frame_width = self.city_frame.winfo_width()
                 if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                     frame_width = 300
+                frame_width += 20  # Add space for scrollbar
                 height = min(200, self.city_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
                 self.city_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
                 self.city_dropdown.lift()
@@ -681,8 +699,13 @@ class SettingsDialog:
             if self.city_dropdown is None:
                 self.city_dropdown = tk.Toplevel(self.dialog)
                 self.city_dropdown.overrideredirect(True)
-                self.city_listbox = tk.Listbox(self.city_dropdown, font=('Segoe UI', 12), height=10, selectmode='single')
-                self.city_listbox.pack(fill='both', expand=True)
+                frame = tk.Frame(self.city_dropdown)
+                scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
+                self.city_listbox = tk.Listbox(frame, font=('Segoe UI', 12), selectmode='single', yscrollcommand=scrollbar.set)
+                scrollbar.config(command=self.city_listbox.yview)
+                self.city_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+                scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+                frame.pack(fill=tk.BOTH, expand=True)
                 self.city_listbox.bind('<Double-Button-1>', self.on_city_select)
                 self.city_listbox.bind('<Return>', self.on_city_select)
             self.city_listbox.delete(0, tk.END)
@@ -696,6 +719,7 @@ class SettingsDialog:
             frame_width = self.city_frame.winfo_width()
             if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                 frame_width = 300
+            frame_width += 20  # Add space for scrollbar
             height = min(200, self.city_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
             self.city_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
             self.city_dropdown.lift()
@@ -721,7 +745,7 @@ class SettingsDialog:
 
     def check_close_dropdown(self, event):
         """Check if click is outside the dropdown and close it"""
-        if self.current_dropdown == 'country' and self.country_dropdown and self.country_dropdown.winfo_ismapped():
+        if self.current_dropdown == 'country' and self.country_dropdown and self.country_dropdown.winfo_exists() and self.country_dropdown.winfo_ismapped():
             x, y = event.x_root, event.y_root
             dx, dy = self.country_dropdown.winfo_rootx(), self.country_dropdown.winfo_rooty()
             dw, dh = self.country_dropdown.winfo_width(), self.country_dropdown.winfo_height()
@@ -729,7 +753,7 @@ class SettingsDialog:
                 self.country_dropdown.withdraw()
                 self.current_dropdown = None
                 self.dialog.unbind('<Button-1>', self.close_bind_id)
-        elif self.current_dropdown == 'city' and self.city_dropdown and self.city_dropdown.winfo_ismapped():
+        elif self.current_dropdown == 'city' and self.city_dropdown and self.city_dropdown.winfo_exists() and self.city_dropdown.winfo_ismapped():
             x, y = event.x_root, event.y_root
             dx, dy = self.city_dropdown.winfo_rootx(), self.city_dropdown.winfo_rooty()
             dw, dh = self.city_dropdown.winfo_width(), self.city_dropdown.winfo_height()
