@@ -127,6 +127,9 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
 
     cities = [(unique_cities[ara], ara) for ara in sorted(unique_cities.keys())]
 
+    # إزالة المدن غير المترجمة (حيث الاسم العربي = الإنجليزي)
+    cities = [(eng, ara) for eng, ara in cities if ara != eng]
+
     # حفظ النتائج في ملف مؤقت
     try:
         with open(cities_cache_file, 'w', encoding='utf-8') as f:

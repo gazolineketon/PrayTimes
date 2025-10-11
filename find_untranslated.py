@@ -1,6 +1,6 @@
 import json
 
-with open('C:\\Users\\Nassar_Home\\AppData\\Roaming\\PrayTimes\\cache\\cities_cache\\Egypt.json', 'r', encoding='utf-8') as f:
+with open('C:\\Users\\Nassar_Home\\AppData\\Roaming\\PrayTimes\\cache\\cities_cache\\Syria.json', 'r', encoding='utf-8') as f:
     cities = json.load(f)
 
 untranslated = [city for city in cities if city[0] == city[1]]
