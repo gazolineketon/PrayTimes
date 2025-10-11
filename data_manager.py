@@ -79,7 +79,7 @@ def get_countries() -> list[tuple[str, str]]:
         return countries
 
 def get_cities(country_name: str) -> list[tuple[str, str]]:
-    """جلب قائمة المدن من API وترجمتها من الملفات المحلية"""
+    """جلب قائمة المدن من الملفات المحلية أولاً، ثم من API إذا لم تكن متوفرة"""
     cities_cache_file = CITIES_CACHE_DIR / f"{country_name}.json"
     if cities_cache_file.exists():
         try:
@@ -90,7 +90,35 @@ def get_cities(country_name: str) -> list[tuple[str, str]]:
         except (json.JSONDecodeError, IOError) as e:
             logger.error(f"خطأ في تحميل قائمة المدن لـ {country_name} من الملف المؤقت {e}")
 
-    # API جلب المدن من
+    # جلب المدن من الملف المحلي أولاً
+    country_file = WORLD_CITIES_DIR / f"{country_name}.json"
+    if country_file.exists():
+        try:
+            with open(country_file, 'r', encoding='utf-8') as f:
+                local_cities = json.load(f)
+            # استخدام المدن من الملف المحلي
+            cities = [(city['english_name'], city['arabic_name']) for city in local_cities]
+            # إزالة التكرارات بناءً على الاسم العربي (الاحتفاظ بالنسخة الأولى)
+            unique_cities = {}
+            for eng, ara in cities:
+                if ara not in unique_cities:
+                    unique_cities[ara] = eng
+            cities = [(unique_cities[ara], ara) for ara in sorted(unique_cities.keys())]
+            # إزالة المدن غير المترجمة (حيث الاسم العربي = الإنجليزي)
+            cities = [(eng, ara) for eng, ara in cities if ara != eng]
+            # حفظ النتائج في ملف مؤقت
+            try:
+                with open(cities_cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(cities, f, ensure_ascii=False, indent=2)
+                logger.info(f"تم حفظ قائمة المدن المترجمة لـ {country_name} في الملف المؤقت")
+            except IOError as e:
+                logger.error(f"خطأ في حفظ قائمة المدن لـ {country_name} في الملف المؤقت {e}")
+            logger.info(f"تم جلب قائمة المدن لـ {country_name} من الملف المحلي بنجاح")
+            return cities
+        except (json.JSONDecodeError, IOError) as e:
+            logger.error(f"خطأ في تحميل ملف الترجمة المحلي لـ {country_name} {e}")
+
+    # إذا لم يكن الملف المحلي متوفراً، استخدم API
     try:
         response = requests.post("https://countriesnow.space/api/v0.1/countries/cities", json={'country': country_name}, timeout=10)
         response.raise_for_status()

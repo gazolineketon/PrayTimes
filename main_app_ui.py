@@ -1261,28 +1261,31 @@ class EnhancedPrayerTimesApp:
             if hasattr(self, 'tray_thread') and self.tray_thread.is_alive() and threading.current_thread() is not self.tray_thread:
                 self.tray_thread.join(timeout=1.0)
         try:
-            self.destroy_scroll_area()
             if hasattr(self, '_countdown_running'):
                 self._countdown_running = False
-            
+
             if hasattr(self, 'adhan_player'):
                 self.adhan_player.stop_sound()
-            
+
             if hasattr(self, 'executor'):
                 self.executor.shutdown(wait=True)
-            
-            # cleanup_old_cache تم استدعاؤه بالفعل عند بدء التطبيق
-            
+
             self.settings.save_settings()
-            
+
             # cleanup_pyinstaller يتم استدعاؤه تلقائيًا عبر atexit
             logger.info("تم إغلاق التطبيق بنجاح")
-            
+
         except Exception as e:
             logger.error(f"خطأ أثناء إغلاق التطبيق {e}")
         finally:
             if hasattr(self, 'root') and self.root.winfo_exists():
+                self.destroy_scroll_area()
+                self.root.update()
+                self.root.quit()
+            try:
                 self.root.destroy()
+            except tk.TclError as e:
+                logger.error(f"Error destroying root window: {e}")
     
     def destroy_scroll_area(self):
         """تنظيف وتدمير عناصر التمرير بشكل آمن"""

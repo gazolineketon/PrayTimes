@@ -918,8 +918,6 @@ class SettingsDialog:
         logger = logging.getLogger(__name__)
         logger.info("بدء عملية إعادة تشغيل التطبيق باستخدام restart.py...")
 
-        dialog.destroy()
-
         try:
             # لا نحتاج لتنظيف المجلدات المؤقتة هنا - سيتم ذلك في restart.py بعد خروج التطبيق
             logger.info("بدء عملية إعادة التشغيل...")
@@ -954,6 +952,8 @@ class SettingsDialog:
 
             logger.info("تم تشغيل برنامج إعادة التشغيل بنجاح، إغلاق التطبيق الحالي...")
 
+            dialog.destroy()
+
             # إغلاق التطبيق الحالي
             self.parent.quit_application()
 
@@ -961,7 +961,12 @@ class SettingsDialog:
             error_msg = f"خطأ في إعادة تشغيل التطبيق: {e}"
             logger.error(error_msg)
             logger.error(traceback.format_exc())
-            messagebox.showerror(self._("error"), f"{self._('restart_error')}: {str(e)}")
+            dialog.destroy()
+            try:
+                messagebox.showerror(self._("error"), f"{self._('restart_error')}: {str(e)}", parent=self.parent.root)
+            except Exception as tk_error:
+                logger.error(f"Failed to show error dialog: {tk_error}")
+                print(f"Restart error: {str(e)}")
 
     # عرض مربع حوار لإعادة التشغيل
     def show_restart_dialog(self):
