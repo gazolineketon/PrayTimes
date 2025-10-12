@@ -735,6 +735,48 @@ class EnhancedPrayerTimesApp:
         if self.root.winfo_exists() and self._countdown_running:
             self.root.after(update_interval, self.update_countdown)
     
+    def show_adhan_dialog(self, prayer_name: str):
+        """إظهار نافذة الأذان مع زر إيقاف"""
+        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+            self.adhan_dialog.destroy()
+
+        self.adhan_dialog = tk.Toplevel(self.root)
+        self.adhan_dialog.title(self._("adhan_for_prayer", prayer_name=prayer_name))
+        self.adhan_dialog.configure(bg=self.colors['bg_primary'])
+        self.adhan_dialog.geometry("300x150")
+        self.adhan_dialog.resizable(False, False)
+        self.adhan_dialog.attributes('-topmost', True)  # جعل النافذة في المقدمة
+
+        # مركز النافذة
+        self.adhan_dialog.update_idletasks()
+        x = self.root.winfo_x() + (self.root.winfo_width() // 2) - 150
+        y = self.root.winfo_y() + (self.root.winfo_height() // 2) - 75
+        self.adhan_dialog.geometry(f"+{x}+{y}")
+
+        # محتوى النافذة
+        main_frame = tk.Frame(self.adhan_dialog, bg=self.colors['bg_primary'], padx=20, pady=20)
+        main_frame.pack(fill='both', expand=True)
+
+        prayer_label = tk.Label(main_frame, text=f"{self._('its_time_for_prayer', prayer_name=prayer_name)}", font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_primary'], fg=self.colors['text_primary'], wraplength=260)
+        prayer_label.pack(pady=(0, 10))
+
+        stop_button = tk.Button(main_frame, text=self._("stop_adhan"), font=('Segoe UI', 12), bg=self.colors['error'], fg=self.colors['text_accent'], relief='flat', padx=20, pady=10, cursor='hand2', command=self.stop_adhan_and_close_dialog)
+        stop_button.pack()
+
+        # إغلاق تلقائي بعد 60 ثانية إذا لم يتم إيقاف يدوياً
+        self.adhan_dialog.after(60000, lambda: self.adhan_dialog.destroy() if self.adhan_dialog.winfo_exists() else None)
+
+    def stop_adhan_and_close_dialog(self):
+        """إيقاف الأذان وإغلاق النافذة"""
+        self.adhan_player.stop_sound()
+        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+            self.adhan_dialog.destroy()
+
+    def close_adhan_dialog_if_exists(self):
+        """إغلاق نافذة الأذان إذا كانت موجودة (للاستدعاء عند انتهاء الصوت)"""
+        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+            self.adhan_dialog.destroy()
+
     def check_prayer_notifications(self):
         """فحص وإرسال إشعارات الصلوات بكفاءة أفضل"""
         if not self.settings.notifications_enabled or not NOTIFICATIONS_AVAILABLE:
@@ -824,7 +866,11 @@ class EnhancedPrayerTimesApp:
                             self.adhan_player.play_sound(sound_file, self.settings.sound_volume)
                         else:
                             self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
-                    
+                        # إظهار نافذة الأذان مع زر الإيقاف
+                        self.show_adhan_dialog(prayer_name)
+                        # تعيين callback لإغلاق النافذة عند انتهاء الصوت
+                        self.adhan_player.set_end_callback(lambda: self.close_adhan_dialog_if_exists())
+
                     self.last_notification_time[prayer_key] = current_time_str
         
         # جدولة الفحص التالي بناءً على الوقت المتبقي للإشعار أو الأذان القادم
