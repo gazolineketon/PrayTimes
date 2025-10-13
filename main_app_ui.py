@@ -891,14 +891,52 @@ class EnhancedPrayerTimesApp:
         if self.root.winfo_exists() and self.running:
             self.root.after(next_check, self.check_prayer_notifications)
     
+    def update_prayer_statuses(self):
+        """تحديث حالة الصلوات في الجدول"""
+        if not hasattr(self, 'prayer_rows') or not self.prayer_rows:
+            return
+
+        now = datetime.now()
+        current_minutes = now.hour * 60 + now.minute
+
+        for i, row_data in enumerate(self.prayer_rows):
+            if 'prayer_orig' not in row_data:
+                continue
+
+            prayer_minutes = self.time_to_minutes(row_data['prayer_orig'])
+            status_label = row_data['status']
+
+            if prayer_minutes <= current_minutes:
+                if i < len(self.prayer_rows) - 1:
+                    next_prayer_minutes = self.time_to_minutes(self.prayer_rows[i + 1]['prayer_orig'])
+                    if current_minutes < next_prayer_minutes:
+                        status = self._("prayer_status_now")
+                        status_color = self.colors['success']
+                    else:
+                        status = self._("prayer_status_finished")
+                        status_color = self.colors['text_secondary']
+                else:
+                    status = self._("prayer_status_finished")
+                    status_color = self.colors['text_secondary']
+            else:
+                time_diff = prayer_minutes - current_minutes
+                if time_diff <= 60:
+                    status = self._("prayer_status_within_hour", time_diff=time_diff)
+                    status_color = self.colors['warning']
+                else:
+                    status = self._("prayer_status_upcoming")
+                    status_color = self.colors['text_secondary']
+
+            status_label.config(text=status, fg=status_color)
+
     def update_next_prayer(self):
         """تمييز الصلاة القادمة"""
         if not hasattr(self, 'prayer_rows') or not self.prayer_rows:
             return
-        
+
         now = datetime.now()
         current_minutes = now.hour * 60 + now.minute
-        
+
         # إعادة تعيين جميع الصفوف إلى النمط الافتراضي
         for row_data in self.prayer_rows:
             row_data['icon'].config(font=('Segoe UI', 12))
@@ -915,14 +953,14 @@ class EnhancedPrayerTimesApp:
                 if prayer_minutes > current_minutes:
                     next_prayer_index = i
                     break
-        
+
         if next_prayer_index == -1:
             next_prayer_index = 0
-        
+
         if 0 <= next_prayer_index < len(self.prayer_rows):
             row_data = self.prayer_rows[next_prayer_index]
             highlight_color = '#e8f4fd' if self.settings.theme == 'light' else '#1a365d'
-            
+
             # جعل الخط العريض وتمييز الصف التالي من الصلاة
             row_data['icon'].config(font=('Segoe UI', 12, 'bold'))
             row_data['prayer'].config(font=('Segoe UI', 12, 'bold'))
@@ -1030,16 +1068,17 @@ class EnhancedPrayerTimesApp:
             try:
                 if not self.root.winfo_exists() or not self.running:
                     return
-                
+
                 # حساب الفترة المناسبة للتحديث التالي
                 next_update_interval = self._calculate_optimal_update_interval()
-                
+
                 # تحديث عناصر الواجهة المطلوبة
                 self.update_time_display_realtime()
                 self.update_next_prayer()
-                
+                self.update_prayer_statuses()  # تحديث حالة الصلوات في الجدول
+
                 # لا داعي لاستدعاء check_prayer_notifications هنا لأنه يدير الجدولة الخاصة به
-                
+
                 # إعادة جدولة التحديث التالي بناءً على الفترة المحسوبة
                 self.root.after(next_update_interval, scheduled_update)
             except Exception as e:

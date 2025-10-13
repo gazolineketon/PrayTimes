@@ -13,7 +13,7 @@ datas = []
 # حظر استيراد setuptools أثناء التحليل
 def pre_safe_import_module(api):
     # منع setuptools من الاستيراد أثناء التحليل
-    if api.__name__ == 'setuptools':
+    if api.__name__ == 'setuptools' or api.__name__ == 'setuptools.config':
         return None
     return api
 
@@ -24,4 +24,20 @@ def pre_find_module_path(api):
         import glob
         if hasattr(glob, '__file__'):
             api.__path__ = [glob.__file__]
+    elif api.__name__ == 'setuptools.config':
+        # منع setuptools.config من الاستيراد
+        return None
     return api
+
+# استبعاد المكونات المسببة للمشاكل
+excludedimports = [
+    'setuptools.config',
+    'setuptools.config.setup',
+    'setuptools.glob',
+]
+
+# منع الاستيرادات النسبية في setuptools
+def hook(mod):
+    if mod.name.startswith('setuptools.config'):
+        mod.__spec__ = None
+    return mod

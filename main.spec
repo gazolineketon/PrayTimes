@@ -71,6 +71,24 @@ except ImportError:
     print("تحذير: لم يتم العثور على PIL")
 
 
+# إضافة دعم أفضل لمكتبات TCL/TK والمكتبات الأخرى
+import sys
+def get_tcl_tk_paths():
+    try:
+        import tkinter
+        tcl_dir = os.path.join(os.path.dirname(tkinter.__file__), '...')
+        tcl_dirs = [d for d in os.listdir(tcl_dir) if d.startswith('tcl')]
+        tk_dirs = [d for d in os.listdir(tcl_dir) if d.startswith('tk')]
+        return [(os.path.join(tcl_dir, d), d) for d in tcl_dirs + tk_dirs]
+    except:
+        return []
+
+# إضافة مسارات TCL/TK
+tk_paths = get_tcl_tk_paths()
+for src, dst in tk_paths:
+    if os.path.exists(src):
+        datas.append((src, dst))
+
 a = Analysis(
     ['main.py'],  # تأكد أن resource_helper.py في نفس المجلد
     pathex=['.'],
@@ -89,6 +107,8 @@ a = Analysis(
         'pickle',
         'playsound',
         'plyer',
+        'plyer.notifications',
+        'plyer.libs',
         'prayer_logic',
         'pystray',
         'qibla_ui',
@@ -100,11 +120,14 @@ a = Analysis(
         'tkinter.filedialog',
         'tkinter.messagebox',
         'tkinter.scrolledtext',
+        'tkinter.font',
         'PIL.ImageTk',
         'PIL.Image',
+        'PIL._tkinter_finder',
         'typing',
         'ui_components',
         'vlc',
+        'vlc.libvlc',
         'datetime',
         'json',
         'logging',
@@ -115,11 +138,27 @@ a = Analysis(
         'sys',
         'threading',
         'time',
-        'shutil'
+        'shutil',
+        'encodings',
+        'encodings.idna',
+        'encodings.utf_8',
+        'encodings.latin1',
+        'encodings.ascii',
+        'encodings.cp1252',
+        'encodings.cp65001',
+        'pkg_resources',
+        'pkg_resources.py2_warn',  # إضافة لدعم التوافق
+        'ctypes',
+        'ctypes.wintypes',
+        'win32api',
+        'win32con',
+        'win32gui',
+        'win32clipboard',
+        'queue',  # لضمان عمل multiprocessing بشكل صحيح
     ],
     hooksconfig={},
     runtime_hooks=['runtime_hook.py'],
-    excludes=['update_version.py', 'test', 'setuptools', 'pkg_resources'],
+    excludes=['update_version.py', 'test', 'setuptools.glob', 'setuptools.config', 'setuptools.config.setup'],  # استبعاد setuptools المشاكل
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=None,
@@ -148,7 +187,11 @@ exe = EXE(
     resources=[],
     codesign_identity=None,
     entitlements_file=None,
-    hardened_runtime=False
+    hardened_runtime=False,
+    # إضافة خيارات إضافية لضمان التوافق
+    argv_emulation=False,  # تجنب مشاكل في تمرير المعطيات
+    target_arch=None,
+    embed_manifest=True,  # تضمين الـ manifest لضمان التوافق مع ويندوز
 )
 
 coll = COLLECT(
@@ -159,5 +202,9 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name='Praytimes'
+    name='Praytimes',
+    # إضافة خيارات إضافية لضمان التوافق
+    exclude_binaries=False,
+    # نسخ مكتبات النظام المطلوبة للعمل على جميع أجهزة ويندوز
+    exclude_system_binaries=False,
 )

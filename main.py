@@ -5,12 +5,38 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.52.0"
+__version__ = "0.53.0"
 
 # إعداد متغيرات البيئة لـ tkinter قبل الاستيراد
 import os
 import sys
 import logging
+
+# حل مشاكل setuptools في التطبيقات المجمدة
+if getattr(sys, 'frozen', False):
+    try:
+        # استبعاد glob من setuptools في التطبيقات المجمدة
+        import importlib.util
+        spec = importlib.util.find_spec('setuptools.glob')
+        if spec and spec.origin:
+            sys.modules['setuptools.glob'] = None
+            
+        # حل مشكلة الاستيراد النسبي في setuptools
+        sys.modules['setuptools.config'] = None
+        sys.modules['setuptools.config.setup'] = None
+        
+        # تعديل sys.meta_path للتعامل مع الاستيرادات النسبية
+        class FixedImporter:
+            def find_spec(self, name, path, target=None):
+                if name.startswith('setuptools.config'):
+                    return None
+                return None
+                
+        if not any(isinstance(importer, FixedImporter) for importer in sys.meta_path):
+            sys.meta_path.insert(0, FixedImporter())
+            
+    except Exception as e:
+        logging.warning(f"فشل في حل مشاكل setuptools: {e}")
 
 if getattr(sys, 'frozen', False):
     # في حالة التطبيق المجمد، إعداد مسارات TCL/TK المجمعة
@@ -173,6 +199,15 @@ def main():
 if __name__ == "__main__":
     initialize_app_directories()
     setup_logging()
+    
+    # تشغيل مساعد التثبيت للتعامل مع المشكلات الشائعة
+    try:
+        from install_helper import main as install_helper_main
+        install_helper_main()
+    except Exception as e:
+        logger = logging.getLogger(__name__)
+        logger.warning(f"خطأ في تشغيل مساعد التثبيت: {e}")
+    
     cleanup_temp_directories()  # تنظيف المجلدات المؤقتة القديمة عند البدء
     register_cleanup()  # تسجيل دالة تنظيف المجلدات المؤقتة الأساسية
     register_temp_cleanup()  # تسجيل المدير المتقدم للمجلدات المؤقتة
