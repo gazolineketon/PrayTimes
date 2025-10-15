@@ -763,8 +763,6 @@ class EnhancedPrayerTimesApp:
         stop_button = tk.Button(main_frame, text=self._("stop_adhan"), font=('Segoe UI', 12), bg=self.colors['error'], fg=self.colors['text_accent'], relief='flat', padx=20, pady=10, cursor='hand2', command=self.stop_adhan_and_close_dialog)
         stop_button.pack()
 
-        # إغلاق تلقائي بعد 60 ثانية إذا لم يتم إيقاف يدوياً
-        self.adhan_dialog.after(60000, lambda: self.adhan_dialog.destroy() if self.adhan_dialog.winfo_exists() else None)
 
     def stop_adhan_and_close_dialog(self):
         """إيقاف الأذان وإغلاق النافذة"""
@@ -1076,8 +1074,6 @@ class EnhancedPrayerTimesApp:
                 self.update_time_display_realtime()
                 self.update_next_prayer()
                 self.update_prayer_statuses()  # تحديث حالة الصلوات في الجدول
-
-                # لا داعي لاستدعاء check_prayer_notifications هنا لأنه يدير الجدولة الخاصة به
 
                 # إعادة جدولة التحديث التالي بناءً على الفترة المحسوبة
                 self.root.after(next_update_interval, scheduled_update)

@@ -744,7 +744,7 @@ class SettingsDialog:
                     pass
 
     def check_close_dropdown(self, event):
-        """Check if click is outside the dropdown and close it"""
+        """تحقق مما إذا كان النقر خارج القائمة المنسدلة وأغلقها"""
         if self.current_dropdown == 'country' and self.country_dropdown and self.country_dropdown.winfo_exists() and self.country_dropdown.winfo_ismapped():
             x, y = event.x_root, event.y_root
             dx, dy = self.country_dropdown.winfo_rootx(), self.country_dropdown.winfo_rooty()

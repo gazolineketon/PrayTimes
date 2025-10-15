@@ -10,6 +10,11 @@ import tempfile
 import shutil
 import logging
 
+try:
+    import psutil
+except ImportError:  # التعامل مع عدم توفر psutil
+    psutil = None
+
 logger = logging.getLogger(__name__)
 
 def check_system_requirements():
@@ -20,8 +25,18 @@ def check_system_requirements():
         "platform_version": platform.version(),
         "architecture": platform.machine(),
         "processor": platform.processor(),
-        "ram": str(round(psutil.virtual_memory().total / (1024.0 ** 3))) + " GB"
     }
+
+    # إضافة معلومات الذاكرة إذا كانت psutil متوفرة
+    if psutil is not None:
+        try:
+            total_ram_gb = round(psutil.virtual_memory().total / (1024.0 ** 3))
+            system_info["ram"] = f"{total_ram_gb} GB"
+        except Exception as exc:
+            logger.debug(f"تعذر قراءة الذاكرة عبر psutil: {exc}")
+    else:
+        logger.info("psutil غير مثبت؛ سيتم تخطي معلومات الذاكرة.")
+
     return system_info
 
 def install_visual_cpp_redistributable():
