@@ -98,6 +98,18 @@ class AdhanPlayer:
             self.player = None
             logger.info("تم إيقاف الصوت")
 
+    def set_end_callback(self, callback):
+        """تعيين callback ليتم استدعاؤه عند انتهاء الصوت"""
+        if self.player:
+            try:
+                import vlc
+                def on_end(event):
+                    callback()
+                self.player.event_manager().event_attach(vlc.EventType.MediaPlayerEndReached, on_end)
+                logger.info("تم تعيين callback لنهاية الصوت")
+            except Exception as e:
+                logger.error(f"خطأ في تعيين callback لنهاية الصوت {e}")
+
 class NotificationManager:
     """مدير الإشعارات مع دعم متعدد المنصات"""
     

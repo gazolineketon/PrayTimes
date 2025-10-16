@@ -1,0 +1,882 @@
+[
+  {
+    "english_name": "Cairo",
+    "arabic_name": "القاهرة"
+  },
+  {
+    "english_name": "Alexandria",
+    "arabic_name": "الإسكندرية"
+  },
+  {
+    "english_name": "Shubra al Khaymah",
+    "arabic_name": "شبرا الخيمة"
+  },
+  {
+    "english_name": "Sinnuris",
+    "arabic_name": "سنورس"
+  },
+  {
+    "english_name": "Dayrut",
+    "arabic_name": "ديروط"
+  },
+  {
+    "english_name": "Al Mansurah",
+    "arabic_name": "المنصورة"
+  },
+  {
+    "english_name": "Al Mahallah al Kubra",
+    "arabic_name": "المحلة الكبرى"
+  },
+  {
+    "english_name": "Shibin al Qanatir",
+    "arabic_name": "شبين القناطر"
+  },
+  {
+    "english_name": "Abu Hummus",
+    "arabic_name": "أبو حمص"
+  },
+  {
+    "english_name": "Port Said",
+    "arabic_name": "بورسعيد"
+  },
+  {
+    "english_name": "Al Fayyum",
+    "arabic_name": "الفيوم"
+  },
+  {
+    "english_name": "Suez",
+    "arabic_name": "السويس"
+  },
+  {
+    "english_name": "Abu Tisht",
+    "arabic_name": "أبو تشت"
+  },
+  {
+    "english_name": "Al Fashn",
+    "arabic_name": "الفشن"
+  },
+  {
+    "english_name": "Akhmim",
+    "arabic_name": "أخميم"
+  },
+  {
+    "english_name": "Al Maraghah",
+    "arabic_name": "المراغة"
+  },
+  {
+    "english_name": "Al Bajur",
+    "arabic_name": "الباجور"
+  },
+  {
+    "english_name": "Awsim",
+    "arabic_name": "أوسيم"
+  },
+  {
+    "english_name": "Tala",
+    "arabic_name": "تالا"
+  },
+  {
+    "english_name": "Talkha",
+    "arabic_name": "طلخا"
+  },
+  {
+    "english_name": "Asyut",
+    "arabic_name": "أسيوط"
+  },
+  {
+    "english_name": "Madinat as Sadis min Uktubar",
+    "arabic_name": "السادس من أكتوبر"
+  },
+  {
+    "english_name": "Dikirnis",
+    "arabic_name": "دكرنس"
+  },
+  {
+    "english_name": "Ash Shuhada'",
+    "arabic_name": "الشهداء"
+  },
+  {
+    "english_name": "Birkat as Sab`",
+    "arabic_name": "بركة السبع"
+  },
+  {
+    "english_name": "Az Zaqaziq",
+    "arabic_name": "الزقازيق"
+  },
+  {
+    "english_name": "Al Waqf",
+    "arabic_name": "الوقف"
+  },
+  {
+    "english_name": "Al `Ajami",
+    "arabic_name": "العجمي"
+  },
+  {
+    "english_name": "Al Matariyah",
+    "arabic_name": "المطرية"
+  },
+  {
+    "english_name": "Shubrakhit",
+    "arabic_name": "شبراخيت"
+  },
+  {
+    "english_name": "Kafr Saqr",
+    "arabic_name": "كفر صقر"
+  },
+  {
+    "english_name": "Qillin",
+    "arabic_name": "قلين"
+  },
+  {
+    "english_name": "Shibin al Kawm",
+    "arabic_name": "شبين الكوم"
+  },
+  {
+    "english_name": "Aswan",
+    "arabic_name": "أسوان"
+  },
+  {
+    "english_name": "Tanta",
+    "arabic_name": "طنطا"
+  },
+  {
+    "english_name": "Damanhur",
+    "arabic_name": "دمنهور"
+  },
+  {
+    "english_name": "Al Minya",
+    "arabic_name": "المنيا"
+  },
+  {
+    "english_name": "Biyala",
+    "arabic_name": "بيلا"
+  },
+  {
+    "english_name": "Saqultah",
+    "arabic_name": "ساقلتة"
+  },
+  {
+    "english_name": "Mallawi",
+    "arabic_name": "ملوي"
+  },
+  {
+    "english_name": "Farshut",
+    "arabic_name": "فرشوط"
+  },
+  {
+    "english_name": "Damietta",
+    "arabic_name": "دمياط"
+  },
+  {
+    "english_name": "Luxor",
+    "arabic_name": "الأقصر"
+  },
+  {
+    "english_name": "Sidfa",
+    "arabic_name": "صدفا"
+  },
+  {
+    "english_name": "Suhaj",
+    "arabic_name": "سوهاج"
+  },
+  {
+    "english_name": "Bani Suwayf",
+    "arabic_name": "بني سويف"
+  },
+  {
+    "english_name": "Al `Arish",
+    "arabic_name": "العريش"
+  },
+  {
+    "english_name": "Qalyub",
+    "arabic_name": "قليوب"
+  },
+  {
+    "english_name": "Kafr ash Shaykh",
+    "arabic_name": "كفر الشيخ"
+  },
+  {
+    "english_name": "Disuq",
+    "arabic_name": "دسوق"
+  },
+  {
+    "english_name": "Bilbays",
+    "arabic_name": "بلبيس"
+  },
+  {
+    "english_name": "Idfu",
+    "arabic_name": "إدفو"
+  },
+  {
+    "english_name": "Rosetta",
+    "arabic_name": "روزيتَا"
+  },
+  {
+    "english_name": "Mit Ghamr",
+    "arabic_name": "ميت غمر"
+  },
+  {
+    "english_name": "Faqus",
+    "arabic_name": "فاقوس"
+  },
+  {
+    "english_name": "Matruh",
+    "arabic_name": "مطروح"
+  },
+  {
+    "english_name": "Idku",
+    "arabic_name": "إدكو"
+  },
+  {
+    "english_name": "Kafr ad Dawwar",
+    "arabic_name": "كفر الدوار"
+  },
+  {
+    "english_name": "Jirja",
+    "arabic_name": "جرجا"
+  },
+  {
+    "english_name": "Zifta",
+    "arabic_name": "زفتى"
+  },
+  {
+    "english_name": "Samalut",
+    "arabic_name": "سمالوط"
+  },
+  {
+    "english_name": "Al Badrashayn",
+    "arabic_name": "البدرشين"
+  },
+  {
+    "english_name": "Ibshaway",
+    "arabic_name": "إبشواي"
+  },
+  {
+    "english_name": "Manfalut",
+    "arabic_name": "منفلوط"
+  },
+  {
+    "english_name": "Rafah",
+    "arabic_name": "رفح"
+  },
+  {
+    "english_name": "Mit Salsil",
+    "arabic_name": "ميت سلسيل"
+  },
+  {
+    "english_name": "Bani Mazar",
+    "arabic_name": "بني مزار"
+  },
+  {
+    "english_name": "Madinat as Sadat",
+    "arabic_name": "السادات"
+  },
+  {
+    "english_name": "Al Khankah",
+    "arabic_name": "الخانكة"
+  },
+  {
+    "english_name": "Kafr az Zayyat",
+    "arabic_name": "كفر الزيات"
+  },
+  {
+    "english_name": "Maghaghah",
+    "arabic_name": "مغاغة"
+  },
+  {
+    "english_name": "Sharm ash Shaykh",
+    "arabic_name": "شرم الشيخ"
+  },
+  {
+    "english_name": "Abu Tij",
+    "arabic_name": "أبو تيج"
+  },
+  {
+    "english_name": "Bur Fu'ad",
+    "arabic_name": "بورفؤاد"
+  },
+  {
+    "english_name": "Al Qusiyah",
+    "arabic_name": "القوصية"
+  },
+  {
+    "english_name": "Kirdasah",
+    "arabic_name": "كرداسة"
+  },
+  {
+    "english_name": "Abnub",
+    "arabic_name": "أبنوب"
+  },
+  {
+    "english_name": "Hihya",
+    "arabic_name": "ههيا"
+  },
+  {
+    "english_name": "Al Qurayn",
+    "arabic_name": "القرين"
+  },
+  {
+    "english_name": "Ash Shaykh Zuwayd",
+    "arabic_name": "الشيخ زويد"
+  },
+  {
+    "english_name": "Ismailia",
+    "arabic_name": "الإسماعيلية"
+  },
+  {
+    "english_name": "Hurghada",
+    "arabic_name": "الغردقة"
+  },
+  {
+    "english_name": "Assiut",
+    "arabic_name": "أسيوط"
+  },
+  {
+    "english_name": "New Cairo",
+    "arabic_name": "القاهرة الجديدة"
+  },
+  {
+    "english_name": "Madinat an Nasr",
+    "arabic_name": "مدينة نصر"
+  },
+  {
+    "english_name": "Heliopolis",
+    "arabic_name": "هيليوبوليس"
+  },
+  {
+    "english_name": "Helwan",
+    "arabic_name": "حلوان"
+  },
+  {
+    "english_name": "Sadat",
+    "arabic_name": "مدينة السادات"
+  },
+  {
+    "english_name": "Abu Simbel",
+    "arabic_name": "أبو سمبل"
+  },
+  {
+    "english_name": "Sharm el-Sheikh",
+    "arabic_name": "شرم الشيخ"
+  },
+  {
+    "english_name": "Marsa Alam",
+    "arabic_name": "مرسى علم"
+  },
+  {
+    "english_name": "El Gouna",
+    "arabic_name": "الجونة"
+  },
+  {
+    "english_name": "Giza",
+    "arabic_name": "الجيزة"
+  },
+  {
+    "english_name": "Sohag",
+    "arabic_name": "سوهاج"
+  },
+  {
+    "english_name": "Dahab",
+    "arabic_name": "دهب"
+  },
+  {
+    "english_name": "El-Tor",
+    "arabic_name": "طور سيناء"
+  },
+  {
+    "english_name": "Safaga",
+    "arabic_name": "سفاجا"
+  },
+  {
+    "english_name": "Ras Gharib",
+    "arabic_name": "رأس غارب"
+  },
+  {
+    "english_name": "Nuwaybi‘a",
+    "arabic_name": "نويبع"
+  },
+  {
+    "english_name": "Saint Catherine",
+    "arabic_name": "سانت كاترين"
+  },
+  {
+    "english_name": "Siwa Oasis",
+    "arabic_name": "واحة سيوة"
+  },
+  {
+    "english_name": "Mersa Matruh",
+    "arabic_name": "مرسى مطروح"
+  },
+  {
+    "english_name": "Banha",
+    "arabic_name": "بنها"
+  },
+  {
+    "english_name": "Zagazig",
+    "arabic_name": "الزقازيق"
+  },
+  {
+    "english_name": "Toukh",
+    "arabic_name": "طوخ"
+  },
+  {
+    "english_name": "Shirbin",
+    "arabic_name": "شبرين"
+  },
+  {
+    "english_name": "Ramsis",
+    "arabic_name": "رمسيس"
+  },
+  {
+    "english_name": "Nasr",
+    "arabic_name": "نصر"
+  },
+  {
+    "english_name": "Minya",
+    "arabic_name": "المنيا"
+  },
+  {
+    "english_name": "Qinā",
+    "arabic_name": "قنا"
+  },
+  {
+    "english_name": "Isnā",
+    "arabic_name": "إسنا"
+  },
+  {
+    "english_name": "Dishnā",
+    "arabic_name": "دشنا"
+  },
+  {
+    "english_name": "Farshūţ",
+    "arabic_name": "فرشوط"
+  },
+  {
+    "english_name": "Naja' Ḥammādī",
+    "arabic_name": "نجع حمادي"
+  },
+  {
+    "english_name": "Jirjā",
+    "arabic_name": "جرجا"
+  },
+  {
+    "english_name": "Juhaynah",
+    "arabic_name": "جهينة"
+  },
+  {
+    "english_name": "Ţahţā",
+    "arabic_name": "طحطا"
+  },
+  {
+    "english_name": "Akhmīm",
+    "arabic_name": "أخميم"
+  },
+  {
+    "english_name": "Al Balyanā",
+    "arabic_name": "البلينا"
+  },
+  {
+    "english_name": "Al Manshāh",
+    "arabic_name": "المنشاه"
+  },
+  {
+    "english_name": "Abnūb",
+    "arabic_name": "أبنوب"
+  },
+  {
+    "english_name": "Manfalūţ",
+    "arabic_name": "منفلوط"
+  },
+  {
+    "english_name": "Dayrūţ",
+    "arabic_name": "ديروط"
+  },
+  {
+    "english_name": "Mallawī",
+    "arabic_name": "ملاوي"
+  },
+  {
+    "english_name": "Samālūţ",
+    "arabic_name": "سمالوط"
+  },
+  {
+    "english_name": "Banī Mazār",
+    "arabic_name": "بني مزار"
+  },
+  {
+    "english_name": "Maţāy",
+    "arabic_name": "مطاي"
+  },
+  {
+    "english_name": "Al Badārī",
+    "arabic_name": "البداري"
+  },
+  {
+    "english_name": "Al Qūşīyah",
+    "arabic_name": "القوصية"
+  },
+  {
+    "english_name": "Idfū",
+    "arabic_name": "إدفو"
+  },
+  {
+    "english_name": "Kawm Umbū",
+    "arabic_name": "كوم أمبو"
+  },
+  {
+    "english_name": "Abū Tīj",
+    "arabic_name": "أبو تيج"
+  },
+  {
+    "english_name": "Abū Qurqāş",
+    "arabic_name": "أبو قرقاص"
+  },
+  {
+    "english_name": "Kawm Ḩamādah",
+    "arabic_name": "كوم حمادة"
+  },
+  {
+    "english_name": "Ḩawsh ‘Īsá",
+    "arabic_name": "حوش عيسى"
+  },
+  {
+    "english_name": "Damanhūr",
+    "arabic_name": "دمنهور"
+  },
+  {
+    "english_name": "Idkū",
+    "arabic_name": "إدكو"
+  },
+  {
+    "english_name": "Kafr ad Dawwār",
+    "arabic_name": "كفر الدوار"
+  },
+  {
+    "english_name": "Rosetta",
+    "arabic_name": "رشيد"
+  },
+  {
+    "english_name": "Al Fashn",
+    "arabic_name": "الفشن"
+  },
+  {
+    "english_name": "Būsh",
+    "arabic_name": "بوش"
+  },
+  {
+    "english_name": "Sumusţā as Sulţānī",
+    "arabic_name": "سمسطا السلطاني"
+  },
+  {
+    "english_name": "Iţsā",
+    "arabic_name": "إطسا"
+  },
+  {
+    "english_name": "Ţāmiyah",
+    "arabic_name": "طامية"
+  },
+  {
+    "english_name": "Ibshawāy",
+    "arabic_name": "إبشواي"
+  },
+  {
+    "english_name": "Al Fayyūm",
+    "arabic_name": "الفيوم"
+  },
+  {
+    "english_name": "Al Wāsiţah",
+    "arabic_name": "الواسطة"
+  },
+  {
+    "english_name": "Aţsā",
+    "arabic_name": "أطسا"
+  },
+  {
+    "english_name": "Ajā",
+    "arabic_name": "عجة"
+  },
+  {
+    "english_name": "Ashmūn",
+    "arabic_name": "أشمون"
+  },
+  {
+    "english_name": "Munūf",
+    "arabic_name": "منوف"
+  },
+  {
+    "english_name": "Quwaysinā",
+    "arabic_name": "قويسنا"
+  },
+  {
+    "english_name": "Talā",
+    "arabic_name": "تلا"
+  },
+  {
+    "english_name": "Shibīn al Kawm",
+    "arabic_name": "شبين الكوم"
+  },
+  {
+    "english_name": "Al Bājūr",
+    "arabic_name": "الباجور"
+  },
+  {
+    "english_name": "Awsīm",
+    "arabic_name": "أوسيم"
+  },
+  {
+    "english_name": "Tanda",
+    "arabic_name": "طندا"
+  },
+  {
+    "english_name": "Samannūd",
+    "arabic_name": "سمنود"
+  },
+  {
+    "english_name": "Al Maḩallah al Kubrá",
+    "arabic_name": "المحلة الكبرى"
+  },
+  {
+    "english_name": "Basyūn",
+    "arabic_name": "بسيون"
+  },
+  {
+    "english_name": "Quţūr",
+    "arabic_name": "قطور"
+  },
+  {
+    "english_name": "Zefta",
+    "arabic_name": "زفتى"
+  },
+  {
+    "english_name": "Kafr az Zayyāt",
+    "arabic_name": "كفر الزيات"
+  },
+  {
+    "english_name": "Al ‘Ayyāţ",
+    "arabic_name": "العياط"
+  },
+  {
+    "english_name": "Al Ḩawāmidīyah",
+    "arabic_name": "الحوامدية"
+  },
+  {
+    "english_name": "Al Ḩāmūl",
+    "arabic_name": "الحامول"
+  },
+  {
+    "english_name": "Madīnat Sittah Uktūbar",
+    "arabic_name": "مدينة السادس من أكتوبر"
+  },
+  {
+    "english_name": "Sīdī Sālim",
+    "arabic_name": "سيدي سالم"
+  },
+  {
+    "english_name": "Munshāt ‘Alī Āghā",
+    "arabic_name": "منشأة علي آغا"
+  },
+  {
+    "english_name": "Markaz Disūq",
+    "arabic_name": "مركز دسوق"
+  },
+  {
+    "english_name": "Fuwwah",
+    "arabic_name": "فوه"
+  },
+  {
+    "english_name": "Bilqās",
+    "arabic_name": "بلقاس"
+  },
+  {
+    "english_name": "Minyat an Naşr",
+    "arabic_name": "منية النصر"
+  },
+  {
+    "english_name": "Ţalkhā",
+    "arabic_name": "طلخا"
+  },
+  {
+    "english_name": "Al Maţarīyah",
+    "arabic_name": "المطرية"
+  },
+  {
+    "english_name": "Az Zarqā",
+    "arabic_name": "الزرقا"
+  },
+  {
+    "english_name": "Fāraskūr",
+    "arabic_name": "فارسكور"
+  },
+  {
+    "english_name": "Al Manzalah",
+    "arabic_name": "المنزلة"
+  },
+  {
+    "english_name": "Ash Shuhadā’",
+    "arabic_name": "الشهداء"
+  },
+  {
+    "english_name": "Al Marj",
+    "arabic_name": "المرج"
+  },
+  {
+    "english_name": "Banhā",
+    "arabic_name": "بنها"
+  },
+  {
+    "english_name": "Al Qanāţir al Khayrīyah",
+    "arabic_name": "القناطر الخيرية"
+  },
+  {
+    "english_name": "Shibīn al Qanāṭir",
+    "arabic_name": "شبين القناطر"
+  },
+  {
+    "english_name": "Al Khānkah",
+    "arabic_name": "الخانكة"
+  },
+  {
+    "english_name": "Mit Salsil",
+    "arabic_name": "ميت سلسيل"
+  },
+  {
+    "english_name": "Al Badrashayn",
+    "arabic_name": "البدرشين"
+  },
+  {
+    "english_name": "Al Bawīţī",
+    "arabic_name": "البواطي"
+  },
+  {
+    "english_name": "Aş Şaff",
+    "arabic_name": "الصف"
+  },
+  {
+    "english_name": "Abū al Maţāmīr",
+    "arabic_name": "أبو المطامير"
+  },
+  {
+    "english_name": "Ad Dilinjāt",
+    "arabic_name": "الدلنجات"
+  },
+  {
+    "english_name": "Ḩalwān",
+    "arabic_name": "حلوان"
+  },
+  {
+    "english_name": "‘Izbat al Burj",
+    "arabic_name": "عزبة البرج"
+  },
+  {
+    "english_name": "Al Khārijah",
+    "arabic_name": "الخارجة"
+  },
+  {
+    "english_name": "Qaşr al Farāfirah",
+    "arabic_name": "قصر الفرافرة"
+  },
+  {
+    "english_name": "Al ‘Alamayn",
+    "arabic_name": "العلمين"
+  },
+  {
+    "english_name": "Ain Sukhna",
+    "arabic_name": "العين السخنة"
+  },
+  {
+    "english_name": "Makadi Bay",
+    "arabic_name": "خليج مكادي"
+  },
+  {
+    "english_name": "Al Quşayr",
+    "arabic_name": "القصير"
+  },
+  {
+    "english_name": "Markaz al Uqşur",
+    "arabic_name": "مركز الأقصر"
+  },
+  {
+    "english_name": "Markaz Jirjā",
+    "arabic_name": "مركز جرجا"
+  },
+  {
+    "english_name": "Markaz Sūhāj",
+    "arabic_name": "مركز سوهاج"
+  },
+  {
+    "english_name": "Kousa",
+    "arabic_name": "قوص"
+  },
+  {
+    "english_name": "Abu Hammad",
+    "arabic_name": "أبو حماد"
+  },
+  {
+    "english_name": "Al Jammālīyah",
+    "arabic_name": "الجمالية"
+  },
+  {
+    "english_name": "Qalyūb",
+    "arabic_name": "قليوب"
+  },
+  {
+    "english_name": "Almazah",
+    "arabic_name": "المزة"
+  },
+  {
+    "english_name": "Ar Rawdah",
+    "arabic_name": "الروضة"
+  },
+  {
+    "english_name": "Az Zamalik",
+    "arabic_name": "الزمالك"
+  },
+  {
+    "english_name": "Badr",
+    "arabic_name": "بدر"
+  },
+  {
+    "english_name": "Faraskur",
+    "arabic_name": "فارسكور"
+  },
+  {
+    "english_name": "Flaminj",
+    "arabic_name": "فلامنج"
+  },
+  {
+    "english_name": "Dayr Mawās",
+    "arabic_name": "دير مواس"
+  },
+  {
+    "english_name": "Shirbīn",
+    "arabic_name": "شربين"
+  },
+  {
+    "english_name": "Shubra",
+    "arabic_name": "شبرا"
+  },
+  {
+    "english_name": "Al Manşūrah",
+    "arabic_name": "المنصورة"
+  },
+  {
+    "english_name": "Al Minyā",
+    "arabic_name": "المنيا"
+  },
+  {
+    "english_name": "Arish",
+    "arabic_name": "العريش"
+  },
+  {
+    "english_name": "Asyūţ",
+    "arabic_name": "أسيوط"
+  },
+  {
+    "english_name": "Banī Suwayf",
+    "arabic_name": "بني سويف"
+  },
+  {
+    "english_name": "Disūq",
+    "arabic_name": "دسوق"
+  }
+]

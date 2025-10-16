@@ -140,10 +140,21 @@ def restart_app():
                     # في Windows، استخدام أعلام خاصة لإنشاء نافذة جديدة
                     CREATE_NO_WINDOW = 0x08000000
                     DETACHED_PROCESS = 0x00000008
-                    subprocess.Popen([main_path], 
-                                    creationflags=DETACHED_PROCESS)
+                    # Validate and normalize paths
+                    main_path_abs = os.path.abspath(main_path)
+                    if not os.path.isfile(main_path_abs):
+                        raise FileNotFoundError(f"Executable not found: {main_path_abs}")
+                        
+                    subprocess.Popen([main_path_abs], 
+                                  creationflags=DETACHED_PROCESS,
+                                  cwd=os.path.dirname(main_path_abs))
                 else:
-                    subprocess.Popen([main_path])
+                    main_path_abs = os.path.abspath(main_path)
+                    if not os.path.isfile(main_path_abs):
+                        raise FileNotFoundError(f"Executable not found: {main_path_abs}")
+                        
+                    subprocess.Popen([main_path_abs],
+                                  cwd=os.path.dirname(main_path_abs))
                 logger.info("تم إعادة تشغيل الملف التنفيذي بنجاح.")
             except Exception as e:
                 logger.error(f"فشل في إعادة تشغيل الملف التنفيذي: {e}")
@@ -153,7 +164,18 @@ def restart_app():
                     python_exe = os.path.join(os.path.dirname(sys.executable), 'python.exe')
                     if os.path.exists(python_exe):
                         logger.info(f"محاولة إعادة التشغيل باستخدام python.exe: {python_exe} {main_path}")
-                        subprocess.Popen([python_exe, main_path], creationflags=DETACHED_PROCESS)
+                        # Validate python executable and script paths
+                        python_exe_abs = os.path.abspath(python_exe)
+                        main_path_abs = os.path.abspath(main_path)
+                        
+                        if not os.path.isfile(python_exe_abs):
+                            raise FileNotFoundError(f"Python executable not found: {python_exe_abs}")
+                        if not os.path.isfile(main_path_abs):
+                            raise FileNotFoundError(f"Script not found: {main_path_abs}")
+                        
+                        subprocess.Popen([python_exe_abs, main_path_abs], 
+                                      creationflags=DETACHED_PROCESS,
+                                      cwd=os.path.dirname(main_path_abs))
                         logger.info("تم إعادة التشغيل باستخدام python.exe بنجاح.")
                     else:
                         logger.warning("python.exe غير متاح للمحاولة البديلة.")
@@ -166,10 +188,30 @@ def restart_app():
                 if sys.platform == "win32":
                     # في Windows، استخدام أعلام خاصة
                     CREATE_NO_WINDOW = 0x08000000
-                    subprocess.Popen([sys.executable, main_path], 
-                                    creationflags=CREATE_NO_WINDOW)
+                    # Validate executable and script paths
+                    python_exe = os.path.abspath(sys.executable)
+                    main_path_abs = os.path.abspath(main_path)
+                    
+                    if not os.path.isfile(python_exe):
+                        raise FileNotFoundError(f"Python executable not found: {python_exe}")
+                    if not os.path.isfile(main_path_abs):
+                        raise FileNotFoundError(f"Script not found: {main_path_abs}")
+                    
+                    subprocess.Popen([python_exe, main_path_abs], 
+                                  creationflags=CREATE_NO_WINDOW,
+                                  cwd=os.path.dirname(main_path_abs))
                 else:
-                    subprocess.Popen([sys.executable, main_path])
+                    # Validate executable and script paths
+                    python_exe = os.path.abspath(sys.executable)
+                    main_path_abs = os.path.abspath(main_path)
+                    
+                    if not os.path.isfile(python_exe):
+                        raise FileNotFoundError(f"Python executable not found: {python_exe}")
+                    if not os.path.isfile(main_path_abs):
+                        raise FileNotFoundError(f"Script not found: {main_path_abs}")
+                    
+                    subprocess.Popen([python_exe, main_path_abs],
+                                  cwd=os.path.dirname(main_path_abs))
                 logger.info("تم إعادة تشغيل البرنامج النصي بنجاح.")
             except Exception as e:
                 logger.error(f"فشل في إعادة تشغيل البرنامج النصي: {e}")

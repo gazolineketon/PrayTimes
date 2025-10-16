@@ -1,0 +1,242 @@
+[
+    {
+        "english_name": "Ho Chi Minh City",
+        "arabic_name": "هو تشي منه"
+    },
+    {
+        "english_name": "Hanoi",
+        "arabic_name": "هانوي"
+    },
+    {
+        "english_name": "Haiphong",
+        "arabic_name": "هايفونغ"
+    },
+    {
+        "english_name": "Bien Hoa",
+        "arabic_name": "بين هوا"
+    },
+    {
+        "english_name": "Can Tho",
+        "arabic_name": "كن تاه"
+    },
+    {
+        "english_name": "Ninh Binh",
+        "arabic_name": "ننه بنه"
+    },
+    {
+        "english_name": "Thanh Hoa",
+        "arabic_name": "تان هوا"
+    },
+    {
+        "english_name": "Tan An",
+        "arabic_name": "تان آن"
+    },
+    {
+        "english_name": "Nha Trang",
+        "arabic_name": "نها ترانج"
+    },
+    {
+        "english_name": "Bac Giang",
+        "arabic_name": "باك زانغ"
+    },
+    {
+        "english_name": "Nam Dinh",
+        "arabic_name": "نام دنه"
+    },
+    {
+        "english_name": "Thai Nguyen",
+        "arabic_name": "تهاي غوين"
+    },
+    {
+        "english_name": "Viet Tri",
+        "arabic_name": "فيت تري"
+    },
+    {
+        "english_name": "Ha Tinh",
+        "arabic_name": "ها تنه"
+    },
+    {
+        "english_name": "Vung Tau",
+        "arabic_name": "فنغ تاو"
+    },
+    {
+        "english_name": "Buon Ma Thuot",
+        "arabic_name": "بون ما توت"
+    },
+    {
+        "english_name": "Thu Dau Mot",
+        "arabic_name": "تو داو موت"
+    },
+    {
+        "english_name": "Quy Nhon",
+        "arabic_name": "كوي نهون"
+    },
+    {
+        "english_name": "Bac Ninh",
+        "arabic_name": "باك ننه"
+    },
+    {
+        "english_name": "Long Xuyen",
+        "arabic_name": "لونج زوين"
+    },
+    {
+        "english_name": "My Tho",
+        "arabic_name": "مي ثو"
+    },
+    {
+        "english_name": "Thai Binh",
+        "arabic_name": "تهاي بنه"
+    },
+    {
+        "english_name": "Quang Ngai",
+        "arabic_name": "كوانغ ناي"
+    },
+    {
+        "english_name": "Tuy Hoa",
+        "arabic_name": "توي هوا"
+    },
+    {
+        "english_name": "Hai Duong",
+        "arabic_name": "هاي ديونغ"
+    },
+    {
+        "english_name": "Ba Ria",
+        "arabic_name": "با ريا"
+    },
+    {
+        "english_name": "Hoa Binh",
+        "arabic_name": "هوا بنه"
+    },
+    {
+        "english_name": "Phu Yen",
+        "arabic_name": "فو أين"
+    },
+    {
+        "english_name": "Ca Mau",
+        "arabic_name": "كا ماو"
+    },
+    {
+        "english_name": "Soc Trang",
+        "arabic_name": "سوك تشانغ"
+    },
+    {
+        "english_name": "Tan An",
+        "arabic_name": "تان آن"
+    },
+    {
+        "english_name": "Cao Lanh",
+        "arabic_name": "كاو لان"
+    },
+    {
+        "english_name": "Phan Rang-Thap Cham",
+        "arabic_name": "فان رانغ – ثاب تشام"
+    },
+    {
+        "english_name": "Phan Thiet",
+        "arabic_name": "فان ثيت"
+    },
+    {
+        "english_name": "Da Lat",
+        "arabic_name": "دا لات"
+    },
+    {
+        "english_name": "Vinh Long",
+        "arabic_name": "فين لونغ"
+    },
+    {
+        "english_name": "Lang Son",
+        "arabic_name": "لانغ سون"
+    },
+    {
+        "english_name": "Cam Pha",
+        "arabic_name": "كام فا"
+    },
+    {
+        "english_name": "Trang Bang",
+        "arabic_name": "ترانغ بانغ"
+    },
+    {
+        "english_name": "Ha Long",
+        "arabic_name": "هالونج"
+    },
+    {
+        "english_name": "Bao Loc",
+        "arabic_name": "باو لاك"
+    },
+    {
+        "english_name": "Dong Ha",
+        "arabic_name": "دونغ ها"
+    },
+    {
+        "english_name": "Tra Vinh",
+        "arabic_name": "تشا فينه"
+    },
+    {
+        "english_name": "Bac Lieu",
+        "arabic_name": "باك ليو"
+    },
+    {
+        "english_name": "Vinh Yen",
+        "arabic_name": "فينه ين"
+    },
+    {
+        "english_name": "Hoi An",
+        "arabic_name": "هوي أن"
+    },
+    {
+        "english_name": "Dong Xoai",
+        "arabic_name": "دونغ زواي"
+    },
+    {
+        "english_name": "Cam Ranh",
+        "arabic_name": "كام رنه"
+    },
+    {
+        "english_name": "Pleiku",
+        "arabic_name": "بليكو"
+    },
+    {
+        "english_name": "Cam Ranh",
+        "arabic_name": "كام رنه"
+    },
+    {
+        "english_name": "Phu Ly",
+        "arabic_name": "فو لي"
+    },
+    {
+        "english_name": "Tay Ninh",
+        "arabic_name": "تاي ننه"
+    },
+    {
+        "english_name": "Dong Hoi",
+        "arabic_name": "دونج هوي"
+    },
+    {
+        "english_name": "Lao Cai",
+        "arabic_name": "لاو كاي"
+    },
+    {
+        "english_name": "Ben Tre",
+        "arabic_name": "بن تري"
+    },
+    {
+        "english_name": "Tam Ky",
+        "arabic_name": "تام كي"
+    },
+    {
+        "english_name": "Hung Yen",
+        "arabic_name": "هونغ اين"
+    },
+    {
+        "english_name": "Son La",
+        "arabic_name": "سون لا"
+    },
+    {
+        "english_name": "Tuyen Quang",
+        "arabic_name": "توين كوانغ"
+    },
+    {
+        "english_name": "Chau Doc",
+        "arabic_name": "تشاو دوك"
+    }
+]

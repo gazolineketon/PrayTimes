@@ -1,0 +1,322 @@
+[
+    {
+        "english_name": "Tunis",
+        "arabic_name": "تونس"
+    },
+    {
+        "english_name": "Sousse",
+        "arabic_name": "سوسة"
+    },
+    {
+        "english_name": "Kairouan",
+        "arabic_name": "القيروان"
+    },
+    {
+        "english_name": "Gabes",
+        "arabic_name": "قابس"
+    },
+    {
+        "english_name": "Bizerte",
+        "arabic_name": "بنزرت"
+    },
+    {
+        "english_name": "Sukrah",
+        "arabic_name": "سكرة"
+    },
+    {
+        "english_name": "Ariana",
+        "arabic_name": "اريانا"
+    },
+    {
+        "english_name": "Gafsa",
+        "arabic_name": "قفصة"
+    },
+    {
+        "english_name": "Kasserine",
+        "arabic_name": "القصرين"
+    },
+    {
+        "english_name": "Monastir",
+        "arabic_name": "المنستير"
+    },
+    {
+        "english_name": "Hammamet",
+        "arabic_name": "الحمامات"
+    },
+    {
+        "english_name": "La Marsa",
+        "arabic_name": "المرسى"
+    },
+    {
+        "english_name": "Msaken",
+        "arabic_name": "مساكن"
+    },
+    {
+        "english_name": "Beja",
+        "arabic_name": "باجة"
+    },
+    {
+        "english_name": "Ben Gardane",
+        "arabic_name": "بنقردان"
+    },
+    {
+        "english_name": "Houmt Souk",
+        "arabic_name": "حومة السوق"
+    },
+    {
+        "english_name": "Nabeul",
+        "arabic_name": "نابل"
+    },
+    {
+        "english_name": "Medenine",
+        "arabic_name": "مدنين"
+    },
+    {
+        "english_name": "Zarzis",
+        "arabic_name": "جرجيس"
+    },
+    {
+        "english_name": "Mahdia",
+        "arabic_name": "المهدية"
+    },
+    {
+        "english_name": "Fouchana",
+        "arabic_name": "فوشانة"
+    },
+    {
+        "english_name": "Le Kram",
+        "arabic_name": "الكرم"
+    },
+    {
+        "english_name": "Le Bardo",
+        "arabic_name": "باردو"
+    },
+    {
+        "english_name": "Tataouine",
+        "arabic_name": "تطاوين"
+    },
+    {
+        "english_name": "Oued Lill",
+        "arabic_name": "وادي ليلي"
+    },
+    {
+        "english_name": "Midoun",
+        "arabic_name": "ميدون"
+    },
+    {
+        "english_name": "Kelaa Kebira",
+        "arabic_name": "القلعة الكبرى"
+    },
+    {
+        "english_name": "Kelibia",
+        "arabic_name": "قليبية"
+    },
+    {
+        "english_name": "Moknine",
+        "arabic_name": "المكنين"
+    },
+    {
+        "english_name": "Menzel Temime",
+        "arabic_name": "منزل تميم"
+    },
+    {
+        "english_name": "Menzel Bourguiba",
+        "arabic_name": "منزل بورقيبة"
+    },
+    {
+        "english_name": "Ksar Hellal",
+        "arabic_name": "قصر هلال"
+    },
+    {
+        "english_name": "El Kef",
+        "arabic_name": "الكاف"
+    },
+    {
+        "english_name": "Bir Ali Ben Khalifa",
+        "arabic_name": "بئر علي بن خليفة"
+    },
+    {
+        "english_name": "Dar Chabanne",
+        "arabic_name": "دار شعبان"
+    },
+    {
+        "english_name": "Sidi Bouzid",
+        "arabic_name": "سيدي بوزيد"
+    },
+    {
+        "english_name": "Jendouba",
+        "arabic_name": "جندوبة"
+    },
+    {
+        "english_name": "Hammam Sousse",
+        "arabic_name": "حمام سوسة"
+    },
+    {
+        "english_name": "El Hamma",
+        "arabic_name": "الحامة"
+    },
+    {
+        "english_name": "La Goulette",
+        "arabic_name": "حلق الوادي"
+    },
+    {
+        "english_name": "Jedeida",
+        "arabic_name": "الجديدة"
+    },
+    {
+        "english_name": "Hammam-Lif",
+        "arabic_name": "حمام الأنف"
+    },
+    {
+        "english_name": "Teboulba",
+        "arabic_name": "طبلبة"
+    },
+    {
+        "english_name": "Tozeur",
+        "arabic_name": "توزر"
+    },
+    {
+        "english_name": "Metlaoui",
+        "arabic_name": "المتلوي"
+    },
+    {
+        "english_name": "Sbeitla",
+        "arabic_name": "سبيطلة"
+    },
+    {
+        "english_name": "Ksour Essaf",
+        "arabic_name": "قصور الساف"
+    },
+    {
+        "english_name": "Ez Zahra",
+        "arabic_name": "الزهراء"
+    },
+    {
+        "english_name": "Manouba",
+        "arabic_name": "منوبة"
+    },
+    {
+        "english_name": "El Ksar",
+        "arabic_name": "القصر"
+    },
+    {
+        "english_name": "Mateur",
+        "arabic_name": "ماطر"
+    },
+    {
+        "english_name": "Akouda",
+        "arabic_name": "أكودة"
+    },
+    {
+        "english_name": "Beni Khiar",
+        "arabic_name": "بني خيار"
+    },
+    {
+        "english_name": "Tebourba",
+        "arabic_name": "طبربة"
+    },
+    {
+        "english_name": "Kebili",
+        "arabic_name": "قبلي"
+    },
+    {
+        "english_name": "Megrine",
+        "arabic_name": "مقرين"
+    },
+    {
+        "english_name": "Dahmani",
+        "arabic_name": "الدهماني"
+    },
+    {
+        "english_name": "Grombalia",
+        "arabic_name": "قرمبالية"
+    },
+    {
+        "english_name": "Ar Rudayyif",
+        "arabic_name": "الرديف"
+    },
+    {
+        "english_name": "El Fahs",
+        "arabic_name": "الفحص"
+    },
+    {
+        "english_name": "Ajim",
+        "arabic_name": "أجيم"
+    },
+    {
+        "english_name": "Takelsa",
+        "arabic_name": "تاكلسة"
+    },
+    {
+        "english_name": "Medjez el Bab",
+        "arabic_name": "مجاز الباب"
+    },
+    {
+        "english_name": "Beni Khalled",
+        "arabic_name": "بني خلاد"
+    },
+    {
+        "english_name": "La Mornaghia",
+        "arabic_name": "المرناقية"
+    },
+    {
+        "english_name": "Nefta",
+        "arabic_name": "نفطة"
+    },
+    {
+        "english_name": "Zaghouan",
+        "arabic_name": "زغوان"
+    },
+    {
+        "english_name": "Chebba",
+        "arabic_name": "الشابة"
+    },
+    {
+        "english_name": "Tabarka",
+        "arabic_name": "طبرقة"
+    },
+    {
+        "english_name": "El Jem",
+        "arabic_name": "الجم"
+    },
+    {
+        "english_name": "Sahline",
+        "arabic_name": "الساحلين"
+    },
+    {
+        "english_name": "Carthage",
+        "arabic_name": "قرطاج"
+    },
+    {
+        "english_name": "Tabursuq",
+        "arabic_name": "تبرسق"
+    },
+    {
+        "english_name": "Zaouiet Sousse",
+        "arabic_name": "زاوية سوسة"
+    },
+    {
+        "english_name": "Metouia",
+        "arabic_name": "المطوية"
+    },
+    {
+        "english_name": "Bekalta",
+        "arabic_name": "البقالطة"
+    },
+    {
+        "english_name": "Ghardimaou",
+        "arabic_name": "غار الدماء"
+    },
+    {
+        "english_name": "Tajerouine",
+        "arabic_name": "تاجروين"
+    },
+    {
+        "english_name": "Menzel Abderhaman",
+        "arabic_name": "منزل عبد الرحمان"
+    },
+    {
+        "english_name": "El Alia",
+        "arabic_name": "العالية"
+    }
+]

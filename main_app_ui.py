@@ -67,7 +67,7 @@ class EnhancedPrayerTimesApp:
         try:
             self.root.iconbitmap(get_working_path("pray_times.ico"))
         except tk.TclError:
-            logger.warning("pray_times.ico not found, continuing without icon.")
+            logger.warning("لم يتم العثور على pray_times.ico، الاستمرار بدون أيقونة")
         self.root.geometry("850x1000")
 
         self.cache_manager = CacheManager()
@@ -385,7 +385,6 @@ class EnhancedPrayerTimesApp:
     def robust_api_call(self, url: str, params: dict, retries: int = 3, cache_ttl: int = 3600):
         """
         استدعاء API مع إعادة المحاولة وتحسين معالجة الأخطاء وتخزين مؤقت ذكي
-        
         :param url: عنوان URL للـ API
         :param params: معاملات الطلب
         :param retries: عدد محاولات إعادة المحاولة
@@ -736,6 +735,46 @@ class EnhancedPrayerTimesApp:
         if self.root.winfo_exists() and self._countdown_running:
             self.root.after(update_interval, self.update_countdown)
     
+    def show_adhan_dialog(self, prayer_name: str):
+        """إظهار نافذة الأذان مع زر إيقاف"""
+        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+            self.adhan_dialog.destroy()
+
+        self.adhan_dialog = tk.Toplevel(self.root)
+        self.adhan_dialog.title(self._("adhan_for_prayer", prayer_name=prayer_name))
+        self.adhan_dialog.configure(bg=self.colors['bg_primary'])
+        self.adhan_dialog.geometry("300x150")
+        self.adhan_dialog.resizable(False, False)
+        self.adhan_dialog.attributes('-topmost', True)  # جعل النافذة في المقدمة
+
+        # مركز النافذة
+        self.adhan_dialog.update_idletasks()
+        x = self.root.winfo_x() + (self.root.winfo_width() // 2) - 150
+        y = self.root.winfo_y() + (self.root.winfo_height() // 2) - 75
+        self.adhan_dialog.geometry(f"+{x}+{y}")
+
+        # محتوى النافذة
+        main_frame = tk.Frame(self.adhan_dialog, bg=self.colors['bg_primary'], padx=20, pady=20)
+        main_frame.pack(fill='both', expand=True)
+
+        prayer_label = tk.Label(main_frame, text=f"{self._('its_time_for_prayer', prayer_name=prayer_name)}", font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_primary'], fg=self.colors['text_primary'], wraplength=260)
+        prayer_label.pack(pady=(0, 10))
+
+        stop_button = tk.Button(main_frame, text=self._("stop_adhan"), font=('Segoe UI', 12), bg=self.colors['error'], fg=self.colors['text_accent'], relief='flat', padx=20, pady=10, cursor='hand2', command=self.stop_adhan_and_close_dialog)
+        stop_button.pack()
+
+
+    def stop_adhan_and_close_dialog(self):
+        """إيقاف الأذان وإغلاق النافذة"""
+        self.adhan_player.stop_sound()
+        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+            self.adhan_dialog.destroy()
+
+    def close_adhan_dialog_if_exists(self):
+        """إغلاق نافذة الأذان إذا كانت موجودة (للاستدعاء عند انتهاء الصوت)"""
+        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+            self.adhan_dialog.destroy()
+
     def check_prayer_notifications(self):
         """فحص وإرسال إشعارات الصلوات بكفاءة أفضل"""
         if not self.settings.notifications_enabled or not NOTIFICATIONS_AVAILABLE:
@@ -825,7 +864,11 @@ class EnhancedPrayerTimesApp:
                             self.adhan_player.play_sound(sound_file, self.settings.sound_volume)
                         else:
                             self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
-                    
+                        # إظهار نافذة الأذان مع زر الإيقاف
+                        self.show_adhan_dialog(prayer_name)
+                        # تعيين callback لإغلاق النافذة عند انتهاء الصوت
+                        self.adhan_player.set_end_callback(lambda: self.close_adhan_dialog_if_exists())
+
                     self.last_notification_time[prayer_key] = current_time_str
         
         # جدولة الفحص التالي بناءً على الوقت المتبقي للإشعار أو الأذان القادم
@@ -846,14 +889,52 @@ class EnhancedPrayerTimesApp:
         if self.root.winfo_exists() and self.running:
             self.root.after(next_check, self.check_prayer_notifications)
     
+    def update_prayer_statuses(self):
+        """تحديث حالة الصلوات في الجدول"""
+        if not hasattr(self, 'prayer_rows') or not self.prayer_rows:
+            return
+
+        now = datetime.now()
+        current_minutes = now.hour * 60 + now.minute
+
+        for i, row_data in enumerate(self.prayer_rows):
+            if 'prayer_orig' not in row_data:
+                continue
+
+            prayer_minutes = self.time_to_minutes(row_data['prayer_orig'])
+            status_label = row_data['status']
+
+            if prayer_minutes <= current_minutes:
+                if i < len(self.prayer_rows) - 1:
+                    next_prayer_minutes = self.time_to_minutes(self.prayer_rows[i + 1]['prayer_orig'])
+                    if current_minutes < next_prayer_minutes:
+                        status = self._("prayer_status_now")
+                        status_color = self.colors['success']
+                    else:
+                        status = self._("prayer_status_finished")
+                        status_color = self.colors['text_secondary']
+                else:
+                    status = self._("prayer_status_finished")
+                    status_color = self.colors['text_secondary']
+            else:
+                time_diff = prayer_minutes - current_minutes
+                if time_diff <= 60:
+                    status = self._("prayer_status_within_hour", time_diff=time_diff)
+                    status_color = self.colors['warning']
+                else:
+                    status = self._("prayer_status_upcoming")
+                    status_color = self.colors['text_secondary']
+
+            status_label.config(text=status, fg=status_color)
+
     def update_next_prayer(self):
         """تمييز الصلاة القادمة"""
         if not hasattr(self, 'prayer_rows') or not self.prayer_rows:
             return
-        
+
         now = datetime.now()
         current_minutes = now.hour * 60 + now.minute
-        
+
         # إعادة تعيين جميع الصفوف إلى النمط الافتراضي
         for row_data in self.prayer_rows:
             row_data['icon'].config(font=('Segoe UI', 12))
@@ -870,14 +951,14 @@ class EnhancedPrayerTimesApp:
                 if prayer_minutes > current_minutes:
                     next_prayer_index = i
                     break
-        
+
         if next_prayer_index == -1:
             next_prayer_index = 0
-        
+
         if 0 <= next_prayer_index < len(self.prayer_rows):
             row_data = self.prayer_rows[next_prayer_index]
             highlight_color = '#e8f4fd' if self.settings.theme == 'light' else '#1a365d'
-            
+
             # جعل الخط العريض وتمييز الصف التالي من الصلاة
             row_data['icon'].config(font=('Segoe UI', 12, 'bold'))
             row_data['prayer'].config(font=('Segoe UI', 12, 'bold'))
@@ -917,8 +998,7 @@ class EnhancedPrayerTimesApp:
     
     def time_to_minutes(self, time_str: str) -> int:
         """
-        تحويل الوقت إلى دقائق مع تحسين معالجة الأخطاء وتخزين النتائج للاستخدام المتكرر
-        
+        تحويل الوقت إلى دقائق مع تحسين معالجة الأخطاء وتخزين النتائج للاستخدام المتكرر        
         :param time_str: سلسلة الوقت بتنسيق "HH:MM AM/PM" أو "HH:MM ص/م"
         :return: الوقت محولاً إلى دقائق (من 0 إلى 1439)
         """
@@ -986,16 +1066,15 @@ class EnhancedPrayerTimesApp:
             try:
                 if not self.root.winfo_exists() or not self.running:
                     return
-                
+
                 # حساب الفترة المناسبة للتحديث التالي
                 next_update_interval = self._calculate_optimal_update_interval()
-                
+
                 # تحديث عناصر الواجهة المطلوبة
                 self.update_time_display_realtime()
                 self.update_next_prayer()
-                
-                # لا داعي لاستدعاء check_prayer_notifications هنا لأنه يدير الجدولة الخاصة به
-                
+                self.update_prayer_statuses()  # تحديث حالة الصلوات في الجدول
+
                 # إعادة جدولة التحديث التالي بناءً على الفترة المحسوبة
                 self.root.after(next_update_interval, scheduled_update)
             except Exception as e:
@@ -1131,6 +1210,11 @@ class EnhancedPrayerTimesApp:
                 self.manual_refresh(show_success_message=False)
 
         try:
+            # Make sure countries are loaded before opening settings
+            if not self.countries:
+                from data_manager import get_countries
+                self.countries = get_countries()
+                
             settings_dialog = SettingsDialog(self, self.settings, self.colors, on_save_callback=on_settings_saved)
         except Exception as e:
             logger.error(f"خطأ في فتح الإعدادات {e}")
@@ -1263,28 +1347,25 @@ class EnhancedPrayerTimesApp:
             if hasattr(self, 'tray_thread') and self.tray_thread.is_alive() and threading.current_thread() is not self.tray_thread:
                 self.tray_thread.join(timeout=1.0)
         try:
-            self.destroy_scroll_area()
             if hasattr(self, '_countdown_running'):
                 self._countdown_running = False
-            
+
             if hasattr(self, 'adhan_player'):
                 self.adhan_player.stop_sound()
-            
+
             if hasattr(self, 'executor'):
                 self.executor.shutdown(wait=True)
-            
-            # cleanup_old_cache تم استدعاؤه بالفعل عند بدء التطبيق
-            
+
             self.settings.save_settings()
-            
+
             # cleanup_pyinstaller يتم استدعاؤه تلقائيًا عبر atexit
             logger.info("تم إغلاق التطبيق بنجاح")
-            
+
         except Exception as e:
             logger.error(f"خطأ أثناء إغلاق التطبيق {e}")
         finally:
             if hasattr(self, 'root') and self.root.winfo_exists():
-                self.root.destroy()
+                self.root.quit()
     
     def destroy_scroll_area(self):
         """تنظيف وتدمير عناصر التمرير بشكل آمن"""

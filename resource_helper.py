@@ -80,7 +80,7 @@ def extract_resources():
     
     resources_to_extract = [
         ('sounds', 'sounds'),
-        ('world_cities', 'world_cities'),
+        ('Countries&Cities', 'Countries&Cities'),
         ('countries.json', 'countries.json'),
         ('pray_logo.png', 'pray_logo.png'),
         ('pray_times.ico', 'pray_times.ico')

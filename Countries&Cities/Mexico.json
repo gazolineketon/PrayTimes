@@ -1,0 +1,270 @@
+[
+    {
+        "english_name": "Mexico City",
+        "arabic_name": "مكسيكو"
+    },
+    {
+        "english_name": "Guadalajara",
+        "arabic_name": "غوادالاخارا"
+    },
+    {
+        "english_name": "Monterrey",
+        "arabic_name": "مونتيري"
+    },
+    {
+        "english_name": "Toluca",
+        "arabic_name": "تولوكا"
+    },
+    {
+        "english_name": "Tijuana",
+        "arabic_name": "تيخوانا"
+    },
+    {
+        "english_name": "Leon de los Aldama",
+        "arabic_name": "ليون"
+    },
+    {
+        "english_name": "Puebla",
+        "arabic_name": "بويبلا"
+    },
+    {
+        "english_name": "Zapopan",
+        "arabic_name": "سابوبان، خاليسكو"
+    },
+    {
+        "english_name": "Mexicali",
+        "arabic_name": "مكسيكالي"
+    },
+    {
+        "english_name": "Nezahualcoyotl",
+        "arabic_name": "سيوداد نيزاهوال كويوتل"
+    },
+    {
+        "english_name": "Ciudad Nezahualcoyotl",
+        "arabic_name": "سيوداد نيزاهوال كويوتل"
+    },
+    {
+        "english_name": "Morelia",
+        "arabic_name": "موريليا"
+    },
+    {
+        "english_name": "Aguascalientes",
+        "arabic_name": "أغواسكالينتس"
+    },
+    {
+        "english_name": "Chihuahua",
+        "arabic_name": "شيواوا"
+    },
+    {
+        "english_name": "Naucalpan de Juarez",
+        "arabic_name": "ناوكالبان دي خواريز"
+    },
+    {
+        "english_name": "Merida",
+        "arabic_name": "ماردة"
+    },
+    {
+        "english_name": "Cancun",
+        "arabic_name": "كانكون"
+    },
+    {
+        "english_name": "Saltillo",
+        "arabic_name": "سالتيو"
+    },
+    {
+        "english_name": "Hermosillo",
+        "arabic_name": "إرموسييو"
+    },
+    {
+        "english_name": "Culiacan",
+        "arabic_name": "كولياكان"
+    },
+    {
+        "english_name": "Queretaro",
+        "arabic_name": "كيريتارو"
+    },
+    {
+        "english_name": "San Luis Potosi",
+        "arabic_name": "سان لويس بوتوسي"
+    },
+    {
+        "english_name": "Guadalupe",
+        "arabic_name": "جوادالوبي"
+    },
+    {
+        "english_name": "Acapulco de Juarez",
+        "arabic_name": "أكابولكو"
+    },
+    {
+        "english_name": "Durango",
+        "arabic_name": "دورانغو"
+    },
+    {
+        "english_name": "Chimalhuacan",
+        "arabic_name": "تشيمالهواكان"
+    },
+    {
+        "english_name": "Irapuato",
+        "arabic_name": "إيرابواتو"
+    },
+    {
+        "english_name": "Ensenada",
+        "arabic_name": "إنسينادا"
+    },
+    {
+        "english_name": "Heroica Matamoros",
+        "arabic_name": "ماتاموروس"
+    },
+    {
+        "english_name": "Ciudad Apodaca",
+        "arabic_name": "أبوداكا"
+    },
+    {
+        "english_name": "Mazatlan",
+        "arabic_name": "مازاتلان"
+    },
+    {
+        "english_name": "Ciudad Lopez Mateos",
+        "arabic_name": "سيوداد لوبيز ماتيوس"
+    },
+    {
+        "english_name": "Ciudad General Escobedo",
+        "arabic_name": "جنرال إسكوبيدو"
+    },
+    {
+        "english_name": "San Nicolas de los Garza",
+        "arabic_name": "سان نيكولاس دي لوس غارزا"
+    },
+    {
+        "english_name": "Veracruz",
+        "arabic_name": "فيراكروز"
+    },
+    {
+        "english_name": "Tepic",
+        "arabic_name": "تبيك"
+    },
+    {
+        "english_name": "Xalapa",
+        "arabic_name": "جالابا"
+    },
+    {
+        "english_name": "Nuevo Laredo",
+        "arabic_name": "نويفو لاريدو"
+    },
+    {
+        "english_name": "Celaya",
+        "arabic_name": "سيلايا"
+    },
+    {
+        "english_name": "Villahermosa",
+        "arabic_name": "فيلاهيرموسا"
+    },
+    {
+        "english_name": "Cuernavaca",
+        "arabic_name": "كويرنافاكا"
+    },
+    {
+        "english_name": "Ciudad Obregon",
+        "arabic_name": "سيوداد أوبريجون"
+    },
+    {
+        "english_name": "Salamanca",
+        "arabic_name": "شلمنقة"
+    },
+    {
+        "english_name": "Coatzacoalcos",
+        "arabic_name": "كواتزاكوالكوس"
+    },
+    {
+        "english_name": "Ciudad Santa Catarina",
+        "arabic_name": "سانتا كاترينا"
+    },
+    {
+        "english_name": "Ciudad Victoria",
+        "arabic_name": "سيوداد فيكتوريا"
+    },
+    {
+        "english_name": "Playa del Carmen",
+        "arabic_name": "بلايا ديل كارمن"
+    },
+    {
+        "english_name": "Oaxaca",
+        "arabic_name": "واهاكا"
+    },
+    {
+        "english_name": "Los Mochis",
+        "arabic_name": "لوس موتشيس"
+    },
+    {
+        "english_name": "Pachuca",
+        "arabic_name": "باتشوكا"
+    },
+    {
+        "english_name": "Tampico",
+        "arabic_name": "تامبيكو"
+    },
+    {
+        "english_name": "Heroica Nogales",
+        "arabic_name": "هيرويكا نوغاليس"
+    },
+    {
+        "english_name": "La Paz",
+        "arabic_name": "لا باز"
+    },
+    {
+        "english_name": "Campeche",
+        "arabic_name": "كامبيتشي"
+    },
+    {
+        "english_name": "Carmen",
+        "arabic_name": "كارمين"
+    },
+    {
+        "english_name": "Monclova",
+        "arabic_name": "مونكلوفا"
+    },
+    {
+        "english_name": "Garcia",
+        "arabic_name": "غارسيا"
+    },
+    {
+        "english_name": "Chilpancingo",
+        "arabic_name": "تشيلبانسينغو"
+    },
+    {
+        "english_name": "Puerto Vallarta",
+        "arabic_name": "بويرتو فالارتا"
+    },
+    {
+        "english_name": "Tapachula",
+        "arabic_name": "بلدية تاباتشولا"
+    },
+    {
+        "english_name": "Cordoba",
+        "arabic_name": "قرطبة"
+    },
+    {
+        "english_name": "Cabo San Lucas",
+        "arabic_name": "كابو سان لوكاس"
+    },
+    {
+        "english_name": "Ciudad Madero",
+        "arabic_name": "سيوداد ماديرو"
+    },
+    {
+        "english_name": "Cuautla",
+        "arabic_name": "كواوتلا"
+    },
+    {
+        "english_name": "Guanajuato",
+        "arabic_name": "غواناخواتو"
+    },
+    {
+        "english_name": "Ciudad del Carmen",
+        "arabic_name": "سيوداد ديل كارمن"
+    },
+    {
+        "english_name": "San Cristobal",
+        "arabic_name": "سان كريستوبال"
+    }
+]

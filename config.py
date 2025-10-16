@@ -13,7 +13,10 @@ from resource_helper import get_working_path
 TRANSLATIONS = {
     "ar": dict(sorted({
         "about": "حول",
+        "adhan_playing": "الأذان يعمل",
+        "adhan_for_prayer": "أذان {prayer_name}",
         "adhan_sound_file": "ملف صوت الأذان",
+        "stop_adhan": "إيقاف الأذان",
         "all_files": "جميع الملفات",
         "app_error": "خطأ في التطبيق",
         "app_running_in_background": "التطبيق يعمل في الخلفية",
@@ -107,6 +110,7 @@ TRANSLATIONS = {
         "save": "حفظ",
         "saved_successfully": "تم الحفظ",
         "searching": "جاري البحث...",
+        "second": "ثانية",
         "select_adhan_file": "اختر ملف الأذان",
         "settings": "⚙️ إعدادات",
         "settings_saved_successfully": "تم تغيير الإعدادات. إضغط لإعادة التشغيل أو الاستمرار حاليا وسيتم تطبيق الإعدادات عند إعادة التشغيل",
@@ -135,6 +139,8 @@ TRANSLATIONS = {
     }.items())),
     "en": dict(sorted({
         "about": "About",
+        "adhan_playing": "Adhan Playing",
+        "adhan_for_prayer": "Adhan for {prayer_name}",
         "adhan_sound_file": "Adhan Sound File",
         "all_files": "All Files",
         "app_error": "Application Error",
@@ -229,10 +235,12 @@ TRANSLATIONS = {
         "save": "Save",
         "saved_successfully": "Saved",
         "searching": "Searching...",
+        "second": "second",
         "select_adhan_file": "Select Adhan File",
         "settings": "⚙️ Settings",
         "settings_saved_successfully": "Settings have been changed. Click to restart or continue and settings will be applied on restart.",
         "settings_saved_successfully_restart": "Settings saved. Some changes require a restart to take effect.\nDo you want to restart now?",
+        "stop_adhan": "Stop Adhan",
         "show_qibla_direction": "Show Qibla Direction",
         "show_window": "Show",
         "sounds": "Sounds",
@@ -322,7 +330,7 @@ LOG_FILE = LOG_DIR / 'prayer_app.log'
 COUNTRIES_FILE = APP_DATA_DIR / 'countries.json'
 COUNTRIES_CACHE_FILE = CACHE_DIR / 'countries.json'
 CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
-WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
+WORLD_CITIES_DIR = Path(__file__).parent / 'Countries&Cities'
 SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
 def initialize_app_directories():
@@ -352,7 +360,7 @@ def initialize_app_directories():
         COUNTRIES_FILE = APP_DATA_DIR / 'countries.json'
         COUNTRIES_CACHE_FILE = CACHE_DIR / 'countries.json'
         CITIES_CACHE_DIR = CACHE_DIR / 'cities_cache'
-        WORLD_CITIES_DIR = APP_DATA_DIR / 'world_cities'
+        WORLD_CITIES_DIR = APP_DATA_DIR / 'Countries&Cities'
         SOUNDS_DIR = APP_DATA_DIR / 'sounds'
 
     # تأكد من وجود مجلدات التخزين المؤقت والسجلات

@@ -19,7 +19,7 @@ def test_resources():
     specific_files = [
         "sounds/adhan_mekka.wma",
         "sounds/notification.wav",
-        "world_cities/cities.json",  # أو أي ملف في مجلد المدن
+        "Countries&Cities/cities.json",  # أو أي ملف في مجلد المدن
         "countries.json",
         "pray_logo.png",
         "pray_times.ico"
@@ -39,7 +39,7 @@ def test_resources():
     print("=== محتويات المجلدات ===")
     list_available_files("sounds")
     print()
-    list_available_files("world_cities")
+    list_available_files("Countries&Cities")
 
 if __name__ == "__main__":
     test_resources()

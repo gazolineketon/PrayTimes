@@ -1,5 +1,5 @@
 # runtime_hook.py
-# Enhanced runtime hook for PyInstaller with better error handling
+# خطاف تشغيل محسن لـ PyInstaller مع معالجة أخطاء أفضل
 
 import sys
 import os
@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(levelname)s: %(message)s')
 
 def safe_add_path(path, description):
-    """Safely add a path to sys.path with error handling"""
+    """إضافة مسار بأمان إلى sys.path مع معالجة الأخطاء"""
     try:
         if os.path.exists(path) and path not in sys.path:
             sys.path.insert(0, path)
@@ -20,7 +20,7 @@ def safe_add_path(path, description):
         logging.warning(f"Failed to add {description} to sys.path: {e}")
 
 def safe_set_env(key, value, description):
-    """Safely set environment variable with error handling"""
+    """تعيين متغير البيئة بأمان مع معالجة الأخطاء"""
     try:
         os.environ[key] = value
         logging.debug(f"Set {description}: {key}={value}")
