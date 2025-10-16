@@ -1210,6 +1210,11 @@ class EnhancedPrayerTimesApp:
                 self.manual_refresh(show_success_message=False)
 
         try:
+            # Make sure countries are loaded before opening settings
+            if not self.countries:
+                from data_manager import get_countries
+                self.countries = get_countries()
+                
             settings_dialog = SettingsDialog(self, self.settings, self.colors, on_save_callback=on_settings_saved)
         except Exception as e:
             logger.error(f"خطأ في فتح الإعدادات {e}")
@@ -1360,13 +1365,7 @@ class EnhancedPrayerTimesApp:
             logger.error(f"خطأ أثناء إغلاق التطبيق {e}")
         finally:
             if hasattr(self, 'root') and self.root.winfo_exists():
-                self.destroy_scroll_area()
-                self.root.update()
                 self.root.quit()
-            try:
-                self.root.destroy()
-            except tk.TclError as e:
-                logger.error(f"Error destroying root window: {e}")
     
     def destroy_scroll_area(self):
         """تنظيف وتدمير عناصر التمرير بشكل آمن"""

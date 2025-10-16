@@ -54,15 +54,25 @@ def build_app():
 
     # بناء التطبيق
     try:
-        result = subprocess.run(
-            [sys.executable, '-m', 'PyInstaller', 'main.spec', '--clean'],
-            env=env,
-            capture_output=True,
-            text=True
-        )
-
-        if result.returncode != 0:
-            logger.error(f"فشل بناء التطبيق: {result.stderr}")
+        # Validate paths and commands
+        main_spec = os.path.abspath('main.spec')
+        if not os.path.isfile(main_spec):
+            logger.error("main.spec file not found")
+            return False
+            
+        pyinstaller_args = [sys.executable, '-m', 'PyInstaller', main_spec, '--clean']
+        try:
+            result = subprocess.run(
+                pyinstaller_args,
+                env=env,
+                capture_output=True,
+                text=True,
+                check=True  # Will raise CalledProcessError if return code != 0
+            )
+            logger.info("تم بناء التطبيق بنجاح")
+            return True
+        except subprocess.CalledProcessError as e:
+            logger.error(f"فشل بناء التطبيق: {e.stderr}")
             return False
 
         logger.info("تم بناء التطبيق بنجاح")
@@ -76,14 +86,24 @@ def create_installer():
     logger.info("إنشاء حزمة التثبيت...")
 
     try:
-        result = subprocess.run(
-            [sys.executable, 'create_installer.py'],
-            capture_output=True,
-            text=True
-        )
-
-        if result.returncode != 0:
-            logger.error(f"فشل إنشاء حزمة التثبيت: {result.stderr}")
+        # Validate installer script path
+        installer_script = os.path.abspath('create_installer.py')
+        if not os.path.isfile(installer_script):
+            logger.error("create_installer.py script not found")
+            return False
+            
+        installer_args = [sys.executable, installer_script]
+        try:
+            result = subprocess.run(
+                installer_args,
+                capture_output=True,
+                text=True,
+                check=True  # Will raise CalledProcessError if return code != 0
+            )
+            logger.info("تم إنشاء حزمة التثبيت بنجاح")
+            return True
+        except subprocess.CalledProcessError as e:
+            logger.error(f"فشل إنشاء حزمة التثبيت: {e.stderr}")
             return False
 
         logger.info("تم إنشاء حزمة التثبيت بنجاح")

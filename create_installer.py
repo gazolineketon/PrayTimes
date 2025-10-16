@@ -25,11 +25,15 @@ def create_installer():
 
         # بناء التطبيق باستخدام ملف المواصفات
         logger.info("بدء بناء التطبيق...")
-        result = subprocess.run([sys.executable, "-m", "PyInstaller", "main.spec", "--clean"], 
-                              capture_output=True, text=True)
-
-        if result.returncode != 0:
-            logger.error(f"فشل بناء التطبيق: {result.stderr}")
+        # Using a list of arguments for safety against command injection
+        pyinstaller_args = [sys.executable, "-m", "PyInstaller", "main.spec", "--clean"]
+        try:
+            result = subprocess.run(pyinstaller_args, 
+                                 capture_output=True, 
+                                 text=True,
+                                 check=True)  # Will raise CalledProcessError if return code != 0
+        except subprocess.CalledProcessError as e:
+            logger.error(f"فشل بناء التطبيق: {e.stderr}")
             return False
 
         logger.info("تم بناء التطبيق بنجاح")
@@ -157,11 +161,20 @@ SectionEnd
         with open(nsis_file, "w", encoding="utf-8") as f:
             f.write(nsis_script)
 
-        # تشغيل NSIS
-        result = subprocess.run([nsis_path, nsis_file], capture_output=True, text=True)
+        # Validate NSIS path and script path
+        if not os.path.isfile(nsis_path) or not os.path.isfile(nsis_file):
+            logger.error("Invalid NSIS or script path")
+            return False
 
-        if result.returncode != 0:
-            logger.error(f"فشل إنشاء حزمة تثبيت NSIS: {result.stderr}")
+        # Using a list of arguments and validating paths for safety against command injection
+        nsis_args = [nsis_path, nsis_file]
+        try:
+            result = subprocess.run(nsis_args, 
+                                 capture_output=True, 
+                                 text=True,
+                                 check=True)  # Will raise CalledProcessError if return code != 0
+        except subprocess.CalledProcessError as e:
+            logger.error(f"فشل إنشاء حزمة تثبيت NSIS: {e.stderr}")
             return False
 
         logger.info("تم إنشاء حزمة تثبيت NSIS بنجاح")
