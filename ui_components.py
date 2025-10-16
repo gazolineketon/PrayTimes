@@ -394,59 +394,77 @@ class SettingsDialog:
     def setup_notifications_settings(self, parent):
         """إعداد إعدادات الإشعارات"""
         self.notifications_var = tk.BooleanVar(value=self.settings.notifications_enabled)
-        ttk.Checkbutton(parent, text=self._("enable_notifications"), 
+        ttk.Checkbutton(parent, text=self._("enable_notifications"),
                        variable=self.notifications_var).pack(anchor='w', padx=10, pady=10)
         # وقت الإشعار قبل الصلاة
         notify_frame = ttk.LabelFrame(parent, text=self._("notification_before_prayer"))
         notify_frame.pack(fill='x', padx=10, pady=10)
         # من 0 إلى 30 دقيقة
         self.notify_before_var = tk.IntVar(value=self.settings.notification_before_minutes)
-        notify_spinbox = ttk.Spinbox(notify_frame, from_=0, to=30, 
+        notify_spinbox = ttk.Spinbox(notify_frame, from_=0, to=30,
                                    textvariable=self.notify_before_var)
         notify_spinbox.pack(fill='x', padx=10, pady=10)
     
     def setup_audio_settings(self, parent):
         """إعداد إعدادات الصوت"""
         self.sound_var = tk.BooleanVar(value=self.settings.sound_enabled)
-        ttk.Checkbutton(parent, text=self._("enable_adhan_sounds"), 
+        ttk.Checkbutton(parent, text=self._("enable_adhan_sounds"),
                        variable=self.sound_var).pack(anchor='w', padx=10, pady=10)
-        
+
         volume_frame = ttk.LabelFrame(parent, text=self._("volume"))
         volume_frame.pack(fill='x', padx=10, pady=10)
-        
+
         self.volume_var = tk.DoubleVar(value=self.settings.sound_volume)
-        volume_scale = ttk.Scale(volume_frame, from_=0.0, to=1.0, 
+        volume_scale = ttk.Scale(volume_frame, from_=0.0, to=1.0,
                                variable=self.volume_var, orient='horizontal')
         volume_scale.pack(fill='x', padx=10, pady=10)
-        
+
+        # إعدادات الأذان لكل صلاة
+        prayer_adhan_frame = ttk.LabelFrame(parent, text=self._("إعدادات الأذان لكل صلاة"))
+        prayer_adhan_frame.pack(fill='x', padx=10, pady=10)
+
+        # إنشاء متغيرات للصلاة
+        self.fajr_adhan_var = tk.BooleanVar(value=self.settings.adhan_fajr_enabled)
+        self.dhuhr_adhan_var = tk.BooleanVar(value=self.settings.adhan_dhuhr_enabled)
+        self.asr_adhan_var = tk.BooleanVar(value=self.settings.adhan_asr_enabled)
+        self.maghrib_adhan_var = tk.BooleanVar(value=self.settings.adhan_maghrib_enabled)
+        self.isha_adhan_var = tk.BooleanVar(value=self.settings.adhan_isha_enabled)
+
+        # إضافة مربعات التحديد لكل صلاة
+        ttk.Checkbutton(prayer_adhan_frame, text=self._("fajr"), variable=self.fajr_adhan_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_adhan_frame, text=self._("dhuhr"), variable=self.dhuhr_adhan_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_adhan_frame, text=self._("asr"), variable=self.asr_adhan_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_adhan_frame, text=self._("maghrib"), variable=self.maghrib_adhan_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_adhan_frame, text=self._("isha"), variable=self.isha_adhan_var).pack(anchor='w', padx=10, pady=2)
+
         # ملف صوت الأذان
         adhan_sound_file_frame = ttk.LabelFrame(parent, text=self._("adhan_sound_file"))
         adhan_sound_file_frame.pack(fill='x', padx=10, pady=10)
-        
+
         self.adhan_sound_file_var = tk.StringVar(value=self.settings.adhan_sound_file)
         adhan_sound_file_entry = ttk.Entry(adhan_sound_file_frame, textvariable=self.adhan_sound_file_var)
         adhan_sound_file_entry.pack(side='left', fill='x', expand=True, padx=(10, 5), pady=10)
-        
-        self.play_adhan_button = ttk.Button(adhan_sound_file_frame, text=self._("play"), 
+
+        self.play_adhan_button = ttk.Button(adhan_sound_file_frame, text=self._("play"),
                                            command=lambda: self.toggle_sound("adhan"))
         self.play_adhan_button.pack(side='right', padx=(5, 5), pady=10)
 
-        ttk.Button(adhan_sound_file_frame, text=self._("browse"), 
+        ttk.Button(adhan_sound_file_frame, text=self._("browse"),
                   command=self.browse_adhan_sound_file).pack(side='right', padx=(0, 10), pady=10)
 
         # ملف صوت التنبيه
         notification_sound_file_frame = ttk.LabelFrame(parent, text=self._("notification_sound_file"))
         notification_sound_file_frame.pack(fill='x', padx=10, pady=10)
-        
+
         self.notification_sound_file_var = tk.StringVar(value=self.settings.notification_sound_file)
         notification_sound_file_entry = ttk.Entry(notification_sound_file_frame, textvariable=self.notification_sound_file_var)
         notification_sound_file_entry.pack(side='left', fill='x', expand=True, padx=(10, 5), pady=10)
-        
-        self.play_notification_button = ttk.Button(notification_sound_file_frame, text=self._("play"), 
+
+        self.play_notification_button = ttk.Button(notification_sound_file_frame, text=self._("play"),
                                                       command=lambda: self.toggle_sound("notification"))
         self.play_notification_button.pack(side='right', padx=(5, 5), pady=10)
 
-        ttk.Button(notification_sound_file_frame, text=self._("browse"), 
+        ttk.Button(notification_sound_file_frame, text=self._("browse"),
                   command=self.browse_notification_sound_file).pack(side='right', padx=(0, 10), pady=10)
     
     def setup_qibla_settings(self, parent):
@@ -1109,6 +1127,15 @@ class SettingsDialog:
         self.settings.sound_volume = self.volume_var.get()
         self.settings.adhan_sound_file = self.adhan_sound_file_var.get()
         self.settings.notification_sound_file = self.notification_sound_file_var.get()
+
+        # حفظ إعدادات الأذان لكل صلاة
+        self.settings.adhan_fajr_enabled = self.fajr_adhan_var.get()
+        self.settings.adhan_dhuhr_enabled = self.dhuhr_adhan_var.get()
+        self.settings.adhan_asr_enabled = self.asr_adhan_var.get()
+        self.settings.adhan_maghrib_enabled = self.maghrib_adhan_var.get()
+        self.settings.adhan_isha_enabled = self.isha_adhan_var.get()
+
+
         
         selected_display_country = self.country_entry.get()
         english_country = ""

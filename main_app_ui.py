@@ -789,17 +789,17 @@ class EnhancedPrayerTimesApp:
         
         city_data = self.prayer_data[self.current_city]
         prayers = [
-            (self._('fajr'), city_data['fajr_orig']),
-            (self._('dhuhr'), city_data['dhuhr_orig']),
-            (self._('asr'), city_data['asr_orig']),
-            (self._('maghrib'), city_data['maghrib_orig']),
-            (self._('isha'), city_data['isha_orig'])
+            ("fajr", self._('fajr'), city_data['fajr_orig']),
+            ("dhuhr", self._('dhuhr'), city_data['dhuhr_orig']),
+            ("asr", self._('asr'), city_data['asr_orig']),
+            ("maghrib", self._('maghrib'), city_data['maghrib_orig']),
+            ("isha", self._('isha'), city_data['isha_orig'])
         ]
         
         # تتبع الوقت المتبقي حتى الإشعار أو الأذان التالي لتحديد وقت الفحص القادم
         next_notification_seconds = 24 * 3600  # القيمة الافتراضية هي يوم كامل
         
-        for prayer_name, prayer_time_str in prayers:
+        for prayer_key, prayer_display_name, prayer_time_str in prayers:
             # تحويل وقت الصلاة إلى كائن datetime
             prayer_datetime = datetime.strptime(prayer_time_str.split()[0], "%I:%M")
             if (prayer_time_str.endswith('م') or prayer_time_str.endswith('PM')) and prayer_datetime.hour != 12:
@@ -829,12 +829,12 @@ class EnhancedPrayerTimesApp:
             # التحقق من وقت الإشعار المسبق
             if current_time_str == notification_time_str:
                 # منع تكرار الإشعارات في نفس الدقيقة
-                notification_key = f"pre_{prayer_name}"
+                notification_key = f"pre_{prayer_key}"
                 if notification_key not in self.last_notification_time or self.last_notification_time[notification_key] != current_time_str:
-                    logger.info(f"إرسال إشعار قبل صلاة {prayer_name}")
+                    logger.info(f"إرسال إشعار قبل صلاة {prayer_display_name}")
                     self.notification_manager.send_notification(
                         self._("prayer_notification_alert"),
-                        self._("minutes_remaining_for_prayer", minutes=self.settings.notification_before_minutes, prayer_name=prayer_name),
+                        self._("minutes_remaining_for_prayer", minutes=self.settings.notification_before_minutes, prayer_name=prayer_display_name),
                         timeout=15
                     )
                     if self.settings.sound_enabled:
@@ -846,18 +846,26 @@ class EnhancedPrayerTimesApp:
                     self.last_notification_time[notification_key] = current_time_str
             
             # التحقق من وقت الصلاة الفعلي
-            prayer_time_str = prayer_datetime.strftime("%H:%M")
-            if current_time_str == prayer_time_str:
+            prayer_time_formatted = prayer_datetime.strftime("%H:%M")
+            if current_time_str == prayer_time_formatted:
                 # منع تكرار الأذان في نفس الدقيقة
-                prayer_key = f"adhan_{prayer_name}"
-                if prayer_key not in self.last_notification_time or self.last_notification_time[prayer_key] != current_time_str:
-                    logger.info(f"إرسال أذان لصلاة {prayer_name}")
+                adhan_key = f"adhan_{prayer_key}"
+                if adhan_key not in self.last_notification_time or self.last_notification_time[adhan_key] != current_time_str:
+                    # التحقق من إعدادات الأذان للصلاة المحددة قبل أي إجراء
+                    prayer_adhan_enabled = getattr(self.settings, f'adhan_{prayer_key}_enabled', True)
+
+                    if not prayer_adhan_enabled:
+                        logger.info(f"تخطي أذان صلاة {prayer_display_name} لأن المستخدم عطّلها")
+                        self.last_notification_time[adhan_key] = current_time_str
+                        continue
+
+                    logger.info(f"إرسال أذان لصلاة {prayer_display_name}")
                     self.notification_manager.send_notification(
                         self._("prayer_time"),
-                        self._("its_time_for_prayer", prayer_name=prayer_name),
+                        self._("its_time_for_prayer", prayer_name=prayer_display_name),
                         timeout=20
                     )
-                    
+
                     if self.settings.sound_enabled:
                         sound_file = self.settings.adhan_sound_file
                         if sound_file:
@@ -865,11 +873,11 @@ class EnhancedPrayerTimesApp:
                         else:
                             self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
                         # إظهار نافذة الأذان مع زر الإيقاف
-                        self.show_adhan_dialog(prayer_name)
+                        self.show_adhan_dialog(prayer_display_name)
                         # تعيين callback لإغلاق النافذة عند انتهاء الصوت
                         self.adhan_player.set_end_callback(lambda: self.close_adhan_dialog_if_exists())
 
-                    self.last_notification_time[prayer_key] = current_time_str
+                    self.last_notification_time[adhan_key] = current_time_str
         
         # جدولة الفحص التالي بناءً على الوقت المتبقي للإشعار أو الأذان القادم
         if next_notification_seconds < 60:  # أقل من دقيقة
