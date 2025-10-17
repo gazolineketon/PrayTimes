@@ -215,49 +215,65 @@ class EnhancedPrayerTimesApp:
         """إعداد واجهة التقويم"""
         calendar_container = tk.Frame(self.calendar_card, bg=self.colors['bg_card'], pady=5)
         calendar_container.pack(fill='x')
-                
+
         dates_container = tk.Frame(calendar_container, bg=self.colors['bg_card'])
         dates_container.pack()
-        
-        gregorian_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
-        gregorian_frame.pack(pady=(0, 5))
-                
+
+        # Determine layout direction based on language
+        is_ltr = self.settings.language == 'en'
+        pack_side = 'left' if is_ltr else 'right'
+
+        # Pack frames in order based on language
+        if is_ltr:
+            # English: Gregorian first, then Hijri
+            gregorian_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            gregorian_frame.pack(pady=(0, 5))
+
+            hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            hijri_frame.pack()
+        else:
+            # Arabic: Hijri first, then Gregorian
+            hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            hijri_frame.pack(pady=(0, 5))
+
+            gregorian_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            gregorian_frame.pack()
+
+        # Setup Gregorian date boxes
         greg_boxes_frame = tk.Frame(gregorian_frame, bg=self.colors['bg_card'])
-        greg_boxes_frame.pack(side='right')
-        
+        greg_boxes_frame.pack(side=pack_side)
+
         self.greg_day_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 50, 35)
-        self.greg_day_frame.pack(side='right', padx=2)
+        self.greg_day_frame.pack(side=pack_side, padx=2)
         self.greg_day_label = tk.Label(self.greg_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
-        self.greg_day_label.pack(expand=True)        
-        
+        self.greg_day_label.pack(expand=True)
+
         self.greg_month_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 120, 35)
-        self.greg_month_frame.pack(side='right', padx=2)
+        self.greg_month_frame.pack(side=pack_side, padx=2)
         self.greg_month_label = tk.Label(self.greg_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_month_label.pack(expand=True)
-        
+
         self.greg_year_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 70, 35)
-        self.greg_year_frame.pack(side='right', padx=2)
+        self.greg_year_frame.pack(side=pack_side, padx=2)
         self.greg_year_label = tk.Label(self.greg_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_year_label.pack(expand=True)
-        
-        hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
-        hijri_frame.pack()
-                        
+
+        # Setup Hijri date boxes
         hijri_boxes_frame = tk.Frame(hijri_frame, bg=self.colors['bg_card'])
-        hijri_boxes_frame.pack(side='right')
-        
+        hijri_boxes_frame.pack(side=pack_side)
+
         self.hijri_day_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 50, 35)
-        self.hijri_day_frame.pack(side='right', padx=2)
+        self.hijri_day_frame.pack(side=pack_side, padx=2)
         self.hijri_day_label = tk.Label(self.hijri_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_day_label.pack(expand=True)
 
         self.hijri_month_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 120, 35)
-        self.hijri_month_frame.pack(side='right', padx=2)
+        self.hijri_month_frame.pack(side=pack_side, padx=2)
         self.hijri_month_label = tk.Label(self.hijri_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_month_label.pack(expand=True)
-    
+
         self.hijri_year_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 70, 35)
-        self.hijri_year_frame.pack(side='right', padx=2)
+        self.hijri_year_frame.pack(side=pack_side, padx=2)
         self.hijri_year_label = tk.Label(self.hijri_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_year_label.pack(expand=True)
         
