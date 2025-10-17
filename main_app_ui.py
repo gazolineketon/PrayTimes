@@ -707,7 +707,7 @@ class EnhancedPrayerTimesApp:
             
             # عرض الساعات والدقائق فقط إذا كان الوقت المتبقي كبيرًا
             if hours > 0:
-                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {hours} {self._("hour")} و {minutes} {self._("minute")}'
+                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {hours} {self._("hour")} {self._("and")} {minutes} {self._("minute")}'
             elif minutes > 0:
                 countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {minutes} {self._("minute")}'
             else:

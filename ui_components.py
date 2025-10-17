@@ -51,19 +51,19 @@ class SettingsDialog:
         self.current_dropdown = None
         self.sound_player = AdhanPlayer()
         self.playing_sound = None
-        self.tooltips = {}  # Store tooltips
-        self.loading = False  # Track loading state
-        self.close_bind_id = None  # Store binding ID for cleanup
+        self.tooltips = {}  # تخزين تلميحات الأدوات
+        self.loading = False  # تتبع حالة التحميل
+        self.close_bind_id = None  # تخزين معرف الربط للتنظيف
         self.create_dialog()
         
     def set_tooltip(self, widget, text):
-        """Add tooltip to widget for accessibility"""
+        """إضافة تلميح للأداة لتسهيل الوصول"""
         def show_tooltip(event):
             x, y, _, _ = widget.bbox("insert")
             x += widget.winfo_rootx() + 25
             y += widget.winfo_rooty() + 20
             
-            # Create tooltip window
+            # إنشاء نافذة تلميح
             tooltip = tk.Toplevel(widget)
             tooltip.wm_overrideredirect(True)
             tooltip.wm_geometry(f"+{x}+{y}")
@@ -99,29 +99,29 @@ class SettingsDialog:
         self.setup_settings_ui()
 
     def close_country_dropdown(self, event=None):
-        """Close country dropdown"""
+        """إغلاق القائمة المنسدلة للبلدان"""
         if self.country_dropdown:
             self.country_dropdown.withdraw()
 
     def close_city_dropdown(self, event=None):
-        """Close city dropdown"""
+        """إغلاق القائمة المنسدلة للمدن"""
         if self.city_dropdown:
             self.city_dropdown.withdraw()
 
     def show_country_dropdown(self, event=None):
-        """Show country selection dropdown"""
+        """إظهار القائمة المنسدلة لاختيار البلد"""
         self.show_dropdown('country')
 
     def show_city_dropdown(self, event=None):
-        """Show city selection dropdown"""
+        """إظهار القائمة المنسدلة لاختيار المدينة"""
         self.show_dropdown('city')
 
     def show_dropdown(self, dropdown_type):
-        """Show dropdown with proper focus and event management"""
+        """إظهار القائمة المنسدلة مع التركيز المناسب وإدارة الأحداث"""
         if self.loading:
             return
             
-        # Determine which widgets to use
+        # تحديد الأدوات التي سيتم استخدامها
         if dropdown_type == 'country':
             dropdown = self.country_dropdown
             entry = self.country_entry
@@ -139,7 +139,7 @@ class SettingsDialog:
             listbox = self.city_listbox if hasattr(self, 'city_listbox') else None
             items = self.all_cities if hasattr(self, 'all_cities') else []
 
-        # Create dropdown if it doesn't exist
+        # إنشاء قائمة منسدلة إذا لم تكن موجودة
         if not dropdown:
             dropdown = tk.Toplevel(self.dialog)
             dropdown.overrideredirect(True)
@@ -150,22 +150,22 @@ class SettingsDialog:
                               font=('Segoe UI', 12),
                               selectmode='single',
                               yscrollcommand=scrollbar.set,
-                              activestyle='dotbox')  # Makes selection more visible
+                              activestyle='dotbox')  # يجعل الاختيار أكثر وضوحًا
             
-            # Configure scrollbar
+            # تكوين شريط التمرير
             scrollbar.config(command=listbox.yview)
             listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
             scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
             frame_inner.pack(fill=tk.BOTH, expand=True)
             
-            # Set up event bindings
+            # إعداد روابط الأحداث
             listbox.bind('<Double-Button-1>', 
                        lambda e: self.on_country_select() if dropdown_type == 'country' else self.on_city_select())
             listbox.bind('<Return>',
                        lambda e: self.on_country_select() if dropdown_type == 'country' else self.on_city_select())
             listbox.bind('<Escape>', lambda e: self.close_dropdown(dropdown_type))
             
-            # Store references
+            # تخزين المراجع
             if dropdown_type == 'country':
                 self.country_dropdown = dropdown
                 self.country_listbox = listbox
@@ -173,61 +173,61 @@ class SettingsDialog:
                 self.city_dropdown = dropdown
                 self.city_listbox = listbox
         
-        # Update listbox contents
+        # تحديث محتويات مربع القائمة
         listbox.delete(0, tk.END)
         for item in items:
             listbox.insert(tk.END, item)
             
-        # Position dropdown below entry
+        # وضع القائمة المنسدلة أسفل حقل الإدخال
         x = frame.winfo_rootx()
         y = frame.winfo_rooty() + frame.winfo_height()
         
-        # Calculate dimensions
+        # حساب الأبعاد
         self.dialog.update_idletasks()
         frame.update_idletasks()
         frame_width = frame.winfo_width()
         if frame_width <= 0:
             frame_width = 300
-        frame_width += 20  # Add space for scrollbar
+        frame_width += 20  # إضافة مساحة لشريط التمرير
         height = min(200, listbox.size() * 20 + 10)
         
         dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
         
-        # Show dropdown and set focus
+        # إظهار القائمة المنسدلة وتعيين التركيز
         dropdown.lift()
         dropdown.deiconify()
         
-        # Set up focus handling
+        # إعداد معالجة التركيز
         dropdown.bind('<FocusOut>', lambda e: self.handle_focus_lost(e, dropdown_type))
         entry.focus_set()
         
-        # Update tracking
+        # تحديث التتبع
         self.current_dropdown = dropdown_type
         self.close_bind_id = self.dialog.bind_all('<Button-1>', self.check_close_dropdown)
         
-        # Select first item if any exist
+        # تحديد العنصر الأول في حالة وجوده
         if listbox.size() > 0:
             listbox.selection_set(0)
             listbox.see(0)
 
     def handle_focus_lost(self, event, dropdown_type):
-        """Handle focus loss for dropdowns"""
+        """معالجة فقدان التركيز للقوائم المنسدلة"""
         widget = event.widget
         
-        # Get related widgets
+        # الحصول على الأدوات ذات الصلة
         dropdown = self.country_dropdown if dropdown_type == 'country' else self.city_dropdown
         entry = self.country_entry if dropdown_type == 'country' else self.city_entry
         
-        # Check if focus moved to a related widget
+        # التحقق مما إذا كان التركيز قد انتقل إلى أداة ذات صلة
         focus_widget = self.dialog.focus_get()
         if focus_widget in (entry, dropdown):
             return
             
-        # Close the dropdown if focus moved elsewhere
+        # إغلاق القائمة المنسدلة إذا انتقل التركيز إلى مكان آخر
         self.close_dropdown(dropdown_type)
 
     def close_dropdown(self, dropdown_type):
-        """Close dropdown and clean up bindings"""
+        """إغلاق القائمة المنسدلة وتنظيف الروابط"""
         dropdown = self.country_dropdown if dropdown_type == 'country' else self.city_dropdown
         if not dropdown:
             return
@@ -420,7 +420,7 @@ class SettingsDialog:
         volume_scale.pack(fill='x', padx=10, pady=10)
 
         # إعدادات الأذان لكل صلاة
-        prayer_adhan_frame = ttk.LabelFrame(parent, text=self._("إعدادات الأذان لكل صلاة"))
+        prayer_adhan_frame = ttk.LabelFrame(parent, text=self._("adhan_settings_for_each_prayer"))
         prayer_adhan_frame.pack(fill='x', padx=10, pady=10)
 
         # إنشاء متغيرات للصلاة
@@ -500,7 +500,7 @@ class SettingsDialog:
     
     def setup_location_settings(self, parent):
         """إعداد إعدادات الموقع"""
-        # Ensure parent has countries loaded
+        # التأكد من تحميل البلدان في النافذة الرئيسية
         if not hasattr(self.parent, 'countries') or not self.parent.countries:
             from data_manager import get_countries
             self.parent.countries = get_countries()
@@ -514,22 +514,22 @@ class SettingsDialog:
         self.country_frame = tk.Frame(location_frame)
         self.country_frame.pack(fill='x', padx=10, pady=(0,5))
 
-        # Create accessible entry with proper ARIA role
-        # Create country entry with proper accessibility
+        # إنشاء إدخال يمكن الوصول إليه مع دور ARIA المناسب
+        # إنشاء إدخال البلد مع إمكانية الوصول المناسبة
         self.country_entry = ttk.Entry(
             self.country_frame,
             font=('Segoe UI', 12),
-            name='country_entry'  # Set name at creation time
+            name='country_entry'  # تعيين الاسم في وقت الإنشاء
         )
         self.country_entry.pack(side='left', fill='x', expand=True)
         
-        # Add event bindings for accessibility
+        # إضافة روابط الأحداث لإمكانية الوصول
         self.country_entry.bind('<KeyRelease>', self.on_country_entry_key_release)
         self.country_entry.bind('<Down>', self.show_country_dropdown)
         self.country_entry.bind('<Escape>', self.close_country_dropdown)
         self.country_entry.bind('<Tab>', lambda e: self.close_country_dropdown())
         
-        # Set tooltip/accessibility description
+        # تعيين تلميح / وصف إمكانية الوصول
         self.set_tooltip(self.country_entry, self._("Type to search country or use arrow keys to navigate"))
 
         self.country_button = ttk.Button(self.country_frame, text='▼', width=3, command=self.toggle_country_list)
@@ -541,21 +541,21 @@ class SettingsDialog:
         self.city_frame = tk.Frame(location_frame)
         self.city_frame.pack(fill='x', padx=10, pady=(0,10))
 
-        # Create city entry with proper accessibility
+        # إنشاء إدخال المدينة مع إمكانية الوصول المناسبة
         self.city_entry = ttk.Entry(
             self.city_frame,
             font=('Segoe UI', 12),
-            name='city_entry'  # Set name at creation time
+            name='city_entry'  # تعيين الاسم في وقت الإنشاء
         )
         self.city_entry.pack(side='left', fill='x', expand=True)
         
-        # Add event bindings for accessibility
+        # إضافة روابط الأحداث لإمكانية الوصول
         self.city_entry.bind('<KeyRelease>', self.on_city_entry_key_release)
         self.city_entry.bind('<Down>', self.show_city_dropdown)
         self.city_entry.bind('<Escape>', self.close_city_dropdown)
         self.city_entry.bind('<Tab>', lambda e: self.close_city_dropdown())
         
-        # Set tooltip/accessibility description
+        # تعيين تلميح / وصف إمكانية الوصول
         self.set_tooltip(self.city_entry, self._("Type to search city or use arrow keys to navigate"))
 
         self.city_button = ttk.Button(self.city_frame, text='▼', width=3, command=self.toggle_city_list)
@@ -781,7 +781,7 @@ class SettingsDialog:
                 frame_width = self.country_frame.winfo_width()
                 if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                     frame_width = 300
-                frame_width += 20  # Add space for scrollbar
+                frame_width += 20  # إضافة مساحة لشريط التمرير
                 height = min(200, self.country_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
                 self.country_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
                 self.country_dropdown.lift()
@@ -814,7 +814,7 @@ class SettingsDialog:
             frame_width = self.country_frame.winfo_width()
             if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                 frame_width = 300
-            frame_width += 20  # Add space for scrollbar
+            frame_width += 20  # إضافة مساحة لشريط التمرير
             height = min(200, self.country_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
             self.country_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
             self.country_dropdown.lift()
@@ -913,7 +913,7 @@ class SettingsDialog:
                 frame_width = self.city_frame.winfo_width()
                 if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                     frame_width = 300
-                frame_width += 20  # Add space for scrollbar
+                frame_width += 20  # إضافة مساحة لشريط التمرير
                 height = min(200, self.city_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
                 self.city_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
                 self.city_dropdown.lift()
@@ -946,7 +946,7 @@ class SettingsDialog:
             frame_width = self.city_frame.winfo_width()
             if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
                 frame_width = 300
-            frame_width += 20  # Add space for scrollbar
+            frame_width += 20  # إضافة مساحة لشريط التمرير
             height = min(200, self.city_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
             self.city_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
             self.city_dropdown.lift()
@@ -979,7 +979,7 @@ class SettingsDialog:
         if not (dropdown and dropdown.winfo_exists() and dropdown.winfo_ismapped()):
             return
             
-        # Check if click was within the entry or button area
+        # تحقق مما إذا كان النقر داخل منطقة الإدخال أو الزر
         entry = self.country_entry if self.current_dropdown == 'country' else self.city_entry
         button = self.country_button if self.current_dropdown == 'country' else self.city_button
         
@@ -987,13 +987,13 @@ class SettingsDialog:
         if widget_under_mouse in (entry, button):
             return
             
-        # Check if click was within dropdown area
+        # تحقق مما إذا كان النقر داخل منطقة القائمة المنسدلة
         x, y = event.x_root, event.y_root
         dx, dy = dropdown.winfo_rootx(), dropdown.winfo_rooty()
         dw, dh = dropdown.winfo_width(), dropdown.winfo_height()
         
         if not (dx <= x <= dx + dw and dy <= y <= dy + dh):
-            # Close the dropdown and clean up bindings
+            # إغلاق القائمة المنسدلة وتنظيف الارتباطات
             dropdown.withdraw()
             dropdown.unbind('<FocusOut>')
             dropdown.unbind('<Escape>')
@@ -1003,10 +1003,10 @@ class SettingsDialog:
                 try:
                     self.dialog.unbind('<Button-1>', self.close_bind_id)
                 except Exception as e:
-                    # Log error but don't crash
+                    # تسجيل الخطأ ولكن لا تنهار
                     print(f"Error unbinding event: {e}")
                     
-            # Return focus to the entry
+            # إعادة التركيز إلى الإدخال
             entry.focus_set()
 
     def browse_adhan_sound_file(self):
