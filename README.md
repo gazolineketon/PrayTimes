@@ -7,7 +7,7 @@
    
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.58.0-orange.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.59.0-orange.svg)](CHANGELOG.md)
 
 **تطبيق متكامل لحساب مواقيت الصلاة وعرضها مع مميزات متقدمة**
 
