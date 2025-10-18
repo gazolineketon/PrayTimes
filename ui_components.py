@@ -90,6 +90,10 @@ class SettingsDialog:
         self.dialog.resizable(False, False)
         self.dialog.transient(self.parent.root)
         self.dialog.grab_set()
+        try:
+            self.dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            pass
         
         self.dialog.update_idletasks()
         x = (self.dialog.winfo_screenwidth() // 2) - (500 // 2)
@@ -1228,7 +1232,11 @@ class SettingsDialog:
     def show_restart_dialog(self):
         dialog = tk.Toplevel(self.parent.root)
         dialog.title(self._("restart_required"))
-        
+        try:
+            dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            pass
+
         dialog.update_idletasks()
         width = 400
         height = 150
@@ -1264,7 +1272,11 @@ class SettingsDialog:
     def show_force_restart_dialog(self):
         dialog = tk.Toplevel(self.parent.root)
         dialog.title(self._("restart_required"))
-        
+        try:
+            dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            pass
+
         dialog.update_idletasks()
         width = 400
         height = 150

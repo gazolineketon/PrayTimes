@@ -762,6 +762,10 @@ class EnhancedPrayerTimesApp:
         self.adhan_dialog.geometry("300x150")
         self.adhan_dialog.resizable(False, False)
         self.adhan_dialog.attributes('-topmost', True)  # جعل النافذة في المقدمة
+        try:
+            self.adhan_dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            pass
 
         # مركز النافذة
         self.adhan_dialog.update_idletasks()
@@ -1276,6 +1280,12 @@ class EnhancedPrayerTimesApp:
         dialog.configure(bg=self.colors['bg_primary'])
         dialog.transient(self.root)
         dialog.grab_set()
+        
+        # إضافة أيقونة البرنامج
+        try:
+            dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            logger.warning("لم يتم العثور على pray_times.ico، الاستمرار بدون أيقونة")
         
         # مركز الحوار فوق النافذة الرئيسية
         self.root.update_idletasks()
