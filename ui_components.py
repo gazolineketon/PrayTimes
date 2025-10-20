@@ -54,6 +54,7 @@ class SettingsDialog:
         self.tooltips = {}  # تخزين تلميحات الأدوات
         self.loading = False  # تتبع حالة التحميل
         self.close_bind_id = None  # تخزين معرف الربط للتنظيف
+        self.scroll_job = None  # تخزين معرف التمرير المستمر
         self.create_dialog()
         
     def set_tooltip(self, widget, text):
@@ -114,10 +115,14 @@ class SettingsDialog:
 
     def show_country_dropdown(self, event=None):
         """إظهار القائمة المنسدلة لاختيار البلد"""
+        if self.country_dropdown and self.country_dropdown.winfo_ismapped():
+            return
         self.show_dropdown('country')
 
     def show_city_dropdown(self, event=None):
         """إظهار القائمة المنسدلة لاختيار المدينة"""
+        if self.city_dropdown and self.city_dropdown.winfo_ismapped():
+            return
         self.show_dropdown('city')
 
     def show_dropdown(self, dropdown_type):
@@ -356,6 +361,9 @@ class SettingsDialog:
             lang_code = get_lang_code(selected_display_name)
             if lang_code:
                 self.lang_var.set(lang_code)
+                # تحديث التلميحات عند تغيير اللغة
+                if hasattr(self, 'set_location_tooltips'):
+                    self.set_location_tooltips(lang_code)
 
         lang_combo.bind('<<ComboboxSelected>>', on_lang_selected)
 
@@ -448,7 +456,6 @@ class SettingsDialog:
         self.adhan_sound_file_var = tk.StringVar(value=self.settings.adhan_sound_file)
         adhan_sound_file_entry = ttk.Entry(adhan_sound_file_frame, textvariable=self.adhan_sound_file_var)
         adhan_sound_file_entry.pack(side='left', fill='x', expand=True, padx=(10, 5), pady=10)
-
         self.play_adhan_button = ttk.Button(adhan_sound_file_frame, text=self._("play"),
                                            command=lambda: self.toggle_sound("adhan"))
         self.play_adhan_button.pack(side='right', padx=(5, 5), pady=10)
@@ -532,9 +539,14 @@ class SettingsDialog:
         self.country_entry.bind('<Down>', self.show_country_dropdown)
         self.country_entry.bind('<Escape>', self.close_country_dropdown)
         self.country_entry.bind('<Tab>', lambda e: self.close_country_dropdown())
+        self.country_entry.bind('<KeyPress-Up>', self.on_arrow_press)
+        self.country_entry.bind('<KeyPress-Down>', self.on_arrow_press)
+        self.country_entry.bind('<KeyRelease-Up>', self.on_arrow_release)
+        self.country_entry.bind('<KeyRelease-Down>', self.on_arrow_release)
         
         # تعيين تلميح / وصف إمكانية الوصول
-        self.set_tooltip(self.country_entry, self._("Type to search country or use arrow keys to navigate"))
+        tooltip_text = "اكتب للبحث عن البلد أو استخدم مفاتيح الأسهم للتنقل" if self.settings.language == 'ar' else "Type to search country or use arrow keys to navigate"
+        self.set_tooltip(self.country_entry, tooltip_text)
 
         self.country_button = ttk.Button(self.country_frame, text='▼', width=3, command=self.toggle_country_list)
         self.country_button.pack(side='right')
@@ -557,10 +569,14 @@ class SettingsDialog:
         self.city_entry.bind('<KeyRelease>', self.on_city_entry_key_release)
         self.city_entry.bind('<Down>', self.show_city_dropdown)
         self.city_entry.bind('<Escape>', self.close_city_dropdown)
-        self.city_entry.bind('<Tab>', lambda e: self.close_city_dropdown())
+        self.city_entry.bind('<KeyPress-Up>', self.on_arrow_press)
+        self.city_entry.bind('<KeyPress-Down>', self.on_arrow_press)
+        self.city_entry.bind('<KeyRelease-Up>', self.on_arrow_release)
+        self.city_entry.bind('<KeyRelease-Down>', self.on_arrow_release)
         
         # تعيين تلميح / وصف إمكانية الوصول
-        self.set_tooltip(self.city_entry, self._("Type to search city or use arrow keys to navigate"))
+        tooltip_text = "اكتب للبحث عن المدينة أو استخدم مفاتيح الأسهم للتنقل" if self.settings.language == 'ar' else "Type to search city or use arrow keys to navigate"
+        self.set_tooltip(self.city_entry, tooltip_text)
 
         self.city_button = ttk.Button(self.city_frame, text='▼', width=3, command=self.toggle_city_list)
         self.city_button.pack(side='right')
@@ -569,7 +585,7 @@ class SettingsDialog:
 
 
 
-    def on_combobox_key_release(self, event):
+    def on_combobox_key_release(self, event, combobox, values):
         """معالجة التنقل السريع عند كتابة النص"""
         # تجاهل المفاتيح الخاصة
         if event.keysym in ('Up', 'Down', 'Return', 'Tab', 'Escape', 'Left', 'Right'):
@@ -620,8 +636,53 @@ class SettingsDialog:
             except:
                 pass
 
+    def on_arrow_press(self, event):
+        """يتعامل مع التمرير المستمر عند الضغط على مفتاح الأسهم"""
+        if hasattr(self, 'scroll_job') and self.scroll_job:
+            self.dialog.after_cancel(self.scroll_job)
+
+        direction = 1 if event.keysym == 'Down' else -1
+
+        if event.widget == self.country_entry:
+            if not (self.country_dropdown and self.country_dropdown.winfo_ismapped()):
+                self.show_country_dropdown()
+                return  # لا تقم بالتمرير عند الضغط لأول مرة، فقط افتح وحدد الأول
+            listbox = self.country_listbox
+        elif event.widget == self.city_entry:
+            if not (self.city_dropdown and self.city_dropdown.winfo_ismapped()):
+                self.show_city_dropdown()
+                return  # لا تقم بالتمرير عند الضغط لأول مرة، فقط افتح وحدد الأول
+            listbox = self.city_listbox
+        else:
+            return
+
+        self.perform_scroll_for_listbox(listbox, direction)
+
+    def on_arrow_release(self, event):
+        """إيقاف التمرير المستمر عند إطلاق مفتاح الأسهم"""
+        if self.scroll_job:
+            self.dialog.after_cancel(self.scroll_job)
+            self.scroll_job = None
+
+    def perform_scroll_for_listbox(self, listbox, direction):
+        """تنفيذ خطوة تمرير واحدة"""
+        if not listbox or not listbox.winfo_ismapped():
+            return
+
+        selection_indices = listbox.curselection()
+        current_index = -1
+        if selection_indices:
+            current_index = selection_indices[0]
+
+        new_index = current_index + direction
+
+        if 0 <= new_index < listbox.size():
+            listbox.selection_clear(0, tk.END)
+            listbox.selection_set(new_index)
+            listbox.see(new_index)
+
     def populate_countries_combobox(self):
-        """ملء قائمة البلدان بالأسماء العربية"""
+        """تعبئة قائمة البلدان في الكومبوبوكس"""
         if not self.parent.countries:
             return
 
@@ -718,91 +779,127 @@ class SettingsDialog:
                 self.city_entry.delete(0, tk.END)
                 self.city_entry.insert(0, self._("no_cities"))
 
+        # تحديث القائمة المنسدلة إذا كانت مفتوحة
+        if self.city_dropdown and self.city_dropdown.winfo_ismapped():
+            self.city_listbox.delete(0, tk.END)
+            for item in self.all_cities:
+                self.city_listbox.insert(tk.END, item)
+            if self.all_cities:
+                self.city_listbox.selection_set(0)
+                self.city_listbox.see(0)
+
+    def navigate_dropdown(self, direction):
+        """التنقل في القائمة المنسدلة باستخدام مفاتيح الأسهم"""
+        current_dropdown = getattr(self, 'current_dropdown', None)
+        if not current_dropdown:
+            # إذا لم تكن هناك قائمة منسدلة مفتوحة، افتحها
+            if self.country_entry == self.dialog.focus_get():
+                self.show_dropdown('country')
+            elif self.city_entry == self.dialog.focus_get():
+                self.show_dropdown('city')
+            return
+
+        # الحصول على القائمة المنسدلة النشطة
+        if current_dropdown == 'country':
+            listbox = getattr(self, 'country_listbox', None)
+        else:
+            listbox = getattr(self, 'city_listbox', None)
+
+        if not listbox or listbox.size() == 0:
+            return
+
+        # الحصول على العنصر المحدد حالياً
+        selection = listbox.curselection()
+        if not selection:
+            new_index = 0 if direction == 'down' else listbox.size() - 1
+        else:
+            current_index = selection[0]
+            if direction == 'down':
+                new_index = min(current_index + 1, listbox.size() - 1)
+            else:
+                new_index = max(current_index - 1, 0)
+
+        # تحديث التحديد ورؤية العنصر
+        listbox.selection_clear(0, tk.END)
+        listbox.selection_set(new_index)
+        listbox.see(new_index)
+
+        # تحديث النص في حقل الإدخال
+        selected_text = listbox.get(new_index)
+        if current_dropdown == 'country':
+            self.country_entry.delete(0, tk.END)
+            self.country_entry.insert(0, selected_text)
+        else:
+            self.city_entry.delete(0, tk.END)
+            self.city_entry.insert(0, selected_text)
+
     def on_country_entry_key_release(self, event):
         """معالجة كتابة النص في حقل البلد"""
-        # تجاهل المفاتيح الخاصة للتنقل
-        if event.keysym in ('Up', 'Down', 'Return', 'Tab', 'Escape'):
+        if event.keysym == 'Tab':
             if self.country_dropdown and self.country_dropdown.winfo_ismapped():
-                if event.keysym == 'Up':
-                    selection = self.country_listbox.curselection()
-                    if selection:
-                        new_index = max(0, selection[0] - 1)
-                    else:
-                        new_index = 0
-                    self.country_listbox.selection_clear(0, tk.END)
-                    self.country_listbox.selection_set(new_index)
-                    self.country_listbox.see(new_index)
-                    return
-                elif event.keysym == 'Down':
-                    selection = self.country_listbox.curselection()
-                    if selection:
-                        new_index = min(self.country_listbox.size() - 1, selection[0] + 1)
-                    else:
-                        new_index = 0
-                    self.country_listbox.selection_clear(0, tk.END)
-                    self.country_listbox.selection_set(new_index)
-                    self.country_listbox.see(new_index)
-                    return
-                elif event.keysym == 'Return':
-                    self.on_country_select()
-                    return
-                elif event.keysym == 'Escape':
-                    if self.country_dropdown:
-                        self.country_dropdown.withdraw()
-                    return
-            else:
-                # إذا لم تكن القائمة مفتوحة، تجاهل هذه المفاتيح
-                return
+                self.on_country_select()
+            self.city_entry.focus_set()
+            return "break"
+
+        if event.keysym in ('Up', 'Down', 'Return', 'Escape'):
+            if event.keysym == 'Return':
+                self.on_country_select()
+            return
 
         typed_text = self.country_entry.get()
-        if typed_text:
-            typed_lower = typed_text.lower()
-            filtered = []
-            starts_with = [v for v in self.all_countries if v.lower().startswith(typed_lower)]
-            contains = [v for v in self.all_countries if typed_lower in v.lower() and v not in starts_with]
-            filtered = starts_with + contains
-            if filtered:
-                if self.country_dropdown is None:
-                    self.country_dropdown = tk.Toplevel(self.dialog)
-                    self.country_dropdown.overrideredirect(True)
-                    frame = tk.Frame(self.country_dropdown)
-                    scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
-                    self.country_listbox = tk.Listbox(frame, font=('Segoe UI', 12), selectmode='single', yscrollcommand=scrollbar.set)
-                    scrollbar.config(command=self.country_listbox.yview)
-                    self.country_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-                    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-                    frame.pack(fill=tk.BOTH, expand=True)
-                    self.country_listbox.bind('<Double-Button-1>', self.on_country_select)
-                    self.country_listbox.bind('<Return>', self.on_country_select)
-                self.country_listbox.delete(0, tk.END)
-                for item in filtered[:10]:  # عرض أول 10 نتائج
-                    self.country_listbox.insert(tk.END, item)
-                x = self.country_frame.winfo_rootx()
-                y = self.country_frame.winfo_rooty() + self.country_frame.winfo_height()
-                # جعل عرض القائمة مطابقاً لعرض حقل الإدخال
-                self.dialog.update_idletasks()  # التأكد من تحديث الأبعاد
-                self.country_frame.update_idletasks()
-                frame_width = self.country_frame.winfo_width()
-                if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
-                    frame_width = 300
-                frame_width += 20  # إضافة مساحة لشريط التمرير
-                height = min(200, self.country_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
-                self.country_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
-                self.country_dropdown.lift()
-                self.country_dropdown.deiconify()
-                self.current_dropdown = 'country'
-                self.close_bind_id = self.dialog.bind_all('<Button-1>', self.check_close_dropdown)
-                # الحفاظ على التركيز على الحقل للسماح بكتابة المزيد
-                self.country_entry.focus_force()
-                # تحديد العنصر الأول تلقائياً
-                if self.country_listbox.size() > 0:
-                    self.country_listbox.selection_set(0)
-            else:
-                if self.country_dropdown:
-                    self.country_dropdown.withdraw()
+        if not typed_text:
+            self.close_dropdown('country')
+            return
+
+        self.show_dropdown('country')
+        
+        typed_lower = typed_text.lower()
+        
+        starts_with = [v for v in self.all_countries if v.lower().startswith(typed_lower)]
+        contains = [v for v in self.all_countries if typed_lower in v.lower() and v not in starts_with]
+        filtered = starts_with + contains
+
+        self.country_listbox.delete(0, tk.END)
+        if filtered:
+            for item in filtered:
+                self.country_listbox.insert(tk.END, item)
+            self.country_listbox.selection_set(0)
         else:
-            if self.country_dropdown:
-                self.country_dropdown.withdraw()
+            self.close_dropdown('country')
+
+    def on_city_entry_key_release(self, event):
+        """معالجة كتابة النص في حقل المدينة"""
+        if event.keysym == 'Tab':
+            if self.city_dropdown and self.city_dropdown.winfo_ismapped():
+                self.on_city_select()
+            # يمكنك نقل التركيز إلى عنصر واجهة المستخدم التالي هنا إذا لزم الأمر
+            return "break"
+
+        if event.keysym in ('Up', 'Down', 'Return', 'Escape'):
+            if event.keysym == 'Return':
+                self.on_city_select()
+            return
+
+        typed_text = self.city_entry.get()
+        if not typed_text:
+            self.close_dropdown('city')
+            return
+
+        self.show_dropdown('city')
+        
+        typed_lower = typed_text.lower()
+        
+        starts_with = [v for v in self.all_cities if v.lower().startswith(typed_lower)]
+        contains = [v for v in self.all_cities if typed_lower in v.lower() and v not in starts_with]
+        filtered = starts_with + contains
+
+        self.city_listbox.delete(0, tk.END)
+        if filtered:
+            for item in filtered:
+                self.city_listbox.insert(tk.END, item)
+            self.city_listbox.selection_set(0)
+        else:
+            self.close_dropdown('city')
 
     def toggle_country_list(self):
         """تبديل عرض قائمة البلدان"""
@@ -848,93 +945,8 @@ class SettingsDialog:
                     english_country = eng
                     break
             if english_country:
+                self.city_entry.delete(0, tk.END)
                 self.update_cities_for_country(english_country)
-
-    def on_city_entry_key_release(self, event):
-        """معالجة كتابة النص في حقل المدينة"""
-        # تجاهل المفاتيح الخاصة للتنقل
-        if event.keysym in ('Up', 'Down', 'Return', 'Tab', 'Escape'):
-            if self.city_dropdown and self.city_dropdown.winfo_ismapped():
-                if event.keysym == 'Up':
-                    selection = self.city_listbox.curselection()
-                    if selection:
-                        new_index = max(0, selection[0] - 1)
-                    else:
-                        new_index = 0
-                    self.city_listbox.selection_clear(0, tk.END)
-                    self.city_listbox.selection_set(new_index)
-                    self.city_listbox.see(new_index)
-                    return
-                elif event.keysym == 'Down':
-                    selection = self.city_listbox.curselection()
-                    if selection:
-                        new_index = min(self.city_listbox.size() - 1, selection[0] + 1)
-                    else:
-                        new_index = 0
-                    self.city_listbox.selection_clear(0, tk.END)
-                    self.city_listbox.selection_set(new_index)
-                    self.city_listbox.see(new_index)
-                    return
-                elif event.keysym == 'Return':
-                    self.on_city_select()
-                    return
-                elif event.keysym == 'Escape':
-                    if self.city_dropdown:
-                        self.city_dropdown.withdraw()
-                    return
-            else:
-                # إذا لم تكن القائمة مفتوحة، تجاهل هذه المفاتيح
-                return
-
-        typed_text = self.city_entry.get()
-        if typed_text:
-            typed_lower = typed_text.lower()
-            filtered = []
-            starts_with = [v for v in self.all_cities if v.lower().startswith(typed_lower)]
-            contains = [v for v in self.all_cities if typed_lower in v.lower() and v not in starts_with]
-            filtered = starts_with + contains
-            if filtered:
-                if self.city_dropdown is None:
-                    self.city_dropdown = tk.Toplevel(self.dialog)
-                    self.city_dropdown.overrideredirect(True)
-                    frame = tk.Frame(self.city_dropdown)
-                    scrollbar = tk.Scrollbar(frame, orient=tk.VERTICAL)
-                    self.city_listbox = tk.Listbox(frame, font=('Segoe UI', 12), selectmode='single', yscrollcommand=scrollbar.set)
-                    scrollbar.config(command=self.city_listbox.yview)
-                    self.city_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-                    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-                    frame.pack(fill=tk.BOTH, expand=True)
-                    self.city_listbox.bind('<Double-Button-1>', self.on_city_select)
-                    self.city_listbox.bind('<Return>', self.on_city_select)
-                self.city_listbox.delete(0, tk.END)
-                for item in filtered[:10]:  # عرض أول 10 نتائج
-                    self.city_listbox.insert(tk.END, item)
-                x = self.city_frame.winfo_rootx()
-                y = self.city_frame.winfo_rooty() + self.city_frame.winfo_height()
-                # جعل عرض القائمة مطابقاً لعرض حقل الإدخال
-                self.dialog.update_idletasks()  # التأكد من تحديث الأبعاد
-                self.city_frame.update_idletasks()
-                frame_width = self.city_frame.winfo_width()
-                if frame_width <= 0:  # في حالة عدم توفر العرض، استخدم عرض افتراضي
-                    frame_width = 300
-                frame_width += 20  # إضافة مساحة لشريط التمرير
-                height = min(200, self.city_listbox.size() * 20 + 10)  # تعديل الارتفاع حسب عدد العناصر
-                self.city_dropdown.geometry(f"{frame_width}x{height}+{x}+{y}")
-                self.city_dropdown.lift()
-                self.city_dropdown.deiconify()
-                self.current_dropdown = 'city'
-                self.close_bind_id = self.dialog.bind_all('<Button-1>', self.check_close_dropdown)
-                # الحفاظ على التركيز على الحقل للسماح بكتابة المزيد
-                self.city_entry.focus_force()
-                # تحديد العنصر الأول تلقائياً
-                if self.city_listbox.size() > 0:
-                    self.city_listbox.selection_set(0)
-            else:
-                if self.city_dropdown:
-                    self.city_dropdown.withdraw()
-        else:
-            if self.city_dropdown:
-                self.city_dropdown.withdraw()
 
     def toggle_city_list(self):
         """تبديل عرض قائمة المدن"""

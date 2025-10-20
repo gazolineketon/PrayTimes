@@ -19,3 +19,5 @@ test_embedded_startup.py
 find_untranslated.py
 /.zencoder
 update_version.py
+fetch_countries_cities.py
+find_untranslated.py
