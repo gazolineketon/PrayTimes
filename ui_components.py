@@ -656,7 +656,11 @@ class SettingsDialog:
         else:
             return
 
-        self.perform_scroll_for_listbox(listbox, direction)
+        def scroll_step():
+            self.perform_scroll_for_listbox(listbox, direction)
+            self.scroll_job = self.dialog.after(300, scroll_step)
+
+        scroll_step()
 
     def on_arrow_release(self, event):
         """إيقاف التمرير المستمر عند إطلاق مفتاح الأسهم"""

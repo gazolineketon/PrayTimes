@@ -5,7 +5,7 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.62.0"
+__version__ = "0.63.0"
 
 # إعداد متغيرات البيئة لـ tkinter قبل الاستيراد
 import os
@@ -94,8 +94,8 @@ def setup_logging():
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.INFO)
 
-    # إضافة handler للملف
-    file_handler = FlushingFileHandler(LOG_FILE)
+    # إضافة handler للملف مع ترميز UTF-8
+    file_handler = FlushingFileHandler(LOG_FILE, encoding='utf-8')
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
     root_logger.addHandler(file_handler)

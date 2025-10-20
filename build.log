@@ -1,0 +1,25 @@
+2025-10-20 08:25:20,070 - INFO - بدء عملية بناء التطبيق...
+2025-10-20 08:25:20,071 - INFO - تحضير بيئة البناء...
+2025-10-20 08:25:20,076 - INFO - تم نسخ الخطافات المخصصة
+2025-10-20 08:25:20,077 - INFO - بدء بناء التطبيق...
+2025-10-20 08:25:30,827 - ERROR - فشل بناء التطبيق: 2076 INFO: PyInstaller: 6.16.0, contrib hooks: 2025.8
+2077 INFO: Python: 3.13.2 (conda)
+2149 INFO: Platform: Windows-10-10.0.19045-SP0
+2149 INFO: Python environment: C:\Users\Nassar_Home\anaconda3\envs\coding
+2159 INFO: Removing temporary files and cleaning cache in C:\Users\Nassar_Home\AppData\Local\pyinstaller
+2251 INFO: Module search paths (PYTHONPATH):
+['c:\\Temp\\PrayTimes',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\python313.zip',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\win32',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\Pythonwin',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\setuptools\\_vendor',
+ 'c:\\Temp\\PrayTimes',
+ 'c:\\Temp\\PrayTimes']
+9350 INFO: Appending 'datas' from .spec
+
+2025-10-20 08:25:30,828 - ERROR - فشلت عملية بناء التطبيق
