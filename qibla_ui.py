@@ -36,6 +36,9 @@ class QiblaWidget(tk.Frame):
             self.setup_ui()
             self.fetch_and_update_coordinates()
 
+    def is_rtl(self):
+        return self.translator.language == 'ar'
+
     # جلب وتحديث الإحداثيات
     def fetch_and_update_coordinates(self):
         self.city_country_label.config(text=self._("loading_coordinates"))
@@ -79,7 +82,11 @@ class QiblaWidget(tk.Frame):
         direction_frame.pack(pady=5)
         self.direction_label = tk.Label(direction_frame, text="", font=("Arial", 14, "bold"), fg="#ffc107", bg=self.colors['bg_card'])
         self.direction_label.pack()
-        self.direction_note = tk.Label(direction_frame, text="اضبط اتجاه السهم الأحمر نحو الشمال الجغرافي", font=("Arial", 10, "bold"), fg="#8B0D0D", bg=self.colors['bg_card'])
+        direction_note_text = self._('set_arrow_towards_north')
+        if self.is_rtl():
+            # For RTL, reverse the text direction
+            direction_note_text = "\u202B" + direction_note_text  # Right-to-left embedding
+        self.direction_note = tk.Label(direction_frame, text=direction_note_text, font=("Arial", 10, "bold"), fg="#8B0D0D", bg=self.colors['bg_card'])
         self.direction_note.pack()
 
     
@@ -101,9 +108,23 @@ class QiblaWidget(tk.Frame):
 
     # حساب اتجاه القبلة
     def calculate_qibla_direction(self):
-        self.qibla_direction = QiblaCalculator.calculate_qibla(self.user_lat, self.user_lon)
-        self.direction_label.config(text=f"°{self.qibla_direction:.1f} {self._('qibla_angle_from_north')}")
-        self.direction_note.config(text=self._('set_arrow_towards_north'))
+        try:
+            self.qibla_direction = QiblaCalculator.calculate_qibla(self.user_lat, self.user_lon)
+        except Exception as e:
+            logger.exception("Failed to calculate qibla direction")
+            self.qibla_direction = 0.0
+
+        direction_label_text = f"{self._('qibla_angle_from_north')} {self.qibla_direction:.1f}°"
+        if self.is_rtl():
+            direction_label_text = "\u202B" + direction_label_text
+        if hasattr(self, 'direction_label'):
+            self.direction_label.config(text=direction_label_text)
+
+        direction_note_text = self._('set_arrow_towards_north')
+        if self.is_rtl():
+            direction_note_text = "\u202B" + direction_note_text
+        if hasattr(self, 'direction_note'):
+            self.direction_note.config(text=direction_note_text)
 
 
     # رسم البوصلة

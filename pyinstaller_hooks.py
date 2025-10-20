@@ -15,6 +15,7 @@ import shutil
 try:
     shutil.copy('hook-glob.py', os.path.join(hooks_dir, 'hook-glob.py'))
     shutil.copy('hook-pathlib.py', os.path.join(hooks_dir, 'hook-pathlib.py'))
+    shutil.copy('hook-vlc.py', os.path.join(hooks_dir, 'hook-vlc.py'))
     print(f"تم نسخ الخطافات المخصصة إلى: {hooks_dir}")
 except Exception as e:
     print(f"خطأ في نسخ الخطافات: {e}")

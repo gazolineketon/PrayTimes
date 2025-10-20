@@ -215,49 +215,65 @@ class EnhancedPrayerTimesApp:
         """إعداد واجهة التقويم"""
         calendar_container = tk.Frame(self.calendar_card, bg=self.colors['bg_card'], pady=5)
         calendar_container.pack(fill='x')
-                
+
         dates_container = tk.Frame(calendar_container, bg=self.colors['bg_card'])
         dates_container.pack()
-        
-        gregorian_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
-        gregorian_frame.pack(pady=(0, 5))
-                
+
+        # Determine layout direction based on language
+        is_ltr = self.settings.language == 'en'
+        pack_side = 'left' if is_ltr else 'right'
+
+        # Pack frames in order based on language
+        if is_ltr:
+            # English: Gregorian first, then Hijri
+            gregorian_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            gregorian_frame.pack(pady=(0, 5))
+
+            hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            hijri_frame.pack()
+        else:
+            # Arabic: Hijri first, then Gregorian
+            hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            hijri_frame.pack(pady=(0, 5))
+
+            gregorian_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
+            gregorian_frame.pack()
+
+        # Setup Gregorian date boxes
         greg_boxes_frame = tk.Frame(gregorian_frame, bg=self.colors['bg_card'])
-        greg_boxes_frame.pack(side='right')
-        
+        greg_boxes_frame.pack(side=pack_side)
+
         self.greg_day_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 50, 35)
-        self.greg_day_frame.pack(side='right', padx=2)
+        self.greg_day_frame.pack(side=pack_side, padx=2)
         self.greg_day_label = tk.Label(self.greg_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
-        self.greg_day_label.pack(expand=True)        
-        
+        self.greg_day_label.pack(expand=True)
+
         self.greg_month_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 120, 35)
-        self.greg_month_frame.pack(side='right', padx=2)
+        self.greg_month_frame.pack(side=pack_side, padx=2)
         self.greg_month_label = tk.Label(self.greg_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_month_label.pack(expand=True)
-        
+
         self.greg_year_frame = self.create_date_box(greg_boxes_frame, self.colors['bg_accent'], 70, 35)
-        self.greg_year_frame.pack(side='right', padx=2)
+        self.greg_year_frame.pack(side=pack_side, padx=2)
         self.greg_year_label = tk.Label(self.greg_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_accent'], fg=self.colors['text_accent'])
         self.greg_year_label.pack(expand=True)
-        
-        hijri_frame = tk.Frame(dates_container, bg=self.colors['bg_card'])
-        hijri_frame.pack()
-                        
+
+        # Setup Hijri date boxes
         hijri_boxes_frame = tk.Frame(hijri_frame, bg=self.colors['bg_card'])
-        hijri_boxes_frame.pack(side='right')
-        
+        hijri_boxes_frame.pack(side=pack_side)
+
         self.hijri_day_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 50, 35)
-        self.hijri_day_frame.pack(side='right', padx=2)
+        self.hijri_day_frame.pack(side=pack_side, padx=2)
         self.hijri_day_label = tk.Label(self.hijri_day_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_day_label.pack(expand=True)
 
         self.hijri_month_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 120, 35)
-        self.hijri_month_frame.pack(side='right', padx=2)
+        self.hijri_month_frame.pack(side=pack_side, padx=2)
         self.hijri_month_label = tk.Label(self.hijri_month_frame, font=('Segoe UI', 12, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_month_label.pack(expand=True)
-    
+
         self.hijri_year_frame = self.create_date_box(hijri_boxes_frame, self.colors['warning'], 70, 35)
-        self.hijri_year_frame.pack(side='right', padx=2)
+        self.hijri_year_frame.pack(side=pack_side, padx=2)
         self.hijri_year_label = tk.Label(self.hijri_year_frame, font=('Segoe UI', 14, 'bold'), bg=self.colors['warning'], fg=self.colors['text_accent'])
         self.hijri_year_label.pack(expand=True)
         
@@ -707,7 +723,7 @@ class EnhancedPrayerTimesApp:
             
             # عرض الساعات والدقائق فقط إذا كان الوقت المتبقي كبيرًا
             if hours > 0:
-                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {hours} {self._("hour")} و {minutes} {self._("minute")}'
+                countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {hours} {self._("hour")} {self._("and")} {minutes} {self._("minute")}'
             elif minutes > 0:
                 countdown_text = f'{self._("remaining_time_on")} {next_prayer}: {minutes} {self._("minute")}'
             else:
@@ -746,6 +762,10 @@ class EnhancedPrayerTimesApp:
         self.adhan_dialog.geometry("300x150")
         self.adhan_dialog.resizable(False, False)
         self.adhan_dialog.attributes('-topmost', True)  # جعل النافذة في المقدمة
+        try:
+            self.adhan_dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            pass
 
         # مركز النافذة
         self.adhan_dialog.update_idletasks()
@@ -789,17 +809,17 @@ class EnhancedPrayerTimesApp:
         
         city_data = self.prayer_data[self.current_city]
         prayers = [
-            (self._('fajr'), city_data['fajr_orig']),
-            (self._('dhuhr'), city_data['dhuhr_orig']),
-            (self._('asr'), city_data['asr_orig']),
-            (self._('maghrib'), city_data['maghrib_orig']),
-            (self._('isha'), city_data['isha_orig'])
+            ("fajr", self._('fajr'), city_data['fajr_orig']),
+            ("dhuhr", self._('dhuhr'), city_data['dhuhr_orig']),
+            ("asr", self._('asr'), city_data['asr_orig']),
+            ("maghrib", self._('maghrib'), city_data['maghrib_orig']),
+            ("isha", self._('isha'), city_data['isha_orig'])
         ]
         
         # تتبع الوقت المتبقي حتى الإشعار أو الأذان التالي لتحديد وقت الفحص القادم
         next_notification_seconds = 24 * 3600  # القيمة الافتراضية هي يوم كامل
         
-        for prayer_name, prayer_time_str in prayers:
+        for prayer_key, prayer_display_name, prayer_time_str in prayers:
             # تحويل وقت الصلاة إلى كائن datetime
             prayer_datetime = datetime.strptime(prayer_time_str.split()[0], "%I:%M")
             if (prayer_time_str.endswith('م') or prayer_time_str.endswith('PM')) and prayer_datetime.hour != 12:
@@ -829,12 +849,12 @@ class EnhancedPrayerTimesApp:
             # التحقق من وقت الإشعار المسبق
             if current_time_str == notification_time_str:
                 # منع تكرار الإشعارات في نفس الدقيقة
-                notification_key = f"pre_{prayer_name}"
+                notification_key = f"pre_{prayer_key}"
                 if notification_key not in self.last_notification_time or self.last_notification_time[notification_key] != current_time_str:
-                    logger.info(f"إرسال إشعار قبل صلاة {prayer_name}")
+                    logger.info(f"إرسال إشعار قبل صلاة {prayer_display_name}")
                     self.notification_manager.send_notification(
                         self._("prayer_notification_alert"),
-                        self._("minutes_remaining_for_prayer", minutes=self.settings.notification_before_minutes, prayer_name=prayer_name),
+                        self._("minutes_remaining_for_prayer", minutes=self.settings.notification_before_minutes, prayer_name=prayer_display_name),
                         timeout=15
                     )
                     if self.settings.sound_enabled:
@@ -846,18 +866,26 @@ class EnhancedPrayerTimesApp:
                     self.last_notification_time[notification_key] = current_time_str
             
             # التحقق من وقت الصلاة الفعلي
-            prayer_time_str = prayer_datetime.strftime("%H:%M")
-            if current_time_str == prayer_time_str:
+            prayer_time_formatted = prayer_datetime.strftime("%H:%M")
+            if current_time_str == prayer_time_formatted:
                 # منع تكرار الأذان في نفس الدقيقة
-                prayer_key = f"adhan_{prayer_name}"
-                if prayer_key not in self.last_notification_time or self.last_notification_time[prayer_key] != current_time_str:
-                    logger.info(f"إرسال أذان لصلاة {prayer_name}")
+                adhan_key = f"adhan_{prayer_key}"
+                if adhan_key not in self.last_notification_time or self.last_notification_time[adhan_key] != current_time_str:
+                    # التحقق من إعدادات الأذان للصلاة المحددة قبل أي إجراء
+                    prayer_adhan_enabled = getattr(self.settings, f'adhan_{prayer_key}_enabled', True)
+
+                    if not prayer_adhan_enabled:
+                        logger.info(f"تخطي أذان صلاة {prayer_display_name} لأن المستخدم عطّلها")
+                        self.last_notification_time[adhan_key] = current_time_str
+                        continue
+
+                    logger.info(f"إرسال أذان لصلاة {prayer_display_name}")
                     self.notification_manager.send_notification(
                         self._("prayer_time"),
-                        self._("its_time_for_prayer", prayer_name=prayer_name),
+                        self._("its_time_for_prayer", prayer_name=prayer_display_name),
                         timeout=20
                     )
-                    
+
                     if self.settings.sound_enabled:
                         sound_file = self.settings.adhan_sound_file
                         if sound_file:
@@ -865,11 +893,11 @@ class EnhancedPrayerTimesApp:
                         else:
                             self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
                         # إظهار نافذة الأذان مع زر الإيقاف
-                        self.show_adhan_dialog(prayer_name)
+                        self.show_adhan_dialog(prayer_display_name)
                         # تعيين callback لإغلاق النافذة عند انتهاء الصوت
                         self.adhan_player.set_end_callback(lambda: self.close_adhan_dialog_if_exists())
 
-                    self.last_notification_time[prayer_key] = current_time_str
+                    self.last_notification_time[adhan_key] = current_time_str
         
         # جدولة الفحص التالي بناءً على الوقت المتبقي للإشعار أو الأذان القادم
         if next_notification_seconds < 60:  # أقل من دقيقة
@@ -1252,6 +1280,12 @@ class EnhancedPrayerTimesApp:
         dialog.configure(bg=self.colors['bg_primary'])
         dialog.transient(self.root)
         dialog.grab_set()
+        
+        # إضافة أيقونة البرنامج
+        try:
+            dialog.iconbitmap(get_working_path("pray_times.ico"))
+        except tk.TclError:
+            logger.warning("لم يتم العثور على pray_times.ico، الاستمرار بدون أيقونة")
         
         # مركز الحوار فوق النافذة الرئيسية
         self.root.update_idletasks()

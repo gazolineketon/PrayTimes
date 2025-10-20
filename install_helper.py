@@ -79,10 +79,6 @@ def create_portable_python_environment():
         portable_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "python_portable")
         if not os.path.exists(portable_dir):
             os.makedirs(portable_dir)
-
-        # هنا يمكن إضافة كود لتنزيل وتثبيت بايثون محمول
-        # أو نسخ بايثون من الجهاز الحالي
-
         return True
     except Exception as e:
         logger.error(f"خطأ في إنشاء بيئة بايثون محمولة: {e}")
@@ -92,12 +88,14 @@ def handle_missing_dlls():
     """معالجة ملفات DLL المفقودة"""
     try:
         # قائمة بملفات DLL الشائعة المطلوبة
+        major, minor = sys.version_info[:2]
+        python_dll = f"python{major}{minor}.dll"
         required_dlls = [
             "vcruntime140.dll",
             "msvcp140.dll",
             "python3.dll",
-            "python39.dll"  # استبدل بالنسخة المناسبة
-        ]
+            python_dll,  # dynamically generated
+]
 
         missing_dlls = []
 
@@ -109,8 +107,7 @@ def handle_missing_dlls():
 
         if missing_dlls:
             logger.warning(f"ملفات DLL مفقودة: {missing_dlls}")
-            # هنا يمكن إضافة كود لتنزيل الملفات المفقودة أو نسخها
-
+        
         return len(missing_dlls) == 0
     except Exception as e:
         logger.error(f"خطأ في فحص ملفات DLL: {e}")

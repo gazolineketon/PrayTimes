@@ -60,8 +60,8 @@ def find_nsis():
     nsis_paths = [
         os.path.join(os.environ.get("ProgramFiles(x86)", ""), "NSIS"),
         os.path.join(os.environ.get("ProgramFiles", ""), "NSIS"),
-        "C:\NSIS",
-        "D:\NSIS",
+        r"C:\NSIS",
+        r"D:\NSIS",
     ]
 
     for path in nsis_paths:
@@ -76,8 +76,7 @@ def create_nsis_installer(nsis_path):
     """إنشاء حزمة تثبيت باستخدام NSIS"""
     try:
         # إنشاء ملف NSIS Script
-        nsis_script = """
-!define APPNAME "PrayerTimes"
+        nsis_script = r"""!define APPNAME "PrayerTimes"
 !define VERSION "0.53.0"
 !define PUBLISHER "PrayerTimes Developer"
 !define URL "https://example.com"

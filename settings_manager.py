@@ -29,6 +29,12 @@ class Settings:
         self.weather_enabled = False
         self.selected_country = "Egypt"  # البلد الإفتراضى
         self.selected_city = "Cairo"      # المدينة الإفتراضية
+        # إعدادات الأذان لكل صلاة
+        self.adhan_fajr_enabled = True
+        self.adhan_dhuhr_enabled = True
+        self.adhan_asr_enabled = True
+        self.adhan_maghrib_enabled = True
+        self.adhan_isha_enabled = True
         self.load_settings()
     
     def load_settings(self):

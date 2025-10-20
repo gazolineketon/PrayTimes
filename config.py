@@ -16,13 +16,15 @@ TRANSLATIONS = {
         "adhan_playing": "الأذان يعمل",
         "adhan_for_prayer": "أذان {prayer_name}",
         "adhan_sound_file": "ملف صوت الأذان",
+        "adhan_settings_for_each_prayer": "إعدادات الأذان لكل صلاة",
         "stop_adhan": "إيقاف الأذان",
         "all_files": "جميع الملفات",
+        "and": "و",
         "app_error": "خطأ في التطبيق",
         "app_running_in_background": "التطبيق يعمل في الخلفية",
         "app_running_in_background_message": "لا يزال التطبيق يعمل. انقر على الأيقونة في شريط المهام لإظهاره.",
         "app_settings": "إعدادات التطبيق",
-        "app_title": "🕌 مواقيت الصلاة",
+        "app_title": "مواقيت الصلاة 🕌",
         "arabic": "العربية",
         "asr": "العصر",
         "audio_files": "ملفات الصوت",
@@ -68,7 +70,7 @@ TRANSLATIONS = {
         "last_update": "آخر تحديث",
         "light": "فاتح",
         "loading_prayer_times": "...جاري تحميل مواقيت الصلاة ⏳",
-        "location": "🌍 الموقع",
+        "location": "الموقع 🌍",
         "location_settings_title": "تحديد الموقع (سيتم تطبيقه عند إعادة التشغيل)",
         "logo_not_found": "لم يتم العثور على الشعار",
         "maghrib": "المغرب",
@@ -93,11 +95,11 @@ TRANSLATIONS = {
         "prayer_times": "مواقيت الصلاة",
         "prayer_times_for_city": "مواقيت الصلاة لمدينة",
         "prayer_times_program": "برنامج مواقيت الصلاة",
-        "prayer_times_table_title": "🕐 مواقيت الصلاة",
+        "prayer_times_table_title": "مواقيت الصلاة 🕐",
         "prayer_times_updated_successfully": "تم تحديث مواقيت الصلاة بنجاح",
         "programmed_by": "برمجة : محمود نصار",
         "qibla": "القبلة",
-        "qibla_direction": "🧭 اتجاه القبلة",
+        "qibla_direction": "اتجاه القبلة 🧭",
         "qibla_direction_label": "الاتجاه {direction:.1f}°",
         "qibla_angle_from_north": "زاوية القبلة من الشمال",
         "set_arrow_towards_north": "اضبط اتجاه السهم الأحمر نحو الشمال الجغرافي",
@@ -112,7 +114,7 @@ TRANSLATIONS = {
         "searching": "جاري البحث...",
         "second": "ثانية",
         "select_adhan_file": "اختر ملف الأذان",
-        "settings": "⚙️ إعدادات",
+        "settings": "إعدادات ⚙️",
         "settings_saved_successfully": "تم تغيير الإعدادات. إضغط لإعادة التشغيل أو الاستمرار حاليا وسيتم تطبيق الإعدادات عند إعادة التشغيل",
         "settings_saved_successfully_restart": "تم حفظ الإعدادات، بعض التغييرات تتطلب إعادة تشغيل التطبيق لتفعيلها.\nهل تريد إعادة التشغيل الآن؟",
         "show_qibla_direction": "إظهار اتجاه القبلة",
@@ -142,12 +144,14 @@ TRANSLATIONS = {
         "adhan_playing": "Adhan Playing",
         "adhan_for_prayer": "Adhan for {prayer_name}",
         "adhan_sound_file": "Adhan Sound File",
+        "adhan_settings_for_each_prayer": "Adhan Settings for Each Prayer",
         "all_files": "All Files",
+        "and": "&",
         "app_error": "Application Error",
         "app_running_in_background": "Application is running in the background",
         "app_running_in_background_message": "The application is still running. Click the tray icon to show it.",
         "app_settings": "Application Settings",
-        "app_title": "🕌 Prayer Times",
+        "app_title": "Prayer Times 🕌",
         "arabic": "العربية",
         "asr": "Asr",
         "audio_files": "Audio Files",
