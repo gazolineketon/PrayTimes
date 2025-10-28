@@ -10,15 +10,8 @@ hooks_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hooks')
 if not os.path.exists(hooks_dir):
     os.makedirs(hooks_dir)
 
-# نسخ الخطافات المخصصة إلى مجلد الخطافات
-import shutil
-try:
-    shutil.copy('hook-glob.py', os.path.join(hooks_dir, 'hook-glob.py'))
-    shutil.copy('hook-pathlib.py', os.path.join(hooks_dir, 'hook-pathlib.py'))
-    shutil.copy('hook-vlc.py', os.path.join(hooks_dir, 'hook-vlc.py'))
-    print(f"تم نسخ الخطافات المخصصة إلى: {hooks_dir}")
-except Exception as e:
-    print(f"خطأ في نسخ الخطافات: {e}")
+# ملفات الخطافات مُعدة مسبقًا في مجلد الخطافات
+print("ملفات الخطافات جاهزة في مجلد hooks")
 
 # إضافة مسار الخطافات إلى متغيرات البيئة
 if hooks_dir not in os.environ.get('PYINSTALLER_HOOKSPATH', ''):

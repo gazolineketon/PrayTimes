@@ -49,14 +49,8 @@ def prepare_build():
         os.makedirs(hooks_dir)
         logger.info(f"تم إنشاء مجلد الخطافات: {hooks_dir}")
 
-    # نسخ الخطافات المخصصة
-    try:
-        shutil.copy('hook-glob.py', os.path.join(hooks_dir, 'hook-glob.py'))
-        shutil.copy('hook-pathlib.py', os.path.join(hooks_dir, 'hook-pathlib.py'))
-        logger.info("تم نسخ الخطافات المخصصة")
-    except Exception as e:
-        logger.error(f"خطأ في نسخ الخطافات: {e}")
-        return False
+    # ملفات الخطافات مُعدة مسبقًا في مجلد hooks
+    logger.info("ملفات الخطافات جاهزة في مجلد hooks")
 
     return True
 
