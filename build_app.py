@@ -77,7 +77,8 @@ def build_app():
             logger.error("main.spec file not found")
             return False
             
-        pyinstaller_args = [sys.executable, '-m', 'PyInstaller', main_spec, '--clean']
+        venv_python = r'C:\Users\Nassar_Home\.tens_env\Scripts\python.exe'
+        pyinstaller_args = [venv_python, '-m', 'PyInstaller', main_spec, '--clean', '--noconfirm']
         try:
             result = subprocess.run(
                 pyinstaller_args,

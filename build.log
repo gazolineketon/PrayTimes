@@ -23,3 +23,526 @@
 9350 INFO: Appending 'datas' from .spec
 
 2025-10-20 08:25:30,828 - ERROR - فشلت عملية بناء التطبيق
+2025-10-26 00:00:30,670 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 00:00:30,671 - INFO - تحضير بيئة البناء...
+2025-10-26 00:00:30,672 - INFO - تم حذف المجلد: build
+2025-10-26 00:00:31,857 - INFO - تم حذف المجلد: dist
+2025-10-26 00:00:31,880 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 00:00:31,881 - INFO - بدء بناء التطبيق...
+2025-10-26 00:01:40,543 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 00:01:40,546 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 00:02:33,636 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 00:02:33,637 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 00:07:39,526 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 00:07:39,536 - INFO - تحضير بيئة البناء...
+2025-10-26 00:07:39,560 - INFO - تم حذف المجلد: build
+2025-10-26 00:07:40,621 - INFO - تم حذف المجلد: dist
+2025-10-26 00:07:40,641 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 00:07:40,655 - INFO - بدء بناء التطبيق...
+2025-10-26 00:08:45,930 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 00:08:45,930 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 00:09:39,124 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 00:09:39,124 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 00:11:53,514 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 00:11:53,515 - INFO - تحضير بيئة البناء...
+2025-10-26 00:11:53,528 - INFO - تم حذف المجلد: build
+2025-10-26 00:11:54,867 - INFO - تم حذف المجلد: dist
+2025-10-26 00:11:54,893 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 00:11:54,898 - INFO - بدء بناء التطبيق...
+2025-10-26 00:13:02,336 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 00:13:02,344 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 00:13:58,327 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 00:13:58,327 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 02:13:02,570 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:13:02,571 - INFO - تحضير بيئة البناء...
+2025-10-26 02:13:02,586 - INFO - تم حذف المجلد: build
+2025-10-26 02:13:02,588 - INFO - تم حذف المجلد: dist
+2025-10-26 02:13:02,596 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:13:02,596 - INFO - بدء بناء التطبيق...
+2025-10-26 02:15:10,308 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 02:15:10,309 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 02:17:53,253 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:17:53,254 - INFO - تحضير بيئة البناء...
+2025-10-26 02:17:53,255 - INFO - تم حذف المجلد: build
+2025-10-26 02:17:58,025 - INFO - تم حذف المجلد: dist
+2025-10-26 02:17:58,058 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:17:58,065 - INFO - بدء بناء التطبيق...
+2025-10-26 02:18:44,541 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 02:18:44,541 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 02:19:08,952 - ERROR - فشل بناء التطبيق: 2850 INFO: PyInstaller: 6.16.0, contrib hooks: 2025.9
+2851 INFO: Python: 3.12.3
+2956 INFO: Platform: Windows-10-10.0.19045-SP0
+2956 INFO: Python environment: C:\Users\Nassar_Home\.tens_env
+2968 INFO: Removing temporary files and cleaning cache in C:\Users\Nassar_Home\AppData\Local\pyinstaller
+3064 WARNING: collect_dynamic_libs - skipping library collection for module 'PIL' as it is not a package.
+3064 WARNING: collect_dynamic_libs - skipping library collection for module 'pyexpat' as it is not a package.
+3064 INFO: Module search paths (PYTHONPATH):
+['C:\\Temp\\PrayTimes',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312\\DLLs',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312\\Lib',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312',
+ 'C:\\Users\\Nassar_Home\\.tens_env',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\win32',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\Pythonwin',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\setuptools\\_vendor',
+ 'C:\\Temp\\PrayTimes',
+ 'C:\\Temp\\PrayTimes']
+5780 INFO: Appending 'datas' from .spec
+5833 INFO: checking Analysis
+5833 INFO: Building Analysis because Analysis-00.toc is non existent
+5833 INFO: Looking for Python shared library...
+5836 INFO: Using Python shared library: C:\Users\Nassar_Home\AppData\Local\Programs\Python\Python312\python312.dll
+5836 INFO: Running Analysis Analysis-00.toc
+5836 INFO: Target bytecode optimization level: 0
+5836 INFO: Initializing module dependency graph...
+5841 INFO: Initializing module graph hook caches...
+6106 INFO: Analyzing modules for base_library.zip ...
+12474 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+18634 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+25064 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+27146 INFO: Caching module dependency graph...
+27451 INFO: Analyzing C:\Temp\PrayTimes\main.py
+27485 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+27487 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+29046 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+29698 INFO: Processing standard module hook 'hook-urllib3.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+30415 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+30419 INFO: SetuptoolsInfo: initializing cached setuptools info...
+45087 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+45328 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+45939 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+48538 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+48875 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+49865 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+50256 INFO: Processing standard module hook 'hook-psutil.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+50393 INFO: Analyzing hidden import 'glob'
+50409 INFO: Analyzing hidden import 'plyer.notifications'
+50409 ERROR: Hidden import 'plyer.notifications' not found
+50409 INFO: Analyzing hidden import 'plyer.libs'
+50409 ERROR: Hidden import 'plyer.libs' not found
+50409 INFO: Analyzing hidden import 'tkinter.scrolledtext'
+50424 INFO: Analyzing hidden import 'tkinter.font'
+50441 INFO: Analyzing hidden import 'PIL.ImageTk'
+50441 ERROR: Hidden import 'PIL.ImageTk' not found
+50441 INFO: Analyzing hidden import 'PIL.Image'
+50441 ERROR: Hidden import 'PIL.Image' not found
+50441 INFO: Analyzing hidden import 'PIL._tkinter_finder'
+50441 ERROR: Hidden import 'PIL._tkinter_finder' not found
+50441 INFO: Analyzing hidden import 'PIL.PngImagePlugin'
+50441 ERROR: Hidden import 'PIL.PngImagePlugin' not found
+50441 INFO: Analyzing hidden import 'PIL.JpegImagePlugin'
+50441 ERROR: Hidden import 'PIL.JpegImagePlugin' not found
+50441 INFO: Analyzing hidden import 'vlc.libvlc'
+50441 ERROR: Hidden import 'vlc.libvlc' not found
+50441 INFO: Analyzing hidden import 'vlc.libvlc_audio'
+50441 ERROR: Hidden import 'vlc.libvlc_audio' not found
+50441 INFO: Analyzing hidden import 'vlc.libvlc_media'
+50441 ERROR: Hidden import 'vlc.libvlc_media' not found
+50441 INFO: Analyzing hidden import 'vlc.libvlc_media_player'
+50441 ERROR: Hidden import 'vlc.libvlc_media_player' not found
+50441 INFO: Analyzing hidden import 'vlc.libvlc_instance'
+50441 ERROR: Hidden import 'vlc.libvlc_instance' not found
+50441 INFO: Analyzing hidden import 'encodings.latin1'
+50441 ERROR: Hidden import 'encodings.latin1' not found
+50441 INFO: Analyzing hidden import 'encodings.cp65001'
+50441 ERROR: Hidden import 'encodings.cp65001' not found
+50441 INFO: Analyzing hidden import 'pkg_resources'
+50695 INFO: Processing standard module hook 'hook-pkg_resources.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+51759 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+52007 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+52195 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+52195 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+52211 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+52258 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+52327 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+52327 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+52396 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+52412 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+53247 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+53247 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+53306 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+53316 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+53316 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+54048 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+54497 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+54497 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+54513 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+54513 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+54523 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+54539 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+54764 INFO: Processing standard module hook 'hook-backports.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+54764 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+54792 INFO: Processing standard module hook 'hook-platformdirs.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+54882 INFO: Analyzing hidden import 'pkg_resources.py2_warn'
+54882 ERROR: Hidden import 'pkg_resources.py2_warn' not found
+54882 INFO: Analyzing hidden import 'win32api'
+54882 INFO: Analyzing hidden import 'win32con'
+55207 INFO: Analyzing hidden import 'win32gui'
+55207 INFO: Analyzing hidden import 'win32clipboard'
+55207 INFO: Processing module hooks (post-graph stage)...
+56351 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+56897 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+56949 INFO: Performing binary vs. data reclassification (1213 entries)
+57728 INFO: Looking for ctypes DLLs
+58060 INFO: Analyzing run-time hooks ...
+58060 INFO: Including custom run-time hook 'runtime_hook.py'
+58076 INFO: Including run-time hook 'pyi_rth_pkgres.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+58087 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+58087 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+58087 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+58103 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+58103 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+58218 INFO: Creating base_library.zip...
+58275 INFO: Looking for dynamic libraries
+60679 INFO: Extra DLL search directories (AddDllDirectory): []
+60679 INFO: Extra DLL search directories (PATH): []
+62605 INFO: Warnings written to C:\Temp\PrayTimes\build\main\warn-main.txt
+62764 INFO: Graph cross-reference written to C:\Temp\PrayTimes\build\main\xref-main.html
+62911 INFO: checking PYZ
+62937 INFO: Building because name changed
+62937 INFO: Building PYZ (ZlibArchive) C:\Temp\PrayTimes\build\main\PYZ-00.pyz
+63853 INFO: Building PYZ (ZlibArchive) C:\Temp\PrayTimes\build\main\PYZ-00.pyz completed successfully.
+63896 INFO: checking PKG
+63896 INFO: Building because name changed
+63896 INFO: Building PKG (CArchive) Praytimes.pkg
+63964 INFO: Building PKG (CArchive) Praytimes.pkg completed successfully.
+63964 INFO: Bootloader C:\Users\Nassar_Home\.tens_env\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+63964 INFO: checking EXE
+63964 INFO: Building because name changed
+63964 INFO: Building EXE from EXE-00.toc
+63964 INFO: Copying bootloader EXE to C:\Temp\PrayTimes\build\main\Praytimes.exe
+64011 INFO: Copying icon to EXE
+64027 INFO: Copying 0 resources to EXE
+64027 INFO: Embedding manifest in EXE
+64043 INFO: Appending PKG archive to EXE
+64058 INFO: Fixing EXE headers
+64265 INFO: Building EXE from EXE-00.toc completed successfully.
+64306 INFO: checking COLLECT
+ERROR: The output directory "C:\Temp\PrayTimes\dist\Praytimes" is not empty. Please remove all its contents or use the -y option (remove output directory without confirmation).
+
+2025-10-26 02:19:08,997 - ERROR - فشلت عملية بناء التطبيق
+2025-10-26 02:21:35,097 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:21:35,138 - INFO - تحضير بيئة البناء...
+2025-10-26 02:21:35,419 - INFO - تم حذف المجلد: build
+2025-10-26 02:21:37,730 - INFO - تم حذف المجلد: dist
+2025-10-26 02:21:37,930 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:21:38,063 - INFO - بدء بناء التطبيق...
+2025-10-26 02:22:36,118 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 02:22:36,119 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 02:23:27,548 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 02:23:27,549 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 02:29:54,438 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:29:54,438 - INFO - تحضير بيئة البناء...
+2025-10-26 02:29:54,548 - INFO - تم حذف المجلد: build
+2025-10-26 02:29:56,223 - INFO - تم حذف المجلد: dist
+2025-10-26 02:29:56,327 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:29:56,338 - INFO - بدء بناء التطبيق...
+2025-10-26 02:31:09,920 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 02:31:09,928 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 02:32:14,940 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 02:32:14,942 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 02:37:36,894 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:37:36,910 - INFO - تحضير بيئة البناء...
+2025-10-26 02:37:36,973 - INFO - تم حذف المجلد: build
+2025-10-26 02:37:36,989 - WARNING - فشل في حذف المجلد dist: [WinError 32] The process cannot access the file because it is being used by another process: 'dist\\Praytimes'
+2025-10-26 02:37:36,997 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:37:37,056 - INFO - بدء بناء التطبيق...
+2025-10-26 02:38:27,451 - ERROR - فشل بناء التطبيق: 791 INFO: PyInstaller: 6.16.0, contrib hooks: 2025.9
+792 INFO: Python: 3.12.3
+856 INFO: Platform: Windows-10-10.0.19045-SP0
+856 INFO: Python environment: C:\Users\Nassar_Home\.tens_env
+864 INFO: Removing temporary files and cleaning cache in C:\Users\Nassar_Home\AppData\Local\pyinstaller
+914 WARNING: collect_dynamic_libs - skipping library collection for module 'PIL' as it is not a package.
+914 WARNING: collect_dynamic_libs - skipping library collection for module 'pyexpat' as it is not a package.
+916 INFO: Module search paths (PYTHONPATH):
+['C:\\Temp\\PrayTimes',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312\\DLLs',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312\\Lib',
+ 'C:\\Users\\Nassar_Home\\AppData\\Local\\Programs\\Python\\Python312',
+ 'C:\\Users\\Nassar_Home\\.tens_env',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\win32',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\Pythonwin',
+ 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\setuptools\\_vendor',
+ 'C:\\Temp\\PrayTimes',
+ 'C:\\Temp\\PrayTimes']
+2426 INFO: Appending 'datas' from .spec
+2474 INFO: checking Analysis
+2474 INFO: Building Analysis because Analysis-00.toc is non existent
+2474 INFO: Looking for Python shared library...
+2474 INFO: Using Python shared library: C:\Users\Nassar_Home\AppData\Local\Programs\Python\Python312\python312.dll
+2474 INFO: Running Analysis Analysis-00.toc
+2474 INFO: Target bytecode optimization level: 0
+2474 INFO: Initializing module dependency graph...
+2477 INFO: Initializing module graph hook caches...
+2523 INFO: Analyzing modules for base_library.zip ...
+6438 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+7203 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+12243 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+15692 INFO: Caching module dependency graph...
+15846 INFO: Analyzing C:\Temp\PrayTimes\main.py
+15865 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+15867 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+16614 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+17049 INFO: Processing standard module hook 'hook-urllib3.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+17513 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+17516 INFO: SetuptoolsInfo: initializing cached setuptools info...
+29971 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+30193 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+30814 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+33423 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+33777 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+34775 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+35178 INFO: Processing standard module hook 'hook-psutil.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+35340 INFO: Analyzing hidden import 'glob'
+35362 INFO: Analyzing hidden import 'plyer.notifications'
+35362 ERROR: Hidden import 'plyer.notifications' not found
+35362 INFO: Analyzing hidden import 'plyer.libs'
+35362 ERROR: Hidden import 'plyer.libs' not found
+35362 INFO: Analyzing hidden import 'tkinter.scrolledtext'
+35370 INFO: Analyzing hidden import 'tkinter.font'
+35390 INFO: Analyzing hidden import 'PIL.ImageTk'
+35390 ERROR: Hidden import 'PIL.ImageTk' not found
+35391 INFO: Analyzing hidden import 'PIL.Image'
+35391 ERROR: Hidden import 'PIL.Image' not found
+35391 INFO: Analyzing hidden import 'PIL._tkinter_finder'
+35391 ERROR: Hidden import 'PIL._tkinter_finder' not found
+35391 INFO: Analyzing hidden import 'PIL.PngImagePlugin'
+35391 ERROR: Hidden import 'PIL.PngImagePlugin' not found
+35391 INFO: Analyzing hidden import 'PIL.JpegImagePlugin'
+35391 ERROR: Hidden import 'PIL.JpegImagePlugin' not found
+35392 INFO: Analyzing hidden import 'vlc.libvlc'
+35393 ERROR: Hidden import 'vlc.libvlc' not found
+35393 INFO: Analyzing hidden import 'vlc.libvlc_audio'
+35393 ERROR: Hidden import 'vlc.libvlc_audio' not found
+35393 INFO: Analyzing hidden import 'vlc.libvlc_media'
+35393 ERROR: Hidden import 'vlc.libvlc_media' not found
+35393 INFO: Analyzing hidden import 'vlc.libvlc_media_player'
+35393 ERROR: Hidden import 'vlc.libvlc_media_player' not found
+35393 INFO: Analyzing hidden import 'vlc.libvlc_instance'
+35393 ERROR: Hidden import 'vlc.libvlc_instance' not found
+35393 INFO: Analyzing hidden import 'encodings.latin1'
+35394 ERROR: Hidden import 'encodings.latin1' not found
+35394 INFO: Analyzing hidden import 'encodings.cp65001'
+35394 ERROR: Hidden import 'encodings.cp65001' not found
+35395 INFO: Analyzing hidden import 'pkg_resources'
+35646 INFO: Processing standard module hook 'hook-pkg_resources.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+36801 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+37092 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+37195 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+37196 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+37214 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+37245 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+37317 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+37318 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+37398 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+37399 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+38245 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+38246 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+38318 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+38325 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+38325 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+39073 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39523 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+39527 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39531 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39532 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+39553 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39553 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+39776 INFO: Processing standard module hook 'hook-backports.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+39781 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39804 INFO: Processing standard module hook 'hook-platformdirs.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+39901 INFO: Analyzing hidden import 'pkg_resources.py2_warn'
+39902 ERROR: Hidden import 'pkg_resources.py2_warn' not found
+39902 INFO: Analyzing hidden import 'win32api'
+39904 INFO: Analyzing hidden import 'win32con'
+40236 INFO: Analyzing hidden import 'win32gui'
+40239 INFO: Analyzing hidden import 'win32clipboard'
+40244 INFO: Processing module hooks (post-graph stage)...
+41404 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+41945 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks'
+41994 INFO: Performing binary vs. data reclassification (1213 entries)
+42482 INFO: Looking for ctypes DLLs
+42821 INFO: Analyzing run-time hooks ...
+42821 INFO: Including custom run-time hook 'runtime_hook.py'
+42836 INFO: Including run-time hook 'pyi_rth_pkgres.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+42850 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+42853 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+42857 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+42863 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+42867 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\Nassar_Home\\.tens_env\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+42977 INFO: Creating base_library.zip...
+43035 INFO: Looking for dynamic libraries
+45552 INFO: Extra DLL search directories (AddDllDirectory): []
+45552 INFO: Extra DLL search directories (PATH): []
+47404 INFO: Warnings written to C:\Temp\PrayTimes\build\main\warn-main.txt
+47563 INFO: Graph cross-reference written to C:\Temp\PrayTimes\build\main\xref-main.html
+47726 INFO: checking PYZ
+47726 INFO: Building PYZ because PYZ-00.toc is non existent
+47726 INFO: Building PYZ (ZlibArchive) C:\Temp\PrayTimes\build\main\PYZ-00.pyz
+48667 INFO: Building PYZ (ZlibArchive) C:\Temp\PrayTimes\build\main\PYZ-00.pyz completed successfully.
+48703 INFO: checking PKG
+48704 INFO: Building PKG because PKG-00.toc is non existent
+48704 INFO: Building PKG (CArchive) Praytimes.pkg
+48764 INFO: Building PKG (CArchive) Praytimes.pkg completed successfully.
+48766 INFO: Bootloader C:\Users\Nassar_Home\.tens_env\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\run.exe
+48767 INFO: checking EXE
+48767 INFO: Building EXE because EXE-00.toc is non existent
+48767 INFO: Building EXE from EXE-00.toc
+48768 INFO: Copying bootloader EXE to C:\Temp\PrayTimes\build\main\Praytimes.exe
+48794 INFO: Copying icon to EXE
+48812 INFO: Copying 0 resources to EXE
+48812 INFO: Embedding manifest in EXE
+48829 INFO: Appending PKG archive to EXE
+48840 INFO: Fixing EXE headers
+49058 INFO: Building EXE from EXE-00.toc completed successfully.
+49099 INFO: checking COLLECT
+49099 INFO: Building COLLECT because COLLECT-00.toc is non existent
+ERROR: The output directory "C:\Temp\PrayTimes\dist\Praytimes" is not empty. Please remove all its contents or use the -y option (remove output directory without confirmation).
+
+2025-10-26 02:38:27,564 - ERROR - فشلت عملية بناء التطبيق
+2025-10-26 02:38:59,916 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:38:59,965 - INFO - تحضير بيئة البناء...
+2025-10-26 02:38:59,985 - INFO - تم حذف المجلد: build
+2025-10-26 02:39:00,000 - WARNING - فشل في حذف المجلد dist: [WinError 32] The process cannot access the file because it is being used by another process: 'dist\\Praytimes'
+2025-10-26 02:39:00,167 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:39:00,167 - INFO - بدء بناء التطبيق...
+2025-10-26 02:40:13,361 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 02:40:13,363 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 02:41:19,878 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 02:41:19,880 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 02:49:16,047 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:49:16,049 - INFO - تحضير بيئة البناء...
+2025-10-26 02:49:16,067 - INFO - تم حذف المجلد: build
+2025-10-26 02:49:17,593 - INFO - تم حذف المجلد: dist
+2025-10-26 02:49:17,609 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:49:17,632 - INFO - بدء بناء التطبيق...
+2025-10-26 02:50:33,832 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 02:50:33,834 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 02:51:37,639 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 02:51:37,639 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 02:56:04,280 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 02:56:04,280 - INFO - تحضير بيئة البناء...
+2025-10-26 02:56:04,298 - INFO - تم حذف المجلد: build
+2025-10-26 02:56:04,300 - INFO - تم حذف المجلد: dist
+2025-10-26 02:56:04,320 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 02:56:04,321 - INFO - بدء بناء التطبيق...
+2025-10-26 02:57:59,243 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 02:57:59,243 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 02:59:38,075 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 02:59:38,075 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 05:39:01,510 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 05:39:01,513 - INFO - تحضير بيئة البناء...
+2025-10-26 05:39:01,543 - INFO - تم حذف المجلد: build
+2025-10-26 05:39:04,313 - INFO - تم حذف المجلد: dist
+2025-10-26 05:39:04,334 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 05:39:04,342 - INFO - بدء بناء التطبيق...
+2025-10-26 05:40:12,442 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 05:40:12,443 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 05:41:12,956 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 05:41:12,957 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 05:56:21,197 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 05:56:21,201 - INFO - تحضير بيئة البناء...
+2025-10-26 05:56:21,233 - INFO - تم حذف المجلد: build
+2025-10-26 05:56:22,744 - INFO - تم حذف المجلد: dist
+2025-10-26 05:56:22,878 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 05:56:22,989 - INFO - بدء بناء التطبيق...
+2025-10-26 05:57:35,963 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 05:57:35,975 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 05:58:47,539 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 05:58:47,545 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 06:01:13,497 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 06:01:13,498 - INFO - تحضير بيئة البناء...
+2025-10-26 06:01:13,524 - INFO - تم حذف المجلد: build
+2025-10-26 06:01:15,307 - INFO - تم حذف المجلد: dist
+2025-10-26 06:01:15,333 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 06:01:15,370 - INFO - بدء بناء التطبيق...
+2025-10-26 06:02:29,175 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 06:02:29,179 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 06:03:35,407 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 06:03:35,410 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 06:09:36,562 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 06:09:36,563 - INFO - تحضير بيئة البناء...
+2025-10-26 06:09:36,577 - INFO - تم حذف المجلد: build
+2025-10-26 06:09:38,648 - INFO - تم حذف المجلد: dist
+2025-10-26 06:09:38,702 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 06:09:38,763 - INFO - بدء بناء التطبيق...
+2025-10-26 06:11:00,254 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 06:11:00,279 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 06:12:16,739 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 06:12:16,741 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-26 11:47:45,808 - INFO - بدء عملية بناء التطبيق...
+2025-10-26 11:47:45,808 - INFO - تحضير بيئة البناء...
+2025-10-26 11:47:45,827 - INFO - تم حذف المجلد: build
+2025-10-26 11:47:47,184 - INFO - تم حذف المجلد: dist
+2025-10-26 11:47:47,190 - INFO - تم نسخ الخطافات المخصصة
+2025-10-26 11:47:47,190 - INFO - بدء بناء التطبيق...
+2025-10-26 11:49:12,090 - INFO - تم بناء التطبيق بنجاح
+2025-10-26 11:49:12,090 - INFO - إنشاء حزمة التثبيت...
+2025-10-26 11:50:56,996 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-26 11:50:56,996 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-27 01:08:35,022 - INFO - بدء عملية بناء التطبيق...
+2025-10-27 01:08:35,023 - INFO - تحضير بيئة البناء...
+2025-10-27 01:08:35,037 - INFO - تم حذف المجلد: build
+2025-10-27 01:08:36,714 - INFO - تم حذف المجلد: dist
+2025-10-27 01:08:36,729 - INFO - تم نسخ الخطافات المخصصة
+2025-10-27 01:08:36,734 - INFO - بدء بناء التطبيق...
+2025-10-27 01:10:06,782 - INFO - تم بناء التطبيق بنجاح
+2025-10-27 01:10:06,787 - INFO - إنشاء حزمة التثبيت...
+2025-10-27 01:11:09,285 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-27 01:11:09,285 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-27 01:12:03,597 - INFO - بدء عملية بناء التطبيق...
+2025-10-27 01:12:03,597 - INFO - تحضير بيئة البناء...
+2025-10-27 01:12:03,616 - INFO - تم حذف المجلد: build
+2025-10-27 01:12:05,702 - INFO - تم حذف المجلد: dist
+2025-10-27 01:12:05,715 - INFO - تم نسخ الخطافات المخصصة
+2025-10-27 01:12:05,722 - INFO - بدء بناء التطبيق...
+2025-10-27 01:13:21,678 - INFO - تم بناء التطبيق بنجاح
+2025-10-27 01:13:21,685 - INFO - إنشاء حزمة التثبيت...
+2025-10-27 01:14:26,521 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-27 01:14:26,522 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-28 00:07:34,844 - INFO - بدء عملية بناء التطبيق...
+2025-10-28 00:07:34,845 - INFO - تحضير بيئة البناء...
+2025-10-28 00:07:34,869 - INFO - تم حذف المجلد: build
+2025-10-28 00:07:34,871 - INFO - تم حذف المجلد: dist
+2025-10-28 00:07:34,885 - INFO - تم نسخ الخطافات المخصصة
+2025-10-28 00:07:34,885 - INFO - بدء بناء التطبيق...
+2025-10-28 00:09:05,549 - INFO - تم بناء التطبيق بنجاح
+2025-10-28 00:09:05,549 - INFO - إنشاء حزمة التثبيت...
+2025-10-28 00:11:00,228 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-28 00:11:00,229 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-28 01:56:56,219 - INFO - بدء عملية بناء التطبيق...
+2025-10-28 01:56:56,219 - INFO - تحضير بيئة البناء...
+2025-10-28 01:56:56,221 - INFO - تم حذف المجلد: build
+2025-10-28 01:56:57,156 - INFO - تم حذف المجلد: dist
+2025-10-28 01:56:57,163 - INFO - تم نسخ الخطافات المخصصة
+2025-10-28 01:56:57,163 - INFO - بدء بناء التطبيق...
+2025-10-28 01:58:22,101 - INFO - تم بناء التطبيق بنجاح
+2025-10-28 01:58:22,102 - INFO - إنشاء حزمة التثبيت...
+2025-10-28 02:00:24,639 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-28 02:00:24,639 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-28 02:17:23,411 - INFO - بدء عملية بناء التطبيق...
+2025-10-28 02:17:23,411 - INFO - تحضير بيئة البناء...
+2025-10-28 02:17:23,463 - INFO - تم حذف المجلد: build
+2025-10-28 02:17:23,474 - INFO - تم حذف المجلد: dist
+2025-10-28 02:17:23,480 - INFO - تم نسخ الخطافات المخصصة
+2025-10-28 02:17:23,481 - INFO - بدء بناء التطبيق...
+2025-10-28 02:18:26,903 - INFO - تم بناء التطبيق بنجاح
+2025-10-28 02:18:26,903 - INFO - إنشاء حزمة التثبيت...
+2025-10-28 02:20:09,137 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-28 02:20:09,137 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-10-28 07:19:00,366 - INFO - بدء عملية بناء التطبيق...
+2025-10-28 07:19:00,367 - INFO - تحضير بيئة البناء...
+2025-10-28 07:19:00,413 - INFO - تم حذف المجلد: build
+2025-10-28 07:19:01,726 - INFO - تم حذف المجلد: dist
+2025-10-28 07:19:01,733 - INFO - تم نسخ الخطافات المخصصة
+2025-10-28 07:19:01,733 - INFO - بدء بناء التطبيق...
+2025-10-28 07:20:26,128 - INFO - تم بناء التطبيق بنجاح
+2025-10-28 07:20:26,128 - INFO - إنشاء حزمة التثبيت...
+2025-10-28 07:22:19,182 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-10-28 07:22:19,183 - INFO - اكتملت عملية بناء التطبيق بنجاح

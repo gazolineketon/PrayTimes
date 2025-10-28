@@ -2,7 +2,7 @@
 import os
 import sys
 from PyInstaller.building.build_main import Analysis, PYZ, EXE
-from PyInstaller.utils.hooks import collect_dynamic_libs
+from PyInstaller.utils.hooks import collect_dynamic_libs, collect_submodules
 
 # تعطيل خطاف تشغيل pkg_resources لمنع تدخل setuptools
 os.environ['PYINSTALLER_NO_PKG_RESOURCES'] = '1'
@@ -92,7 +92,7 @@ for src, dst in tk_paths:
 a = Analysis(
     ['main.py'],  # تأكد أن resource_helper.py في نفس المجلد
     pathex=['.'],
-    binaries=collect_dynamic_libs('PIL'),
+    binaries=collect_dynamic_libs('PIL') + collect_dynamic_libs('pyexpat'),
     datas=datas,
     hiddenimports=[
         'glob',
@@ -121,9 +121,6 @@ a = Analysis(
         'tkinter.messagebox',
         'tkinter.scrolledtext',
         'tkinter.font',
-        'PIL.ImageTk',
-        'PIL.Image',
-        'PIL._tkinter_finder',
         'typing',
         'ui_components',
         'vlc',
@@ -150,8 +147,8 @@ a = Analysis(
         'encodings.ascii',
         'encodings.cp1252',
         'encodings.cp65001',
-        'pkg_resources',
-        'pkg_resources.py2_warn',  # إضافة لدعم التوافق
+        'xml.parsers.expat',
+        'plistlib',
         'ctypes',
         'ctypes.wintypes',
         'win32api',
@@ -159,7 +156,7 @@ a = Analysis(
         'win32gui',
         'win32clipboard',
         'queue',  # لضمان عمل multiprocessing بشكل صحيح
-    ],
+    ] + collect_submodules('PIL'),
     hooksconfig={},
     runtime_hooks=['runtime_hook.py'],
     excludes=['update_version.py', 'test', 'setuptools.glob', 'setuptools.config', 'setuptools.config.setup'],  # استبعاد setuptools المشاكل
@@ -183,7 +180,7 @@ exe = EXE(
     upx=False,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,
+    console=False,  # Hide console for production build
     disable_windowed_traceback=False,
     icon='pray_times.ico' if os.path.exists('pray_times.ico') else None,
     version=None,

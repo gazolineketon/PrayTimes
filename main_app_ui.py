@@ -94,13 +94,18 @@ class EnhancedPrayerTimesApp:
         self.sync_time_on_startup()
         self.tray_icon = None
         self.tray_thread = None
+        self.tray_notification_sent = False  # علامة لإرسال إشعار التصغير مرة واحدة فقط في دورة تشغيل البرنامج
+
         # محاولة استيراد pystray وإعداد أيقونة الشريط
         _import_pystray_and_pil()
         if PYSTRAY_AVAILABLE:
             self.setup_tray_icon()
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
-        self.root.bind('<Unmap>', self.minimize_to_tray)
+        if self.tray_icon:
+            self.root.bind('<Unmap>', self.minimize_to_tray)
         self.root.bind('<<QuitApp>>', lambda e: self.quit_application())
+
+
         
     def sync_time_on_startup(self):
         """مزامنة الوقت عند بدء التطبيق"""
@@ -1334,15 +1339,19 @@ class EnhancedPrayerTimesApp:
         """تصغير التطبيق إلى شريط المهام عند الضغط على زر التصغير"""
         if self.root.state() == 'iconic' and self.tray_icon:
             self.root.withdraw()
-            self.notification_manager.send_notification(
-                self._("app_running_in_background"),
-                self._("app_running_in_background_message"),
-                timeout=5
-            )
+            # عرض الإشعار مرة واحدة فقط في دورة تشغيل البرنامج
+            if not self.tray_notification_sent:
+                self.notification_manager.send_notification(
+                    self._("app_running_in_background"),
+                    self._("app_running_in_background_message"),
+                    timeout=5
+                )
+                self.tray_notification_sent = True
 
     def setup_tray_icon(self):
         """إعداد أيقونة شريط المهام"""
         if not _import_pystray_and_pil():
+            logger.warning("Tray icon setup failed - pystray or Pillow not available")
             return
 
         menu = TrayMenu(
@@ -1360,13 +1369,19 @@ class EnhancedPrayerTimesApp:
             draw.text((25, 20), 'P', fill='white')
 
         self.tray_icon = TrayIcon("PrayerTimes", image, self._("prayer_times"), menu)
+        logger.info("Tray icon successfully created")
 
         self.tray_thread = threading.Thread(target=self.tray_icon.run, daemon=True)
         self.tray_thread.start()
+        logger.info("Tray icon thread started")
 
     def show_window(self):
         """إظهار نافذة التطبيق"""
         self.root.deiconify()
+        self.root.update_idletasks()
+        self.root.state('normal')
+        self.root.lift()
+        self.root.focus_force()
 
     def request_quit_from_tray(self):
         """Requests the application to quit from the tray menu."""
@@ -1449,7 +1464,7 @@ class EnhancedPrayerTimesApp:
     def run(self):
         """تشغيل التطبيق"""
         self.check_connection()
-        
+
         logger.info("تم بدء تشغيل التطبيق بنجاح")
         self.root.update_idletasks()
         self.root.mainloop()

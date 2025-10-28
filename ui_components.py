@@ -314,8 +314,8 @@ class SettingsDialog:
 
                 logo_label = tk.Label(logo_frame, image=self.logo_img, bg=self.colors.get('bg_secondary', '#FFFFFF'))
                 logo_label.pack(pady=(20, 10))
-            except FileNotFoundError:
-                tk.Label(logo_frame, text=self._("logo_not_found"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack(pady=(20, 10))
+            except Exception as e:
+                tk.Label(logo_frame, text=f"Error loading logo: {str(e)[:50]}", bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack(pady=(20, 10))
         else:
             tk.Label(logo_frame, text=self._("logo_not_found"), bg=self.colors.get('bg_secondary', '#FFFFFF'), fg=self.colors.get('text_primary', '#000000')).pack(pady=(20, 10))
 

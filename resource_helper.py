@@ -6,10 +6,35 @@ import atexit
 from pathlib import Path
 
 def get_resource_path(relative_path):
-    """Gets the path to a resource, using the script directory."""
-    # Always use the script directory to avoid temp folder issues
-    base_path = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(base_path, relative_path)
+    """Gets the path to a resource, handling both development and bundled executable."""
+    if getattr(sys, 'frozen', False):
+        # When running in a PyInstaller bundle, try multiple paths
+        exe_dir = os.path.dirname(sys.executable)
+        _internal_dir = os.path.join(exe_dir, '_internal')
+        base_paths = [
+            _internal_dir,  # Prioritize Praytimes\_internal based on user info
+            sys._MEIPASS,
+            exe_dir,  # where the exe is located
+            os.path.join(sys._MEIPASS, '_internal'),  # additional
+        ]
+        log_file = os.path.join(os.path.dirname(sys.executable), 'resource_debug.log')
+        with open(log_file, 'a', encoding='utf-8') as f:
+            f.write(f"Looking for {relative_path}:\n")
+            for base_path in base_paths:
+                full_path = os.path.join(base_path, relative_path)
+                exists = 'EXISTS' if os.path.exists(full_path) else 'NOT FOUND'
+                f.write(f"  Checking: {full_path} -> {exists}\n")
+                if os.path.exists(full_path):
+                    f.write(f"  Found at: {full_path}\n")
+                    return full_path
+            # If none found, return the first one as default
+            default_path = os.path.join(sys._MEIPASS, relative_path)
+            f.write(f"Default fallback: {default_path}\n")
+        return default_path
+    else:
+        # When running in development, use the script directory
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(base_path, relative_path)
 
 def get_app_data_dir():
     """إنشاء مجلد دائم للبيانات في APPDATA"""
