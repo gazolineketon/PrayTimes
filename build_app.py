@@ -11,7 +11,7 @@ import logging
 # إعداد التسجيل
 sys.stdout.reconfigure(encoding='utf-8')
 
-# إعداد logger الجذر يدوياً
+# إعداد سجل الجذر يدوياً
 root_logger = logging.getLogger()
 root_logger.setLevel(logging.INFO)
 
@@ -65,7 +65,7 @@ def build_app():
 
     # بناء التطبيق
     try:
-        # Validate paths and commands
+        # التحقق من صحة المسارات والأوامر
         main_spec = os.path.abspath('main.spec')
         if not os.path.isfile(main_spec):
             logger.error("main.spec file not found")
@@ -79,16 +79,13 @@ def build_app():
                 env=env,
                 capture_output=True,
                 text=True,
-                check=True  # Will raise CalledProcessError if return code != 0
+                check=True  # سيتم إطلاق خطأ CalledProcessError إذا كانت قيمة رمز الإرجاع لا تساوي صفرًا
             )
             logger.info("تم بناء التطبيق بنجاح")
             return True
         except subprocess.CalledProcessError as e:
             logger.error(f"فشل بناء التطبيق: {e.stderr}")
             return False
-
-        logger.info("تم بناء التطبيق بنجاح")
-        return True
     except Exception as e:
         logger.error(f"خطأ في بناء التطبيق: {e}")
         return False
@@ -98,7 +95,7 @@ def create_installer():
     logger.info("إنشاء حزمة التثبيت...")
 
     try:
-        # Validate installer script path
+        # التحقق من صحة مسار البرنامج النصي للتثبيت
         installer_script = os.path.abspath('create_installer.py')
         if not os.path.isfile(installer_script):
             logger.error("create_installer.py script not found")
@@ -110,16 +107,13 @@ def create_installer():
                 installer_args,
                 capture_output=True,
                 text=True,
-                check=True  # Will raise CalledProcessError if return code != 0
+                check=True  # سيتم إطلاق خطأ CalledProcessError إذا كانت قيمة رمز الإرجاع لا تساوي صفرً
             )
             logger.info("تم إنشاء حزمة التثبيت بنجاح")
             return True
         except subprocess.CalledProcessError as e:
             logger.error(f"فشل إنشاء حزمة التثبيت: {e.stderr}")
             return False
-
-        logger.info("تم إنشاء حزمة التثبيت بنجاح")
-        return True
     except Exception as e:
         logger.error(f"خطأ في إنشاء حزمة التثبيت: {e}")
         return False
