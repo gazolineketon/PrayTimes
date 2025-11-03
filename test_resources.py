@@ -1,45 +1,36 @@
-#!/usr/bin/env python3
-# test_resources.py
-from resource_helper import initialize_resources, get_working_path, debug_resource_paths, list_available_files
+import sys
 import os
+sys.path.insert(0, os.path.dirname(__file__))
 
-def test_resources():
-    """اختبار وجود الموارد"""
-    print("=== اختبار الموارد ===")
-    
-    # عرض معلومات التصحيح
-    debug_resource_paths()
-    print()
-    
-    # تحضير الموارد
-    resources = initialize_resources()
-    print()
-    
-    # اختبار الملفات المحددة
-    specific_files = [
-        "sounds/adhan_mekka.wma",
-        "sounds/notification.wav",
-        "Countries&Cities/cities.json",  # أو أي ملف في مجلد المدن
-        "countries.json",
-        "pray_logo.png",
-        "pray_times.ico"
-    ]
-    
-    print("=== اختبار ملفات محددة ===")
-    for file in specific_files:
-        path = get_working_path(file)
-        exists = os.path.exists(path)
-        size = os.path.getsize(path) if exists else 0
-        print(f"{'✓' if exists else '✗'} {file}")
-        print(f"   المسار: {path}")
-        print(f"   الحجم: {size} بايت")
-        print()
-    
-    # عرض محتويات المجلدات
-    print("=== محتويات المجلدات ===")
-    list_available_files("sounds")
-    print()
-    list_available_files("Countries&Cities")
+from resource_helper import get_working_path, get_resource_path
 
-if __name__ == "__main__":
-    test_resources()
+print("Testing resource paths...")
+
+# Test sound files
+sound_files = ['sounds/adhan_mekka.wma', 'sounds/notification.wav']
+
+for sound_file in sound_files:
+    working_path = get_working_path(sound_file)
+    resource_path = get_resource_path(sound_file)
+
+    print(f"\nFile: {sound_file}")
+    print(f"Working path: {working_path}")
+    print(f"Resource path: {resource_path}")
+    print(f"Working path exists: {os.path.exists(working_path)}")
+    print(f"Resource path exists: {os.path.exists(resource_path)}")
+
+# Check APPDATA directory
+from resource_helper import get_app_data_dir
+app_data_dir = get_app_data_dir()
+print(f"\nAPPDATA directory: {app_data_dir}")
+print(f"APPDATA exists: {os.path.exists(app_data_dir)}")
+
+# Check if sounds directory exists in APPDATA
+sounds_in_appdata = os.path.join(app_data_dir, 'sounds')
+print(f"Sounds in APPDATA: {sounds_in_appdata}")
+print(f"Sounds in APPDATA exists: {os.path.exists(sounds_in_appdata)}")
+
+if os.path.exists(sounds_in_appdata):
+    print("Files in APPDATA sounds:")
+    for f in os.listdir(sounds_in_appdata):
+        print(f"  {f}")

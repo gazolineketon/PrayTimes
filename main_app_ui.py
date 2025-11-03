@@ -88,6 +88,12 @@ class EnhancedPrayerTimesApp:
         self.last_notification_time = {}
         self.running = True
         
+        # طباعة إعدادات التشخيص
+        logger.info(f"إعدادات الصوت - مفعل: {self.settings.sound_enabled}, مستوى الصوت: {self.settings.sound_volume}")
+        logger.info(f"إعدادات الإشعارات - مفعلة: {self.settings.notifications_enabled}")
+        logger.info(f"ملف الأذان: '{self.settings.adhan_sound_file}'")
+        logger.info(f"ملف التنبيه: '{self.settings.notification_sound_file}'")
+
         self.setup_ui()
         self.load_initial_data()
         self.start_auto_update()
@@ -757,36 +763,88 @@ class EnhancedPrayerTimesApp:
             self.root.after(update_interval, self.update_countdown)
     
     def show_adhan_dialog(self, prayer_name: str):
-        """إظهار نافذة الأذان مع زر إيقاف"""
-        if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
-            self.adhan_dialog.destroy()
-
-        self.adhan_dialog = tk.Toplevel(self.root)
-        self.adhan_dialog.title(self._("adhan_for_prayer", prayer_name=prayer_name))
-        self.adhan_dialog.configure(bg=self.colors['bg_primary'])
-        self.adhan_dialog.geometry("300x150")
-        self.adhan_dialog.resizable(False, False)
-        self.adhan_dialog.attributes('-topmost', True)  # جعل النافذة في المقدمة
+        """إظهار نافذة الأذان مع زر إغلاق"""
         try:
-            self.adhan_dialog.iconbitmap(get_working_path("pray_times.ico"))
-        except tk.TclError:
-            pass
+            # Find current prayer based on time
+            now = datetime.now()
+            current_minutes = now.hour * 60 + now.minute
+            current_prayer_name = None
+            
+            if self.current_city and self.current_city in self.prayer_data:
+                city_data = self.prayer_data[self.current_city]
+                prayers = [
+                    (self._('fajr'), city_data['fajr_orig']),
+                    (self._('dhuhr'), city_data['dhuhr_orig']),
+                    (self._('asr'), city_data['asr_orig']),
+                    (self._('maghrib'), city_data['maghrib_orig']),
+                    (self._('isha'), city_data['isha_orig'])
+                ]
+                
+                # Find current prayer
+                for i, (p_name, p_time) in enumerate(prayers):
+                    prayer_minutes = self.time_to_minutes(p_time)
+                    if prayer_minutes <= current_minutes:
+                        if i < len(prayers) - 1:
+                            next_prayer_minutes = self.time_to_minutes(prayers[i + 1][1])
+                            if current_minutes < next_prayer_minutes:
+                                current_prayer_name = p_name
+                                break
+            
+            if hasattr(self, 'adhan_dialog') and self.adhan_dialog and self.adhan_dialog.winfo_exists():
+                self.adhan_dialog.destroy()
 
-        # مركز النافذة
-        self.adhan_dialog.update_idletasks()
-        x = self.root.winfo_x() + (self.root.winfo_width() // 2) - 150
-        y = self.root.winfo_y() + (self.root.winfo_height() // 2) - 75
-        self.adhan_dialog.geometry(f"+{x}+{y}")
+            self.adhan_dialog = tk.Toplevel(self.root)
+            self.adhan_dialog.title(self._("adhan_for_prayer", prayer_name=current_prayer_name or prayer_name))
+            self.adhan_dialog.configure(bg=self.colors['bg_primary'])
+            self.adhan_dialog.geometry("300x150")
+            self.adhan_dialog.resizable(False, False)
 
-        # محتوى النافذة
-        main_frame = tk.Frame(self.adhan_dialog, bg=self.colors['bg_primary'], padx=20, pady=20)
-        main_frame.pack(fill='both', expand=True)
+            # جعل النافذة في المقدمة (مع معالجة الأخطاء)
+            try:
+                self.adhan_dialog.attributes('-topmost', True)
+            except tk.TclError:
+                logger.warning("لا يمكن جعل النافذة في المقدمة")
 
-        prayer_label = tk.Label(main_frame, text=f"{self._('its_time_for_prayer', prayer_name=prayer_name)}", font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_primary'], fg=self.colors['text_primary'], wraplength=260)
-        prayer_label.pack(pady=(0, 10))
+            try:
+                self.adhan_dialog.iconbitmap(get_working_path("pray_times.ico"))
+            except tk.TclError:
+                logger.warning("لم يتم العثور على pray_times.ico، الاستمرار بدون أيقونة")
 
-        stop_button = tk.Button(main_frame, text=self._("stop_adhan"), font=('Segoe UI', 12), bg=self.colors['error'], fg=self.colors['text_accent'], relief='flat', padx=20, pady=10, cursor='hand2', command=self.stop_adhan_and_close_dialog)
-        stop_button.pack()
+            # مركز النافذة
+            try:
+                self.adhan_dialog.update_idletasks()
+                x = self.root.winfo_x() + (self.root.winfo_width() // 2) - 150
+                y = self.root.winfo_y() + (self.root.winfo_height() // 2) - 75
+                self.adhan_dialog.geometry(f"+{x}+{y}")
+            except Exception as e:
+                logger.warning(f"خطأ في تحديد موقع النافذة: {e}")
+
+            # محتوى النافذة
+            main_frame = tk.Frame(self.adhan_dialog, bg=self.colors['bg_primary'], padx=20, pady=20)
+            main_frame.pack(fill='both', expand=True)
+
+            # Use the current prayer name if available, otherwise fall back to the provided prayer name
+            display_prayer_name = current_prayer_name or prayer_name
+            prayer_label = tk.Label(main_frame, text=f"{self._('its_time_for_prayer', prayer_name=display_prayer_name)}", font=('Segoe UI', 14, 'bold'), bg=self.colors['bg_primary'], fg=self.colors['text_primary'], wraplength=260)
+            prayer_label.pack(pady=(0, 10))
+
+            stop_button = tk.Button(main_frame, text=self._("stop_adhan"), font=('Segoe UI', 12), bg=self.colors['error'], fg=self.colors['text_accent'], relief='flat', padx=20, pady=10, cursor='hand2', command=self.stop_adhan_and_close_dialog)
+            stop_button.pack()
+
+            # التأكد من أن النافذة مرئية
+            self.adhan_dialog.deiconify()
+            self.adhan_dialog.lift()
+            self.adhan_dialog.focus_force()
+
+            logger.info(f"تم إظهار نافذة الأذان لصلاة {prayer_name}")
+
+        except Exception as e:
+            logger.error(f"خطأ في إظهار نافذة الأذان: {e}")
+            # محاولة إظهار رسالة بديلة
+            try:
+                messagebox.showinfo(self._("adhan_for_prayer", prayer_name=prayer_name), self._("its_time_for_prayer", prayer_name=prayer_name))
+            except Exception as fallback_error:
+                logger.error(f"فشل في إظهار الرسالة البديلة: {fallback_error}")
 
 
     def stop_adhan_and_close_dialog(self):
@@ -802,17 +860,22 @@ class EnhancedPrayerTimesApp:
 
     def check_prayer_notifications(self):
         """فحص وإرسال إشعارات الصلوات بكفاءة أفضل"""
-        if not self.settings.notifications_enabled or not NOTIFICATIONS_AVAILABLE:
-            return
-        
+        logger.info(f"فحص الإشعارات - الإشعارات مفعلة: {self.settings.notifications_enabled}, متاحة: {NOTIFICATIONS_AVAILABLE}")
+
         if not self.current_city or self.current_city not in self.prayer_data:
+            logger.info(f"لا توجد بيانات للمدينة: {self.current_city}")
             return
+
+        logger.info(f"فحص أوقات الصلاة لمدينة: {self.current_city}")
         
         now = datetime.now()
         current_time_str = now.strftime("%H:%M")
         current_seconds = now.hour * 3600 + now.minute * 60 + now.second
         
         city_data = self.prayer_data[self.current_city]
+        # تحديد الصلاة الحالية
+        current_prayer = None
+        current_prayer_name = None
         prayers = [
             ("fajr", self._('fajr'), city_data['fajr_orig']),
             ("dhuhr", self._('dhuhr'), city_data['dhuhr_orig']),
@@ -872,10 +935,13 @@ class EnhancedPrayerTimesApp:
             
             # التحقق من وقت الصلاة الفعلي
             prayer_time_formatted = prayer_datetime.strftime("%H:%M")
+            logger.debug(f"فحص أذان {prayer_display_name}: الوقت الحالي {current_time_str}, وقت الصلاة {prayer_time_formatted}")
             if current_time_str == prayer_time_formatted:
                 # منع تكرار الأذان في نفس الدقيقة
                 adhan_key = f"adhan_{prayer_key}"
                 if adhan_key not in self.last_notification_time or self.last_notification_time[adhan_key] != current_time_str:
+                    logger.info(f"وقت أذان صلاة {prayer_display_name} - بدء العملية")
+
                     # التحقق من إعدادات الأذان للصلاة المحددة قبل أي إجراء
                     prayer_adhan_enabled = getattr(self.settings, f'adhan_{prayer_key}_enabled', True)
 
@@ -892,17 +958,25 @@ class EnhancedPrayerTimesApp:
                     )
 
                     if self.settings.sound_enabled:
+                        logger.info(f"تشغيل الصوت لأذان {prayer_display_name}")
                         sound_file = self.settings.adhan_sound_file
                         if sound_file:
+                            logger.info(f"استخدام ملف الصوت المخصص: {sound_file}")
                             self.adhan_player.play_sound(sound_file, self.settings.sound_volume)
                         else:
+                            logger.info("استخدام ملف الصوت الافتراضي: sounds/adhan_mekka.wma")
                             self.adhan_player.play_sound('sounds/adhan_mekka.wma', self.settings.sound_volume)
-                        # إظهار نافذة الأذان مع زر الإيقاف
-                        self.show_adhan_dialog(prayer_display_name)
+                        # إظهار نافذة الأذان مع زر الإيقاف - تأكد من التشغيل في الخيط الرئيسي
+                        logger.info(f"إظهار نافذة الأذان لصلاة {prayer_display_name}")
+                        self.root.after(0, lambda: self.show_adhan_dialog(prayer_display_name))
                         # تعيين callback لإغلاق النافذة عند انتهاء الصوت
                         self.adhan_player.set_end_callback(lambda: self.close_adhan_dialog_if_exists())
+                    else:
+                        logger.info("الصوت معطل في الإعدادات")
 
                     self.last_notification_time[adhan_key] = current_time_str
+                else:
+                    logger.debug(f"تخطي أذان {prayer_display_name} - تم تشغيله مسبقاً في هذه الدقيقة")
         
         # جدولة الفحص التالي بناءً على الوقت المتبقي للإشعار أو الأذان القادم
         if next_notification_seconds < 60:  # أقل من دقيقة
@@ -1268,7 +1342,8 @@ class EnhancedPrayerTimesApp:
                 messagebox.showinfo(self._("updated_successfully"), self._("prayer_times_updated_successfully") )
         else:
             messagebox.showwarning(self._("error"), self._("please_select_city_country") )
-        
+
+
     def show_error(self, message: str):
         """عرض رسالة خطأ"""
         logger.error(f"خطأ في التطبيق {message}")

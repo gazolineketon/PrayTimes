@@ -13,8 +13,10 @@ datas = []
 # إضافة المجلدات إذا كانت موجودة
 if os.path.exists('sounds'):
     datas.append(('sounds', 'sounds'))
+    print(f"تم إضافة مجلد sounds: {len(os.listdir('sounds'))} ملفات")
 if os.path.exists('Countries&Cities'):
     datas.append(('Countries&Cities', 'Countries&Cities'))
+    print(f"تم إضافة مجلد Countries&Cities: {len(os.listdir('Countries&Cities'))} ملفات")
 
 # إضافة الملفات المفردة إذا كانت موجودة
 files_to_add = ['countries.json', 'pray_logo.png', 'pray_times.ico']
@@ -129,6 +131,7 @@ a = Analysis(
         'vlc.libvlc_media',
         'vlc.libvlc_media_player',
         'vlc.libvlc_instance',
+        'winsound',
         'datetime',
         'json',
         'logging',
