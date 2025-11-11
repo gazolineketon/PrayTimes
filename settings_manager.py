@@ -23,8 +23,8 @@ class Settings:
         self.notification_before_minutes = 5
         self.auto_update_interval = 60
         self.sound_volume = 0.7
-        self.adhan_sound_file = ""
-        self.notification_sound_file = ""
+        self.adhan_sound_file = "sounds/adhan_mekka.wma"
+        self.notification_sound_file = "sounds/notification.wav"
         self.qibla_enabled = True
         self.weather_enabled = False
         self.selected_country = "Egypt"  # البلد الإفتراضى

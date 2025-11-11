@@ -6,6 +6,7 @@ import os
 import sys
 import subprocess
 import shutil
+import re
 import logging
 
 # إعداد التسجيل
@@ -28,6 +29,9 @@ stream_handler.setFormatter(formatter)
 root_logger.addHandler(stream_handler)
 
 logger = logging.getLogger(__name__)
+
+# تحديد مسار مفسر بايثون الحالي (الذي يحتوي على PyInstaller)
+VENV_PYTHON = sys.executable
 
 def prepare_build():
     """تحضير بيئة البناء"""
@@ -54,11 +58,72 @@ def prepare_build():
 
     return True
 
+def get_version():
+    """يقرأ رقم الإصدار من main.py"""
+    try:
+        with open('main.py', 'r', encoding='utf-8') as f:
+            content = f.read()
+            match = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", content)
+            if match:
+                version = match.group(1)
+                logger.info(f"تم العثور على الإصدار: {version}")
+                return version
+    except Exception as e:
+        logger.error(f"فشل في قراءة رقم الإصدار من main.py: {e}")
+    return None
+
+def create_version_file(version):
+    """إنشاء ملف معلومات الإصدار لـ PyInstaller"""
+    version_file_content = f"""
+# UTF-8
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=({version.replace('.', ',')}, 0),
+    prodvers=({version.replace('.', ',')}, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+  ),
+  kids=[
+    StringFileInfo(
+      [
+        StringTable(
+          u'040104b0',
+          [StringStruct(u'CompanyName', u'PrayerTimes'),
+          StringStruct(u'FileDescription', u'Prayer Times Application'),
+          StringStruct(u'FileVersion', u'{version}'),
+          StringStruct(u'InternalName', u'PrayTimes'),
+          StringStruct(u'LegalCopyright', u'Copyright © 2025. All rights reserved.'),
+          StringStruct(u'OriginalFilename', u'PrayTimes.exe'),
+          StringStruct(u'ProductName', u'مواقيت الصلاة'),
+          StringStruct(u'ProductVersion', u'{version}')])
+      ]),
+    VarFileInfo([VarStruct(u'Translation', [1025, 1200])])
+  ]
+)
+"""
+    try:
+        with open('version.txt', 'w', encoding='utf-8') as f:
+            f.write(version_file_content)
+        logger.info("تم إنشاء ملف version.txt بنجاح.")
+        return 'version.txt'
+    except Exception as e:
+        logger.error(f"فشل في إنشاء ملف version.txt: {e}")
+        return None
+
 def build_app():
     """بناء التطبيق"""
     logger.info("بدء بناء التطبيق...")
 
     # إعداد متغيرات البيئة
+    version = get_version()
+    version_file = create_version_file(version) if version else None
+    if not version_file:
+        logger.error("فشل في إنشاء ملف الإصدار، لا يمكن المتابعة.")
+        return False
     env = os.environ.copy()
     hooks_dir = os.path.join(os.getcwd(), 'hooks')
     env['PYINSTALLER_HOOKSPATH'] = hooks_dir
@@ -70,9 +135,8 @@ def build_app():
         if not os.path.isfile(main_spec):
             logger.error("main.spec file not found")
             return False
-            
-        venv_python = r'C:\Users\Nassar_Home\.tens_env\Scripts\python.exe'
-        pyinstaller_args = [venv_python, '-m', 'PyInstaller', main_spec, '--clean', '--noconfirm']
+
+        pyinstaller_args = [VENV_PYTHON, '-m', 'PyInstaller', main_spec, '--clean', '--noconfirm']
         try:
             result = subprocess.run(
                 pyinstaller_args,

@@ -58,6 +58,47 @@ if hasattr(sys, '_MEIPASS'):
         if os.path.exists(tk_path):
             safe_set_env('TK_LIBRARY', tk_path, "TK_LIBRARY")
 
+        # Set VLC environment variables for self-contained operation
+        vlc_path = os.path.join(app_dir, 'vlc')
+        vlc_plugins_path = os.path.join(vlc_path, 'plugins')
+
+        print(f"VLC setup: app_dir={app_dir}, vlc_path={vlc_path}, plugins={vlc_plugins_path}")
+
+        if os.path.exists(vlc_path):
+            print("VLC directory exists, setting environment variables")
+
+            # CRITICAL: Add VLC directory to PATH FIRST before any VLC imports
+            current_path = os.environ.get('PATH', '')
+            if vlc_path not in current_path:
+                new_path = vlc_path + os.pathsep + current_path
+                safe_set_env('PATH', new_path, "PATH (VLC dir first)")
+                print(f"Added VLC directory to PATH: {vlc_path}")
+
+            # Set VLC_PLUGIN_PATH to point to bundled plugins
+            safe_set_env('VLC_PLUGIN_PATH', vlc_plugins_path, "VLC_PLUGIN_PATH")
+            print(f"Set VLC_PLUGIN_PATH to {vlc_plugins_path}")
+
+            # Add app directory to PATH as well for other DLLs
+            if app_dir not in os.environ.get('PATH', ''):
+                current_path = os.environ.get('PATH', '')
+                new_path = app_dir + os.pathsep + current_path
+                safe_set_env('PATH', new_path, "PATH (with app dir)")
+                print(f"Added app directory to PATH: {app_dir}")
+
+            # Set VLC_DATA_PATH if locale directory exists
+            vlc_locale_path = os.path.join(vlc_path, 'locale')
+            if os.path.exists(vlc_locale_path):
+                safe_set_env('VLC_DATA_PATH', vlc_path, "VLC_DATA_PATH")
+                print(f"Set VLC_DATA_PATH to {vlc_path}")
+
+            # Additional VLC environment variables for better compatibility
+            safe_set_env('VLC_LOCALES_PATH', vlc_locale_path, "VLC_LOCALES_PATH")
+            safe_set_env('VLC_CONFIG_PATH', app_dir, "VLC_CONFIG_PATH")
+
+            print("VLC environment variables configured for bundled operation")
+        else:
+            print("VLC directory does not exist - will try to use system VLC")
+
         logging.info("Runtime hook initialization completed successfully")
 
     except Exception as e:

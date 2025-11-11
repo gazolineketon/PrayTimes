@@ -1121,9 +1121,12 @@ class SettingsDialog:
             button = self.play_notification_button
 
         if sound_file:
-            self.sound_player.play_sound(sound_file, self.volume_var.get())
-            button.config(text=self._("stop"))
-            self.playing_sound = sound_type
+            success = self.sound_player.play_sound(sound_file, self.volume_var.get())
+            if success:
+                button.config(text=self._("stop"))
+                self.playing_sound = sound_type
+            else:
+                messagebox.showerror(self._("error"), self._("failed_to_play_sound"))
         else:
             messagebox.showwarning(self._("error"), self._("no_sound_file_selected"))
 

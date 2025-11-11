@@ -16,23 +16,7 @@ from resource_helper import get_working_path
 
 logger = logging.getLogger(__name__)
 
-# محاولة استيراد المكتبات الاختيارية
-try:
-    from playsound import playsound
-    PLAYSOUND_AVAILABLE = True
-except ImportError:
-    logger.warning("playsound غير متوفر - سيتم استخدام بدائل أخرى")
-    PLAYSOUND_AVAILABLE = False
-    def playsound(sound, block=True):
-        pass
-
-# محاولة استيراد winsound للأنظمة ويندوز
-try:
-    import winsound
-    WINSOUND_AVAILABLE = True
-except ImportError:
-    WINSOUND_AVAILABLE = False
-    logger.warning("winsound غير متوفر - هذا طبيعي على أنظمة غير ويندوز")
+# VLC مطلوب لتشغيل الصوت - سيتم التحقق من توفره عند الحاجة
 
 # أنظمة الإشعار المتعددة - تعريف المتغيرات
 Plyer_AVAILABLE = False
@@ -89,9 +73,75 @@ class AdhanPlayer:
         import atexit
         atexit.register(self.stop_sound)
 
+        # إعداد VLC للعمل بشكل مستقل
+        self._setup_vlc_paths()
+
+    def _setup_vlc_paths(self):
+        """إعداد مسارات VLC للعمل بشكل مستقل"""
+        try:
+            import os
+            import sys
+
+            # الحصول على مجلد التطبيق (يعمل مع PyInstaller والتشغيل العادي)
+            if hasattr(sys, '_MEIPASS'):
+                # التطبيق مبني بـ PyInstaller
+                app_dir = sys._MEIPASS
+            else:
+                # تشغيل عادي من مجلد المشروع
+                app_dir = os.path.dirname(os.path.abspath(__file__))
+
+            # البحث عن مجلد VLC في مجلد التطبيق
+            vlc_dir = None
+            possible_vlc_dirs = [
+                os.path.join(app_dir, 'vlc'),  # الأولوية الأولى - مجلد VLC المجمع
+                os.path.join(app_dir, 'lib', 'vlc'),
+                os.path.join(app_dir, 'VLC'),
+                os.path.join(app_dir, 'plugins'),
+            ]
+
+            for dir_path in possible_vlc_dirs:
+                logger.info(f"البحث عن VLC في: {dir_path}")
+                if os.path.exists(dir_path):
+                    vlc_dir = dir_path
+                    logger.info(f"تم العثور على مجلد VLC: {vlc_dir}")
+                    break
+
+            if vlc_dir:
+                # إضافة مجلد VLC إلى PATH على ويندوز
+                if sys.platform == "win32":
+                    current_path = os.environ.get('PATH', '')
+                    if vlc_dir not in current_path:
+                        os.environ['PATH'] = vlc_dir + os.pathsep + current_path
+                        logger.info(f"تم إضافة مجلد VLC إلى PATH: {vlc_dir}")
+
+                # تعيين VLC_PLUGIN_PATH إلى مجلد plugins
+                plugins_dir = os.path.join(vlc_dir, 'plugins')
+                if os.path.exists(plugins_dir):
+                    os.environ['VLC_PLUGIN_PATH'] = plugins_dir
+                    logger.info(f"تم تعيين VLC_PLUGIN_PATH: {plugins_dir}")
+                else:
+                    logger.warning(f"لم يتم العثور على مجلد plugins في: {plugins_dir}")
+
+                # تعيين VLC_DATA_PATH إذا كان موجوداً
+                vlc_data_dir = os.path.join(vlc_dir, 'data')
+                if os.path.exists(vlc_data_dir):
+                    os.environ['VLC_DATA_PATH'] = vlc_data_dir
+                    logger.info(f"تم تعيين VLC_DATA_PATH: {vlc_data_dir}")
+                else:
+                    # جرب locale كبديل
+                    locale_dir = os.path.join(vlc_dir, 'locale')
+                    if os.path.exists(locale_dir):
+                        os.environ['VLC_DATA_PATH'] = vlc_dir
+                        logger.info(f"تم تعيين VLC_DATA_PATH إلى مجلد VLC: {vlc_dir}")
+            else:
+                logger.warning("لم يتم العثور على مجلد VLC في التطبيق - سيتم استخدام VLC النظامي. لجعل التطبيق مستقلاً، تأكد من بناء التطبيق باستخدام PyInstaller مع تضمين مكتبات VLC")
+
+        except Exception as e:
+            logger.warning(f"خطأ في إعداد مسارات VLC: {e}")
+
     def play_sound(self, sound_file: str, volume: float = 0.7):
-        """تشغيل ملف صوتي باستخدام مكتبة vlc مع التحكم الكامل وأنظمة بديلة"""
-        logger.info(f"محاولة تشغيل الصوت: {sound_file}")
+        """تشغيل ملف صوتي باستخدام VLC مع fallback للنظام"""
+        logger.info(f"محاولة تشغيل الصوت عبر VLC: {sound_file}")
 
         # إذا لم يكن المسار مطلقاً، افترض أنه نسبي لمجلد المشروع
         if not os.path.isabs(sound_file):
@@ -114,58 +164,115 @@ class AdhanPlayer:
 
         logger.info(f"مسار الصوت النهائي: {sound_path}, موجود: {os.path.exists(sound_path)}")
 
-        # محاولة أولى: VLC
+        # محاولة استخدام VLC أولاً
+        vlc_success = self._play_sound_vlc(sound_path, volume)
+        if vlc_success:
+            return True
+
+        # Fallback: استخدام نظام الصوت البديل
+        logger.warning("فشل VLC، محاولة استخدام نظام صوت بديل")
+        return self._play_sound_fallback(sound_path, volume)
+
+    def _play_sound_vlc(self, sound_path: str, volume: float = 0.7):
+        """تشغيل الصوت باستخدام VLC"""
         try:
             import vlc
-            logger.info("محاولة استخدام VLC")
+            logger.info("تهيئة مشغل VLC")
             if self.player and self.player.is_playing():
                 self.stop_sound()
 
-            self.player = vlc.MediaPlayer(sound_path)
+            # محاولة إنشاء instance من VLC بطرق مختلفة
+            instance = None
+
+            # المحاولة الأولى: مع إعدادات أساسية
+            try:
+                vlc_args = ['--no-video', '--quiet']
+                plugin_path = os.environ.get('VLC_PLUGIN_PATH')
+                if plugin_path:
+                    vlc_args.extend(['--plugin-path', plugin_path])
+                    logger.info(f"استخدام VLC_PLUGIN_PATH: {plugin_path}")
+                instance = vlc.Instance(vlc_args)
+                if instance:
+                    logger.info("تم إنشاء instance VLC بنجاح مع الإعدادات الأساسية")
+            except Exception as e:
+                logger.warning(f"فشل إنشاء instance VLC مع الإعدادات الأساسية: {e}")
+
+            # المحاولة الثانية: بدون plugin-path إذا فشلت الأولى
+            if not instance:
+                try:
+                    logger.info("محاولة إنشاء instance VLC بدون plugin-path")
+                    instance = vlc.Instance(['--no-video', '--quiet'])
+                    if instance:
+                        logger.info("تم إنشاء instance VLC بنجاح بدون plugin-path")
+                except Exception as e:
+                    logger.warning(f"فشل إنشاء instance VLC بدون plugin-path: {e}")
+
+            # المحاولة الثالثة: instance فارغ إذا فشلت الكل
+            if not instance:
+                try:
+                    logger.info("محاولة إنشاء instance VLC فارغ")
+                    instance = vlc.Instance()
+                    if instance:
+                        logger.info("تم إنشاء instance VLC فارغ بنجاح")
+                except Exception as e:
+                    logger.error(f"فشل إنشاء instance VLC فارغ: {e}")
+
+            if instance is None:
+                logger.error("فشل في إنشاء instance VLC - سيتم استخدام نظام صوت بديل")
+                return False
+
+            self.player = instance.media_player_new()
+
+            if self.player is None:
+                logger.error("فشل في إنشاء media player VLC")
+                return False
+
+            media = instance.media_new(sound_path)
+            self.player.set_media(media)
             self.player.audio_set_volume(int(volume * 100))
             self.player.play()
             logger.info(f"تم تشغيل الصوت عبر VLC: {sound_path}")
             return True
         except Exception as e:
-            logger.warning(f"فشل تشغيل الصوت عبر VLC: {e}")
+            logger.error(f"فشل تشغيل الصوت عبر VLC: {e}")
+            return False
 
-        # محاولة ثانية: playsound
-        if PLAYSOUND_AVAILABLE:
+    def _play_sound_fallback(self, sound_path: str, volume: float = 0.7):
+        """نظام صوت بديل باستخدام winsound أو playsound"""
+        try:
+            # محاولة استخدام winsound أولاً (متوفر على ويندوز)
+            if sys.platform == "win32":
+                try:
+                    import winsound
+                    logger.info("استخدام winsound كبديل للصوت")
+                    # winsound يدعم WAV فقط، تحويل إلى نسبة مئوية
+                    winsound.PlaySound(sound_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
+                    logger.info(f"تم تشغيل الصوت عبر winsound: {sound_path}")
+                    return True
+                except Exception as e:
+                    logger.warning(f"فشل winsound: {e}")
+
+            # محاولة استخدام playsound كبديل أخير
             try:
-                logger.info("محاولة استخدام playsound")
+                from playsound import playsound
+                logger.info("استخدام playsound كبديل للصوت")
                 playsound(sound_path, block=False)
                 logger.info(f"تم تشغيل الصوت عبر playsound: {sound_path}")
                 return True
+            except ImportError:
+                logger.warning("playsound غير متوفر")
             except Exception as e:
-                logger.warning(f"فشل تشغيل الصوت عبر playsound: {e}")
+                logger.warning(f"فشل playsound: {e}")
 
-        # محاولة ثالثة: winsound (للويندوز فقط)
-        if WINSOUND_AVAILABLE and sound_path.endswith('.wav'):
-            try:
-                logger.info("محاولة استخدام winsound")
-                winsound.PlaySound(sound_path, winsound.SND_FILENAME | winsound.SND_ASYNC)
-                logger.info(f"تم تشغيل الصوت عبر winsound: {sound_path}")
-                return True
-            except Exception as e:
-                logger.warning(f"فشل تشغيل الصوت عبر winsound: {e}")
+            logger.error("فشل جميع أنظمة الصوت المتاحة")
+            return False
 
-        # محاولة رابعة: استخدام مشغل النظام الافتراضي (للملفات غير الـ wav)
-        if sys.platform == "win32":
-            try:
-                logger.info("محاولة استخدام مشغل النظام الافتراضي")
-                # استخدام start command لتشغيل الملف بالبرنامج الافتراضي
-                os.startfile(sound_path)
-                logger.info(f"تم تشغيل الصوت عبر مشغل النظام الافتراضي: {sound_path}")
-                return True
-            except Exception as e:
-                logger.warning(f"فشل تشغيل الصوت عبر مشغل النظام: {e}")
-
-        # إذا فشلت جميع المحاولات
-        logger.error(f"فشل تشغيل الصوت بجميع الأنظمة المتاحة: {sound_path}")
-        return False
+        except Exception as e:
+            logger.error(f"خطأ في نظام الصوت البديل: {e}")
+            return False
     
     def stop_sound(self):
-        """إيقاف تشغيل الصوت عبر vlc (لا يؤثر على playsound أو winsound)"""
+        """إيقاف تشغيل الصوت عبر VLC"""
         if self.player:
             try:
                 self.player.stop()
@@ -177,32 +284,18 @@ class AdhanPlayer:
                 self.player = None
 
     def set_end_callback(self, callback):
-        """تعيين callback ليتم استدعاؤه عند انتهاء الصوت (يعمل مع VLC فقط)"""
+        """تعيين callback ليتم استدعاؤه عند انتهاء الصوت عبر VLC"""
         if self.player:
             try:
                 import vlc
                 def on_end(event):
                     callback()
                 self.player.event_manager().event_attach(vlc.EventType.MediaPlayerEndReached, on_end)
-                logger.info("تم تعيين callback لنهاية الصوت")
+                logger.info("تم تعيين callback لنهاية الصوت عبر VLC")
             except Exception as e:
-                logger.error(f"خطأ في تعيين callback لنهاية الصوت {e}")
+                logger.error(f"خطأ في تعيين callback لنهاية الصوت عبر VLC: {e}")
         else:
-            # إذا لم نستخدم VLC، شغل callback بعد فترة زمنية تقريبية
-            # (هذا حل مؤقت لأن playsound و winsound لا تدعمان callbacks)
-            try:
-                import threading
-                import time
-                # تقدير مدة الصوت (يمكن تحسين هذا لاحقاً)
-                estimated_duration = 30  # 30 ثانية كتقدير افتراضي
-                def delayed_callback():
-                    time.sleep(estimated_duration)
-                    callback()
-                thread = threading.Thread(target=delayed_callback, daemon=True)
-                thread.start()
-                logger.info(f"تم تعيين callback مؤقت لمدة {estimated_duration} ثانية")
-            except Exception as e:
-                logger.warning(f"فشل في تعيين callback بديل: {e}")
+            logger.warning("لا يمكن تعيين callback - مشغل VLC غير مهيأ")
 
 class NotificationManager:
     """مدير الإشعارات مع دعم متعدد المنصات"""

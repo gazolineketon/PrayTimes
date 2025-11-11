@@ -2,10 +2,70 @@
 import os
 import sys
 from PyInstaller.building.build_main import Analysis, PYZ, EXE
-from PyInstaller.utils.hooks import collect_dynamic_libs, collect_submodules
+from PyInstaller.utils.hooks import collect_dynamic_libs, collect_submodules, collect_data_files
 
 # تعطيل خطاف تشغيل pkg_resources لمنع تدخل setuptools
 os.environ['PYINSTALLER_NO_PKG_RESOURCES'] = '1'
+
+# جمع ملفات VLC للعمل المستقل
+vlc_binaries = []
+vlc_datas = []
+
+# إضافة ملفات VLC الإضافية إذا كانت متوفرة
+try:
+    import vlc
+
+    # البحث عن مكتبات VLC في مجلدات مختلفة
+    libvlc_path = None
+    possible_lib_paths = [
+        r'C:\Program Files\VideoLAN\VLC',
+        r'C:\Program Files (x86)\VideoLAN\VLC',
+    ]
+
+    for path in possible_lib_paths:
+        if os.path.exists(path):
+            libvlc_path = path
+            print(f"تم العثور على VLC في: {libvlc_path}")
+            break
+
+    if libvlc_path:
+        # إضافة ملفات VLC الأساسية
+        essential_dlls = ['libvlc.dll', 'libvlccore.dll', 'axvlc.dll']
+        for dll in essential_dlls:
+            dll_path = os.path.join(libvlc_path, dll)
+            if os.path.exists(dll_path):
+                vlc_binaries.append((dll_path, '.'))
+                print(f"تم إضافة {dll}: {dll_path}")
+
+        # إضافة ملفات VLC الإضافية من مجلد VLC
+        for root, dirs, files in os.walk(libvlc_path):
+            for file in files:
+                if file.endswith(('.dll', '.exe')) and file not in essential_dlls:
+                    full_path = os.path.join(root, file)
+                    rel_path = os.path.relpath(root, libvlc_path)
+                    if rel_path == '.':
+                        vlc_binaries.append((full_path, '.'))
+                    else:
+                        vlc_binaries.append((full_path, rel_path))
+
+        # إضافة مجلد plugins بالكامل
+        plugins_path = os.path.join(libvlc_path, 'plugins')
+        if os.path.exists(plugins_path):
+            vlc_datas.append((plugins_path, 'vlc/plugins'))
+            print(f"تم إضافة مجلد plugins: {plugins_path}")
+
+        # إضافة مجلد locale إذا كان موجوداً
+        locale_path = os.path.join(libvlc_path, 'locale')
+        if os.path.exists(locale_path):
+            vlc_datas.append((locale_path, 'vlc/locale'))
+            print(f"تم إضافة مجلد locale: {locale_path}")
+
+        print(f"تم جمع {len(vlc_binaries)} ملفات VLC و {len(vlc_datas)} مجلدات بيانات")
+
+except ImportError:
+    print("تحذير: لم يتم العثور على مكتبة VLC")
+except Exception as e:
+    print(f"تحذير: خطأ في جمع ملفات VLC: {e}")
 
 # التحقق من وجود الملفات قبل إضافتها
 datas = []
@@ -24,39 +84,7 @@ for file in files_to_add:
     if os.path.exists(file):
         datas.append((file, '.'))
 
-# إضافة ملفات tkinter مع تجميع TCL/TK من Python الحالي
-try:
-    import tkinter
-    import _tkinter
-
-    # إضافة ملفات tkinter الأساسية
-    tkinter_dir = os.path.dirname(tkinter.__file__)
-    if os.path.exists(tkinter_dir):
-        datas.append((tkinter_dir, 'tkinter'))
-        print(f"تم إضافة tkinter: {tkinter_dir}")
-
-    # تجميع TCL/TK من Python الحالي (ديناميكي)
-    python_tcl = os.path.join(sys.base_prefix, 'Library', 'lib', 'tcl8.6')
-    python_tk = os.path.join(sys.base_prefix, 'Library', 'lib', 'tk8.6')
-
-    if os.path.exists(python_tcl):
-        datas.append((python_tcl, 'tcl8.6'))
-        print(f"تم إضافة TCL 8.6 من Python: {python_tcl}")
-    else:
-        print(f"تحذير: لم يتم العثور على TCL 8.6 في: {python_tcl}")
-
-    if os.path.exists(python_tk):
-        datas.append((python_tk, 'tk8.6'))
-        print(f"تم إضافة TK 8.6 من Python: {python_tk}")
-    else:
-        print(f"تحذير: لم يتم العثور على TK 8.6 في: {python_tk}")
-
-    print("تم تجميع ملفات TCL/TK لضمان عمل tkinter في التطبيق المجمد")
-
-except ImportError as e:
-    print(f"تحذير: لم يتم العثور على tkinter: {e}")
-except Exception as e:
-    print(f"تحذير: خطأ في إعداد tkinter: {e}")
+# ملاحظة: تم نقل إعداد tkinter إلى hook مخصص في hooks/hook-tkinter.py
 
 # إضافة ملفات PIL لدعم tkinter
 try:
@@ -72,30 +100,21 @@ try:
 except ImportError:
     print("تحذير: لم يتم العثور على PIL")
 
-
-# إضافة دعم أفضل لمكتبات TCL/TK والمكتبات الأخرى
-import sys
-def get_tcl_tk_paths():
-    try:
-        import tkinter
-        tcl_dir = os.path.join(os.path.dirname(tkinter.__file__), '...')
-        tcl_dirs = [d for d in os.listdir(tcl_dir) if d.startswith('tcl')]
-        tk_dirs = [d for d in os.listdir(tcl_dir) if d.startswith('tk')]
-        return [(os.path.join(tcl_dir, d), d) for d in tcl_dirs + tk_dirs]
-    except:
-        return []
-
-# إضافة مسارات TCL/TK
-tk_paths = get_tcl_tk_paths()
-for src, dst in tk_paths:
-    if os.path.exists(src):
-        datas.append((src, dst))
+# تحديد مسارات pyexpat يدويًا لحل مشكلة DLL
+pyexpat_binaries = []
+try:
+    pyexpat_pyd_path = os.path.join(sys.base_prefix, 'DLLs', 'pyexpat.pyd')
+    libexpat_dll_path = os.path.join(sys.base_prefix, 'Library', 'bin', 'libexpat.dll')
+    if os.path.exists(pyexpat_pyd_path): pyexpat_binaries.append((pyexpat_pyd_path, '.'))
+    if os.path.exists(libexpat_dll_path): pyexpat_binaries.append((libexpat_dll_path, '.'))
+except Exception as e:
+    print(f"تحذير: لم يتم العثور على ملفات pyexpat يدويًا: {e}")
 
 a = Analysis(
     ['main.py'],  # تأكد أن resource_helper.py في نفس المجلد
     pathex=['.'],
-    binaries=collect_dynamic_libs('PIL') + collect_dynamic_libs('pyexpat'),
-    datas=datas,
+    binaries=collect_dynamic_libs('PIL') + pyexpat_binaries + vlc_binaries,
+    datas=datas + vlc_datas,
     hiddenimports=[
         'glob',
         'ast',
@@ -186,8 +205,7 @@ exe = EXE(
     console=False,  # Hide console for production build
     disable_windowed_traceback=False,
     icon='pray_times.ico' if os.path.exists('pray_times.ico') else None,
-    version=None,
-    manifest=None,
+    version='version.txt',
     resources=[],
     codesign_identity=None,
     entitlements_file=None,
