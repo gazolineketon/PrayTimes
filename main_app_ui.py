@@ -916,6 +916,14 @@ class EnhancedPrayerTimesApp:
             
             # التحقق من وقت الإشعار المسبق
             if current_time_str == notification_time_str:
+                # التحقق من إعدادات الإشعار للصلاة المحددة قبل أي إجراء
+                prayer_notification_enabled = getattr(self.settings, f'notification_{prayer_key}_enabled', True)
+
+                if not prayer_notification_enabled:
+                    logger.info(f"تخطي إشعار قبل صلاة {prayer_display_name} لأن المستخدم عطّلها")
+                    self.last_notification_time[f"pre_{prayer_key}"] = current_time_str
+                    continue
+
                 # منع تكرار الإشعارات في نفس الدقيقة
                 notification_key = f"pre_{prayer_key}"
                 if notification_key not in self.last_notification_time or self.last_notification_time[notification_key] != current_time_str:

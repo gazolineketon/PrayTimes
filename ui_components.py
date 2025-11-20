@@ -416,6 +416,24 @@ class SettingsDialog:
         notify_spinbox = ttk.Spinbox(notify_frame, from_=0, to=30,
                                    textvariable=self.notify_before_var)
         notify_spinbox.pack(fill='x', padx=10, pady=10)
+
+        # إعدادات الإشعارات لكل صلاة
+        prayer_notification_frame = ttk.LabelFrame(parent, text=self._("notification_settings_for_each_prayer"))
+        prayer_notification_frame.pack(fill='x', padx=10, pady=10)
+
+        # إنشاء متغيرات للصلاة
+        self.fajr_notification_var = tk.BooleanVar(value=self.settings.notification_fajr_enabled)
+        self.dhuhr_notification_var = tk.BooleanVar(value=self.settings.notification_dhuhr_enabled)
+        self.asr_notification_var = tk.BooleanVar(value=self.settings.notification_asr_enabled)
+        self.maghrib_notification_var = tk.BooleanVar(value=self.settings.notification_maghrib_enabled)
+        self.isha_notification_var = tk.BooleanVar(value=self.settings.notification_isha_enabled)
+
+        # إضافة مربعات التحديد لكل صلاة
+        ttk.Checkbutton(prayer_notification_frame, text=self._("fajr"), variable=self.fajr_notification_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_notification_frame, text=self._("dhuhr"), variable=self.dhuhr_notification_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_notification_frame, text=self._("asr"), variable=self.asr_notification_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_notification_frame, text=self._("maghrib"), variable=self.maghrib_notification_var).pack(anchor='w', padx=10, pady=2)
+        ttk.Checkbutton(prayer_notification_frame, text=self._("isha"), variable=self.isha_notification_var).pack(anchor='w', padx=10, pady=2)
     
     def setup_audio_settings(self, parent):
         """إعداد إعدادات الصوت"""
@@ -1157,6 +1175,13 @@ class SettingsDialog:
         self.settings.adhan_asr_enabled = self.asr_adhan_var.get()
         self.settings.adhan_maghrib_enabled = self.maghrib_adhan_var.get()
         self.settings.adhan_isha_enabled = self.isha_adhan_var.get()
+
+        # حفظ إعدادات الإشعارات لكل صلاة
+        self.settings.notification_fajr_enabled = self.fajr_notification_var.get()
+        self.settings.notification_dhuhr_enabled = self.dhuhr_notification_var.get()
+        self.settings.notification_asr_enabled = self.asr_notification_var.get()
+        self.settings.notification_maghrib_enabled = self.maghrib_notification_var.get()
+        self.settings.notification_isha_enabled = self.isha_notification_var.get()
 
 
         

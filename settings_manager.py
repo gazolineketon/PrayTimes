@@ -35,6 +35,12 @@ class Settings:
         self.adhan_asr_enabled = True
         self.adhan_maghrib_enabled = True
         self.adhan_isha_enabled = True
+        # إعدادات الإشعارات لكل صلاة
+        self.notification_fajr_enabled = True
+        self.notification_dhuhr_enabled = True
+        self.notification_asr_enabled = True
+        self.notification_maghrib_enabled = True
+        self.notification_isha_enabled = True
         self.load_settings()
     
     def load_settings(self):

@@ -52,29 +52,35 @@ def get_tcl_tk_files():
             print(f"تحذير: لم يتم العثور على Tk 8.6 في {python_path}")
         
         # إضافة ملفات DLL الأساسية لـ TCL/Tk
-        tcl_dll_paths = [
-            os.path.join(python_path, 'Library', 'bin', 'tcl86.dll'),
-            os.path.join(python_path, 'tcl', 'tcl8.6', 'tcl86.dll'),
+        # قد تكون الأسماء tcl86.dll أو tcl86t.dll (threaded)
+        import glob
+        tcl_dll_patterns = [
+            os.path.join(python_path, 'Library', 'bin', 'tcl8*.dll'),
+            os.path.join(python_path, 'tcl', 'tcl8.6', 'tcl8*.dll'),
+            os.path.join(python_path, 'DLLs', 'tcl8*.dll'),
+            os.path.join(sys.base_prefix, 'DLLs', 'tcl8*.dll'),
+            os.path.join(sys.base_prefix, 'Library', 'bin', 'tcl8*.dll'),
         ]
         
-        tk_dll_paths = [
-            os.path.join(python_path, 'Library', 'bin', 'tk86.dll'),
-            os.path.join(python_path, 'tcl', 'tk8.6', 'tk86.dll'),
+        tk_dll_patterns = [
+            os.path.join(python_path, 'Library', 'bin', 'tk8*.dll'),
+            os.path.join(python_path, 'tcl', 'tk8.6', 'tk8*.dll'),
+            os.path.join(python_path, 'DLLs', 'tk8*.dll'),
+            os.path.join(sys.base_prefix, 'DLLs', 'tk8*.dll'),
+            os.path.join(sys.base_prefix, 'Library', 'bin', 'tk8*.dll'),
         ]
         
-        # إضافة ملف tcl86.dll
-        for tcl_dll_path in tcl_dll_paths:
-            if os.path.exists(tcl_dll_path):
-                files.append((tcl_dll_path, '.'))
-                print(f"تم إضافة TCL DLL: {tcl_dll_path}")
-                break
+        # إضافة ملفات tcl DLL
+        for pattern in tcl_dll_patterns:
+            for dll_path in glob.glob(pattern):
+                files.append((dll_path, '.'))
+                print(f"تم إضافة TCL DLL: {dll_path}")
         
-        # إضافة ملف tk86.dll
-        for tk_dll_path in tk_dll_paths:
-            if os.path.exists(tk_dll_path):
-                files.append((tk_dll_path, '.'))
-                print(f"تم إضافة Tk DLL: {tk_dll_path}")
-                break
+        # إضافة ملفات tk DLL
+        for pattern in tk_dll_patterns:
+            for dll_path in glob.glob(pattern):
+                files.append((dll_path, '.'))
+                print(f"تم إضافة Tk DLL: {dll_path}")
         
         return files
         
@@ -101,6 +107,8 @@ try:
     _tkinter_paths = [
         os.path.join(sys.prefix, 'DLLs', '_tkinter.pyd'),
         os.path.join(sys.prefix, '_tkinter.pyd'),
+        os.path.join(sys.base_prefix, 'DLLs', '_tkinter.pyd'),
+        os.path.join(sys.base_prefix, '_tkinter.pyd'),
     ]
     
     for _tkinter_path in _tkinter_paths:
