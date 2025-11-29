@@ -84,7 +84,106 @@ for file in files_to_add:
     if os.path.exists(file):
         datas.append((file, '.'))
 
-# ملاحظة: تم نقل إعداد tkinter إلى hook مخصص في hooks/hook-tkinter.py
+# إضافة ملفات TCL/TK يدوياً من Python الأساسي أو Anaconda
+tkinter_binaries = []
+tkinter_datas = []
+
+try:
+    # استخدام sys.base_prefix للحصول على مسار Python الأساسي
+    base_python = sys.base_prefix
+    print(f"Python base prefix: {base_python}")
+    
+    # قائمة بالمسارات الممكنة لـ TCL/TK
+    # Anaconda يضع الملفات في Library/lib
+    # Python العادي يضعها في tcl/
+    possible_tcl_paths = [
+        os.path.join(base_python, 'Library', 'lib', 'tcl8.6'),  # Anaconda
+        os.path.join(base_python, 'tcl', 'tcl8.6'),  # Python العادي
+        os.path.join(base_python, 'Lib', 'tcl8.6'),
+        # محاولة من Anaconda base إذا كنا في بيئة افتراضية
+        r'C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6',
+    ]
+    
+    possible_tk_paths = [
+        os.path.join(base_python, 'Library', 'lib', 'tk8.6'),  # Anaconda
+        os.path.join(base_python, 'tcl', 'tk8.6'),  # Python العادي
+        os.path.join(base_python, 'Lib', 'tk8.6'),
+        # محاولة من Anaconda base إذا كنا في بيئة افتراضية
+        r'C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6',
+    ]
+    
+    # إضافة مجلدات TCL إذا كانت موجودة
+    tcl_added = False
+    for tcl_lib in possible_tcl_paths:
+        if os.path.exists(tcl_lib):
+            tkinter_datas.append((tcl_lib, 'tcl8.6'))
+            print(f"تم إضافة TCL: {tcl_lib}")
+            tcl_added = True
+            break
+    
+    if not tcl_added:
+        print(f"تحذير: لم يتم العثور على TCL في أي من المسارات")
+    
+    # إضافة مجلدات TK إذا كانت موجودة
+    tk_added = False
+    for tk_lib in possible_tk_paths:
+        if os.path.exists(tk_lib):
+            tkinter_datas.append((tk_lib, 'tk8.6'))
+            print(f"تم إضافة TK: {tk_lib}")
+            tk_added = True
+            break
+    
+    if not tk_added:
+        print(f"تحذير: لم يتم العثور على TK في أي من المسارات")
+    
+    # إضافة ملفات DLL لـ TCL/TK
+    # في Anaconda تكون في Library/bin
+    # في Python العادي تكون في DLLs
+    import glob
+    possible_dll_dirs = [
+        os.path.join(base_python, 'Library', 'bin'),  # Anaconda
+        os.path.join(base_python, 'DLLs'),  # Python العادي
+        r'C:\Users\Nassar_Home\anaconda3\Library\bin',  # Anaconda base
+    ]
+    
+    for dll_dir in possible_dll_dirs:
+        if os.path.exists(dll_dir):
+            # إضافة TCL DLLs
+            for dll in glob.glob(os.path.join(dll_dir, 'tcl*.dll')):
+                if dll not in [b[0] for b in tkinter_binaries]:  # تجنب التكرار
+                    tkinter_binaries.append((dll, '.'))
+                    print(f"تم إضافة TCL DLL: {dll}")
+            
+            # إضافة TK DLLs
+            for dll in glob.glob(os.path.join(dll_dir, 'tk*.dll')):
+                if dll not in [b[0] for b in tkinter_binaries]:  # تجنب التكرار
+                    tkinter_binaries.append((dll, '.'))
+                    print(f"تم إضافة TK DLL: {dll}")
+    
+    # إضافة _tkinter.pyd
+    possible_tkinter_pyd = [
+        os.path.join(base_python, 'DLLs', '_tkinter.pyd'),  # Python العادي
+        os.path.join(base_python, 'Library', 'bin', '_tkinter.pyd'),  # Anaconda
+        os.path.join(base_python, 'lib', 'lib-dynload', '_tkinter.pyd'),  # Unix-like
+        r'C:\Users\Nassar_Home\anaconda3\DLLs\_tkinter.pyd',  # Anaconda base
+    ]
+    
+    tkinter_pyd_added = False
+    for _tkinter_pyd in possible_tkinter_pyd:
+        if os.path.exists(_tkinter_pyd):
+            tkinter_binaries.append((_tkinter_pyd, '.'))
+            print(f"تم إضافة _tkinter.pyd: {_tkinter_pyd}")
+            tkinter_pyd_added = True
+            break
+    
+    if not tkinter_pyd_added:
+        print(f"تحذير: لم يتم العثور على _tkinter.pyd في أي من المسارات")
+    
+    print(f"تم جمع {len(tkinter_binaries)} DLLs و {len(tkinter_datas)} مجلدات لـ tkinter")
+except Exception as e:
+    print(f"خطأ في جمع ملفات tkinter: {e}")
+    import traceback
+    traceback.print_exc()
 
 # إضافة ملفات PIL لدعم tkinter
 try:
@@ -100,21 +199,89 @@ try:
 except ImportError:
     print("تحذير: لم يتم العثور على PIL")
 
-# تحديد مسارات pyexpat يدويًا لحل مشكلة DLL
+# تحديد مسارات pyexpat و ctypes يدوياً لحل مشكلة DLL
 pyexpat_binaries = []
+ctypes_binaries = []
+
 try:
-    pyexpat_pyd_path = os.path.join(sys.base_prefix, 'DLLs', 'pyexpat.pyd')
-    libexpat_dll_path = os.path.join(sys.base_prefix, 'Library', 'bin', 'libexpat.dll')
-    if os.path.exists(pyexpat_pyd_path): pyexpat_binaries.append((pyexpat_pyd_path, '.'))
-    if os.path.exists(libexpat_dll_path): pyexpat_binaries.append((libexpat_dll_path, '.'))
+    base_python = sys.base_prefix
+    
+    # ملفات pyexpat
+    possible_pyexpat_pyd = [
+        os.path.join(base_python, 'DLLs', 'pyexpat.pyd'),
+        os.path.join(base_python, 'Library', 'bin', 'pyexpat.pyd'),
+        r'C:\Users\Nassar_Home\anaconda3\DLLs\pyexpat.pyd',
+    ]
+    
+    possible_libexpat_dll = [
+        os.path.join(base_python, 'Library', 'bin', 'libexpat.dll'),
+        os.path.join(base_python, 'DLLs', 'libexpat.dll'),
+        r'C:\Users\Nassar_Home\anaconda3\Library\bin\libexpat.dll',
+    ]
+    
+    for pyd in possible_pyexpat_pyd:
+        if os.path.exists(pyd):
+            pyexpat_binaries.append((pyd, '.'))
+            print(f"تم إضافة pyexpat.pyd: {pyd}")
+            break
+    
+    for dll in possible_libexpat_dll:
+        if os.path.exists(dll):
+            pyexpat_binaries.append((dll, '.'))
+            print(f"تم إضافة libexpat.dll: {dll}")
+            break
+    
+    # ملفات ctypes (_ctypes.pyd و libffi)
+    possible_ctypes_pyd = [
+        os.path.join(base_python, 'DLLs', '_ctypes.pyd'),
+        os.path.join(base_python, 'Library', 'bin', '_ctypes.pyd'),
+        r'C:\Users\Nassar_Home\anaconda3\DLLs\_ctypes.pyd',
+    ]
+    
+    # إضافة جميع إصدارات libffi لضمان التوافق الأقصى
+    possible_libffi_dlls = [
+        [  # المجموعة 1: مجلد Library/bin
+            os.path.join(base_python, 'Library', 'bin', 'ffi.dll'),
+            os.path.join(base_python, 'Library', 'bin', 'ffi-7.dll'),
+            os.path.join(base_python, 'Library', 'bin', 'ffi-8.dll'),
+            r'C:\Users\Nassar_Home\anaconda3\Library\bin\ffi.dll',
+            r'C:\Users\Nassar_Home\anaconda3\Library\bin\ffi-7.dll',
+            r'C:\Users\Nassar_Home\anaconda3\Library\bin\ffi-8.dll',
+        ],
+        [  # المجموعة 2: مجلد DLLs
+            os.path.join(base_python, 'DLLs', 'ffi.dll'),
+            os.path.join(base_python, 'DLLs', 'ffi-7.dll'),
+            os.path.join(base_python, 'DLLs', 'ffi-8.dll'),
+        ]
+    ]
+    
+    for pyd in possible_ctypes_pyd:
+        if os.path.exists(pyd):
+            ctypes_binaries.append((pyd, '.'))
+            print(f"تم إضافة _ctypes.pyd: {pyd}")
+            break
+    
+    # إضافة كل ملفات libffi الموجودة (وليس أول واحد فقط)
+    for dll_group in possible_libffi_dlls:
+        for dll in dll_group:
+            if os.path.exists(dll):
+                # تحقق من عدم وجود نفس الملف مسبقاً
+                if dll not in [b[0] for b in ctypes_binaries]:
+                    ctypes_binaries.append((dll, '.'))
+                    print(f"تم إضافة libffi DLL: {dll}")
+    
+    print(f"تم جمع {len(pyexpat_binaries)} ملفات pyexpat و {len(ctypes_binaries)} ملفات ctypes")
+    
 except Exception as e:
-    print(f"تحذير: لم يتم العثور على ملفات pyexpat يدويًا: {e}")
+    print(f"تحذير: خطأ في جمع ملفات pyexpat/ctypes: {e}")
+    import traceback
+    traceback.print_exc()
 
 a = Analysis(
     ['main.py'],  # تأكد أن resource_helper.py في نفس المجلد
     pathex=['.'],
-    binaries=collect_dynamic_libs('PIL') + pyexpat_binaries + vlc_binaries,
-    datas=datas + vlc_datas,
+    binaries=collect_dynamic_libs('PIL') + pyexpat_binaries + ctypes_binaries + vlc_binaries + tkinter_binaries,
+    datas=datas + vlc_datas + tkinter_datas,
     hiddenimports=[
         'glob',
         'ast',

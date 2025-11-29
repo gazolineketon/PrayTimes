@@ -182,6 +182,120 @@ def create_installer():
         logger.error(f"خطأ في إنشاء حزمة التثبيت: {e}")
         return False
 
+def find_tk_tcl_dirs():
+    """البحث عن مجلدات tk8.6 و tcl8.6 في المسارات المحتملة"""
+    possible_paths = [
+        # Anaconda paths
+        r'C:\Users\Nassar_Home\anaconda3\Library\lib',
+        os.path.join(sys.base_prefix, 'Library', 'lib'),
+        # Standard Python paths
+        os.path.join(sys.base_prefix, 'tcl'),
+        os.path.join(sys.base_prefix, 'Lib'),
+    ]
+    
+    tk_dir = None
+    tcl_dir = None
+    
+    for base_path in possible_paths:
+        if not tk_dir:
+            candidate_tk = os.path.join(base_path, 'tk8.6')
+            if os.path.exists(candidate_tk):
+                tk_dir = candidate_tk
+                logger.info(f"تم العثور على tk8.6 في: {tk_dir}")
+        
+        if not tcl_dir:
+            candidate_tcl = os.path.join(base_path, 'tcl8.6')
+            if os.path.exists(candidate_tcl):
+                tcl_dir = candidate_tcl
+                logger.info(f"تم العثور على tcl8.6 في: {tcl_dir}")
+        
+        if tk_dir and tcl_dir:
+            break
+    
+    return tk_dir, tcl_dir
+
+def fix_tk_tcl_version():
+    """إصلاح تعارض إصدارات Tk/Tcl"""
+    try:
+        # البحث عن مجلدات tk/tcl
+        source_tk, source_tcl = find_tk_tcl_dirs()
+        
+        # التحقق من وجود المصادر
+        if not source_tk:
+            logger.error("لم يتم العثور على مجلد tk8.6 في أي من المسارات المحتملة")
+            return False
+        
+        if not source_tcl:
+            logger.error("لم يتم العثور على مجلد tcl8.6 في أي من المسارات المحتملة")
+            return False
+        
+        # مجلد البرنامج المبني
+        dist_dir = os.path.join(os.getcwd(), 'dist', 'Praytimes', '_internal')
+        dest_tk = os.path.join(dist_dir, 'tk8.6')
+        dest_tcl = os.path.join(dist_dir, 'tcl8.6')
+        
+        if not os.path.exists(dist_dir):
+            logger.error(f"مجلد البرنامج المبني غير موجود: {dist_dir}")
+            return False
+        
+        # إزالة المجلدات القديمة إذا كانت موجودة
+        if os.path.exists(dest_tk):
+            logger.info(f"إزالة مجلد tk8.6 القديم: {dest_tk}")
+            shutil.rmtree(dest_tk)
+        
+        if os.path.exists(dest_tcl):
+            logger.info(f"إزالة مجلد tcl8.6 القديم: {dest_tcl}")
+            shutil.rmtree(dest_tcl)
+        
+        # نسخ المجلدات الجديدة
+        logger.info(f"نسخ tk8.6 من {source_tk} إلى {dest_tk}")
+        shutil.copytree(source_tk, dest_tk)
+        
+        logger.info(f"نسخ tcl8.6 من {source_tcl} إلى {dest_tcl}")
+        shutil.copytree(source_tcl, dest_tcl)
+        
+        # التحقق من النسخ
+        tk_tcl_file = os.path.join(dest_tk, 'tk.tcl')
+        if os.path.exists(tk_tcl_file):
+            # قراءة الإصدار من الملف
+            with open(tk_tcl_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    if 'package require -exact Tk' in line:
+                        logger.info(f"إصدار Tk في الملف المنسوخ: {line.strip()}")
+                        break
+        
+        # نسخ ملفات DLL من Anaconda
+        dll_source_paths = [
+            r'C:\Users\Nassar_Home\anaconda3\Library\bin',
+            os.path.join(sys.base_prefix, 'Library', 'bin'),
+            os.path.join(sys.base_prefix, 'DLLs'),
+        ]
+        
+        dll_files = ['tcl86t.dll', 'tk86t.dll']
+        dll_copied = 0
+        
+        for dll_file in dll_files:
+            for dll_source_dir in dll_source_paths:
+                source_dll = os.path.join(dll_source_dir, dll_file)
+                if os.path.exists(source_dll):
+                    dest_dll = os.path.join(dist_dir, dll_file)
+                    logger.info(f"نسخ {dll_file} من {source_dll}")
+                    shutil.copy2(source_dll, dest_dll)
+                    dll_copied += 1
+                    break
+        
+        if dll_copied > 0:
+            logger.info(f"تم نسخ {dll_copied} ملفات DLL")
+        
+        logger.info("✅ تم إصلاح إصدارات Tk/Tcl بنجاح")
+        return True
+        
+    except Exception as e:
+        logger.error(f"خطأ أثناء إصلاح إصدارات Tk/Tcl: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
 def main():
     """الوظيفة الرئيسية"""
     logger.info("بدء عملية بناء التطبيق...")
@@ -193,7 +307,12 @@ def main():
     if not build_app():
         logger.error("فشلت عملية بناء التطبيق")
         return
-
+    
+    # إصلاح تعارض إصدارات Tk/Tcl
+    logger.info("إصلاح إصدارات Tk/Tcl...")
+    if not fix_tk_tcl_version():
+        logger.warning("تحذير: فشل إصلاح إصدارات Tk/Tcl")
+    
     if not create_installer():
         logger.error("فشلت عملية إنشاء حزمة التثبيت")
         return
