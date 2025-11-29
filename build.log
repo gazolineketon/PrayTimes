@@ -1239,3 +1239,318 @@ ERROR: Unable to find 'c:\\Temp\\PrayTimes\\pyexpat' when adding binary and data
 2025-11-20 10:07:17,546 - INFO - إنشاء حزمة التثبيت...
 2025-11-20 10:08:32,841 - INFO - تم إنشاء حزمة التثبيت بنجاح
 2025-11-20 10:08:32,841 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 02:02:31,953 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 02:02:31,954 - INFO - تحضير بيئة البناء...
+2025-11-29 02:02:31,972 - INFO - تم حذف المجلد: build
+2025-11-29 02:02:34,654 - INFO - تم حذف المجلد: dist
+2025-11-29 02:02:34,663 - INFO - تم حذف المجلد: __pycache__
+2025-11-29 02:02:34,665 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 02:02:34,665 - INFO - بدء بناء التطبيق...
+2025-11-29 02:02:34,667 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 02:02:34,669 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 02:04:45,394 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 02:04:45,394 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 02:06:38,217 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 02:06:38,218 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 06:59:25,225 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 06:59:25,226 - INFO - تحضير بيئة البناء...
+2025-11-29 06:59:25,239 - INFO - تم حذف المجلد: build
+2025-11-29 06:59:27,982 - INFO - تم حذف المجلد: dist
+2025-11-29 06:59:27,991 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 06:59:28,015 - INFO - بدء بناء التطبيق...
+2025-11-29 06:59:28,017 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 06:59:28,021 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 07:01:45,068 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 07:01:45,069 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 07:03:41,429 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 07:03:41,430 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 07:09:29,296 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 07:09:29,298 - INFO - تحضير بيئة البناء...
+2025-11-29 07:09:29,314 - INFO - تم حذف المجلد: build
+2025-11-29 07:09:32,030 - INFO - تم حذف المجلد: dist
+2025-11-29 07:09:32,132 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 07:09:32,248 - INFO - بدء بناء التطبيق...
+2025-11-29 07:09:32,302 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 07:09:32,361 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 07:12:09,945 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 07:12:09,946 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 07:14:29,638 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 07:14:29,638 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 07:37:51,961 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 07:37:51,963 - INFO - تحضير بيئة البناء...
+2025-11-29 07:37:51,978 - INFO - تم حذف المجلد: build
+2025-11-29 07:37:55,922 - INFO - تم حذف المجلد: dist
+2025-11-29 07:37:55,924 - INFO - تم حذف المجلد: __pycache__
+2025-11-29 07:37:55,925 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 07:37:55,925 - INFO - بدء بناء التطبيق...
+2025-11-29 07:37:55,927 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 07:37:55,929 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 07:40:15,406 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 07:40:15,406 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 07:42:16,700 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 07:42:16,701 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 09:57:36,758 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 09:57:36,759 - INFO - تحضير بيئة البناء...
+2025-11-29 09:57:36,776 - INFO - تم حذف المجلد: build
+2025-11-29 09:57:39,700 - INFO - تم حذف المجلد: dist
+2025-11-29 09:57:39,702 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 09:57:39,703 - INFO - بدء بناء التطبيق...
+2025-11-29 09:57:39,705 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 09:57:39,707 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 09:59:40,271 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 09:59:40,271 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 10:00:59,443 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 10:00:59,444 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 11:55:18,416 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 11:55:18,419 - INFO - تحضير بيئة البناء...
+2025-11-29 11:55:18,441 - INFO - تم حذف المجلد: build
+2025-11-29 11:55:23,757 - INFO - تم حذف المجلد: dist
+2025-11-29 11:55:23,757 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 11:55:23,758 - INFO - بدء بناء التطبيق...
+2025-11-29 11:55:23,759 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 11:55:23,761 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 11:57:44,633 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 11:57:44,634 - INFO - إصلاح إصدارات Tk/Tcl...
+2025-11-29 11:57:47,517 - INFO - تم إصلاح إصدارات Tk/Tcl بنجاح
+2025-11-29 11:57:47,518 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 11:59:40,803 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 11:59:40,803 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-29 12:44:02,295 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 12:44:02,299 - INFO - تحضير بيئة البناء...
+2025-11-29 12:44:02,316 - INFO - تم حذف المجلد: build
+2025-11-29 12:44:05,699 - INFO - تم حذف المجلد: dist
+2025-11-29 12:44:05,700 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 12:44:05,701 - INFO - بدء بناء التطبيق...
+2025-11-29 12:44:05,702 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 12:44:05,704 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 12:46:30,186 - ERROR - فشل بناء التطبيق: 2360 INFO: PyInstaller: 6.16.0, contrib hooks: 2024.7
+2361 INFO: Python: 3.13.2 (conda)
+2422 INFO: Platform: Windows-10-10.0.19045-SP0
+2422 INFO: Python environment: C:\Users\Nassar_Home\anaconda3\envs\coding
+2431 INFO: Removing temporary files and cleaning cache in C:\Users\Nassar_Home\AppData\Local\pyinstaller
+5234 INFO: Module search paths (PYTHONPATH):
+['C:\\Temp\\PrayTimes',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\python313.zip',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\win32',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\Pythonwin',
+ 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\setuptools\\_vendor',
+ 'C:\\Temp\\PrayTimes',
+ 'C:\\Temp\\PrayTimes']
+9107 INFO: Appending 'binaries' from .spec
+9292 INFO: Appending 'datas' from .spec
+10002 INFO: checking Analysis
+10002 INFO: Building Analysis because Analysis-00.toc is non existent
+10002 INFO: Looking for Python shared library...
+10002 INFO: Using Python shared library: C:\Users\Nassar_Home\anaconda3\envs\coding\python313.dll
+10002 INFO: Running Analysis Analysis-00.toc
+10002 INFO: Target bytecode optimization level: 0
+10003 INFO: Initializing module dependency graph...
+10006 INFO: Initializing module graph hook caches...
+10141 INFO: Analyzing modules for base_library.zip ...
+18841 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+26213 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+30919 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+32657 INFO: Caching module dependency graph...
+32827 INFO: Analyzing C:\Temp\PrayTimes\main.py
+32858 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+32860 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+34275 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+35793 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+35880 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+36461 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+36466 INFO: SetuptoolsInfo: initializing cached setuptools info...
+53255 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+53631 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+60335 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks'
+62455 INFO: Processing standard module hook 'hook-certifi.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks'
+63174 INFO: Processing standard module hook 'hook-pystray.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks'
+66032 INFO: Processing pre-safe-import-module hook 'hook-six.moves.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+66450 INFO: Processing pre-safe-import-module hook 'hook-gi.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+66534 INFO: Processing standard module hook 'hook-PIL.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+67168 INFO: Processing standard module hook 'hook-PIL.Image.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+69744 INFO: Processing standard module hook 'hook-numpy.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+72038 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+73759 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+76220 INFO: Processing standard module hook 'hook-psutil.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks'
+82369 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+83078 INFO: Processing standard module hook 'hook-PIL.ImageFilter.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+84660 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+85781 INFO: Processing standard module hook 'hook-pkg_resources.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+89338 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+89340 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+89364 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+89417 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+89538 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+89540 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+89577 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+89578 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+91080 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+91190 INFO: Processing standard module hook 'hook-importlib_metadata.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+91278 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+92387 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+93077 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+93081 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+93087 INFO: Processing standard module hook 'hook-importlib_resources.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+93224 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+93225 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+93283 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+93284 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+93694 INFO: Processing standard module hook 'hook-backports.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks'
+93702 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+93704 INFO: Setuptools: 'platformdirs' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.platformdirs'!
+96027 INFO: Analyzing hidden import 'plyer.notifications'
+96028 ERROR: Hidden import 'plyer.notifications' not found
+96028 INFO: Analyzing hidden import 'plyer.libs'
+96028 ERROR: Hidden import 'plyer.libs' not found
+96029 INFO: Analyzing hidden import 'tkinter.scrolledtext'
+96041 INFO: Analyzing hidden import 'tkinter.font'
+96073 INFO: Analyzing hidden import 'vlc.libvlc'
+96073 ERROR: Hidden import 'vlc.libvlc' not found
+96073 INFO: Analyzing hidden import 'vlc.libvlc_audio'
+96073 ERROR: Hidden import 'vlc.libvlc_audio' not found
+96073 INFO: Analyzing hidden import 'vlc.libvlc_media'
+96073 ERROR: Hidden import 'vlc.libvlc_media' not found
+96074 INFO: Analyzing hidden import 'vlc.libvlc_media_player'
+96074 ERROR: Hidden import 'vlc.libvlc_media_player' not found
+96074 INFO: Analyzing hidden import 'vlc.libvlc_instance'
+96074 ERROR: Hidden import 'vlc.libvlc_instance' not found
+96074 INFO: Analyzing hidden import 'encodings.latin1'
+96075 ERROR: Hidden import 'encodings.latin1' not found
+96075 INFO: Analyzing hidden import 'encodings.cp65001'
+96075 ERROR: Hidden import 'encodings.cp65001' not found
+96075 INFO: Analyzing hidden import 'win32clipboard'
+96078 INFO: Analyzing hidden import 'PIL.AvifImagePlugin'
+96120 INFO: Analyzing hidden import 'PIL.BdfFontFile'
+96154 INFO: Analyzing hidden import 'PIL.BlpImagePlugin'
+96232 INFO: Analyzing hidden import 'PIL.BufrStubImagePlugin'
+96241 INFO: Analyzing hidden import 'PIL.ContainerIO'
+96259 INFO: Analyzing hidden import 'PIL.CurImagePlugin'
+96268 INFO: Analyzing hidden import 'PIL.DcxImagePlugin'
+96303 INFO: Analyzing hidden import 'PIL.DdsImagePlugin'
+96383 INFO: Analyzing hidden import 'PIL.EpsImagePlugin'
+96437 INFO: Analyzing hidden import 'PIL.FitsImagePlugin'
+96459 INFO: Analyzing hidden import 'PIL.FliImagePlugin'
+96482 INFO: Analyzing hidden import 'PIL.FpxImagePlugin'
+96510 INFO: Analyzing hidden import 'PIL.FtexImagePlugin'
+96521 INFO: Analyzing hidden import 'PIL.GbrImagePlugin'
+96533 INFO: Analyzing hidden import 'PIL.GdImageFile'
+96543 INFO: Analyzing hidden import 'PIL.GribStubImagePlugin'
+96551 INFO: Analyzing hidden import 'PIL.Hdf5StubImagePlugin'
+96559 INFO: Analyzing hidden import 'PIL.IcnsImagePlugin'
+96672 INFO: Analyzing hidden import 'PIL.IcoImagePlugin'
+96715 INFO: Analyzing hidden import 'PIL.ImImagePlugin'
+96761 INFO: Analyzing hidden import 'PIL.ImageEnhance'
+96792 INFO: Analyzing hidden import 'PIL.ImageGrab'
+96817 INFO: Analyzing hidden import 'PIL.ImageMorph'
+96849 INFO: Analyzing hidden import 'PIL.ImageTransform'
+96858 INFO: Analyzing hidden import 'PIL.ImtImagePlugin'
+96868 INFO: Analyzing hidden import 'PIL.IptcImagePlugin'
+96898 INFO: Analyzing hidden import 'PIL.McIdasImagePlugin'
+96907 INFO: Analyzing hidden import 'PIL.MicImagePlugin'
+96918 INFO: Analyzing hidden import 'PIL.MpegImagePlugin'
+96929 INFO: Analyzing hidden import 'PIL.MspImagePlugin'
+96950 INFO: Analyzing hidden import 'PIL.PSDraw'
+96966 INFO: Analyzing hidden import 'PIL.PalmImagePlugin'
+97000 INFO: Analyzing hidden import 'PIL.PcdImagePlugin'
+97007 INFO: Analyzing hidden import 'PIL.PcfFontFile'
+97042 INFO: Analyzing hidden import 'PIL.PdfImagePlugin'
+97229 INFO: Analyzing hidden import 'PIL.PixarImagePlugin'
+97237 INFO: Analyzing hidden import 'PIL.PsdImagePlugin'
+97276 INFO: Analyzing hidden import 'PIL.QoiImagePlugin'
+97313 INFO: Analyzing hidden import 'PIL.SgiImagePlugin'
+97339 INFO: Analyzing hidden import 'PIL.SpiderImagePlugin'
+97379 INFO: Processing standard module hook 'hook-PIL.SpiderImagePlugin.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+97382 INFO: Analyzing hidden import 'PIL.SunImagePlugin'
+97395 INFO: Analyzing hidden import 'PIL.TarIO'
+97403 INFO: Analyzing hidden import 'PIL.TgaImagePlugin'
+97431 INFO: Analyzing hidden import 'PIL.WalImageFile'
+97440 INFO: Analyzing hidden import 'PIL.WebPImagePlugin'
+97487 INFO: Analyzing hidden import 'PIL.WmfImagePlugin'
+97511 INFO: Analyzing hidden import 'PIL.XVThumbImagePlugin'
+97522 INFO: Analyzing hidden import 'PIL.XbmImagePlugin'
+97541 INFO: Analyzing hidden import 'PIL.XpmImagePlugin'
+97571 INFO: Analyzing hidden import 'PIL.__main__'
+97602 INFO: Analyzing hidden import 'PIL._tkinter_finder'
+97610 INFO: Analyzing hidden import 'PIL.report'
+97613 INFO: Processing module hooks (post-graph stage)...
+97671 WARNING: Hidden import "charset_normalizer.md__mypyc" not found!
+97712 WARNING: Hidden import "importlib_resources.trees" not found!
+99757 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks'
+99881 INFO: Performing binary vs. data reclassification (3259 entries)
+105189 INFO: Looking for ctypes DLLs
+105617 INFO: Analyzing run-time hooks ...
+105617 INFO: Including custom run-time hook 'runtime_hook.py'
+105646 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+105655 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+105665 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+105673 INFO: Including run-time hook 'pyi_rth_pkgres.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+105691 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+105695 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+105971 INFO: Creating base_library.zip...
+106040 INFO: Looking for dynamic libraries
+C:\Users\Nassar_Home\anaconda3\envs\coding\Lib\site-packages\PyInstaller\building\build_main.py:227: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  __import__(package)
+110989 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\numpy.libs']
+110989 INFO: Extra DLL search directories (PATH): []
+124335 WARNING: Library not found: could not resolve 'libmpdec-4.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs\\_decimal.pyd'.
+124336 WARNING: Library not found: could not resolve 'libcrypto-3-x64.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs\\_hashlib.pyd'.
+124337 WARNING: Library not found: could not resolve 'liblzma.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs\\_lzma.pyd'.
+124338 WARNING: Library not found: could not resolve 'libbz2.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs\\_bz2.pyd'.
+124339 WARNING: Library not found: could not resolve 'libssl-3-x64.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs\\_ssl.pyd'.
+124340 WARNING: Library not found: could not resolve 'libcrypto-3-x64.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\DLLs\\_ssl.pyd'.
+124341 WARNING: Library not found: could not resolve 'jvm.dll', dependency of 'C:\\Users\\Nassar_Home\\anaconda3\\envs\\coding\\Lib\\site-packages\\jnius\\jnius.cp313-win_amd64.pyd'.
+124994 INFO: Warnings written to C:\Temp\PrayTimes\build\main\warn-main.txt
+125239 INFO: Graph cross-reference written to C:\Temp\PrayTimes\build\main\xref-main.html
+125727 INFO: checking PYZ
+125727 INFO: Building PYZ because PYZ-00.toc is non existent
+125727 INFO: Building PYZ (ZlibArchive) C:\Temp\PrayTimes\build\main\PYZ-00.pyz
+127288 INFO: Building PYZ (ZlibArchive) C:\Temp\PrayTimes\build\main\PYZ-00.pyz completed successfully.
+127367 INFO: checking PKG
+127367 INFO: Building PKG because PKG-00.toc is non existent
+127367 INFO: Building PKG (CArchive) Praytimes.pkg
+127433 INFO: Building PKG (CArchive) Praytimes.pkg completed successfully.
+127437 INFO: Bootloader C:\Users\Nassar_Home\anaconda3\envs\coding\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+127437 INFO: checking EXE
+127437 INFO: Building EXE because EXE-00.toc is non existent
+127437 INFO: Building EXE from EXE-00.toc
+127438 INFO: Copying bootloader EXE to C:\Temp\PrayTimes\build\main\Praytimes.exe
+127466 INFO: Copying icon to EXE
+127484 INFO: Copying version information to EXE
+127505 INFO: Copying 0 resources to EXE
+127506 INFO: Embedding manifest in EXE
+127522 INFO: Appending PKG archive to EXE
+127539 INFO: Fixing EXE headers
+127806 INFO: Building EXE from EXE-00.toc completed successfully.
+127909 INFO: checking COLLECT
+127909 INFO: Building COLLECT because COLLECT-00.toc is non existent
+127910 INFO: Building COLLECT COLLECT-00.toc
+
+2025-11-29 12:47:34,474 - INFO - بدء عملية بناء التطبيق...
+2025-11-29 12:47:34,474 - INFO - تحضير بيئة البناء...
+2025-11-29 12:47:34,489 - INFO - تم حذف المجلد: build
+2025-11-29 12:47:36,734 - INFO - تم حذف المجلد: dist
+2025-11-29 12:47:36,735 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-29 12:47:36,736 - INFO - بدء بناء التطبيق...
+2025-11-29 12:47:36,738 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-29 12:47:36,740 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-29 12:49:17,477 - INFO - تم بناء التطبيق بنجاح
+2025-11-29 12:49:17,479 - INFO - إصلاح إصدارات Tk/Tcl...
+2025-11-29 12:49:17,481 - INFO - تم العثور على tk8.6 في: C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6
+2025-11-29 12:49:17,481 - INFO - تم العثور على tcl8.6 في: C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6
+2025-11-29 12:49:17,483 - INFO - إزالة مجلد tk8.6 القديم: C:\Temp\PrayTimes\dist\Praytimes\_internal\tk8.6
+2025-11-29 12:49:17,657 - INFO - إزالة مجلد tcl8.6 القديم: C:\Temp\PrayTimes\dist\Praytimes\_internal\tcl8.6
+2025-11-29 12:49:18,738 - INFO - نسخ tk8.6 من C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6 إلى C:\Temp\PrayTimes\dist\Praytimes\_internal\tk8.6
+2025-11-29 12:49:19,252 - INFO - نسخ tcl8.6 من C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6 إلى C:\Temp\PrayTimes\dist\Praytimes\_internal\tcl8.6
+2025-11-29 12:49:21,340 - INFO - إصدار Tk في الملف المنسوخ: package require -exact Tk  8.6.14
+2025-11-29 12:49:21,341 - INFO - نسخ tcl86t.dll من C:\Users\Nassar_Home\anaconda3\Library\bin\tcl86t.dll
+2025-11-29 12:49:21,348 - INFO - نسخ tk86t.dll من C:\Users\Nassar_Home\anaconda3\Library\bin\tk86t.dll
+2025-11-29 12:49:21,353 - INFO - تم نسخ 2 ملفات DLL
+2025-11-29 12:49:21,354 - INFO - ✅ تم إصلاح إصدارات Tk/Tcl بنجاح
+2025-11-29 12:49:21,354 - INFO - إنشاء حزمة التثبيت...
+2025-11-29 12:50:46,134 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-29 12:50:46,135 - INFO - اكتملت عملية بناء التطبيق بنجاح

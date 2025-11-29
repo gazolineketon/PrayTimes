@@ -1268,10 +1268,13 @@ class EnhancedPrayerTimesApp:
             self.time_sync_label.config(text=self._("date_label", date_str=date_str))
     
     def check_connection(self):
-        """فحص حالة الاتصال بشكل دوري مع تحسين الكفاءة"""
+        """فحص حالة الاتصال بشكل دوري مع إعادة الاتصال التلقائي"""
         def connection_test():
-            check_interval = 5 * 60  # فحص كل 5 دقائق بدلاً من كل دقيقة
+            last_online_status = None  # تتبع الحالة السابقة للاتصال
+            
             while self.running:
+                previous_status = self.is_online
+                
                 try:
                     # استخدام موقع خفيف لفحص الاتصال
                     response = requests.get("https://www.google.com", timeout=5)
@@ -1282,10 +1285,27 @@ class EnhancedPrayerTimesApp:
                 if not self.running:
                     break
 
-                if self.root.winfo_exists():
-                    self.root.after(0, self.update_connection_status)
+                # اكتشاف عودة الاتصال وإعادة تحميل البيانات
+                connection_restored = (previous_status == False and self.is_online == True)
                 
-                # استخدام فترات زمنية أقصر للفحص إذا تم إيقاف التطبيق
+                if self.root.winfo_exists():
+                    if connection_restored:
+                        # إعادة تحميل البيانات عند عودة الاتصال
+                        logger.info("تم اكتشاف عودة الاتصال بالإنترنت - إعادة تحميل البيانات")
+                        self.root.after(0, lambda: self._reconnect_and_reload())
+                    else:
+                        # تحديث حالة الاتصال فقط
+                        self.root.after(0, self.update_connection_status)
+                
+                # تحديد فترة الفحص التالية بناءً على حالة الاتصال
+                if self.is_online:
+                    # إذا كان متصل: فحص كل 5 دقائق
+                    check_interval = 5 * 60
+                else:
+                    # إذا كان غير متصل: فحص كل دقيقة للاستجابة المعقولة
+                    check_interval = 60
+                
+                # الانتظار حتى الفحص التالي
                 for _ in range(check_interval):
                     if not self.running:
                         break
@@ -1301,6 +1321,19 @@ class EnhancedPrayerTimesApp:
         else:
             self.status_indicator.config(fg=self.colors['error'])
             self.connection_status.config(text=self._("disconnected"))
+    
+    def _reconnect_and_reload(self):
+        """إعادة تحميل البيانات عند عودة الاتصال"""
+        try:
+            # تحديث مؤشر الحالة
+            self.update_connection_status()
+            
+            # إعادة تحميل البيانات إذا كانت المدينة والدولة محددتين
+            if self.settings.selected_city and self.settings.selected_country:
+                logger.info(f"إعادة تحميل بيانات مواقيت الصلاة لـ {self.settings.selected_city}, {self.settings.selected_country}")
+                self.fetch_and_display_times(self.settings.selected_city, self.settings.selected_country)
+        except Exception as e:
+            logger.error(f"خطأ في إعادة تحميل البيانات بعد عودة الاتصال: {e}")
 
     def update_last_update_time(self):
         """تحديث وقت آخر تحديث في شريط الحالة"""
