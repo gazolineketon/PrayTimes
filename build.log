@@ -1554,3 +1554,28 @@ C:\Users\Nassar_Home\anaconda3\envs\coding\Lib\site-packages\PyInstaller\buildin
 2025-11-29 12:49:21,354 - INFO - إنشاء حزمة التثبيت...
 2025-11-29 12:50:46,134 - INFO - تم إنشاء حزمة التثبيت بنجاح
 2025-11-29 12:50:46,135 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-11-30 12:42:07,579 - INFO - بدء عملية بناء التطبيق...
+2025-11-30 12:42:07,581 - INFO - تحضير بيئة البناء...
+2025-11-30 12:42:07,599 - INFO - تم حذف المجلد: build
+2025-11-30 12:42:11,379 - INFO - تم حذف المجلد: dist
+2025-11-30 12:42:11,397 - INFO - تم حذف المجلد: __pycache__
+2025-11-30 12:42:11,397 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-11-30 12:42:11,399 - INFO - بدء بناء التطبيق...
+2025-11-30 12:42:11,401 - INFO - تم العثور على الإصدار: 0.70.0
+2025-11-30 12:42:11,405 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-11-30 12:44:25,904 - INFO - تم بناء التطبيق بنجاح
+2025-11-30 12:44:25,905 - INFO - إصلاح إصدارات Tk/Tcl...
+2025-11-30 12:44:25,906 - INFO - تم العثور على tk8.6 في: C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6
+2025-11-30 12:44:25,907 - INFO - تم العثور على tcl8.6 في: C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6
+2025-11-30 12:44:25,907 - INFO - إزالة مجلد tk8.6 القديم: C:\Temp\PrayTimes\dist\Praytimes\_internal\tk8.6
+2025-11-30 12:44:26,066 - INFO - إزالة مجلد tcl8.6 القديم: C:\Temp\PrayTimes\dist\Praytimes\_internal\tcl8.6
+2025-11-30 12:44:26,690 - INFO - نسخ tk8.6 من C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6 إلى C:\Temp\PrayTimes\dist\Praytimes\_internal\tk8.6
+2025-11-30 12:44:27,175 - INFO - نسخ tcl8.6 من C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6 إلى C:\Temp\PrayTimes\dist\Praytimes\_internal\tcl8.6
+2025-11-30 12:44:29,341 - INFO - إصدار Tk في الملف المنسوخ: package require -exact Tk  8.6.14
+2025-11-30 12:44:29,342 - INFO - نسخ tcl86t.dll من C:\Users\Nassar_Home\anaconda3\Library\bin\tcl86t.dll
+2025-11-30 12:44:29,361 - INFO - نسخ tk86t.dll من C:\Users\Nassar_Home\anaconda3\Library\bin\tk86t.dll
+2025-11-30 12:44:29,366 - INFO - تم نسخ 2 ملفات DLL
+2025-11-30 12:44:29,367 - INFO - ✅ تم إصلاح إصدارات Tk/Tcl بنجاح
+2025-11-30 12:44:29,368 - INFO - إنشاء حزمة التثبيت...
+2025-11-30 12:46:23,282 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-11-30 12:46:23,283 - INFO - اكتملت عملية بناء التطبيق بنجاح

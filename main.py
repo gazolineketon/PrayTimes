@@ -5,7 +5,7 @@ main.py
 نقطة الدخول الرئيسية لتطبيق مواقيت الصلاة
 """
 
-__version__ = "0.70.0"
+__version__ = "0.84.0"
 
 # إعداد متغيرات البيئة لـ tkinter قبل الاستيراد
 import os
@@ -75,6 +75,7 @@ from prayer_logic import NTPLIB_AVAILABLE
 
 from signal_handler import setup_signal_handlers
 from file_manager import file_handler
+from instance_manager import ensure_single_instance
 import atexit
 
 class FlushingFileHandler(logging.FileHandler):
@@ -199,6 +200,34 @@ def main():
 if __name__ == "__main__":
     initialize_app_directories()
     setup_logging()
+    
+    # التحقق من عدم وجود نسخة أخرى قيد التشغيل
+    if not ensure_single_instance():
+        # عرض رسالة للمستخدم
+        import tkinter as tk
+        root = tk.Tk()
+        root.withdraw()  # إخفاء النافذة الرئيسية
+        
+        # تحديد اللغة من الإعدادات
+        lang = "ar"
+        try:
+            with open(SETTINGS_FILE, 'r', encoding='utf-8') as f:
+                settings_data = json.load(f)
+                lang = settings_data.get("language", "ar")
+        except Exception:
+            pass
+        
+        # رسائل بحسب اللغة
+        if lang == "ar":
+            title = "البرنامج قيد التشغيل"
+            message = "البرنامج يعمل بالفعل\n\nلا يمكن تشغيل أكثر من نسخة واحدة في نفس الوقت"
+        else:
+            title = "Application Running"
+            message = "The application is already running!\n\nOnly one instance can run at a time."
+        
+        messagebox.showwarning(title, message)
+        root.destroy()
+        sys.exit(0)
     
     # تشغيل مساعد التثبيت للتعامل مع المشكلات الشائعة
     try:
