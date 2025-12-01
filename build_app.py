@@ -72,6 +72,79 @@ def get_version():
         logger.error(f"فشل في قراءة رقم الإصدار من main.py: {e}")
     return None
 
+def update_version_in_main(new_version):
+    """تحديث رقم الإصدار في main.py"""
+    try:
+        with open('main.py', 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # استبدال رقم الإصدار
+        updated_content = re.sub(
+            r'__version__\s*=\s*["\'][^"\']+["\']',
+            f'__version__ = "{new_version}"',
+            content
+        )
+        
+        with open('main.py', 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+        
+        logger.info(f"تم تحديث رقم الإصدار في main.py إلى {new_version}")
+        return True
+    except Exception as e:
+        logger.error(f"فشل في تحديث main.py: {e}")
+        return False
+
+def update_version_in_readme(new_version):
+    """تحديث رقم الإصدار في README.md"""
+    try:
+        with open('README.md', 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # استبدال رقم الإصدار في badge
+        updated_content = re.sub(
+            r'Version-\d+\.\d+\.\d+',
+            f'Version-{new_version}',
+            content
+        )
+        
+        with open('README.md', 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+        
+        logger.info(f"تم تحديث رقم الإصدار في README.md إلى {new_version}")
+        return True
+    except Exception as e:
+        logger.error(f"فشل في تحديث README.md: {e}")
+        return False
+
+def update_version_auto():
+    """
+    تحديث رقم الإصدار تلقائياً بناءً على عدد الـ commits في git
+    مطابق تماماً لمنطق update_version.py
+    """
+    try:
+        # الحصول على عدد الـ commits
+        commit_count = subprocess.check_output(['git', 'rev-list', '--count', 'HEAD']).strip().decode('utf-8')
+        new_version = f"0.{commit_count}.0"
+        logger.info(f"تم حساب الإصدار الجديد بناءً على git commits: {new_version}")
+        
+        # تحديث main.py
+        if update_version_in_main(new_version):
+            logger.info("✅ تم تحديث main.py")
+        
+        # تحديث README.md
+        if update_version_in_readme(new_version):
+            logger.info("✅ تم تحديث README.md")
+            
+        return new_version
+        
+    except subprocess.CalledProcessError:
+        logger.warning("⚠️ تحذير: هذا المجلد ليس مستودع git أو لا يوجد commits. لن يتم تحديث الإصدار تلقائياً.")
+        return get_version()
+    except Exception as e:
+        logger.error(f"❌ خطأ في التحديث التلقائي للإصدار: {e}")
+        return get_version()
+
+
 def create_version_file(version):
     """إنشاء ملف معلومات الإصدار لـ PyInstaller"""
     version_file_content = f"""
@@ -300,6 +373,9 @@ def main():
     """الوظيفة الرئيسية"""
     logger.info("بدء عملية بناء التطبيق...")
 
+    # تحديث رقم الإصدار تلقائياً
+    version = update_version_auto()
+    
     if not prepare_build():
         logger.error("فشلت عملية تحضير البناء")
         return

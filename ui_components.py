@@ -8,6 +8,7 @@ SettingsDialog يحتوي هذا الملف على أجزاء الواجهة ا�
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import ctypes
+import logging
 
 # تأجيل استيراد PIL حتى يتم استخدامه فعلياً
 PIL_AVAILABLE = False
@@ -55,6 +56,14 @@ class SettingsDialog:
         self.loading = False  # تتبع حالة التحميل
         self.close_bind_id = None  # تخزين معرف الربط للتنظيف
         self.scroll_job = None  # تخزين معرف التمرير المستمر
+        
+        # تحديث حالة التشغيل التلقائي من سجل ويندوز
+        from startup_manager import is_startup_enabled
+        try:
+            self.settings.run_at_startup = is_startup_enabled()
+        except Exception:
+            pass  # في حالة حدوث خطأ، نستخدم القيمة المحفوظة
+        
         self.create_dialog()
         
     def set_tooltip(self, widget, text):
@@ -402,6 +411,14 @@ class SettingsDialog:
                        value="light").pack(anchor='w', padx=10, pady=5)
         ttk.Radiobutton(theme_frame, text=self._("dark"), variable=self.theme_var, 
                        value="dark").pack(anchor='w', padx=10, pady=5)
+        
+        # التشغيل مع بدء تشغيل ويندوز
+        startup_frame = ttk.LabelFrame(parent, text=self._("run_at_startup"))
+        startup_frame.pack(fill='x', padx=10, pady=10)
+        
+        self.run_at_startup_var = tk.BooleanVar(value=self.settings.run_at_startup)
+        ttk.Checkbutton(startup_frame, text=self._("run_at_startup_description"),
+                       variable=self.run_at_startup_var).pack(anchor='w', padx=10, pady=10)
     
     def setup_notifications_settings(self, parent):
         """إعداد إعدادات الإشعارات"""
@@ -1183,7 +1200,15 @@ class SettingsDialog:
         self.settings.notification_maghrib_enabled = self.maghrib_notification_var.get()
         self.settings.notification_isha_enabled = self.isha_notification_var.get()
 
-
+        # حفظ إعداد التشغيل التلقائي
+        self.settings.run_at_startup = self.run_at_startup_var.get()
+        # تطبيق التشغيل التلقائي
+        from startup_manager import toggle_startup
+        try:
+            toggle_startup(self.settings.run_at_startup)
+        except Exception as e:
+            logger = logging.getLogger(__name__)
+            logger.error(f"خطأ في تطبيق إعداد التشغيل التلقائي: {e}")
         
         selected_display_country = self.country_entry.get()
         english_country = ""

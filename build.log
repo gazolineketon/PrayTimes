@@ -1579,3 +1579,36 @@ C:\Users\Nassar_Home\anaconda3\envs\coding\Lib\site-packages\PyInstaller\buildin
 2025-11-30 12:44:29,368 - INFO - إنشاء حزمة التثبيت...
 2025-11-30 12:46:23,282 - INFO - تم إنشاء حزمة التثبيت بنجاح
 2025-11-30 12:46:23,283 - INFO - اكتملت عملية بناء التطبيق بنجاح
+2025-12-01 02:22:17,433 - INFO - بدء عملية بناء التطبيق...
+2025-12-01 02:22:17,638 - INFO - تم حساب الإصدار الجديد بناءً على git commits: 0.85.0
+2025-12-01 02:22:17,642 - ERROR - ❌ خطأ في التحديث التلقائي للإصدار: name 'update_version_in_main' is not defined
+2025-12-01 02:24:52,051 - INFO - بدء عملية بناء التطبيق...
+2025-12-01 02:24:52,202 - INFO - تم حساب الإصدار الجديد بناءً على git commits: 0.85.0
+2025-12-01 02:24:52,205 - INFO - تم تحديث رقم الإصدار في main.py إلى 0.85.0
+2025-12-01 02:24:52,205 - INFO - ✅ تم تحديث main.py
+2025-12-01 02:24:52,223 - INFO - تم تحديث رقم الإصدار في README.md إلى 0.85.0
+2025-12-01 02:24:52,327 - INFO - ✅ تم تحديث README.md
+2025-12-01 02:24:52,330 - INFO - تحضير بيئة البناء...
+2025-12-01 02:24:52,347 - INFO - تم حذف المجلد: build
+2025-12-01 02:24:58,069 - INFO - تم حذف المجلد: dist
+2025-12-01 02:24:58,085 - INFO - تم حذف المجلد: __pycache__
+2025-12-01 02:24:58,089 - INFO - ملفات الخطافات جاهزة في مجلد hooks
+2025-12-01 02:24:58,090 - INFO - بدء بناء التطبيق...
+2025-12-01 02:24:58,092 - INFO - تم العثور على الإصدار: 0.85.0
+2025-12-01 02:24:58,096 - INFO - تم إنشاء ملف version.txt بنجاح.
+2025-12-01 02:27:26,755 - INFO - تم بناء التطبيق بنجاح
+2025-12-01 02:27:26,756 - INFO - إصلاح إصدارات Tk/Tcl...
+2025-12-01 02:27:26,758 - INFO - تم العثور على tk8.6 في: C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6
+2025-12-01 02:27:26,760 - INFO - تم العثور على tcl8.6 في: C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6
+2025-12-01 02:27:26,761 - INFO - إزالة مجلد tk8.6 القديم: C:\Temp\PrayTimes\dist\Praytimes\_internal\tk8.6
+2025-12-01 02:27:26,928 - INFO - إزالة مجلد tcl8.6 القديم: C:\Temp\PrayTimes\dist\Praytimes\_internal\tcl8.6
+2025-12-01 02:27:27,423 - INFO - نسخ tk8.6 من C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6 إلى C:\Temp\PrayTimes\dist\Praytimes\_internal\tk8.6
+2025-12-01 02:27:27,994 - INFO - نسخ tcl8.6 من C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6 إلى C:\Temp\PrayTimes\dist\Praytimes\_internal\tcl8.6
+2025-12-01 02:27:30,118 - INFO - إصدار Tk في الملف المنسوخ: package require -exact Tk  8.6.14
+2025-12-01 02:27:30,119 - INFO - نسخ tcl86t.dll من C:\Users\Nassar_Home\anaconda3\Library\bin\tcl86t.dll
+2025-12-01 02:27:30,139 - INFO - نسخ tk86t.dll من C:\Users\Nassar_Home\anaconda3\Library\bin\tk86t.dll
+2025-12-01 02:27:30,143 - INFO - تم نسخ 2 ملفات DLL
+2025-12-01 02:27:30,144 - INFO - ✅ تم إصلاح إصدارات Tk/Tcl بنجاح
+2025-12-01 02:27:30,145 - INFO - إنشاء حزمة التثبيت...
+2025-12-01 02:29:36,384 - INFO - تم إنشاء حزمة التثبيت بنجاح
+2025-12-01 02:29:36,385 - INFO - اكتملت عملية بناء التطبيق بنجاح

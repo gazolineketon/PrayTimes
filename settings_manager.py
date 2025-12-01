@@ -41,6 +41,7 @@ class Settings:
         self.notification_asr_enabled = True
         self.notification_maghrib_enabled = True
         self.notification_isha_enabled = True
+        self.run_at_startup = False  # تشغيل البرنامج مع بدء التشغيل
         self.load_settings()
     
     def load_settings(self):

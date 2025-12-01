@@ -139,7 +139,9 @@ TRANSLATIONS = {
         "exit_confirmation": "تأكيد الخروج",
         "exit_confirmation_message": "هل أنت متأكد أنك تريد الخروج من التطبيق؟",
         "no": "لا",
-        "yes": "نعم"
+        "yes": "نعم",
+        "run_at_startup": "التشغيل مع بدء تشغيل ويندوز",
+        "run_at_startup_description": "تشغيل البرنامج تلقائياً عند بدء تشغيل النظام"
     }.items())),
     "en": dict(sorted({
         "about": "About",
@@ -269,7 +271,9 @@ TRANSLATIONS = {
         "exit_confirmation": "Exit Confirmation",
         "exit_confirmation_message": "Are you sure you want to exit the application?",
         "no": "No",
-        "yes": "Yes"
+        "yes": "Yes",
+        "run_at_startup": "Run at Windows Startup",
+        "run_at_startup_description": "Automatically run the program when the system starts"
     }.items()))
 }
 

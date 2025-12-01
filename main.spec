@@ -348,7 +348,7 @@ a = Analysis(
     ] + collect_submodules('PIL'),
     hooksconfig={},
     runtime_hooks=['runtime_hook.py'],
-    excludes=['update_version.py', 'test', 'setuptools.glob', 'setuptools.config', 'setuptools.config.setup'],  # استبعاد setuptools المشاكل
+    excludes=['test', 'setuptools.glob', 'setuptools.config', 'setuptools.config.setup'],  # استبعاد setuptools المشاكل
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=None,
