@@ -385,9 +385,10 @@ def main():
         return
     
     # إصلاح تعارض إصدارات Tk/Tcl
-    logger.info("إصلاح إصدارات Tk/Tcl...")
-    if not fix_tk_tcl_version():
-        logger.warning("تحذير: فشل إصلاح إصدارات Tk/Tcl")
+    # logger.info("إصلاح إصدارات Tk/Tcl...")
+    # if not fix_tk_tcl_version():
+    #     logger.warning("تحذير: فشل إصلاح إصدارات Tk/Tcl")
+    logger.info("تم تخطي إصلاح Tk/Tcl اليدوي (غير مطلوب مع وضع onefile)")
     
     if not create_installer():
         logger.error("فشلت عملية إنشاء حزمة التثبيت")

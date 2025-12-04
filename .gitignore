@@ -22,3 +22,6 @@ update_version.py
 fetch_countries_cities.py
 find_untranslated.py
 build.log
+task.md
+walkthrough.md
+implementation_plan.md

@@ -85,101 +85,20 @@ for file in files_to_add:
         datas.append((file, '.'))
 
 # إضافة ملفات TCL/TK يدوياً من Python الأساسي أو Anaconda
+# Use PyInstaller's collect_all to automatically bundle all tkinter dependencies
+from PyInstaller.utils.hooks import collect_all
+
 tkinter_binaries = []
 tkinter_datas = []
 
 try:
-    # استخدام sys.base_prefix للحصول على مسار Python الأساسي
-    base_python = sys.base_prefix
-    print(f"Python base prefix: {base_python}")
+    # Automatically collect all tkinter data and binaries
+    datas_tkinter, binaries_tkinter, hiddenimports_tkinter = collect_all('tkinter')
+    tkinter_datas.extend(datas_tkinter)
+    tkinter_binaries.extend(binaries_tkinter)
     
-    # قائمة بالمسارات الممكنة لـ TCL/TK
-    # Anaconda يضع الملفات في Library/lib
-    # Python العادي يضعها في tcl/
-    possible_tcl_paths = [
-        os.path.join(base_python, 'Library', 'lib', 'tcl8.6'),  # Anaconda
-        os.path.join(base_python, 'tcl', 'tcl8.6'),  # Python العادي
-        os.path.join(base_python, 'Lib', 'tcl8.6'),
-        # محاولة من Anaconda base إذا كنا في بيئة افتراضية
-        r'C:\Users\Nassar_Home\anaconda3\Library\lib\tcl8.6',
-    ]
+    print(f"Automatically collected {len(binaries_tkinter)} binaries and {len(datas_tkinter)} data files for tkinter")
     
-    possible_tk_paths = [
-        os.path.join(base_python, 'Library', 'lib', 'tk8.6'),  # Anaconda
-        os.path.join(base_python, 'tcl', 'tk8.6'),  # Python العادي
-        os.path.join(base_python, 'Lib', 'tk8.6'),
-        # محاولة من Anaconda base إذا كنا في بيئة افتراضية
-        r'C:\Users\Nassar_Home\anaconda3\Library\lib\tk8.6',
-    ]
-    
-    # إضافة مجلدات TCL إذا كانت موجودة
-    tcl_added = False
-    for tcl_lib in possible_tcl_paths:
-        if os.path.exists(tcl_lib):
-            tkinter_datas.append((tcl_lib, 'tcl8.6'))
-            print(f"تم إضافة TCL: {tcl_lib}")
-            tcl_added = True
-            break
-    
-    if not tcl_added:
-        print(f"تحذير: لم يتم العثور على TCL في أي من المسارات")
-    
-    # إضافة مجلدات TK إذا كانت موجودة
-    tk_added = False
-    for tk_lib in possible_tk_paths:
-        if os.path.exists(tk_lib):
-            tkinter_datas.append((tk_lib, 'tk8.6'))
-            print(f"تم إضافة TK: {tk_lib}")
-            tk_added = True
-            break
-    
-    if not tk_added:
-        print(f"تحذير: لم يتم العثور على TK في أي من المسارات")
-    
-    # إضافة ملفات DLL لـ TCL/TK
-    # في Anaconda تكون في Library/bin
-    # في Python العادي تكون في DLLs
-    import glob
-    possible_dll_dirs = [
-        os.path.join(base_python, 'Library', 'bin'),  # Anaconda
-        os.path.join(base_python, 'DLLs'),  # Python العادي
-        r'C:\Users\Nassar_Home\anaconda3\Library\bin',  # Anaconda base
-    ]
-    
-    for dll_dir in possible_dll_dirs:
-        if os.path.exists(dll_dir):
-            # إضافة TCL DLLs
-            for dll in glob.glob(os.path.join(dll_dir, 'tcl*.dll')):
-                if dll not in [b[0] for b in tkinter_binaries]:  # تجنب التكرار
-                    tkinter_binaries.append((dll, '.'))
-                    print(f"تم إضافة TCL DLL: {dll}")
-            
-            # إضافة TK DLLs
-            for dll in glob.glob(os.path.join(dll_dir, 'tk*.dll')):
-                if dll not in [b[0] for b in tkinter_binaries]:  # تجنب التكرار
-                    tkinter_binaries.append((dll, '.'))
-                    print(f"تم إضافة TK DLL: {dll}")
-    
-    # إضافة _tkinter.pyd
-    possible_tkinter_pyd = [
-        os.path.join(base_python, 'DLLs', '_tkinter.pyd'),  # Python العادي
-        os.path.join(base_python, 'Library', 'bin', '_tkinter.pyd'),  # Anaconda
-        os.path.join(base_python, 'lib', 'lib-dynload', '_tkinter.pyd'),  # Unix-like
-        r'C:\Users\Nassar_Home\anaconda3\DLLs\_tkinter.pyd',  # Anaconda base
-    ]
-    
-    tkinter_pyd_added = False
-    for _tkinter_pyd in possible_tkinter_pyd:
-        if os.path.exists(_tkinter_pyd):
-            tkinter_binaries.append((_tkinter_pyd, '.'))
-            print(f"تم إضافة _tkinter.pyd: {_tkinter_pyd}")
-            tkinter_pyd_added = True
-            break
-    
-    if not tkinter_pyd_added:
-        print(f"تحذير: لم يتم العثور على _tkinter.pyd في أي من المسارات")
-    
-    print(f"تم جمع {len(tkinter_binaries)} DLLs و {len(tkinter_datas)} مجلدات لـ tkinter")
 except Exception as e:
     print(f"خطأ في جمع ملفات tkinter: {e}")
     import traceback
@@ -369,18 +288,14 @@ exe = EXE(
     upx=False,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,  # Hide console for production build
+    console=False,
     disable_windowed_traceback=False,
-    icon='pray_times.ico' if os.path.exists('pray_times.ico') else None,
-    version='version.txt',
-    resources=[],
+    argv_emulation=False,
+    target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    hardened_runtime=False,
-    # إضافة خيارات إضافية لضمان التوافق
-    argv_emulation=False,  # تجنب مشاكل في تمرير المعطيات
-    target_arch=None,
-    embed_manifest=True,  # تضمين الـ manifest لضمان التوافق مع ويندوز
+    icon='pray_times.ico',
+    version='version.txt',
 )
 
 coll = COLLECT(
@@ -392,8 +307,5 @@ coll = COLLECT(
     upx=False,
     upx_exclude=[],
     name='Praytimes',
-    # إضافة خيارات إضافية لضمان التوافق
-    exclude_binaries=False,
-    # نسخ مكتبات النظام المطلوبة للعمل على جميع أجهزة ويندوز
-    exclude_system_binaries=False,
 )
+
